@@ -6,7 +6,7 @@ import { IoIosMail } from "react-icons/io";
 import { BsYoutube } from "react-icons/bs";
 
 import { NavLink } from "react-router-dom";
-import Logo from "../../assets/KonsaCollge.png";
+import Logo from "../../assets/KonsaCollege.png";
 
 const CollegeFooter = () => {
   const Link = [
