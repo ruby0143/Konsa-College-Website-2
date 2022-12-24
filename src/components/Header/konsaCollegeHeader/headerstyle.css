@@ -23,3 +23,17 @@
 .hamburger.is-active, .hamburger:before{
     transform: rotate(-45deg) translate(-9px 6px);
 }
+
+.midHeader{
+    position: relative;
+    min-height: 375px;
+}
+
+.midHeader::after{
+    content: '';
+    position: absolute;
+    z-index: -1;
+    background: url('https://lh3.googleusercontent.com/p/AF1QipP9D06xtt7nFHnI7IQ8XyVUC_60L8Cz_7OGgiZA=s1360-w1360-h1020') no-repeat center center/cover;
+    inset: 0;
+    filter: brightness(0.4);
+}
