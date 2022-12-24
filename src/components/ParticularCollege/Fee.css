@@ -1,0 +1,44 @@
+
+.labels{
+    position: relative;
+    top:5%;
+    margin: 6%;
+}
+.chart{
+    display: flex;
+    justify-content: center;
+    
+}
+.label{
+    display: flex;
+    flex-direction: row;
+    margin: 5% 3%;
+}
+.label-left{
+    display: flex;
+    width: 80%;
+}
+.label-color{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-top: 0%;
+}
+.label-text{
+    margin :0 7%;
+}
+
+.mt2{
+    margin-top: 20px;
+}
+
+.mt4{
+    margin-top: 40px;
+}
+
+.l-spl{
+    width: 70% !important;
+}
+.r-spl{
+    width: 30% !important;
+}

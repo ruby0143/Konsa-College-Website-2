@@ -1,0 +1,19 @@
+.s-item{
+    margin: 3%;
+    display: flex;
+}
+.s-icon{
+    width: 18%;
+    padding-top: 5px;
+}
+.s-text{
+    width: 82%;
+}
+
+.icon{
+    width: 30px;
+}
+
+.fs{
+    font-size: 13px;
+}

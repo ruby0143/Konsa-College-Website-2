@@ -21,7 +21,7 @@ const CollegeFooter = () => {
       <div className="w-full h-[2vh] bg-[#EE7C00]"></div>
       <div className="w-full flex flex-col justify-center h-min-[45vh] bg-[#0E0E0E] text-white">
         <div className="w-full pt-7">
-          <ul className="text-center align-middle  md:font-semibold">
+          <ul className="text-center align-middle ">
             {Link.map((item, id) => {
               return (
                 <>
