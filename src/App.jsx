@@ -6,8 +6,9 @@ import ForumPage from "./pages/forumPage";
 import HomePage from "./pages/homePage";
 import NewsPage from "./pages/newsPage";
 import ToolsPage from "./pages/toolsPage";
-import {Footer} from "./components/Footer/footer"
+// import {Footer} from "./components/Footer/footer"
 import KnsaCollegeHeader from "./components/Header/konsaCollegeHeader/KnsaCollegeHeader";
+import CollegeFooter from "./components/Footer/CollegeFooter";
 
 function App() {
 
@@ -18,13 +19,14 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage/>} />
       <Route path="/admission" element={<AdmissionPage/>} />
-      <Route path="/college-finder" element={<CollegePage/>} />
+      <Route path="/Particular-college" element={<CollegePage/>} />
       <Route path="/news" element={<NewsPage/>} />
       <Route path="/exams" element={<ExamPage/>} />
       <Route path="/forum" element={<ForumPage/>} />
       <Route path="/tools" element={<ToolsPage/>} />
     </Routes>
-    <Footer/>
+    {/* <Footer/> */}
+    <CollegeFooter/>
   </Router>
   </>
   )
