@@ -9,13 +9,15 @@ import ToolsPage from "./pages/toolsPage";
 // import {Footer} from "./components/Footer/footer"
 import KnsaCollegeHeader from "./components/Header/konsaCollegeHeader/KnsaCollegeHeader";
 import CollegeFooter from "./components/Footer/CollegeFooter";
+import ScrollToTop from "./ScrollToTop"
 
 function App() {
 
   return (
   <>
   <Router>
-    <KnsaCollegeHeader/>
+  <ScrollToTop>
+  <KnsaCollegeHeader/>
     <Routes>
       <Route path="/" element={<HomePage/>} />
       <Route path="/admission" element={<AdmissionPage/>} />
@@ -27,6 +29,7 @@ function App() {
     </Routes>
     {/* <Footer/> */}
     <CollegeFooter/>
+  </ScrollToTop>
   </Router>
   </>
   )
