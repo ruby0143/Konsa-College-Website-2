@@ -14,7 +14,6 @@ export const Footer = () => {
     {/* <>--links conatiner-- </> */}
     <div className='flex flex-row justify-between flex-wrap gap-6 pt-16 px-20 lg:px-40 pb-10'>
 
-    
        <ul>
         <span className='text-gray-300 hover:text-white text-sm transition-all delay-100 font-semibold' to="#">COLLEGES</span>
             <li><Link className='text-gray-300 hover:text-white text-xs transition-all delay-100' to="#">Statewise Colleges</Link></li>
