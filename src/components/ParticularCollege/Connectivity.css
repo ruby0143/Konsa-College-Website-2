@@ -1,9 +1,9 @@
 .container{
-   
     margin-top: 6%;
 }
 .connectivity{
-    position: relative;
+    position: absolute;
+    z-index: 10;
 }
 .cnt-head{
     font-size: 20px;
@@ -22,15 +22,10 @@
     position: relative;
     z-index: 100;
 }
-
 .c-icon{
     margin: 0.9rem 0.5rem;
-    border-radius: 50%;
+
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    padding: 6px 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     
 }
 
@@ -50,8 +45,8 @@
 .dotted{
     content:"";
     position: absolute;
-    z-index: -1;
-    left: 4.45%;
+    z-index: 1;
+    left: 10%;
     margin-top: 2%;
     border-left: 2px dotted #444;
     height: 240px;

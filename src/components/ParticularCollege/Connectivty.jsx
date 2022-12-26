@@ -10,16 +10,16 @@ function Connectivty() {
         <div className="connectiviy">
           {/* <div className="dotted"></div> */}
           <div className="c-item">
-            <div className="c-icon inline-flex items-center justify-center p-3 h-12 w-13 rounded-full ">
-              <img className="icon h-7 w-7" src="src\assets\icons\castle.png" />
+            <div className="c-icon">
+              <img className="icon" src="src\assets\icons\castle.png" />
             </div>
             <div className="c-text m1">
-              <div className="cente">Indian Institute Of Technology, BHU</div>
+              <div className="center">Indian Institute Of Technology, BHU</div>
             </div>
           </div>
           <div className="c-item">
-            <div className="c-icon inline-flex items-center justify-center p-3 h-12 w-15 rounded-full">
-              <img clasName="icon h-7 w-7" src="src\assets\icons\train.png" />
+            <div className="c-icon">
+              <img src="src\assets\icons\train.png" />
             </div>
             <div className="c-text">
               <div className="center">
@@ -29,8 +29,8 @@ function Connectivty() {
             </div>
           </div>
           <div className="c-item">
-            <div className="c-icon inline-flex items-center justify-center p-3 h-12 w-15 rounded-full">
-              <img clasName="icon h-7 w-7" src="src\assets\icons\bus.png" />
+            <div className="c-icon">
+              <img src="src\assets\icons\bus.png" />
             </div>
             <div className="c-text">
               <div className="center">
@@ -40,8 +40,8 @@ function Connectivty() {
             </div>
           </div>
           <div className="c-item">
-            <div className="c-icon inline-flex items-center justify-center p-3 h-12 w-14 rounded-full">
-              <img className="icon h-5 w-6" src="src\assets\icons\plane.png" />
+            <div className="c-icon">
+              <img src="src\assets\icons\plane.png" />
             </div>
             <div className="c-text">
               <div className="center">

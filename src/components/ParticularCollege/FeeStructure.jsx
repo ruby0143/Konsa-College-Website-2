@@ -5,10 +5,10 @@ import { VictoryPie, VictoryLabel } from "victory";
 function FeeStructure() {
   return (
     <div className="container">
-      <div className="cnt-head mt4">FEE STRUCTURE</div>
+      <div className="cnt-head mt4">Fee Structure</div>
       <hr />
       <div className="college-fee">
-        <div className="cnt-head mt4">COLLEGE FEE</div>
+        <div className="cnt-head mt4">College Fees</div>
         <br />
         <div className="chart">
           <svg width={320} height={320} className="chart-style">
@@ -112,16 +112,16 @@ function FeeStructure() {
           </div>
           <div className="label mt2">
             <div className="label-left">
-              <div className="label-text l-spl">Total Fee</div>
+              <div className="label-text l-spl bold">Total Fee</div>
             </div>
-            <div className="label-right r-spl">₹ 1,33,465</div>
+            <div className="label-right r-spl bold">₹ 1,33,465</div>
           </div>
         </div>
       </div>
       <br />
       <br />
       <div className="hostel-fee">
-        <div className="cnt-head">HOSTEL FEE</div>
+        <div className="cnt-head">Hostel Fees</div>
         <br />
         <div className="chart">
           <svg width={320} height={320} className="chart-style">
@@ -225,9 +225,9 @@ function FeeStructure() {
           </div>
           <div className="label mt2">
             <div className="label-left">
-              <div className="label-text l-spl">Total Fee</div>
+              <div className="label-text l-spl bold">Total Fee</div>
             </div>
-            <div className="label-right r-spl">₹ 1,33,465</div>
+            <div className="label-right r-spl bold">₹ 1,33,465</div>
           </div>
         </div>
       </div>

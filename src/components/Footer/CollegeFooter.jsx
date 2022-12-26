@@ -20,7 +20,7 @@ const CollegeFooter = () => {
     <>
       <div className="w-full h-[2vh] bg-[#EE7C00]"></div>
       <div className="w-full flex flex-col justify-center h-min-[45vh] bg-[#0E0E0E] text-white">
-        <div className="w-full pt-7">
+        <div className="w-full pt-5">
           <ul className="text-center align-middle ">
             {Link.map((item, id) => {
               return (
@@ -35,7 +35,7 @@ const CollegeFooter = () => {
           </ul>
         </div>
 
-        <div className="flex  justify-center py-2">
+        <div className="flex  justify-center py-1">
           <div className=" flex flex-row gap-x-6 text-black">
             <FaGooglePlay
               size={40}
@@ -64,24 +64,25 @@ const CollegeFooter = () => {
           <img src={Logo} alt="logo"></img>
         </div>
 
-        <h2 className="text-center py-2">Subscribe to Our Newsletter</h2>
+        <h2 className="text-center p-1">Subscribe to Our Newsletter</h2>
 
         <div className=" flex flex-row justify-center">
           <div className=" bg-white rounded-lg px-2">
             <input
-              className="p-2 w-[70vw] md:w-[50vw] lg:w-[30vw] text-gray-500 text-center text-base focus:outline-none"
+              className="p-1 w-[70vw] md:w-[50vw] lg:w-[30vw] text-gray-500 text-center text-base focus:outline-none"
               placeholder="Please enter your mobile no"
             />
-            <button className="bg-white text-gray-500 text-3xl">
-              <span>
-                | &#8594;
-                {/* <HiArrowRight/> */}
+            <button className="bg-white text-gray-500 text-3xl text-center">
+              <span className="flex flex-row justify-around items-center">
+                | 
+                {/* &#8594; */}
+                <HiArrowRight size={30} className="mt-2 mx-2"/>
               </span>
             </button>
           </div>
         </div>
 
-        <h2 className="text-center py-10">Konsa College @ Copyright 2022</h2>
+        <h2 className="text-center py-5">Konsa College @ Copyright 2022</h2>
       </div>
     </>
   );
