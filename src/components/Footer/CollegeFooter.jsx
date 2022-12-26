@@ -6,16 +6,17 @@ import { IoIosMail } from "react-icons/io";
 import { BsYoutube } from "react-icons/bs";
 import {RxDividerVertical} from "react-icons/rx"
 
-import { NavLink } from "react-router-dom";
+import {NavLink } from "react-router-dom";
 import Logo from "../../assets/KonsaCollege.png";
 
 const CollegeFooter = () => {
   const Link = [
-    { link: "ABOUT", route: "#" },
-    { link: "PRIVACY POLICY", route: "#" },
-    { link: "TERM OF USE", route: "#" },
-    { link: "CONTACT US", route: "#" },
-    { link: "SUPPORT US", route: "#" },
+    { link: "ABOUT", route: "/particularcollege" },
+    { link: "PRIVACY POLICY", route: "/particularcollege" },
+    { link: "TERM OF USE", route: "/particularcollege" },
+    { link: "CONTACT US", route: "/particularcollege" },
+    { link: "SUPPORT US", route: "/particularcollege" },
+    
   ];
   return (
     <>
@@ -70,15 +71,15 @@ const CollegeFooter = () => {
         <div className=" flex flex-row justify-center">
           <div className=" bg-white rounded-lg px-2">
             <input
-              className="p-1 w-[70vw] md:w-[50vw] lg:w-[30vw] text-gray-500 text-center text-base focus:outline-none"
+              className="p-2 w-[70vw] md:w-[50vw] lg:w-[30vw] text-gray-500 text-center text-base focus:outline-none"
               placeholder="Please enter your mobile no"
             />
             <button className="bg-white text-gray-500">
-              <div className="flex flex-row justify-around items-center">
-                {/* |  */}
+              <div className="flex flex-row justify-around items-center text-2xl">
+                | 
                 {/* &#8594; */}
-                <RxDividerVertical size={30}/>
-                <HiArrowRight size={30}/>
+                {/* <RxDividerVertical size={40}/> */}
+                <HiArrowRight size={30} className="mt-1"/>
 
               </div>
             </button>

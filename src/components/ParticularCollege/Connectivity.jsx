@@ -19,7 +19,7 @@ function Connectivty() {
           </div>
           <div className="c-item">
             <div className="c-icon inline-flex items-center justify-center p-3 h-12 w-15 rounded-full">
-              <img clasName="icon h-7 w-7" src="src\assets\icons\train.png" />
+              <img className="icon h-7 w-7" src="src\assets\icons\train.png" />
             </div>
             <div className="c-text">
               <div className="center">
@@ -30,7 +30,7 @@ function Connectivty() {
           </div>
           <div className="c-item">
             <div className="c-icon inline-flex items-center justify-center p-3 h-12 w-15 rounded-full">
-              <img clasName="icon h-7 w-7" src="src\assets\icons\bus.png" />
+              <img className="icon h-7 w-7" src="src\assets\icons\bus.png" />
             </div>
             <div className="c-text">
               <div className="center">
