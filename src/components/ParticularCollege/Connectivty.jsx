@@ -4,7 +4,7 @@ import "./Connectivity.css";
 function Connectivty() {
   return (
     <div className="container mt2">
-      <div className="cnt-head">Connectivity</div>
+      <div className="cnt-head ">Connectivity</div>
       <hr />
       <div className="cnt-body">
         <div className="connectiviy">

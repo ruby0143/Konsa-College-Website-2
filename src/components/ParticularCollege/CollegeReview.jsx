@@ -15,9 +15,9 @@ const CollegeReview = () => {
       ];
   return (
     <>
-    <div className='w-[100vw] p-2 flex flex-col md:flex-row'>
-        <div className='w-full p-2'>
-          <h3 className='text-[20px] py-2'>Companies Visited</h3>
+    <div className='w-[100vw] py-2 flex flex-col md:flex-row'>
+        <div className='w-full py-2'>
+          <h3 className='text-xl m-3 font-semibold'>Companies Visited</h3>
           <hr className='w-full text-gray-500'/>
           <ul className="pt-5">
             {companiesvisited.map((item, id) => {
@@ -37,7 +37,7 @@ const CollegeReview = () => {
         
         
         <div className='w-full py-2'>
-        <h3 className='text-[20px] p-2'>College Review Video</h3>
+        <h3 className='text-xl m-3 font-semibold'>College Review Video</h3>
           <hr className='w-full text-gray-500'/>
         <div className='flex justify-center md:justify-start'><iframe 
         className="py-5 px-2 w-full h-full md:w-[500px] md:h-[350px]"

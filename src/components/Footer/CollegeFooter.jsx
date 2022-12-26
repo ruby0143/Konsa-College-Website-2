@@ -4,6 +4,7 @@ import { FiInstagram } from "react-icons/fi";
 import { HiArrowRight } from "react-icons/hi";
 import { IoIosMail } from "react-icons/io";
 import { BsYoutube } from "react-icons/bs";
+import {RxDividerVertical} from "react-icons/rx"
 
 import { NavLink } from "react-router-dom";
 import Logo from "../../assets/KonsaCollege.png";
@@ -72,12 +73,14 @@ const CollegeFooter = () => {
               className="p-1 w-[70vw] md:w-[50vw] lg:w-[30vw] text-gray-500 text-center text-base focus:outline-none"
               placeholder="Please enter your mobile no"
             />
-            <button className="bg-white text-gray-500 text-3xl text-center">
-              <span className="flex flex-row justify-around items-center">
-                | 
+            <button className="bg-white text-gray-500">
+              <div className="flex flex-row justify-around items-center">
+                {/* |  */}
                 {/* &#8594; */}
-                <HiArrowRight size={30} className="mt-2 mx-2"/>
-              </span>
+                <RxDividerVertical size={30}/>
+                <HiArrowRight size={30}/>
+
+              </div>
             </button>
           </div>
         </div>
