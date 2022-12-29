@@ -7,7 +7,7 @@ import HomePage from "./pages/homePage";
 import NewsPage from "./pages/newsPage";
 import ToolsPage from "./pages/toolsPage";
 // import {Footer} from "./components/Footer/footer"
-import KnsaCollegeHeader from "./components/Header/konsaCollegeHeader/KnsaCollegeHeader";
+import KnsaCollegeHeader from "./components/Header/MainHeader/KnsaCollegeHeader";
 import CollegeFooter from "./components/Footer/CollegeFooter";
 import ScrollToTop from "./ScrollToTop"
 
