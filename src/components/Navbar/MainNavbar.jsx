@@ -39,7 +39,7 @@ const MainNavbar = () => {
 
   return (
     <div>
-      <div className={` md:hidden ${mobileSidebar ? "translate-x-0" : "translate-x-[-100%]"} overflow-hidden shadow-lg w-[80%] bg-[#000000] z-10 transition-all duration-500 fixed top-0 left-0 h-[100vh]`} >
+      <div className={` md:hidden ${mobileSidebar ? "translate-x-0" : "translate-x-[-100%]"} overflow-hidden shadow-lg w-[80%] bg-[#000000] z-50 transition-all duration-500 fixed top-0 left-0 h-[100vh]`} >
           <ul className={`md:hidden flex cursor-pointer flex-col mt-14 `}>
             { 
                 routes.map(route => {
