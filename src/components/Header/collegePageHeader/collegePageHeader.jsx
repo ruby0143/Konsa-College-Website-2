@@ -1,6 +1,10 @@
 import React from 'react'
 import { BsFillGeoAltFill } from 'react-icons/bs'
-import "../collegePageHeader/collegePageHeader.css"
+import "../../Header/collegePageHeader/collegePageHeader.css"
+
+const collegePageStyle = {
+  
+}
 
 const CollegePageHeader = () => {
   return (

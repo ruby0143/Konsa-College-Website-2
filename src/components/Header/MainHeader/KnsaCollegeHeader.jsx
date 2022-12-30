@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import KnsaCollegeNavbar from './Navbar'
 import './headerstyle.css'
-import {BsFillGeoAltFill} from "react-icons/bs";
 import { NavLink } from 'react-router-dom';
 
 const KnsaCollegeHeader = () => {
