@@ -25,12 +25,12 @@ const CollegeFooter = () => {
         <div className="w-full pt-5">
           <ul className="text-center align-middle ">
             {Link.map((item, id) => {
-              return <>
+              return <React.Fragment key={id}>
                   <NavLink key={id} to={item.route}>
                     <li>{item.link}</li>
                   </NavLink>
                   <br />
-                </>
+                </React.Fragment>
             })}
           </ul>
         </div>
