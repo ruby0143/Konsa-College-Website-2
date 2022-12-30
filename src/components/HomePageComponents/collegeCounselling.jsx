@@ -45,7 +45,7 @@ const CollegeCounselling = () => {
       <div className='text-center text-xl font-semibold text-[#303030]' >
         College Counselling
       </div>
-      <div className='text-[#848484] mt-2 text-[12px] text-end'>
+      <div className='text-[#848484] mt-1 text-[12px] text-end'>
         <div>
           Show more &#10140;
         </div>
@@ -56,7 +56,7 @@ const CollegeCounselling = () => {
             return <CounsellingContainer key={counselling.id} counsellingName={counselling.counsellingName} fullForm={counselling.fullForm} collegeList={counselling.collegeList} />
           })  
         }
-          <div className='min-w-[166px] h-[124px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-gradient-to-r from-white to-[#fff6ec] font-medium'>
+          <div className='min-w-[158px] h-[124px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-gradient-to-r from-white to-[#fff6ec] font-medium'>
             <div className='text-sm text-[#EE7C00]'>
               Show More &#10140;
             </div>
