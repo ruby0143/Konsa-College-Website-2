@@ -1,15 +1,12 @@
 import React from 'react'
 import { BsFillGeoAltFill } from 'react-icons/bs'
-import "../../Header/collegePageHeader/collegePageHeader.css"
-
-const collegePageStyle = {
-  
-}
+import style from "./collegePageHeader.module.css"
 
 const CollegePageHeader = () => {
+
   return (
     <div>
-      <div className='midHeader flex items-end'>
+      <div className={` ${style.backgroundContainer} flex items-end`}>
             <div className='h-full px-4 pb-8'>
               <div className='mb-2' >
                 <img src="https://www.iitbhu.ac.in/contents/iitbhu/img/other/iit_logo_original.png" alt="college image" className='h-[128px]'/>

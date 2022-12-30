@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { FaSearch, FaBars } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
-import konsaCollegeLogo from '../../../assets/KonsaCollege.png' 
+import konsaCollegeLogo from '../../assets/KonsaCollege.png' 
 import './headerstyle.css'
 
-const KnsaCollegeNavbar = ({setMobileSidebar,routes}) => {
+const DesktopNavbar = ({setMobileSidebar,routes}) => {
 
   const [searchbarActive, setSearchbarActive] = useState(false)  
 
@@ -39,4 +39,4 @@ const KnsaCollegeNavbar = ({setMobileSidebar,routes}) => {
   )
 }
 
-export default KnsaCollegeNavbar
+export default DesktopNavbar

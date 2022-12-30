@@ -2,13 +2,14 @@ import React from 'react'
 import {TopColleges} from "../components/TopColleges/topColleges"
 import TakeInformedDecisions from "../components/TakeInformedDecisions/takeInformedDecision"
 import KeepUpdated from "../components/KeepYourselfUpdated/keepUpdated"
-import CollegePredictor from '../components/collegePredictor/collegePredictor'
+import HomeHeader from '../components/Header/MainHeader/homeHeader'
+import FeaturesOffered from '../components/HomePageComponents/features'
 
 const HomePage = () => {
   return (
     <>
-    {/* main header to be added */}
-    <CollegePredictor/>
+    <HomeHeader/>
+    <FeaturesOffered/>
     <TakeInformedDecisions></TakeInformedDecisions>
     <KeepUpdated></KeepUpdated>
     <TopColleges/>

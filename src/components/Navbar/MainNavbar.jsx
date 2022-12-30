@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import KnsaCollegeNavbar from './Navbar'
 import './headerstyle.css'
 import { NavLink } from 'react-router-dom';
+import DesktopNavbar from './DesktopNavbar';
 
-const KnsaCollegeHeader = () => {
+const MainNavbar = () => {
 
   const [mobileSidebar, setMobileSidebar] = useState(false)
   const routes = [
@@ -39,7 +39,6 @@ const KnsaCollegeHeader = () => {
 
   return (
     <div>
-
       <div className={` md:hidden ${mobileSidebar ? "translate-x-0" : "translate-x-[-100%]"} overflow-hidden shadow-lg w-[80%] bg-[#000000] z-10 transition-all duration-500 fixed top-0 left-0 h-[100vh]`} >
           <ul className={`md:hidden flex cursor-pointer flex-col mt-14 `}>
             { 
@@ -53,11 +52,11 @@ const KnsaCollegeHeader = () => {
       </div>
 
       <div>
-          <KnsaCollegeNavbar setMobileSidebar={setMobileSidebar} routes={routes}/>
+          <DesktopNavbar setMobileSidebar={setMobileSidebar} routes={routes}/>
       </div>
 
     </div>
   )
 }
 
-export default KnsaCollegeHeader
+export default MainNavbar

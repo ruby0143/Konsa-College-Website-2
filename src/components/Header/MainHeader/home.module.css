@@ -1,0 +1,13 @@
+.backgroundContainer{
+    position: relative;
+    min-height: 270px;
+}
+
+.backgroundContainer::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: url("../../../assets/background/iit_bhu_background.svg") no-repeat center center/cover;
+    filter: brightness(0.4);
+}
