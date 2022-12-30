@@ -28,7 +28,7 @@ const Exams = () => {
               <div>
                 <img src={exam.logo} alt="exam logo"/>  
               </div>
-              <div className='font-bold' >
+              <div className='font-semibold' >
                 {exam.exam}
               </div>
             </div>
