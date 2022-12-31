@@ -1,14 +1,17 @@
 import React from 'react'
-import {TopColleges} from "../components/TopColleges/topColleges"
-import TakeInformedDecisions from "../components/TakeInformedDecisions/takeInformedDecision"
-import KeepUpdated from "../components/KeepYourselfUpdated/keepUpdated"
+import HomeHeader from '../components/Header/MainHeader/homeHeader'
+import FeaturesOffered from '../components/HomePageComponents/features'
+import CollegesPredictor from '../components/CollegesPredictor/CollegesPredictor'
+import Newsletters from '../components/Newsletters/Newsletters'
+
 
 const HomePage = () => {
   return (
     <>
-    <TakeInformedDecisions></TakeInformedDecisions>
-    <KeepUpdated></KeepUpdated>
-    <TopColleges/>
+      <HomeHeader/>
+      <FeaturesOffered/>
+      <CollegesPredictor />
+      <Newsletters/>
     </>
   )
 }

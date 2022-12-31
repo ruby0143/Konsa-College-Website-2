@@ -6,10 +6,9 @@ import ForumPage from "./pages/forumPage";
 import HomePage from "./pages/homePage";
 import NewsPage from "./pages/newsPage";
 import ToolsPage from "./pages/toolsPage";
-// import {Footer} from "./components/Footer/footer"
-import KnsaCollegeHeader from "./components/Header/konsaCollegeHeader/KnsaCollegeHeader";
 import CollegeFooter from "./components/Footer/CollegeFooter";
 import ScrollToTop from "./ScrollToTop"
+import MainNavbar from "./components/Navbar/MainNavbar";
 
 function App() {
 
@@ -17,11 +16,11 @@ function App() {
   <>
   <Router>
   <ScrollToTop>
-  <KnsaCollegeHeader/>
+  <MainNavbar/>
     <Routes>
       <Route path="/" element={<HomePage/>} />
       <Route path="/admission" element={<AdmissionPage/>} />
-      <Route path="/particularcollege" element={<CollegePage/>} />
+      <Route path="/:particularcollege" element={<CollegePage/>} />
       <Route path="/news" element={<NewsPage/>} />
       <Route path="/exams" element={<ExamPage/>} />
       <Route path="/forum" element={<ForumPage/>} />
