@@ -1,5 +1,4 @@
 import React from 'react'
-import "../homePageComponents.css"
 
 const CollegeContainer = ({collegeName, collegeLogo, collegeBanner}) => {
   return (
