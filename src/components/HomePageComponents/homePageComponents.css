@@ -1,0 +1,12 @@
+.collegeContainer{
+    position: relative;
+}
+
+.collegeContainer::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: url("../../assets/counsellingColleges/colleges/") no-repeat center center/cover;
+    filter: brightness(0.4);
+}

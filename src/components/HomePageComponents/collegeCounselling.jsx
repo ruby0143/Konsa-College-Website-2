@@ -1,14 +1,14 @@
 import React from 'react'
-import IIT_Bombay_logo from "../../assets/counselling colleges/IIT_Bombay.svg"
-import IIT_Delhi_logo from "../../assets/counselling colleges/IIT_Delhi.svg"
-import IIT_Kharagpur_logo from "../../assets/counselling colleges/IIT_Kharagpur.svg"
-import IIT_Hamirpur_logo from "../../assets/counselling colleges/IIT_Hamirpur.svg"
-import NIT_logo from "../../assets/counselling colleges/NIT.svg"
-import DTU_logo from "../../assets/counselling colleges/DTU.svg"
-import NSUT_logo from "../../assets/counselling colleges/NSUT.svg"
-import IGDTUW_logo from "../../assets/counselling colleges/IGDTUW.svg"
-import IITD_logo from "../../assets/counselling colleges/IITD.svg"
-import DSEU_logo from "../../assets/counselling colleges/DSEU.svg"
+import IIT_Bombay_logo from "../../assets/counsellingColleges/IIT_Bombay.svg"
+import IIT_Delhi_logo from "../../assets/counsellingColleges/IIT_Delhi.svg"
+import IIT_Kharagpur_logo from "../../assets/counsellingColleges/IIT_Kharagpur.svg"
+import IIT_Hamirpur_logo from "../../assets/counsellingColleges/IIT_Hamirpur.svg"
+import NIT_logo from "../../assets/counsellingColleges/NIT.svg"
+import DTU_logo from "../../assets/counsellingColleges/DTU.svg"
+import NSUT_logo from "../../assets/counsellingColleges/NSUT.svg"
+import IGDTUW_logo from "../../assets/counsellingColleges/IGDTUW.svg"
+import IITD_logo from "../../assets/counsellingColleges/IITD.svg"
+import DSEU_logo from "../../assets/counsellingColleges/DSEU.svg"
 import CounsellingContainer from './InnerContainers/counsellingContainer'
 
 const CollegeCounselling = () => {
