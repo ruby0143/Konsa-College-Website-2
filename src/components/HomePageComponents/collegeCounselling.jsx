@@ -50,7 +50,7 @@ const CollegeCounselling = () => {
           Show more &#10140;
         </div>
       </div>
-      <div className='flex overflow-x-auto gap-2 py-2'>
+      <div className='flex overflow-x-auto overflow-y-hidden gap-2 py-2'>
         {
           collegeCounsellings.map(counselling => {
             return <CounsellingContainer key={counselling.id} counsellingName={counselling.counsellingName} fullForm={counselling.fullForm} collegeList={counselling.collegeList} />

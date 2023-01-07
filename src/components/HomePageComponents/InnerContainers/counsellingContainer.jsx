@@ -7,8 +7,8 @@ const CounsellingContainer = ({counsellingName, fullForm, collegeList}) => {
         <div className='text-[10px] text-[#4e4e4e] font-semibold text-center' >{fullForm}</div>
         <div className='flex items-center justify-evenly w-full' >  
             {
-                collegeList.map(college => {
-                    return <div key={college.logo}>
+                collegeList.map((college,id) => {
+                    return <div key={id}>
                         <img src={college.logo} alt="college logo" />
                     </div>
                 })

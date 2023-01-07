@@ -1,6 +1,5 @@
 import React from 'react'
 import { BsFillGeoAltFill } from 'react-icons/bs'
-// import style from "./collegePageHeader.module.css"
 import collegePageBanner from "../../../assets/background/iit_bhu_background.svg"
 
 const CollegePageHeader = () => {

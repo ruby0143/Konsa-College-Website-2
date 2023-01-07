@@ -25,14 +25,14 @@ const Colleges = () => {
   return (
     <div className='mb-4'>
       <div className='text-center text-xl font-semibold text-[#303030]' >
-        College Counselling
+        Colleges
       </div>
       <div className='text-[#848484] mt-1 text-[12px] text-end'>
         <div>
           Show more &#10140;
         </div>
       </div>
-      <div className='flex overflow-x-auto gap-2 py-2'>
+      <div className='flex overflow-x-auto overflow-y-hidden gap-2 py-2'>
         {
             collegeList.map(college => {
               return <CollegeContainer key={college.id} collegeName={college.collegeName} collegeLogo={college.collegeLogo} collegeBanner={college.collegeBanner}/>
