@@ -13,28 +13,20 @@ const MainNavbar = () => {
         route: "Home"
     },
     {
-        path: "/news",
-        route: "News"
+        path: "/particularcollege",
+        route: "College"
     },
     {
-        path: "/particularcollege",
-        route: "Colleges"
+        path: "/news",
+        route: "News"
     },
     {
         path: "/exams",
         route: "Exams"
     },
     {
-        path: "/admission",
-        route: "Admission"
-    },
-    {
         path: "/tools",
         route: "Tools"
-    },
-    {
-        path: "/forum",
-        route: "Forum"
     },
   ]
 
