@@ -6,10 +6,13 @@ const HomeHeader = () => {
   return (
     <div className='w-full'>
         <div className={` ${style.backgroundContainer} min-h-[270px] md:min-h-[450px] flex flex-col items-center justify-center w-full`}>
-            <div className='text-2xl text-center font-semibold mb-[35px] text-white'>
-                FIND BEST COLLEGES FOR YOURSELF
+            <div className='text-2xl md:text-5xl md:inset-3 text-center font-semibold mb-[16px] text-white'>
+                FIND BEST COLLEGES <span className='md:text-[#EE7C08]' >FOR YOURSELF</span>
             </div>    
-            <button className='bg-[#EE7C00] text-white h-[40px] w-[185px] rounded-full font-medium flex justify-center items-center' >
+            <div className='hidden md:inline-flex mb-[45px] text-white text-xl'>
+                You can choose your college with us, Join our Counselling process to get our services.
+            </div>
+            <button className='bg-[#EE7C00] text-white md:text-2xl py-[6px] md:py-[10px] px-[20px] rounded-full md:rounded-md font-medium flex justify-center items-center' >
                 Need Counselling
             </button>
         </div>
