@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Placements() {
+function Placements(props) {
   return (
     <div className='mt-10'>
       <h2 className='text-xl m-3 font-semibold'>Placement Stats</h2>
@@ -9,7 +9,7 @@ function Placements() {
         <div className="highest p-3 shadow-md rounded-lg">
           <div className="amount flex justify-around">
             <img className="icon h-4 w-7" src="src\assets\icons\package.png" />
-            <p className='font-semibold text-[#EE7C00] -mt-1'>RS 3.6 Cr</p>
+            <p className='font-semibold text-[#EE7C00] -mt-1'>RS {props.result.highest_package} Cr</p>
           </div>
           <hr />
           <p className='mt-2'>Highest Package</p>
@@ -17,7 +17,7 @@ function Placements() {
         <div className="average p-3 shadow-md rounded-lg">
           <div className="amount flex justify-around">
             <img className="icon h-4 w-7" src="src\assets\icons\package.png" />
-            <p className='font-semibold text-[#EE7C00] -mt-1'>RS 3.6 Cr</p>
+            <p className='font-semibold text-[#EE7C00] -mt-1'>RS {props.result.average_package} Cr</p>
           </div>
           <hr />
           <p className='mt-2'>Average Package</p>

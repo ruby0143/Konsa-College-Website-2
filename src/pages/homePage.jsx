@@ -9,9 +9,11 @@ const HomePage = () => {
   return (
     <>
       <HomeHeader/>
-      <FeaturesOffered/>
-      <CollegesPredictor />
-      <Newsletters/>
+      <div className='max-w-[1200px] m-auto'>
+        <FeaturesOffered/>
+        <CollegesPredictor />
+        <Newsletters/>
+      </div>
     </>
   )
 }
