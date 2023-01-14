@@ -14,11 +14,17 @@ import comparatorRouteIcon from '../../assets/icons/route-icons/Comparator.svg'
 // Konsa college logo import
 import KonsaCollegeLogo from "../../assets/KonsaCollege_Logo/KonsaCollege_mobileLogo.svg"
 
-// social icons import - pstore, insta, mail, yt, ln
+// social icons import
+import instaIcon from '../../assets/icons/insta.png';
+import linkedinIcon from '../../assets/icons/linkedin.png'
+import ytIcon from "../../assets/icons/yt.png"
+import playstoreIcon from '../../assets/icons/playstore.png'
+import emailIcon from '../../assets/icons/email.png'
 
 const MainNavbar = () => {
 
   const [mobileSidebar, setMobileSidebar] = useState(false)
+  
   const routes = [
     {
         path: "/",
@@ -52,6 +58,15 @@ const MainNavbar = () => {
     },
   ]
 
+  const socialMediaIcons = [
+    { icon : playstoreIcon },
+    { icon : emailIcon },
+    { icon : linkedinIcon },
+    { icon : ytIcon },
+    { icon : instaIcon },
+  ]
+
+
   return (
     <div>
       {/* Mobile Slide Side bar */}
@@ -79,7 +94,7 @@ const MainNavbar = () => {
             }
           </ul>
 
-          <div className='flex-1 flex flex-col justify-end items-center' >
+          <div className='flex-1 flex flex-col justify-end items-center gap-8' >
             <div>
               <img 
                 src={KonsaCollegeLogo} 
@@ -87,8 +102,15 @@ const MainNavbar = () => {
                 className='m-auto'
               />
             </div>
-            <div>
-              
+            <div className='flex w-full justify-evenly items-center' >
+              {
+                socialMediaIcons.map((icon,id) => {
+                  return ( 
+                    <NavLink to="#" >
+                        <img src={icon.icon} key={id} alt="social media icon" />
+                    </NavLink> )
+                })
+              }
             </div>
           </div>
       </div>
