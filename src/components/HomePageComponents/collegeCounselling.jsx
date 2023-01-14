@@ -49,7 +49,31 @@ const CollegeCounselling = () => {
         { logo : IITD_logo },
         { logo : DSEU_logo },
       ]
-    }
+    },
+    {
+      id: 4,
+      counsellingName : "MHT - CET",
+      fullForm : "Maharashtra Common Entrance Test",
+      collegeList : [
+        { logo : DTU_logo },
+        { logo : NSUT_logo },
+        { logo : IGDTUW_logo },
+        { logo : IITD_logo },
+        { logo : DSEU_logo },
+      ]
+    },
+    {
+      id: 5,
+      counsellingName : "MHT - CET",
+      fullForm : "Maharashtra Common Entrance Test",
+      collegeList : [
+        { logo : DTU_logo },
+        { logo : NSUT_logo },
+        { logo : IGDTUW_logo },
+        { logo : IITD_logo },
+        { logo : DSEU_logo },
+      ]
+    },
   ]
 
   return (
@@ -57,13 +81,13 @@ const CollegeCounselling = () => {
       <div className='text-center text-xl md:text-2xl mb-1 font-semibold text-[#303030]' >
         College Counselling
       </div>
-      <div className='flex md:justify-center items-center overflow-x-auto overflow-y-hidden gap-2 py-2'>
+      <div className='flex md:max-w-[1100px] md:m-auto items-center overflow-x-auto overflow-y-hidden gap-2 py-2'>
         {
           collegeCounsellings.map(counselling => {
             return <CounsellingContainer key={counselling.id} counsellingName={counselling.counsellingName} fullForm={counselling.fullForm} collegeList={counselling.collegeList} />
           })  
         }
-          <div className='min-w-[168px] md:min-w-[188px] h-[134px] md:h-[154px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-gradient-to-r from-white to-[#fff6ec] font-medium cursor-pointer'>
+          <div className='min-w-[170px] md:min-w-[200px] lg:min-w-[250px] h-[136px] md:h-[156px] lg:h-[170px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-gradient-to-r from-white to-[#fff6ec] font-medium cursor-pointer'>
             <div className='text-sm text-[#EE7C00]'>
               Show More &#10140;
             </div>
