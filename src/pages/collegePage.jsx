@@ -24,22 +24,26 @@ const CollegePage = () => {
   }
 const PORT = 5000
 
+  const getData = async () =>{
+    await axios
+    .get(`http://localhost:${PORT}/college` + path)
+    .then((response) => {
+  
+      if (response.data == "404") {
+        console.log("College Not Found!");
+      } else {
+        console.log(response.data);
+        setResult(...response.data);
+        console.log(">>>",result)
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
   useEffect(() => {
-    setResult([null])
-    axios
-      .get(`http://localhost:${PORT}/college` + path)
-      .then((response) => {
-        if (response.data == "404") {
-          console.log("College Not Found!");
-        } else {
-          console.log(response.data);
-          setResult(...response.data);
-          console.log(">>>",result)
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    getData();
   }, []);
 
   return (
@@ -55,9 +59,9 @@ const PORT = 5000
           <Placements result={result} />
           <CollegeReview result={result} />
         </div>
-      ):<div>
+      ):(<div>
        No College Found
-      </div>}
+      </div>)}
     </>
   );
 };

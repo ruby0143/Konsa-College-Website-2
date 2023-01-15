@@ -1,9 +1,14 @@
 import React from 'react'
 import AllClgSearchBar from './Components/AllClgSearchBar'
+import CollegesSec from './Components/CollegesSec'
 
 const AllColleges = () => {
   return (
-    <AllClgSearchBar/>
+    <div>
+        <AllClgSearchBar/>
+        <CollegesSec />
+    </div>
+    
   )
 }
 

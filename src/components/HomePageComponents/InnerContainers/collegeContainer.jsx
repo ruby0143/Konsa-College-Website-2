@@ -2,7 +2,7 @@ import React from 'react'
 
 const CollegeContainer = ({collegeName, collegeLogo, collegeBanner}) => {
   return (
-    <div className='min-w-[250px] md:min-w-[280px] h-[164px] md:h-[184px] shadow-md rounded-md border border-gray-100 bg-white'>
+    <div className='min-w-[230px] max-w-[300px]  h-[164px] md:h-[184px] xs:[250px] shadow-md rounded-md border border-gray-100 bg-white'>
         <div className='relative h-[110px] md:h-[120px] rounded-t-md flex items-end justify-center' >
             <div className={`absolute brightness-50 w-full`} >
               <img src={collegeBanner} alt="College Banner" className='h-[110px] md:h-[120px] w-full'/>

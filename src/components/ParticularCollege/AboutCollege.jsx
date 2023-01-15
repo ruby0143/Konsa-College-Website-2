@@ -24,7 +24,7 @@ function AboutCollege(props) {
         <div className="negative">
           <h3 className='my-3 mb-5 text-lg m-3 font-semibold'>Negative</h3>
           <ul className='ml-5'>
-            {props.result.negatives.map((point,id)=>{
+            {props.result.negatives?.map((point,id)=>{
               return(
                 <li className='flex' key={id}>
                 <img className="icon  h-5 w-5" src="src\assets\icons\sad.png" />
