@@ -9,6 +9,8 @@ import ToolsPage from "./pages/toolsPage";
 import CollegeFooter from "./components/Footer/CollegeFooter";
 import ScrollToTop from "./ScrollToTop"
 import MainNavbar from "./components/Navbar/MainNavbar";
+import AllClgSearchBar from "./components/AllColleges/Components/AllClgSearchBar";
+import AllColleges from "./components/AllColleges/AllColleges";
 
 function App() {
 
@@ -25,6 +27,7 @@ function App() {
       <Route path="/exams" element={<ExamPage/>} />
       <Route path="/forum" element={<ForumPage/>} />
       <Route path="/tools" element={<ToolsPage/>} />
+      <Route path="/allColleges" element={<AllColleges/>} />
     </Routes>
     {/* <Footer/> */}
     <CollegeFooter/>
