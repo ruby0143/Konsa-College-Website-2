@@ -17,8 +17,11 @@ module.exports = {
     screens: {
       'xxs': '400px',
       'xs' : '500px',
+      'mob': {'max': '1023px'},
+      'desk': {'min': '1024px'},
       ...defaultTheme.screens,
     },
+   
   },
   plugins: [ require('tailwind-scrollbar-hide')],
   
