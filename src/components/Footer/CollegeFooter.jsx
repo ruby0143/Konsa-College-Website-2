@@ -17,8 +17,8 @@ const CollegeFooter = () => {
     <div div className="w-full">
       <div className="w-full h-[2vh] bg-[#EE7C00]"></div>
 
-      <div className="w-full flex mob:flex-col mob:justify-center desk:flex-row desk:justify-between desk:p-8 h-min-[45vh] bg-[#0E0E0E] text-white">
-        <div className="mob:hidden desk:w-1/3">
+      <div className="w-full flex mob:flex-col mob:justify-center desk:flex-row desk:justify-between desk:p-4 desk:px-16 h-min-[45vh] bg-[#0E0E0E] text-white">
+        <div className="mob:hidden desk:w-1/3 desk:mb-6">
           <img src="/KonsaCollege.png" className="w-[180px] text-center"></img>
           <p className="w-[350px] mt-[-20px]">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
@@ -26,12 +26,12 @@ const CollegeFooter = () => {
           </p>
         </div>
 
-        <div className="mob:w-full desk:w-1/3 pt-5 desk:flex desk:flex-row desk:flex-wrap desk:justify-center desk:mt-6">
+        <div className="mob:w-full desk:w-1/3 pt-5 desk:flex desk:flex-row desk:flex-wrap desk:justify-start desk:mt-6">
           {Link.map((item, id) => {
             return (
               <React.Fragment key={id}>
                 <NavLink key={id} to={item.route}>
-                  <div className="mob:text-center desk:w-[150px]">
+                  <div className="mob:text-center desk:w-[200px]">
                     {item.link}
                   </div>
                 </NavLink>
