@@ -50,7 +50,7 @@ function FeeStructure() {
                 className="label-color"
                 style={{ backgroundColor: "#DF4A41" }}
               ></div>
-              <div className="label-text">Tution Fee (per semester)</div>
+              <div className="label-text">Tution Fee <br/>(per semester)</div>
             </div>
             <div className="label-right">₹1,00,000</div>
           </div>
@@ -163,7 +163,7 @@ function FeeStructure() {
                 className="label-color"
                 style={{ backgroundColor: "#DF4A41" }}
               ></div>
-              <div className="label-text">Tution Fee (per semester)</div>
+              <div className="label-text">Tution Fee <br />(per semester)</div>
             </div>
             <div className="label-right">₹1,00,000</div>
           </div>

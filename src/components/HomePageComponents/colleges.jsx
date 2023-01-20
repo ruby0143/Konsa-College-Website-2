@@ -1,31 +1,55 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import IIT_Bombay_logo from "../../assets/counsellingColleges/colleges/IIT_Bombay_Logo.svg"
 import IIT_Delhi_logo from "../../assets/counsellingColleges/colleges/IIT_Delhi_Logo.svg"
 import CollegeContainer from './InnerContainers/collegeContainer'
 import IITB from '../../assets/counsellingColleges/IIT_Bombay.png'
+import axios from "axios";
+import { Link } from 'react-router-dom'
 
 const Colleges = () => {
+  const [collegeList,setColleges] = useState([]);
 
-  const collegeList = [
-    {
-      id: 1,
-      collegeName: "Indian Institute of Technology (Bombay)",
-      collegeLogo: IIT_Bombay_logo,
-      collegeBanner: IITB
-    },
-    {
-      id: 2,
-      collegeName: "Indian Institute of Technology (Delhi)",
-      collegeLogo: IIT_Delhi_logo,
-      collegeBanner: IITB,
-    },
-    {
-      id: 3,
-      collegeName: "Indian Institute of Technology (Delhi)",
-      collegeLogo: IIT_Delhi_logo,
-      collegeBanner: IITB,
-    },
-  ]
+  const getData = async () =>{
+    await axios
+    .get("https://konsa-college-backend-production.up.railway.app/colleges")
+    .then((response) => {
+  
+      if (response.data != "404") {
+        console.log(response.data);
+        setColleges(response.data);
+      } else {
+        console.log("Error!");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
+  useEffect(()=>{
+    getData();   
+  },[]);
+
+  // const collegeList = [
+  //   {
+  //     id: 1,
+  //     collegeName: "Indian Institute of Technology (Bombay)",
+  //     collegeLogo: IIT_Bombay_logo,
+  //     collegeBanner: IITB
+  //   },
+  //   {
+  //     id: 2,
+  //     collegeName: "Indian Institute of Technology (Delhi)",
+  //     collegeLogo: IIT_Delhi_logo,
+  //     collegeBanner: IITB,
+  //   },
+  //   {
+  //     id: 3,
+  //     collegeName: "Indian Institute of Technology BHU (Banaras Hindu University)",
+  //     collegeLogo: "https://www.iitbhu.ac.in/contents/iitbhu/img/other/iit_logo_original.p…",
+  //     collegeBanner: IITB,
+  //   },
+  // ]
 
   return (
     <div className='mb-4'>
@@ -34,15 +58,21 @@ const Colleges = () => {
       </div>
       <div className='flex md:max-w-[1100px] md:m-auto items-center overflow-x-auto overflow-y-hidden gap-2 py-2'>
         {
-            collegeList.map(college => {
-              return <CollegeContainer key={college.id} collegeName={college.collegeName} collegeLogo={college.collegeLogo} collegeBanner={college.collegeBanner}/>
+            collegeList.map((college,idx) => {
+              if(idx<6){
+                return <CollegeContainer key={college.id} collegeName={college.college_name} collegeLogo={college.college_logo_link} collegeBanner={college.header_photo_link} link={college.college_uuid}/>
+              }
+              
             })
         }
+          <Link to="/allcolleges">
           <div className='min-w-[210px] flex-grow-1 md:min-w-[230px] h-[164px] md:h-[184px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-gradient-to-r from-white to-[#fff6ec] font-medium cursor-pointer'>
             <div className='text-sm text-[#EE7C00]'>
               Show More &#10140;
             </div>
           </div>
+          </Link>
+          
       </div>
     </div>
   )

@@ -9,7 +9,7 @@ function AboutCollege(props) {
         <div className="positive">
           <h3 className='my-3 mb-5 text-lg m-3 font-semibold'>Positive</h3>
           <ul className='ml-5'>
-            {props.result.positives.map((point,id)=>{
+            {props.result.positives?.map((point,id)=>{
               return(
                 <li className='flex' key={id}>
                 <img className="icon h-5 w-5" src="src\assets\icons\smile.png" />
