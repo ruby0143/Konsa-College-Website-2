@@ -87,11 +87,11 @@ const CollegeCounselling = () => {
             return <CounsellingContainer key={counselling.id} counsellingName={counselling.counsellingName} fullForm={counselling.fullForm} collegeList={counselling.collegeList} />
           })  
         }
-          <div className='min-w-[170px] md:min-w-[200px] lg:min-w-[250px] h-[136px] md:h-[156px] lg:h-[170px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-gradient-to-r from-white to-[#fff6ec] font-medium cursor-pointer'>
+          <button className='min-w-[170px] md:min-w-[200px] lg:min-w-[250px] h-[136px] md:h-[156px] lg:h-[170px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-gradient-to-r from-white to-[#fff6ec] font-medium cursor-pointer'>
             <div className='text-sm text-[#EE7C00]'>
               Show More &#10140;
             </div>
-          </div>
+          </button>
       </div>
     </div>
   )
