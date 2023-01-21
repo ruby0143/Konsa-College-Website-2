@@ -77,10 +77,10 @@ const MainNavbar = () => {
               <input type='search' placeholder='Search' className={`px-3 w-[90%] text-[14px] outline-none border-none rounded-md leading-6`} />
           </div>
           
-          <ul className={`md:hidden flex flex-col mt-8 `}>
+          <div className={`md:hidden flex flex-col mt-8 `}>
             { 
                 routes.map(route => {
-                    return <li key={route.route} className="w-full rounded-md mb-1">
+                    return <div key={route.route} className="w-full rounded-md mb-1">
                               <NavLink to={route.path} className="pl-4 py-2 w-full rounded-md hover:bg-[#EE7C00] focus:bg-[#EE7C00] text-[#7A7A7A] focus:text-white hover:text-white focus:shadow-md cursor-pointer flex justify-start items-center transition-all duration-100">
                                 <img 
                                   src={route.icon} 
@@ -89,10 +89,10 @@ const MainNavbar = () => {
                                 />
                                 <span className='text-sm' >{route.route}</span>
                               </NavLink>
-                           </li>
+                           </div>
                 })
             }
-          </ul>
+          </div>
 
           <div className='flex-1 flex flex-col justify-end items-center gap-8' >
             <div>
@@ -106,7 +106,7 @@ const MainNavbar = () => {
               {
                 socialMediaIcons.map((icon,id) => {
                   return ( 
-                    <NavLink to="#" >
+                    <NavLink to="#" key={id}>
                         <img src={icon.icon} key={id} alt="social media icon" />
                     </NavLink> )
                 })

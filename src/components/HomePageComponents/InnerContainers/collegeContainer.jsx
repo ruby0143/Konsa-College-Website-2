@@ -16,16 +16,15 @@ const CollegeContainer = ({collegeName, collegeLogo, collegeBanner,collegeId}) =
               <img src={collegeLogo} alt="College Logo"/>
             </div>
         </div>
-        <div className='h-[54px] md:h-[64px] flex items-center justify-center' >
-            <div className='text-sm md:text-base text-center w-[90%]' >
-              {collegeName}
-            </div>
+        <div className="h-[54px] md:h-[64px] flex items-center justify-center">
+          <div className="text-sm md:text-base text-center w-[90%]">
+            {collegeName}
+          </div>
         </div>
     </div></Link>
   )
 }
 
-export default CollegeContainer
+export default CollegeContainer;
 
 
-// 

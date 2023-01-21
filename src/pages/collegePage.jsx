@@ -31,7 +31,7 @@ const PORT = 5000
 
   const getData = async () =>{
     await axios
-    .get(`http://localhost:${PORT}/college` + path)
+    .get("https://konsa-college-backend-production.up.railway.app/college" + path)
     .then((response) => {
   
       if (response.data == "404") {
@@ -53,7 +53,7 @@ const PORT = 5000
 
   return (
     <>
-      {result.college_name?(
+      {result?(
         <div className="bg-[#F5F5F5]">
           <CollegePageHeader result={result} />
           <Connectivity result={result} />

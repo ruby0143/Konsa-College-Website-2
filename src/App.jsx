@@ -27,9 +27,9 @@ function App() {
       <Route path="/exams" element={<ExamPage/>} />
       <Route path="/forum" element={<ForumPage/>} />
       <Route path="/tools" element={<ToolsPage/>} />
-      <Route path="/allColleges" element={<AllColleges/>} />
+      <Route path="/allColleges" element={<AllColleges/>} /> 
     </Routes>
-    {/* <Footer/> */}
+
     <CollegeFooter/>
   </ScrollToTop>
   </Router>

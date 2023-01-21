@@ -31,10 +31,10 @@ const DesktopNavbar = ({setMobileSidebar,routes}) => {
                 </div>
             </div>
             <div className='md:hidden flex items-center gap-4' >
-                <div className='flex items-center' >
+                {/* <div className='flex items-center' >
                     <input type='search' placeholder='Search College' className={`px-3 text-sm outline-none border-none rounded-full leading-7 ${searchbarActive ? "w-[164px]" : "w-0 bg-transparent"} transition-all`} />
                     <FaSearch className='text-white ml-2 cursor-pointer text-lg' onClick={()=>setSearchbarActive(prevstate => !prevstate)} />
-                </div>
+                </div> */}
                 <div onClick={()=>setMobileSidebar(prevstate => !prevstate)} >
                     <FaBars className='text-white cursor-pointer text-lg' />
                 </div>
