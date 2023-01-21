@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import CollegeContainer from './InnerContainers/collegeContainer'
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 const Colleges = () => {
   const [collegeList,setColleges] = useState([]);
@@ -35,7 +36,7 @@ const Colleges = () => {
         {
             collegeList.map((college,idx) => {
               if(idx<6){
-                return <CollegeContainer key={college.id} collegeName={college.college_name} collegeLogo={college.college_logo_link} collegeBanner={college.header_photo_link} link={college.college_uuid}/>
+                return <CollegeContainer key={idx} collegeName={college.college_name} collegeLogo={college.college_logo_link} collegeBanner={college.header_photo_link} link={college.college_uuid}/>
               }
               
             })
