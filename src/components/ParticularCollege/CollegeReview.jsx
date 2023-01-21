@@ -10,7 +10,7 @@ const CollegeReview = (props) => {
           <h3 className='text-xl m-3 font-semibold'>Companies Visited</h3>
           <hr className='w-full text-gray-500'/>
           <ul className="pt-5">
-            {props.result.top_recruiters.map((item,id) => {
+            {props.result.top_recruiters?.map((item,id) => {
               return (
                 <React.Fragment key={id}>
                 <div className='flex flex-row items-center '>

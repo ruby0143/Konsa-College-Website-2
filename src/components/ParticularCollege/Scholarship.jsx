@@ -7,7 +7,7 @@ function Scholarship(props) {
       <div className="cnt-head">Scholarship</div>
       <hr />
       <div className="cnt-body fs mt4">
-        {props.result.scholarships.map((point,id)=>{
+        {props.result.scholarships?.map((point,id)=>{
           return(
              <div className="s-item" key={id}>
                <div className="s-icon">

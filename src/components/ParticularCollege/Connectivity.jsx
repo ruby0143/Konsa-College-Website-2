@@ -18,7 +18,7 @@ function Connectivty(props) {
             </div>
           </div>
           
-            {props.result.connectivity.map((item,id)=>{
+            {props.result.connectivity?.map((item,id)=>{
               return(
                 <div className="c-item">
                 <div className="c-icon inline-flex items-center justify-center p-3 h-12 w-15 rounded-full">

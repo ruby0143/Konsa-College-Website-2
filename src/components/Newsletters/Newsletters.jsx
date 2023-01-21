@@ -2,9 +2,9 @@ import React from 'react'
 
 function Newsletters() {
   return (
-    <div className='mb-6 sm:p-10'>
+    <div className='mb-6 sm:p-10 flex flex-col justify-center items-center'>
       <h2 className='my-6 text-[20px] font-semibold text-center text-[#303030] sm:text-[1.5rem]'>Newsletters</h2>
-      <div className="box m-auto mx-3 flex px-5 py-2 mb-6 sm:py-4 sm:px-8 justify-center" style={{
+      <div className="box m-auto mx-3 flex px-5 py-2 mb-6 sm:py-4 sm:px-8 justify-center max-w-[850px]" style={{
         boxShadow: "1px 2px 6px 1px rgba(0, 0, 0, 0.13)",
         borderRadius: "5px"
       }}>
@@ -21,7 +21,7 @@ function Newsletters() {
           </div>
         </div>
       </div>
-      <div className="box m-auto mx-3 flex px-5 py-2 mb-6 sm:py-4 sm:px-8 justify-center" style={{
+      <div className="box m-auto mx-3 flex px-5 py-2 mb-6 sm:py-4 sm:px-8 justify-center max-w-[850px]" style={{
         boxShadow: "1px 2px 6px 1px rgba(0, 0, 0, 0.13)",
         borderRadius: "5px"
       }}>
@@ -38,7 +38,7 @@ function Newsletters() {
           </div>
         </div>
       </div>
-      <div className="box m-auto mx-3 flex px-5 py-2 mb-6 sm:py-4 sm:px-8 justify-center" style={{
+      <div className="box m-auto mx-3 flex px-5 py-2 mb-6 sm:py-4 sm:px-8 justify-center max-w-[850px]" style={{
         boxShadow: "1px 2px 6px 1px rgba(0, 0, 0, 0.13)",
         borderRadius: "5px"
       }}>
@@ -55,7 +55,7 @@ function Newsletters() {
           </div>
         </div>
       </div>
-      <div className="box m-auto mx-3 flex px-5 py-2 mb-6 sm:py-4 sm:px-8 justify-center" style={{
+      <div className="box m-auto mx-3 flex px-5 py-2 mb-6 sm:py-4 sm:px-8 justify-center max-w-[850px]" style={{
         boxShadow: "1px 2px 6px 1px rgba(0, 0, 0, 0.13)",
         borderRadius: "5px"
       }}>
