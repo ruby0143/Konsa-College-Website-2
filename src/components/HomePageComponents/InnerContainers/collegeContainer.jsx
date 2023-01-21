@@ -1,13 +1,18 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
-const CollegeContainer = ({collegeName, collegeLogo, collegeBanner}) => {
+const CollegeContainer = ({collegeName, collegeLogo, collegeBanner,collegeId}) => {
+ 
+ 
   return (
-    <div className='min-w-[230px] max-w-[300px]  h-[164px] md:h-[184px] xs:[250px] shadow-md rounded-md border border-gray-100 bg-white'>
+   <Link to={"/"+collegeId}>
+    <div 
+    className='min-w-[230px] max-w-[300px]  h-[164px] md:h-[184px] xs:[250px] shadow-md rounded-md border border-gray-100 bg-white'>
         <div className='relative h-[110px] md:h-[120px] rounded-t-md flex items-end justify-center' >
             <div className={`absolute brightness-50 w-full`} >
               <img src={collegeBanner} alt="College Banner" className='h-[110px] md:h-[120px] w-full'/>
             </div>
-            <div className='bg-white rounded-full z-10 mb-2' >
+            <div className='bg-white w-[50px] h-[50px] rounded-full z-10 mb-2' >
               <img src={collegeLogo} alt="College Logo"/>
             </div>
         </div>
@@ -16,7 +21,7 @@ const CollegeContainer = ({collegeName, collegeLogo, collegeBanner}) => {
               {collegeName}
             </div>
         </div>
-    </div>
+    </div></Link>
   )
 }
 

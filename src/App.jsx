@@ -9,8 +9,8 @@ import ToolsPage from "./pages/toolsPage";
 import CollegeFooter from "./components/Footer/CollegeFooter";
 import ScrollToTop from "./ScrollToTop"
 import MainNavbar from "./components/Navbar/MainNavbar";
-import AllClgSearchBar from "./components/AllColleges/Components/AllClgSearchBar";
-import AllColleges from "./components/AllColleges/AllColleges";
+import AllColleges from "./pages/AllColleges";
+
 
 function App() {
 

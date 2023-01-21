@@ -9,19 +9,24 @@ import Cutoff from "../components/ParticularCollege/Cutoff";
 import Placements from "../components/ParticularCollege/Placements";
 import CollegePageHeader from "../components/Header/collegePageHeader/collegePageHeader";
 import axios from "axios";
+import { useStateContext } from "../Context/useStateContext";
 
 const CollegePage = () => {
+  const {link} = useStateContext()
+  console.log(link)
   const [result, setResult] = useState([]);
 
-  const { college } = useParams();
+  // const { college } = useParams();
   const data = useLocation();
   const path = useLocation().pathname;
-  console.log(path, data);
-  let [searchParams, setSearchParams] = useSearchParams();
-  for (const entry of searchParams.entries()) {
-    const [param, value] = entry;
-    console.log("key : value = ", param, value);
-  }
+  // console.log("path",path)
+  console.log("data",data);
+  
+  // let [searchParams, setSearchParams] = useSearchParams();
+  // for (const entry of searchParams.entries()) {
+  //   const [param, value] = entry;
+  //   console.log("key : value = ", param, value);
+  // }
 const PORT = 5000
 
   const getData = async () =>{
