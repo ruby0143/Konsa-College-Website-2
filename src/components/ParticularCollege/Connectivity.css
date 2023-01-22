@@ -20,7 +20,7 @@
     display: flex;
     margin: 1.3rem 0.6rem;
     position: relative;
-    z-index: 100;
+    z-index: 25;
 }
 .c-icon{
     margin: 0.9rem 0.5rem;

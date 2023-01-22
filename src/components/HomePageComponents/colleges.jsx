@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import IIT_Bombay_logo from "../../assets/counsellingColleges/colleges/IIT_Bombay_Logo.svg"
-import IIT_Delhi_logo from "../../assets/counsellingColleges/colleges/IIT_Delhi_Logo.svg"
 import CollegeContainer from './InnerContainers/collegeContainer'
-import IITB from '../../assets/counsellingColleges/IIT_Bombay.png'
 import axios from "axios";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const Colleges = () => {
   const [collegeList,setColleges] = useState([]);
@@ -15,7 +12,6 @@ const Colleges = () => {
     .then((response) => {
   
       if (response.data != "404") {
-        console.log(response.data);
         setColleges(response.data);
       } else {
         console.log("Error!");
@@ -30,27 +26,6 @@ const Colleges = () => {
     getData();   
   },[]);
 
-  // const collegeList = [
-  //   {
-  //     id: 1,
-  //     collegeName: "Indian Institute of Technology (Bombay)",
-  //     collegeLogo: IIT_Bombay_logo,
-  //     collegeBanner: IITB
-  //   },
-  //   {
-  //     id: 2,
-  //     collegeName: "Indian Institute of Technology (Delhi)",
-  //     collegeLogo: IIT_Delhi_logo,
-  //     collegeBanner: IITB,
-  //   },
-  //   {
-  //     id: 3,
-  //     collegeName: "Indian Institute of Technology BHU (Banaras Hindu University)",
-  //     collegeLogo: "https://www.iitbhu.ac.in/contents/iitbhu/img/other/iit_logo_original.p…",
-  //     collegeBanner: IITB,
-  //   },
-  // ]
-
   return (
     <div className='mb-4'>
       <div className='text-center text-xl md:text-2xl mb-1 font-semibold text-[#303030]' >
@@ -60,17 +35,17 @@ const Colleges = () => {
         {
             collegeList.map((college,idx) => {
               if(idx<6){
-                return <CollegeContainer key={college.id} collegeName={college.college_name} collegeLogo={college.college_logo_link} collegeBanner={college.header_photo_link} link={college.college_uuid}/>
+                return <CollegeContainer key={idx} collegeName={college.college_name} collegeLogo={college.college_logo_link} collegeBanner={college.header_photo_link} link={college.college_uuid}/>
               }
               
             })
         }
           <Link to="/allcolleges">
-          <div className='min-w-[210px] flex-grow-1 md:min-w-[230px] h-[164px] md:h-[184px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-gradient-to-r from-white to-[#fff6ec] font-medium cursor-pointer'>
-            <div className='text-sm text-[#EE7C00]'>
-              Show More &#10140;
+            <div className='min-w-[210px] flex-grow-1 md:min-w-[230px] h-[164px] md:h-[184px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-gradient-to-r from-white to-[#fff6ec] font-medium cursor-pointer'>
+              <div className='text-sm text-[#EE7C00]'>
+                Show More &#10140;
+              </div>
             </div>
-          </div>
           </Link>
           
       </div>
