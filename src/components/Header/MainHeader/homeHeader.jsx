@@ -10,7 +10,7 @@ const HomeHeader = () => {
   const [searchTerm, setSearchTerm] = useState("")
 
   useEffect(() => {
-    axios.get("http://localhost:5000/allcolleges")
+    axios.get("https://konsa-college-backend-production.up.railway.app/colleges")
          .then((res)=>{
             setCollegesArr(res.data)
          })

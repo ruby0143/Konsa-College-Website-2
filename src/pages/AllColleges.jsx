@@ -19,9 +19,9 @@ const AllColleges = () => {
 
   const getData = async () => {
     await axios
-      .get(`http://localhost:${PORT}/allcolleges`)
+      .get("https://konsa-college-backend-production.up.railway.app/colleges")
       .then((response) => {
-        if (response.data == "404") {
+        if (response.status === 500) {
           console.log("College Not Found!");
         } else {
           setResult(response.data);
@@ -43,7 +43,7 @@ const AllColleges = () => {
     const newFilter = result.filter((value) => {
       return value.college_name
         .toLowerCase()
-        .includes(searchWord.toLowerCase());
+        .includes(searchWord.toLowerCase()) || value.college_uuid.toLowerCase().includes(searchWord.toLowerCase());
     });
 
     if (searchWord === "") {
