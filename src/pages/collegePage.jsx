@@ -28,12 +28,12 @@ const PORT = 5000
     await axios
     .get("https://konsa-college-backend-production.up.railway.app/college" + path)
     .then((response) => {
-  
-      if (response.data == "404") {
+      console.log(response.status);
+      if (response.status === 500 ) {
         console.log("College Not Found!");
       } else {
-        console.log(response.data);
-        setResult(...response.data);
+        console.log(response.data,"server");
+        setResult(response.data);
         console.log(">>>",result)
       }
     })
