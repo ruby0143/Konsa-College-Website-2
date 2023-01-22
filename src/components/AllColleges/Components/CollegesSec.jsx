@@ -35,7 +35,7 @@ function CollegesSec() {
           <div className='grid grid-cols-1 gap-6 xxs:px-12 xs:grid-cols-2 xs:px-4 sm:grid-cols-2 sm:p-12 md:px-20 lg:grid-cols-3 lg:p-16 xl:grid-cols-4'>
             {
                 collegeList.map(college => {
-                  return <CollegeContainer key={college.id} collegeName={college.college_name} collegeLogo={college.college_logo_link} collegeBanner={college.header_photo_link} link={college.college_uuid}/>
+                  return <CollegeContainer key={college.id} collegeName={college.college_name} collegeLogo={college.college_logo_link} collegeBanner={college.header_photo_link} collegeId={college.college_uuid}/>
                 })
             }
           </div>
