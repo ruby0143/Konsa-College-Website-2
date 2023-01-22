@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {  FaBars } from 'react-icons/fa'
+import { FaSearch, FaBars } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
 import konsaCollegeLogo from '../../assets/KonsaCollege_Logo/KonsaCollege_desktopLogo.svg' 
 import './headerstyle.css'
@@ -7,11 +7,11 @@ import './headerstyle.css'
 const DesktopNavbar = ({setMobileSidebar,routes}) => {
 
   const [searchbarActive, setSearchbarActive] = useState(false)  
-    
+
   return (
     <>
         <nav className='w-full bg-black md:bg-white flex px-3 md:px-12 items-center justify-between' >
-            <div className='h-[54px]' >
+            <div className='h-[54px] -ml-5' >
                 <img className='h-full' src={konsaCollegeLogo} alt="konsa-college-logo"/>
             </div>
             <div className='hidden md:flex items-center gap-10'>

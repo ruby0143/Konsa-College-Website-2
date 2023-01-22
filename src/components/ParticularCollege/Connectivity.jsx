@@ -3,36 +3,34 @@ import "./Connectivity.css";
 
 function Connectivty(props) {
   return (
-    <div className="container mt2">
-      <div className="cnt-head">Connectivity</div>
+    <div className="container mt-[2.5rem]">
+      <div className="text-xl m-3 font-semibold text-[#303030]">Connectivity</div>
       <hr />
       <div className="cnt-body">
-        <div className="connectiviy">
-          {/* <div className="dotted"></div> */}
-          <div className="c-item">
-            <div className="c-icon inline-flex items-center justify-center p-3 h-12 w-13 rounded-full ">
-              <img className="icon h-7 w-7" src="src\assets\icons\castle.png" />
+        <div className="my-[2rem] mx-[0.5rem] relative">
+          <div className="dotted"></div>
+          <div className="flex mb-[2rem]">
+            <div className="p-[.6rem] h-11 min-w-[2.8rem] rounded-full my-[0.5rem] mx-[0.9rem]" style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
+              <img className="h-full w-full" src="src\assets\icons\castle.png" />
             </div>
-            <div className="c-text m1">
-              <div className="cente">{props.result.college_full_name}</div>
-            </div>
+              <p className="font-semibold underline mt-[.3rem]">{props.result.college_name}</p>
           </div>
-          
-            {props.result.connectivity?.map((item,id)=>{
-              return(
-                <div className="c-item">
-                <div className="c-icon inline-flex items-center justify-center p-3 h-12 w-15 rounded-full">
-              <img className="icon h-7 w-7" src={item.icon}/>
-            </div>
-            <div className="c-text">
-              <div className="center">
-                {item.trans}<br />
+
+          {props.result.connectivity?.map((item, index) => {
+            return (
+              <div className="flex justify-start mb-[2rem]" key={index}>
+                <div className="p-[.6rem] h-11 w-11 rounded-full my-[0.5rem] mx-[0.9rem]" style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
+                  <img className="h-full w-full" src={item.icon} />
+                </div>
+                <div className="flex-col items-center mt-[.3rem]">
+                  <div className="">
+                    <p className="underline">{item.trans}</p>
+                  </div>
+                  <span className="underline text-[#848484]">{item.dist}</span>
+                </div>
               </div>
-              <span className="light">{item.dist}</span>
-            </div>
-            </div>
-              )
-            })}
+            )
+          })}
 
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Overview from "../components/ParticularCollege/Overview";
 import CollegeReview from "../components/ParticularCollege/CollegeReview";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import Connectivity from "../components/ParticularCollege/Connectivity";
@@ -9,35 +10,30 @@ import Cutoff from "../components/ParticularCollege/Cutoff";
 import Placements from "../components/ParticularCollege/Placements";
 import CollegePageHeader from "../components/Header/collegePageHeader/collegePageHeader";
 import axios from "axios";
-import { useStateContext } from "../Context/useStateContext";
 
 const CollegePage = () => {
-  const {link} = useStateContext()
-  console.log(link)
   const [result, setResult] = useState([]);
 
-  // const { college } = useParams();
+  const { college } = useParams();
   const data = useLocation();
   const path = useLocation().pathname;
-  // console.log("path",path)
-  console.log("data",data);
-  
-  // let [searchParams, setSearchParams] = useSearchParams();
-  // for (const entry of searchParams.entries()) {
-  //   const [param, value] = entry;
-  //   console.log("key : value = ", param, value);
-  // }
+  console.log(path, data);
+  let [searchParams, setSearchParams] = useSearchParams();
+  for (const entry of searchParams.entries()) {
+    const [param, value] = entry;
+    console.log("key : value = ", param, value);
+  }
 const PORT = 5000
 
   const getData = async () =>{
     await axios
     .get("https://konsa-college-backend-production.up.railway.app/college" + path)
     .then((response) => {
-      console.log(response.status);
-      if (response.status === 500 ) {
+  
+      if (response.data == "404") {
         console.log("College Not Found!");
       } else {
-        console.log(response.data,"server");
+        console.log(response.data);
         setResult(response.data);
         console.log(">>>",result)
       }
@@ -56,6 +52,7 @@ const PORT = 5000
       {result?(
         <div className="bg-[#F5F5F5]">
           <CollegePageHeader result={result} />
+          <Overview result={result}></Overview>
           <Connectivity result={result} />
           <FeeStructure result={result} />
           <Scholarship result={result} />
