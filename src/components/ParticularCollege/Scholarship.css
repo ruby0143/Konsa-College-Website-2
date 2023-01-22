@@ -1,13 +1,15 @@
 .s-item{
-    margin: 3%;
+    margin: 1rem;
     display: flex;
 }
 .s-icon{
-    width: 18%;
     padding-top: 5px;
+    margin-right: .4rem;
 }
+
 .s-text{
-    width: 82%;
+    line-height: 15.23px;
+    letter-spacing: .05rem;
 }
 
 .icon{

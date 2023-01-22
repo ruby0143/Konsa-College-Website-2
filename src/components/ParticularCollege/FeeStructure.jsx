@@ -5,17 +5,17 @@ import { VictoryPie, VictoryLabel } from "victory";
 function FeeStructure() {
   return (
     <div className="container">
-      <div className="cnt-head mt4">Fee Structure</div>
+      <div className="text-xl m-3 font-semibold text-[#303030]">Fee Structure</div>
       <hr />
       <div className="college-fee">
-        <div className="cnt-head mt4">College Fees</div>
+        <div className="text-md m-3 mt-5 font-semibold text-[#303030] text-[17px]">College Fees</div>
         <br />
-        <div className="chart">
-          <svg width={320} height={320} className="chart-style">
+        <div className="chart -mt-[3rem]">
+          <svg width={320} height={280} className="chart-style">
             <VictoryPie
               standalone={false}
-              width={300}
-              height={300}
+              width={310}
+              height={310}
               colorScale={[
                 "#DF4A41",
                 "#E99B3B",
@@ -36,10 +36,10 @@ function FeeStructure() {
             />
             <VictoryLabel
               textAnchor="middle"
-              style={{ fontSize: 18 }}
+              style={{ fontSize: 16, color: "#787878", fontFamily: "inherit", fontWeight: 500, fill: "#787878", padding: "0 3rem" }}
               x={150}
               y={150}
-              text={["Rs 135000", "HOSTEL FEES"]}
+              text={["₹ 1,33,465", "COLLEGE FEES"]}
             />
           </svg>
         </div>
@@ -50,9 +50,9 @@ function FeeStructure() {
                 className="label-color"
                 style={{ backgroundColor: "#DF4A41" }}
               ></div>
-              <div className="label-text">Tution Fee <br/>(per semester)</div>
+              <div className="label-text">Tution Fee (per semester)</div>
             </div>
-            <div className="label-right">₹1,00,000</div>
+            <div className="label-right">₹ 1,00,000</div>
           </div>
           <div className="label">
             <div className="label-left">
@@ -61,11 +61,10 @@ function FeeStructure() {
                 style={{ backgroundColor: "#E99B3B" }}
               ></div>
               <div className="label-text">
-                Mess Advance <br />
-                (per semester)
+                Mess Advance (per semester)
               </div>
             </div>
-            <div className="label-right">₹12,000</div>
+            <div className="label-right">₹ 12,000</div>
           </div>
           <div className="label">
             <div className="label-left">
@@ -74,11 +73,10 @@ function FeeStructure() {
                 style={{ backgroundColor: "#F6D658" }}
               ></div>
               <div className="label-text">
-                Caution Money <br />
-                (one Time Refundable)
+                Caution Money (one Time Refundable)
               </div>
             </div>
-            <div className="label-right">₹9,000</div>
+            <div className="label-right">₹ 9,000</div>
           </div>
           <div className="label">
             <div className="label-left">
@@ -88,7 +86,7 @@ function FeeStructure() {
               ></div>
               <div className="label-text">Other fees (per semester)</div>
             </div>
-            <div className="label-right">₹6350</div>
+            <div className="label-right">₹ 6,350</div>
           </div>
           <div className="label">
             <div className="label-left">
@@ -98,7 +96,7 @@ function FeeStructure() {
               ></div>
               <div className="label-text">One Time Fees</div>
             </div>
-            <div className="label-right">₹5750</div>
+            <div className="label-right">₹ 5,750</div>
           </div>
           <div className="label">
             <div className="label-left">
@@ -108,27 +106,25 @@ function FeeStructure() {
               ></div>
               <div className="label-text">Annual Fee</div>
             </div>
-            <div className="label-right">₹365</div>
+            <div className="label-right">₹ 365</div>
           </div>
-          <div className="label mt2">
+          <div className="label my-[1.5rem]">
             <div className="label-left">
-              <div className="label-text l-spl bold">Total Fee</div>
+              <div className="bold text-[14px] text-[#303030] mt-[.2rem]">Total Amount</div>
             </div>
-            <div className="label-right r-spl bold">₹ 1,33,465</div>
+            <div className="bold text-[14px] text-[#303030]">₹ 1,33,465</div>
           </div>
         </div>
       </div>
-      <br />
-      <br />
-      <div className="hostel-fee">
-        <div className="cnt-head">Hostel Fees</div>
+      <div className="hostel-fee mt-[3rem]">
+        <div className="text-md m-3 mt-5 font-semibold text-[#303030] text-[17px]">Hostel Fees</div>
         <br />
-        <div className="chart">
-          <svg width={320} height={320} className="chart-style">
+        <div className="chart -mt-[3rem]">
+          <svg width={320} height={280} className="chart-style">
             <VictoryPie
               standalone={false}
               width={300}
-              height={300}
+              height={310}
               colorScale={[
                 "#DF4A41",
                 "#E99B3B",
@@ -149,10 +145,10 @@ function FeeStructure() {
             />
             <VictoryLabel
               textAnchor="middle"
-              style={{ fontSize: 18 }}
+              style={{ fontSize: 16, color: "#787878", fontFamily: "inherit", fontWeight: 500, fill: "#787878", padding: "0 3rem" }}
               x={150}
               y={150}
-              text={["Rs 135000", "HOSTEL FEES"]}
+              text={["₹ 1,33,465", "HOSTEL FEES"]}
             />
           </svg>
         </div>
@@ -163,9 +159,9 @@ function FeeStructure() {
                 className="label-color"
                 style={{ backgroundColor: "#DF4A41" }}
               ></div>
-              <div className="label-text">Tution Fee <br />(per semester)</div>
+              <div className="label-text">Tution Fee (per semester)</div>
             </div>
-            <div className="label-right">₹1,00,000</div>
+            <div className="label-right">₹ 1,00,000</div>
           </div>
           <div className="label">
             <div className="label-left">
@@ -174,11 +170,10 @@ function FeeStructure() {
                 style={{ backgroundColor: "#E99B3B" }}
               ></div>
               <div className="label-text">
-                Mess Advance <br />
-                (per semester)
+                Mess Advance (per semester)
               </div>
             </div>
-            <div className="label-right">₹12,000</div>
+            <div className="label-right">₹ 12,000</div>
           </div>
           <div className="label">
             <div className="label-left">
@@ -187,11 +182,10 @@ function FeeStructure() {
                 style={{ backgroundColor: "#F6D658" }}
               ></div>
               <div className="label-text">
-                Caution Money <br />
-                (one Time Refundable)
+                Caution Money (one Time Refundable)
               </div>
             </div>
-            <div className="label-right">₹9,000</div>
+            <div className="label-right">₹ 9,000</div>
           </div>
           <div className="label">
             <div className="label-left">
@@ -201,7 +195,7 @@ function FeeStructure() {
               ></div>
               <div className="label-text">Other fees (per semester)</div>
             </div>
-            <div className="label-right">₹6350</div>
+            <div className="label-right">₹ 6,350</div>
           </div>
           <div className="label">
             <div className="label-left">
@@ -211,7 +205,7 @@ function FeeStructure() {
               ></div>
               <div className="label-text">One Time Fees</div>
             </div>
-            <div className="label-right">₹5750</div>
+            <div className="label-right">₹ 5,750</div>
           </div>
           <div className="label">
             <div className="label-left">
@@ -221,13 +215,13 @@ function FeeStructure() {
               ></div>
               <div className="label-text">Annual Fee</div>
             </div>
-            <div className="label-right">₹365</div>
+            <div className="label-right">₹ 365</div>
           </div>
-          <div className="label mt2">
+          <div className="label my-[1.5rem]">
             <div className="label-left">
-              <div className="label-text l-spl bold">Total Fee</div>
+              <div className="bold text-[14px] text-[#303030] mt-[.2rem]">Total Amount</div>
             </div>
-            <div className="label-right r-spl bold">₹ 1,33,465</div>
+            <div className="bold text-[14px] text-[#303030]">₹ 1,33,465</div>
           </div>
         </div>
       </div>

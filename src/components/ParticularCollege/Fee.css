@@ -2,7 +2,7 @@
 .labels{
     position: relative;
     top:5%;
-    margin: 6%;
+    margin: 5%;
 }
 .chart{
     display: flex;
@@ -12,10 +12,11 @@
 .label{
     display: flex;
     flex-direction: row;
-    margin: 5% 3%;
+    margin: 5% 0;
 }
 .label-left{
     display: flex;
+    align-items: center;
     width: 80%;
 }
 .label-color{
@@ -26,6 +27,12 @@
 }
 .label-text{
     margin :0 7%;
+    font-size: 12px;
+}
+
+.label-right{
+    font-size: 12px;
+    width: 20%;
 }
 
 .mt2{
@@ -44,4 +51,8 @@
 }
 .bold{
     font-weight: 500;
+}
+
+#pie-labels-0, #pie-labels-1, #pie-labels-2, #pie-labels-3, #pie-labels-4, #pie-labels-5{
+    visibility: hidden;
 }

@@ -3,7 +3,7 @@ import React from 'react'
 function AboutCollege(props) {
   return (
     <div className='about mt-10'>
-      <h2 className='text-xl m-3 font-semibold'>About College</h2>
+      <h2 className='text-xl m-3 font-semibold text-[#303030]'>About College</h2>
       <hr />
       <div className="pts m-3">
         <div className="positive">
