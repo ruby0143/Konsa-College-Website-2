@@ -44,7 +44,7 @@ const HomeHeader = () => {
                 />
             </div>
 
-            <div className={` ${searchTerm !== "" ? "inline-flex" : "hidden"} w-[324px] md:w-[600px] lg:w-[780px] z-50 relative`}>
+            <div className={` ${searchTerm !== "" ? "inline-flex" : "hidden"} w-[324px] md:w-[600px] lg:w-[780px] z-30 relative`}>
                 <div className='absolute rounded-b-md max-h-[300px] w-full overflow-y-scroll overflow-x-hidden bg-white shadow-md mt-8 md:mt-10 transition-all duration-300'>
                     {
                         collegesArr.filter(college => college.college_name.toLowerCase().includes(searchTerm.toLowerCase()) || college.college_uuid.toLowerCase().includes(searchTerm)).map((college,index)=>{
