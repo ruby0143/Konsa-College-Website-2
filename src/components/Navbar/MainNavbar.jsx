@@ -20,11 +20,26 @@ import linkedinIcon from '../../assets/icons/linkedin.png'
 import ytIcon from "../../assets/icons/yt.png"
 import playstoreIcon from '../../assets/icons/playstore.png'
 import emailIcon from '../../assets/icons/email.png'
+import { useEffect } from 'react';
+import { useRef } from 'react';
 
 const MainNavbar = () => {
 
   const [mobileSidebar, setMobileSidebar] = useState(false)
-  
+  let menuRef = useRef()
+  useEffect(()=>{
+
+    let mouseClickHandler = (e) =>{
+      if(!menuRef.current.contains(e.target)){
+        setMobileSidebar(false)
+      }
+    }
+    
+    return() => {
+      document.addEventListener("mousedown",mouseClickHandler)
+    }
+  })
+
   const routes = [
     {
         path: "/",
@@ -66,11 +81,12 @@ const MainNavbar = () => {
     { icon : instaIcon },
   ]
 
+  
 
   return (
     <div>
       {/* Mobile Slide Side bar */}
-      <div className={` md:hidden ${mobileSidebar ? "translate-x-0" : "translate-x-[-100%]"} flex flex-col shadow-lg w-[80%] bg-[#f5f5f5] z-50 transition-all duration-500 fixed top-0 left-0 h-[100vh] py-[40px] px-[16px]`} >
+      <div className={` md:hidden ${mobileSidebar ? "translate-x-0" : "translate-x-[-100%]"} flex flex-col shadow-lg w-[80%] bg-[#f5f5f5] z-50 transition-all duration-500 fixed top-0 left-0 h-[100vh] py-[40px] px-[16px]`} ref={menuRef} >
           
           <div className='flex items-center shadow-md py-[8px] px-[12px] rounded-md bg-white w-full' >
               <FaSearch className='text-[#B5BDC9] ml-2 font-thin cursor-pointer text-lg' />
@@ -117,7 +133,7 @@ const MainNavbar = () => {
       
       <div>
           {/* Desktop Top Navbar */}
-          <DesktopNavbar setMobileSidebar={setMobileSidebar} routes={routes}/>
+          <DesktopNavbar setMobileSidebar={setMobileSidebar} mobileSidebar={mobileSidebar} routes={routes}/>
       </div>
 
     </div>
