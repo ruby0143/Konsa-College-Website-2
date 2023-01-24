@@ -3,7 +3,7 @@ import "./Scholarship.css";
 
 function Scholarship(props) {
   return (
-    <div className="container ">
+    <div className="container md:max-w-[60%] md:mx-[3rem] md:my-[5rem]">
       <div className="cnt-head text-xl m-3 font-semibold text-[#303030] mt-8">Scholarship</div>
       <hr />
       <div className="cnt-body fs mt-[1.5rem]">

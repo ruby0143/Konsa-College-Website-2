@@ -5,24 +5,24 @@ function Overview(props) {
   return (
     <>
       {/* before Overview  */}
-      <div className='mt-[3rem] inline-block'>
-        <button className='mx-3 p-3 py-1 bg-[white] active:bg-[#EE7C00] active:text-[white] hover:bg-[#EE7C00] hover:text-[white]' style={{ boxShadow: "0px 0px 2.13793px rgba(0, 0, 0, 0.25)", borderRadius: "5px" }}>Overview</button>
-        <button className='mx-3 p-3 py-1 bg-[white] active:bg-[#EE7C00] active:text-[white] hover:bg-[#EE7C00] hover:text-[white]' style={{ boxShadow: "0px 0px 2.13793px rgba(0, 0, 0, 0.25)", borderRadius: "5px" }}>Connectivity</button>
-        <button className='mx-3 p-3 py-1 bg-[white] active:bg-[#EE7C00] active:text-[white] hover:bg-[#EE7C00] hover:text-[white]' style={{ boxShadow: "0px 0px 2.13793px rgba(0, 0, 0, 0.25)", borderRadius: "5px" }}>Fee Structure</button>
-        <button className='mx-3 p-3 py-1 bg-[white] active:bg-[#EE7C00] active:text-[white] hover:bg-[#EE7C00] hover:text-[white]' style={{ boxShadow: "0px 0px 2.13793px rgba(0, 0, 0, 0.25)", borderRadius: "5px" }}>Scholarship</button>
-        <button className='mx-3 p-3 py-1 bg-[white] active:bg-[#EE7C00] active:text-[white] hover:bg-[#EE7C00] hover:text-[white]' style={{ boxShadow: "0px 0px 2.13793px rgba(0, 0, 0, 0.25)", borderRadius: "5px" }}>About College</button>
-        <button className='mx-3 p-3 py-1 bg-[white] active:bg-[#EE7C00] active:text-[white] hover:bg-[#EE7C00] hover:text-[white]' style={{ boxShadow: "0px 0px 2.13793px rgba(0, 0, 0, 0.25)", borderRadius: "5px" }}>Cut Off</button>
-        <button className='mx-3 p-3 py-1 bg-[white] active:bg-[#EE7C00] active:text-[white] hover:bg-[#EE7C00] hover:text-[white]' style={{ boxShadow: "0px 0px 2.13793px rgba(0, 0, 0, 0.25)", borderRadius: "5px" }}>Placement Stats</button>
-        <button className='mx-3 p-3 py-1 bg-[white] active:bg-[#EE7C00] active:text-[white] hover:bg-[#EE7C00] hover:text-[white]' style={{ boxShadow: "0px 0px 2.13793px rgba(0, 0, 0, 0.25)", borderRadius: "5px" }}>College Review Video</button>
+      <div className='mt-[3rem] flex sm:hidden' style={{overflowX:"auto"}}>
+        <div className='mx-3 min-w-[180px] py-4 bg-[white] active:bg-[#EE7C00] active:text-[white] hover:bg-[#EE7C00] hover:text-[white] text-center cursor-pointer' style={{ borderRadius: "5px" }}>Overview</div>
+        <div className='mx-3 min-w-[180px] py-4 bg-[white] active:bg-[#EE7C00] active:text-[white] hover:bg-[#EE7C00] hover:text-[white] text-center cursor-pointer' style={{ boxShadow: "0px 0px 2.13793px rgba(0, 0, 0, 0.25)", borderRadius: "5px" }}>Connectivity</div>
+        <div className='mx-3 min-w-[180px] py-4 bg-[white] active:bg-[#EE7C00] active:text-[white] hover:bg-[#EE7C00] hover:text-[white] text-center cursor-pointer' style={{ boxShadow: "0px 0px 2.13793px rgba(0, 0, 0, 0.25)", borderRadius: "5px" }}>Fee Structure</div>
+        <div className='mx-3 min-w-[180px] py-4 bg-[white] active:bg-[#EE7C00] active:text-[white] hover:bg-[#EE7C00] hover:text-[white] text-center cursor-pointer' style={{ boxShadow: "0px 0px 2.13793px rgba(0, 0, 0, 0.25)", borderRadius: "5px" }}>Scholarship</div>
+        <div className='mx-3 min-w-[180px] py-4 bg-[white] active:bg-[#EE7C00] active:text-[white] hover:bg-[#EE7C00] hover:text-[white] text-center cursor-pointer' style={{ boxShadow: "0px 0px 2.13793px rgba(0, 0, 0, 0.25)", borderRadius: "5px" }}>About College</div>
+        <div className='mx-3 min-w-[180px] py-4 bg-[white] active:bg-[#EE7C00] active:text-[white] hover:bg-[#EE7C00] hover:text-[white] text-center cursor-pointer' style={{ boxShadow: "0px 0px 2.13793px rgba(0, 0, 0, 0.25)", borderRadius: "5px" }}>Cut Off</div>
+        <div className='mx-3 min-w-[180px] py-4 bg-[white] active:bg-[#EE7C00] active:text-[white] hover:bg-[#EE7C00] hover:text-[white] text-center cursor-pointer' style={{ boxShadow: "0px 0px 2.13793px rgba(0, 0, 0, 0.25)", borderRadius: "5px" }}>Placement Stats</div>
+        <div className='mx-3 min-w-[180px] py-4 bg-[white] active:bg-[#EE7C00] active:text-[white] hover:bg-[#EE7C00] hover:text-[white] text-center cursor-pointer' style={{ boxShadow: "0px 0px 2.13793px rgba(0, 0, 0, 0.25)", borderRadius: "5px" }}>College Review Video</div>
       </div>
 
 
-      <div className='overview mt-[3rem]'>
+      <div className='overview mt-[3rem] md:max-w-[60%] md:mx-[3rem] md:my-[5rem]'>
         <h2 className=' text-[#303030] text-xl m-3 font-semibold'>Overview</h2>
         <hr />
         <div className='mt-[1.4rem]'>
           <p className='text-[13px] leading-[15.75px] text-[#3A3A3A] mx-[10px]'>{props.result.overview}</p>
-          <div className="grid grid-rows-2 grid-cols-2 mt-[2rem] mx-[10px] gap-2">
+          <div className="grid grid-rows-2 grid-cols-2 mt-[2rem] mx-[10px] gap-2 md:grid-cols-4 md:grid-rows-1">
             <div className="nirf flex bg-[#FCFCFC] rounded-[3.85464px] p-2 items-center justify-around" style={{ boxShadow: "1px 2px 5px rgba(0, 0, 0, 0.07)" }}>
               <img src="src\assets\features\NIRF.png" alt="NIRF logo" className='h-[32.31px]'/>
               <div className="rank">

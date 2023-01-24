@@ -3,7 +3,7 @@ import "./Connectivity.css";
 
 function Connectivty(props) {
   return (
-    <div className="container mt-[2.5rem]">
+    <div className="container mt-[2.5rem] md:max-w-[60%] md:mx-[3rem] md:my-[5rem]">
       <div className="text-xl m-3 font-semibold text-[#303030]">Connectivity</div>
       <hr />
       <div className="cnt-body">
