@@ -120,7 +120,7 @@ const AllColleges = () => {
             placeholder="Search your Colleges....."
           ></input>
           <span>
-            <img className="w-[23px] h-[23px]" src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/KonsaCollege.png"></img>
+            <img className="w-[23px] h-[23px]" src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/Vector.png"></img>
           </span>
         </div>
       </div>
