@@ -8,7 +8,7 @@ function Placements(props) {
       <div className="m-3 flex justify-around mt-5">
         <div className="highest p-3 shadow-md rounded-lg md:px-6">
           <div className="amount flex justify-around">
-            <img className="icon h-4 w-7" src="src/assets/icons/package.png" />
+            <img className="icon h-4 w-7" src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/icons/package.png" />
             <p className='font-semibold text-[#EE7C00] -mt-1'>RS {props.result.highest_package} Cr</p>
           </div>
           <hr />
@@ -16,7 +16,7 @@ function Placements(props) {
         </div>
         <div className="average p-3 shadow-md rounded-lg md:px-6">
           <div className="amount flex justify-around">
-            <img className="icon h-4 w-7" src="src/assets/icons/package.png" />
+            <img className="icon h-4 w-7" src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/icons/package.png" />
             <p className='font-semibold text-[#EE7C00] -mt-1'>RS {props.result.median_package} Cr</p>
           </div>
           <hr />

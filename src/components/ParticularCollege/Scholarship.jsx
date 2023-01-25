@@ -11,7 +11,7 @@ function Scholarship(props) {
           return (
             <div className="s-item" key={id}>
               <div className="s-icon">
-                <img className="icon h-3" src="src/assets/icons/scholar.png" />
+                <img className="icon h-3" src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/icons/scholar.png" />
               </div>
               <p className="s-text">
                 {point}

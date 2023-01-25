@@ -12,7 +12,7 @@ function AboutCollege(props) {
             {props.result.positives?.map((point,id)=>{
               return(
                 <li className='flex' key={id}>
-                <img className="icon h-5 w-5" src="src/assets/icons/smile.png" />
+                <img className="icon h-5 w-5" src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/icons/smile.png" />
                 <p className='text-sm ml-3 mb-3 -mt-1'>{point}</p>
               </li>
               )
@@ -27,7 +27,7 @@ function AboutCollege(props) {
             {props.result.negatives?.map((point,id)=>{
               return(
                 <li className='flex' key={id}>
-                <img className="icon  h-5 w-5" src="src/assets/icons/sad.png" />
+                <img className="icon  h-5 w-5" src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/icons/sad.png" />
                 <p className='text-sm  ml-3 mb-3 -mt-1'>{point}</p>
               </li>
               )
