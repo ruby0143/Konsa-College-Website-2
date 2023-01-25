@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import DesktopNavbar from './DesktopNavbar';
 import './headerstyle.css'
@@ -22,19 +22,21 @@ import playstoreIcon from '../../assets/icons/playstore.png'
 import emailIcon from '../../assets/icons/email.png'
 import { useEffect } from 'react';
 import { useRef } from 'react';
+import useCollegeDataStore from '../../utils/AllCollegeData-Store';
 
 const MainNavbar = () => {
+
+  const collegeDataList = useCollegeDataStore((state) => state.collegeDataList)
+  const [searchTerm, setSearchTerm] = useState("")
 
   const [mobileSidebar, setMobileSidebar] = useState(false)
   let menuRef = useRef()
   useEffect(()=>{
-
     let mouseClickHandler = (e) =>{
       if(!menuRef.current.contains(e.target)){
         setMobileSidebar(false)
       }
     }
-    
     return() => {
       document.addEventListener("mousedown",mouseClickHandler)
     }
@@ -90,8 +92,30 @@ const MainNavbar = () => {
           
           <div className='flex items-center shadow-md py-[8px] px-[12px] rounded-md bg-white w-full' >
               <FaSearch className='text-[#B5BDC9] ml-2 font-thin cursor-pointer text-lg' />
-              <input type='search' placeholder='Search' className={`px-3 w-[90%] text-[14px] outline-none border-none rounded-md leading-6`} />
+              <input 
+                type='search' 
+                placeholder='Search' 
+                className={`px-3 w-[90%] text-[14px] outline-none border-none rounded-md leading-6`} 
+                onChange={e=>setSearchTerm(e.target.value)}
+              />
+
           </div>
+
+          <div className={` ${searchTerm !== "" ? "inline-flex" : "hidden"} z-30 relative`}>
+                <div className='absolute rounded-b-md max-h-[260px] w-full overflow-y-scroll overflow-x-hidden bg-white shadow-md mt-1 md:mt-10 transition-all duration-300'>
+                    {
+                        collegeDataList.filter(college => college.college_name.toLowerCase().includes(searchTerm.toLowerCase()) || college.college_uuid.toLowerCase().includes(searchTerm)).map((college,index)=>{
+                            return <Link 
+                                        key={index} 
+                                        to={`/${college.college_uuid}`}
+                                        className="text-gray-800 md:cursor-pointer block font-medium text-xs md:text-base px-6 py-2 shadow-sm hover:bg-slate-100"
+                                    >
+                                        {college.college_name}
+                                    </Link>
+                        })
+                    }
+                </div>
+            </div>
           
           <div className={`md:hidden flex flex-col mt-8 `}>
             { 

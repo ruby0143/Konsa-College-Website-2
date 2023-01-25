@@ -1,21 +1,14 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+// import axios from 'axios'
+import React, { useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import useCollegeDataStore from '../../../utils/AllCollegeData-Store'
 import style from './home.module.css'
 
 const HomeHeader = () => {
   
-  const [collegesArr, setCollegesArr] = useState(() => [])
+  const collegeDataList = useCollegeDataStore((state) => state.collegeDataList)
   const [searchTerm, setSearchTerm] = useState("")
-
-  useEffect(() => {
-    axios.get("https://konsa-college-backend-production.up.railway.app/colleges")
-         .then((res)=>{
-            setCollegesArr(res.data)
-         })
-  }, [])
-
 
   return (
     <div className='w-full'>
@@ -47,11 +40,11 @@ const HomeHeader = () => {
             <div className={` ${searchTerm !== "" ? "inline-flex" : "hidden"} w-[324px] md:w-[600px] lg:w-[780px] z-30 relative`}>
                 <div className='absolute rounded-b-md max-h-[300px] w-full overflow-y-scroll overflow-x-hidden bg-white shadow-md mt-8 md:mt-10 transition-all duration-300'>
                     {
-                        collegesArr.filter(college => college.college_name.toLowerCase().includes(searchTerm.toLowerCase()) || college.college_uuid.toLowerCase().includes(searchTerm)).map((college,index)=>{
+                        collegeDataList.filter(college => college.college_name.toLowerCase().includes(searchTerm.toLowerCase()) || college.college_uuid.toLowerCase().includes(searchTerm)).map((college,index)=>{
                             return <Link 
-                                    key={index} 
-                                    to={`/${college.college_uuid}`}
-                                    className="text-gray-800 md:cursor-pointer block font-medium text-sm md:text-base px-6 py-2 shadow-sm hover:bg-slate-100"
+                                        key={index} 
+                                        to={`/${college.college_uuid}`}
+                                        className="text-gray-800 md:cursor-pointer block font-medium text-sm md:text-base px-6 py-2 shadow-sm hover:bg-slate-100"
                                     >
                                         {college.college_name}
                                     </Link>
