@@ -7,15 +7,20 @@ import {
 } from "react-router-dom";
 import axios from "axios";
 import CollegeContainer from "../components/HomePageComponents/InnerContainers/collegeContainer";
+import CollegeSkeleton from "../components/AllColleges/Components/CollegeSkeleton";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const AllColleges = () => {
+  const [skeleton,setSkeleton]=useState(true)
+  const [paginatedData,setPaginatedData]=useState([])
   const [result, setResult] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
 
   const query = useLocation();
-  console.log("query", query);
+  // console.log("query", query);
   const PORT = 5000;
+  const limit = 8
 
   const getData = async () => {
     await axios
@@ -25,6 +30,7 @@ const AllColleges = () => {
           console.log("College Not Found!");
         } else {
           setResult(response.data);
+          setSkeleton(false)
           // console.log(">>>",result)
         }
       })
@@ -33,7 +39,48 @@ const AllColleges = () => {
       });
   };
 
+  const getDataWithPagination = async () => {
+    await axios
+      .get(`http://localhost:5000/allclgs?page=1&limit=${limit}`)
+      .then((response) => {
+        if (response.status === 500) {
+          console.log("College Not Found!");
+        } else {
+          setPaginatedData([...response.data.results]);
+          setSkeleton(false)
+          // console.log(">>>",response.data.results)
+          // console.log(">>>",paginatedData)
+
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const getMoreData = async () => {
+    const page = Math.ceil(paginatedData.length / limit) + 1;
+    await axios
+      .get(`http://localhost:5000/allclgs?page=${page}&limit=${limit}`)
+      .then((response) => {
+        if (response.status === 500) {
+          console.log("College Not Found!");
+        } else {
+          setPaginatedData([...paginatedData,...response.data.results]);
+          setSkeleton(false)
+          // console.log(">>>",response.data.results)
+          // console.log(">>>",paginatedData)
+
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
+    getDataWithPagination()
+    getMoreData()
     getData();
   }, []);
 
@@ -82,7 +129,20 @@ const AllColleges = () => {
           Colleges
         </div>
 
-        {wordEntered.length ? (
+        {skeleton ? (
+     <div className="grid grid-cols-1 gap-6  p-8  xxs:px-12 xs:grid-cols-2 xs:px-4 sm:grid-cols-2 sm:p-12 md:px-20 lg:grid-cols-3 lg:p-16 xl:grid-cols-4">
+      <CollegeSkeleton/>
+      <CollegeSkeleton/>
+      <CollegeSkeleton/>
+      <CollegeSkeleton/>
+      <CollegeSkeleton/>
+      <CollegeSkeleton/>
+      <CollegeSkeleton/>
+      <CollegeSkeleton/>
+
+     </div>
+        ) : (<>
+         {wordEntered.length ? (
           <div className="grid grid-cols-1 gap-6  p-8  xxs:px-12 xs:grid-cols-2 xs:px-4 sm:grid-cols-2 sm:p-12 md:px-20 lg:grid-cols-3 lg:p-16 xl:grid-cols-4">
             {filteredData.map((college) => {
               return (
@@ -97,8 +157,12 @@ const AllColleges = () => {
             })}
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-6  p-8  xxs:px-12 xs:grid-cols-2 xs:px-4 sm:grid-cols-2 sm:p-12 md:px-20 lg:grid-cols-3 lg:p-16 xl:grid-cols-4">
-            {result.map((college) => {
+          <InfiniteScroll   
+          dataLength={paginatedData.length}
+          next={getMoreData}
+          hasMore={paginatedData.length<result.length}>
+            <div className="grid grid-cols-1 gap-6  p-8  xxs:px-12 xs:grid-cols-2 xs:px-4 sm:grid-cols-2 sm:p-12 md:px-20 lg:grid-cols-3 lg:p-16 xl:grid-cols-4">
+            {paginatedData?.map((college) => {
               return (
                 <CollegeContainer
                   key={college.college_uuid}
@@ -110,7 +174,8 @@ const AllColleges = () => {
               );
             })}
           </div>
-        )}
+          </InfiniteScroll>
+        )}</>)}
       </div>
     </>
   );

@@ -17,11 +17,11 @@ const CollegePage = () => {
   const { college } = useParams();
   const data = useLocation();
   const path = useLocation().pathname;
-  console.log(path, data);
+  // console.log(path, data);
   let [searchParams, setSearchParams] = useSearchParams();
   for (const entry of searchParams.entries()) {
     const [param, value] = entry;
-    console.log("key : value = ", param, value);
+    // console.log("key : value = ", param, value);
   }
 const PORT = 5000
 
@@ -35,7 +35,7 @@ const PORT = 5000
       } else {
         console.log(response.data);
         setResult(response.data);
-        console.log(">>>",result)
+        // console.log(">>>",result)
       }
     })
     .catch((err) => {
