@@ -3,7 +3,7 @@ import { SlArrowDown } from "react-icons/sl"
 
 function Cutoff() {
   return (
-    <div className='mt-10'>
+    <div className='mt-10 md:max-w-[60%] md:mx-[3rem] md:my-[5rem]'>
       <h2 className='text-xl m-3 font-semibold text-[#303030]'>Cut off</h2>
       <hr />
       <div className='m-5'>
