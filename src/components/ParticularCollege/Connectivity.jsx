@@ -11,7 +11,7 @@ function Connectivty(props) {
           <div className="dotted"></div>
           <div className="flex mb-[2rem]">
             <div className="p-[.6rem] h-11 min-w-[2.8rem] rounded-full my-[0.5rem] mx-[0.9rem]" style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
-              <img className="h-full w-full" src="src\assets\icons\castle.png" />
+              <img className="h-full w-full" src="src/assets/icons/castle.png" />
             </div>
               <p className="font-semibold underline mt-[.3rem]">{props.result.college_name}</p>
           </div>

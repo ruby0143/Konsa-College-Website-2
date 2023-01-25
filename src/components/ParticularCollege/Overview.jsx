@@ -24,14 +24,14 @@ function Overview(props) {
           <p className='text-[13px] leading-[15.75px] text-[#3A3A3A] mx-[10px]'>{props.result.overview}</p>
           <div className="grid grid-rows-2 grid-cols-2 mt-[2rem] mx-[10px] gap-2 md:grid-cols-4 md:grid-rows-1">
             <div className="nirf flex bg-[#FCFCFC] rounded-[3.85464px] p-2 items-center justify-around" style={{ boxShadow: "1px 2px 5px rgba(0, 0, 0, 0.07)" }}>
-              <img src="src\assets\features\NIRF.png" alt="NIRF logo" className='h-[32.31px]'/>
+              <img src="src/assets/features/NIRF.png" alt="NIRF logo" className='h-[32.31px]'/>
               <div className="rank">
                 <p className='text-[14px] text-[#2E2E2E] text-center font-semibold'>{props.result.nirf}</p>
                 <p className='text-[12px] text-[#434343] text-center'>NIRF Ranking</p>
               </div>
             </div>
             <div className="exam flex bg-[#FCFCFC] rounded-[3.85464px] p-2 items-center justify-around"  style={{ boxShadow: "1px 2px 5px rgba(0, 0, 0, 0.07)" }}>
-              <img src="src\assets\features\Exams.png" alt="Exam logo" className='h-[32.31px]'/>
+              <img src="src/assets/features/Exams.png" alt="Exam logo" className='h-[32.31px]'/>
               <div className='examType'>
                 {props.result.exams?.map((exam, index) => {
                   return <p id={index} className='text-[14px] text-[#2E2E2E] text-center font-semibold'>{exam}</p>
@@ -39,14 +39,14 @@ function Overview(props) {
               </div>
             </div>
             <div className="area flex bg-[#FCFCFC] rounded-[3.85464px] p-2 items-center justify-evenly" style={{ boxShadow: "1px 2px 5px rgba(0, 0, 0, 0.07)" }}>
-              <img src="src\assets\features\Area.png" alt="Area logo" className='h-[32.31px]'/>
+              <img src="src/assets/features/Area.png" alt="Area logo" className='h-[32.31px]'/>
               <div className="campusArea">
                 <p className='text-[14px] text-[#2E2E2E] text-center font-semibold'>568 Acres</p>
                 <p className='text-[14px] text-[#2E2E2E] text-center font-semibold'>Campus Area</p>
               </div>
             </div>
             <div className="modeOfAdmission flex bg-[#FCFCFC] rounded-[3.85464px] p-2 items-center justify-around" style={{ boxShadow: "1px 2px 5px rgba(0, 0, 0, 0.07)" }}>
-              <img src="src\assets\features\Admission.png" alt="mode of admission logo" className='h-[32.31px]'/>
+              <img src="src/assets/features/Admission.png" alt="mode of admission logo" className='h-[32.31px]'/>
               <div className="mode">
                 {props.result.mode_of_admission?.map((mode, index) => {
                   return <p id={index} className='text-[14px] text-[#2E2E2E] text-center font-semibold'>{mode}</p>
