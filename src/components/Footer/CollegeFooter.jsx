@@ -19,8 +19,8 @@ const CollegeFooter = () => {
 
       <div className="w-full flex mob:flex-col mob:justify-center desk:flex-row desk:justify-between desk:p-4 desk:px-16 h-min-[45vh] bg-[#0E0E0E] text-white">
         <div className="mob:hidden desk:w-1/3 desk:mb-6">
-          <img src="/KonsaCollege.png" className="w-[180px] text-center"></img>
-          <p className="w-[350px] mt-[-20px]">
+          <img src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/KonsaCollege.png" className="w-[180px] text-center"></img>
+          <p className="w-[250px] mt-[-20px]">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
             explicabo, nisi similique excepturi voluptatibus neque eveniet.
           </p>
@@ -66,7 +66,7 @@ const CollegeFooter = () => {
           </div>
 
           <div className="mob:flex mob:justify-center desk:hidden">
-            <img src="/public/KonsaCollege.png" alt="logo"></img>
+            <img src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/KonsaCollege.png" alt="logo"></img>
           </div>
           <h2 className="text-center p-1">Subscribe to Our Newsletter</h2>
 
@@ -77,11 +77,11 @@ const CollegeFooter = () => {
                 placeholder="Please enter your mobile no"
               />
               <span>
-                <img src="/line.png" className="mr-2" />
+                <img src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/line.png" className="mr-2" />
               </span>
               <button className="bg-white text-gray-500">
                 <span>
-                  <img src="/arrow.png" />
+                  <img src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/arrow.png" />
                 </span>
               </button>
             </div>
