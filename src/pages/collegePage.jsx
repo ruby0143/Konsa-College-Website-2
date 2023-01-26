@@ -12,40 +12,19 @@ import CollegePageHeader from "../components/Header/collegePageHeader/collegePag
 import axios from "axios";
 
 const CollegePage = () => {
-  const [result, setResult] = useState([]);
-
-  const { college } = useParams();
-  const data = useLocation();
-  const path = useLocation().pathname;
-  // console.log(path, data);
-  let [searchParams, setSearchParams] = useSearchParams();
-  for (const entry of searchParams.entries()) {
-    const [param, value] = entry;
-    // console.log("key : value = ", param, value);
-  }
-const PORT = 5000
-
-  const getData = async () =>{
-    await axios
-    .get("https://konsa-college-backend-production.up.railway.app/college" + path)
-    .then((response) => {
   
-      if (response.data == "404") {
-        console.log("College Not Found!");
-      } else {
-        console.log(response.data);
-        setResult(response.data);
-        // console.log(">>>",result)
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
+  const [result,setResult] = useState([])
+
+  const path = useLocation().pathname
 
   useEffect(() => {
-    getData();
-  }, []);
+    axios.get(`https://konsa-college-backend-production.up.railway.app${path}`)
+         .then(res => {
+            console.log(res.data)
+            setResult(res.data)
+          })
+         .catch(err => console.log("error: ",err))
+  }, [])
 
   return (
     <>
