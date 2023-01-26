@@ -21,13 +21,13 @@ function App() {
   <MainNavbar/>
     <Routes>
       <Route path="/" element={<HomePage/>} />
-      <Route path="/admission" element={<AdmissionPage/>} />
-      <Route path="/college/:particularcollege" element={<CollegePage/>} />
-      <Route path="/news" element={<NewsPage/>} />
-      <Route path="/exams" element={<ExamPage/>} />
-      <Route path="/forum" element={<ForumPage/>} />
-      <Route path="/tools" element={<ToolsPage/>} />
-      <Route path="/allColleges" element={<AllColleges/>} /> 
+      <Route path="/admission" element={<AdmissionPage/>} exact/>
+      <Route path="/college/:particularcollege" element={<CollegePage/>} exact/>
+      <Route path="/news" element={<NewsPage/>} exact/>
+      <Route path="/exams" element={<ExamPage/>} exact/>
+      <Route path="/forum" element={<ForumPage/>} exact/>
+      <Route path="/tools" element={<ToolsPage/>} exact/>
+      <Route path="/allColleges" element={<AllColleges/>} exact/> 
     </Routes>
 
     <CollegeFooter/>
