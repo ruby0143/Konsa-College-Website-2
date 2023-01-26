@@ -41,7 +41,7 @@ const AllColleges = () => {
 
   const getDataWithPagination = async () => {
     await axios
-      .get(`http://localhost:5000/allclgs?page=1&limit=${limit}`)
+      .get(`https://konsa-college-backend-production.up.railway.app/allclgs?page=1&limit=${limit}`)
       .then((response) => {
         if (response.status === 500) {
           console.log("College Not Found!");
@@ -61,7 +61,7 @@ const AllColleges = () => {
   const getMoreData = async () => {
     const page = Math.ceil(paginatedData.length / limit) + 1;
     await axios
-      .get(`http://localhost:5000/allclgs?page=${page}&limit=${limit}`)
+      .get(`https://konsa-college-backend-production.up.railway.app/allclgs?page=${page}&limit=${limit}`)
       .then((response) => {
         if (response.status === 500) {
           console.log("College Not Found!");
