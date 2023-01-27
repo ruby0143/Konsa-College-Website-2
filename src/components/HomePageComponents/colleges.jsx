@@ -11,7 +11,7 @@ const Colleges = () => {
 
   const getData = async () =>{
     await axios
-    .get("https://konsa-college-backend-production.up.railway.app/colleges")
+    .get("https://konsa-college-backend-production.up.railway.app/allcolleges")
     .then((response) => {
   
       if (response.data != "404") {
