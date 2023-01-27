@@ -18,7 +18,7 @@ const Exams = () => {
       <div className='text-center text-xl md:text-2xl mb-1 font-semibold text-[#303030]' >
         Exams
       </div>
-      <div className='flex md:max-w-[1100px] md:m-auto items-center overflow-x-auto gap-2 py-2'>
+      <div className='flex md:max-w-[1100px] md:m-auto items-center overflow-x-auto gap-3 py-2'>
         {
           Exams.map(exam => {
             return <div key={exam.id} className='h-[56px] md:h-[158px] min-w-[158px] flex md:flex-col items-center justify-evenly shadow-md rounded-md border border-gray-100 bg-white'>
