@@ -43,7 +43,7 @@ const HomeHeader = () => {
                         collegeDataList.filter(college => college.college_name.toLowerCase().includes(searchTerm.toLowerCase()) || college.college_uuid.toLowerCase().includes(searchTerm)).map((college,index)=>{
                             return <Link 
                                         key={index} 
-                                        to={`/${college.college_uuid}`}
+                                        to={`/college/${college.college_uuid}`}
                                         className="text-gray-800 md:cursor-pointer block font-medium text-sm md:text-base px-6 py-2 shadow-sm hover:bg-slate-100"
                                     >
                                         {college.college_name}
