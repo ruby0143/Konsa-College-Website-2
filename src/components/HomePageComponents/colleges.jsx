@@ -36,31 +36,30 @@ const Colleges = () => {
         Colleges
       </div>
       <div className='flex md:max-w-[1100px] md:m-auto items-center overflow-x-auto overflow-y-hidden gap-3 py-2'>
-     {skeleton?( <>
-      <CollegeSkeleton/>
-      <CollegeSkeleton/>
-      <CollegeSkeleton/>
-      <CollegeSkeleton/>
-      <CollegeSkeleton/>
-      <CollegeSkeleton/>
+      {skeleton?( <>
+        <CollegeSkeleton/>
+        <CollegeSkeleton/>
+        <CollegeSkeleton/>
+        <CollegeSkeleton/>
+        <CollegeSkeleton/>
+        <CollegeSkeleton/>
 
-     </>):(<>
-      {
-            collegeList.map((college,idx) => {
-              if(idx<6){
-                return <CollegeContainer key={idx} collegeName={college.college_name} collegeLogo={college.college_logo_link} collegeBanner={college.header_photo_link} collegeId={college.college_uuid}/>
-              }
-              
-            })
-        }</>)}
-          <Link to="/allcolleges">
-            <div className='min-w-[210px] flex-grow-1 md:min-w-[230px] h-[164px] md:h-[184px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-gradient-to-r from-white to-[#fff6ec] font-medium cursor-pointer'>
-              <div className='text-sm text-[#EE7C00]'>
-                Show More &#10140;
+      </>):(<>
+        {
+              collegeList.map((college,idx) => {
+                if(idx<6){
+                  return <CollegeContainer key={idx} collegeName={college.college_name} collegeLogo={college.college_logo_link} collegeBanner={college.header_photo_link} collegeId={college.college_uuid}/>
+                }
+                
+              })
+          }</>)}
+            <Link to="/allcolleges">
+              <div className='min-w-[210px] flex-grow-1 md:min-w-[230px] h-[164px] md:h-[184px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-gradient-to-r from-white to-[#fff6ec] font-medium cursor-pointer'>
+                <div className='text-sm text-[#EE7C00]'>
+                  Show More &#10140;
+                </div>
               </div>
-            </div>
-          </Link>
-          
+            </Link>
       </div>
     </div>
   )
