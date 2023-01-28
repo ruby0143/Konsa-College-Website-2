@@ -26,13 +26,20 @@ const CollegeReview = (props) => {
         </div>
 
 
-        <div className='w-full py-2'>
+        <div className='w-full py-2 mb-[3rem]'>
           <h3 className='text-xl m-3 font-semibold text-[#303030]'>College Review Video</h3>
           <hr className='w-full text-gray-500' />
           <div className='flex justify-center md:justify-start'>
             <section
-              className="py-5 px-2 w-full h-full md:w-[500px] md:h-[350px]"
-            >{props.result.review_video}</section>
+              className="py-5 px-6 w-full h-[14rem] sm:h-[35rem]"
+            >
+              <div className='flex justify-center w-full h-full'>
+              <iframe src={props.result.review_video} style={{ boxShadow: "1px 2px 18px 2px rgba(0, 0, 0, 0.25)" }} className="rounded-xl w-full h-full" frameborder='0'
+                allow='autoplay; encrypted-media'
+                allowfullscreen
+                title='video'></iframe>
+              </div>
+            </section>
           </div>
         </div>
       </div>
