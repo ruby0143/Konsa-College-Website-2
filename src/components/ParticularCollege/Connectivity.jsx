@@ -36,7 +36,7 @@ function Connectivty(props) {
           </div>
         </div>
       </div>
-      <div className="flex-col">
+      <div className="flex-col md:inline-block hidden">
         <div className="dontMiss mt-[3rem] md:mx-[1.5rem] md:mt-[5rem]" style={{ boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.08)", bordeRadius: "10px" }}>
           <h2 className=' text-[#303030] text-md m-3 font-semibold'>Don't Miss This</h2>
           <hr />

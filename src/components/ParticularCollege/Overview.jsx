@@ -59,7 +59,7 @@ function Overview(props) {
             </div>
           </div>
         </div>
-        <div className="newsFeeds mt-[3rem] md:max-w-[40%] md:mx-[1.5rem] md:mt-[5rem]">
+        <div className="newsFeeds mt-[3rem] md:max-w-[40%] md:mx-[1.5rem] md:mt-[5rem] md:inline-block hidden">
           <h2 className=' text-[#303030] text-md m-3 font-semibold'>News Feeds</h2>
           <hr />
           <div className='flex'>
