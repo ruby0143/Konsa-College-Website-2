@@ -29,6 +29,7 @@ const MainNavbar = () => {
   // zustand config
   const collegeDataList = useCollegeDataStore((state) => state.collegeDataList)
   const [searchTerm, setSearchTerm] = useState("")
+  const [searchbtnPress, setSearchbtnPress] = useState(false)
 
   const [mobileSidebar, setMobileSidebar] = useState(false)
   let menuRef = useRef()
@@ -92,7 +93,7 @@ const MainNavbar = () => {
       <div className={` md:hidden ${mobileSidebar ? "translate-x-0" : "translate-x-[-100%]"} flex flex-col shadow-lg w-[80%] bg-[#f5f5f5] z-50 transition-all duration-500 fixed top-0 left-0 h-[100vh] py-[40px] px-[16px]`} ref={menuRef} >
           
           <div className='flex items-center shadow-md py-[8px] px-[12px] rounded-md bg-white w-full' >
-              <FaSearch className='text-[#B5BDC9] ml-2 font-thin cursor-pointer text-lg' />
+              <FaSearch className='text-[#B5BDC9] ml-2 font-thin cursor-pointer text-lg' onClick={()=>setSearchbtnPress(prevState=>!prevState)}/>
               <input 
                 type='search' 
                 placeholder='Search' 
@@ -102,7 +103,7 @@ const MainNavbar = () => {
 
           </div>
 
-          <div className={` ${searchTerm !== "" ? "inline-flex" : "hidden"} z-30 relative`}>
+          <div className={` ${searchTerm !== "" || searchbtnPress ? "inline-flex" : "hidden"} z-30 relative`}>
                 <div className='absolute rounded-b-md max-h-[260px] w-full overflow-y-scroll overflow-x-hidden bg-white shadow-md mt-1 md:mt-10 transition-all duration-300'>
                     {
                         collegeDataList.filter(college => college.college_name.toLowerCase().includes(searchTerm.toLowerCase()) || college.college_uuid.toLowerCase().includes(searchTerm)).map((college,index)=>{
