@@ -30,8 +30,8 @@ const MainNavbar = () => {
   const collegeDataList = useCollegeDataStore((state) => state.collegeDataList)
   const [searchTerm, setSearchTerm] = useState("")
   const [searchbtnPress, setSearchbtnPress] = useState(false)
-
   const [mobileSidebar, setMobileSidebar] = useState(false)
+
   let menuRef = useRef()
   useEffect(()=>{
     let mouseClickHandler = (e) =>{
@@ -51,7 +51,7 @@ const MainNavbar = () => {
         icon : newsRouteIcon
     },
     {
-        path: "/particularcollege",
+        path: "/allcolleges",
         route: "College",
         icon : collegeRouteIcon
     },
@@ -123,7 +123,7 @@ const MainNavbar = () => {
             { 
                 routes.map(route => {
                     return <div key={route.route} className="w-full rounded-md mb-1">
-                              <NavLink to={route.path} className="pl-4 py-2 w-full rounded-md hover:bg-[#EE7C00] focus:bg-[#EE7C00] text-[#7A7A7A] focus:text-white hover:text-white focus:shadow-md cursor-pointer flex justify-start items-center transition-all duration-100">
+                              <NavLink to={route.path} onClick={()=>setMobileSidebar(false)} className="pl-4 py-2 w-full rounded-md hover:bg-[#EE7C00] visited::bg-[#EE7C00] text-[#7A7A7A] focus:text-white hover:text-white focus:shadow-md cursor-pointer flex justify-start items-center transition-all duration-100">
                                 <img 
                                   src={route.icon} 
                                   alt={route.route}
