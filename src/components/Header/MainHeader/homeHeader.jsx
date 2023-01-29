@@ -9,7 +9,6 @@ const HomeHeader = () => {
   
   const collegeDataList = useCollegeDataStore((state) => state.collegeDataList)
   const [searchTerm, setSearchTerm] = useState("")
-  const [searchBtnPress,setSearchBtnPress] = useState(false)
 
   return (
     <div className='w-full'>
@@ -29,7 +28,7 @@ const HomeHeader = () => {
         <div className='flex items-center justify-center relative' >
 
             <div className='flex items-center shadow-md py-[8px] px-[16px] rounded-md absolute bg-white' >
-                <FaSearch className='text-[#A7A7A7] ml-2 cursor-pointer text-lg' onClick={() => setSearchBtnPress(prevState => !prevState)}/>
+                <FaSearch className='text-[#A7A7A7] ml-2 cursor-pointer text-lg'/>
                 <input 
                     type='search' 
                     value={searchTerm}
@@ -38,7 +37,7 @@ const HomeHeader = () => {
                 />
             </div>
 
-            <div className={` ${searchTerm !== "" || searchBtnPress ? "inline-flex" : "hidden"} w-[324px] md:w-[600px] lg:w-[780px] z-30 relative`}>
+            <div className={` ${searchTerm !== "" ? "inline-flex" : "hidden"} w-[324px] md:w-[600px] lg:w-[780px] z-30 relative`}>
                 <div className='absolute rounded-b-md max-h-[300px] w-full overflow-y-scroll overflow-x-hidden bg-white shadow-md mt-8 md:mt-10 transition-all duration-300'>
                     {
                         collegeDataList.filter(college => college.college_name.toLowerCase().includes(searchTerm.toLowerCase()) || college.college_uuid.toLowerCase().includes(searchTerm)).map((college,index)=>{
