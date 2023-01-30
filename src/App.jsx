@@ -10,6 +10,7 @@ import CollegeFooter from "./components/Footer/CollegeFooter";
 import ScrollToTop from "./ScrollToTop"
 import MainNavbar from "./components/Navbar/MainNavbar";
 import AllColleges from "./pages/AllColleges";
+import SchedularPage from "./pages/schedularPage";
 
 
 function App() {
@@ -28,8 +29,8 @@ function App() {
       <Route path="/forum" element={<ForumPage/>} exact/>
       <Route path="/tools" element={<ToolsPage/>} exact/>
       <Route path="/allColleges" element={<AllColleges/>} exact/> 
+      <Route path="/schedular" element={<SchedularPage/>} exact/> 
     </Routes>
-
     <CollegeFooter/>
   </ScrollToTop>
   </Router>
