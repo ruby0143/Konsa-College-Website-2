@@ -4,7 +4,7 @@ import { FaSearch,FaAngleLeft } from 'react-icons/fa'
 const SchedularPageHeader = () => {
   return (
     <div className='relative flex items-center flex-col py-4 md:py-8 bg-gradient-to-b from-[#fbe4ca] to-white' >
-        <div className='text-[#343434] text-2xl md:text-4xl mb-4 md:mb-8 font-medium md:font-semibold' >
+        <div className='text-[#343434] text-2xl md:text-4xl mb-4 md:mb-8 font-medium md:font-semibold'>
             Scheduler
         </div>
         <div className='mb-3 md:mb-6 tracking-wider md:text-2xl '>
