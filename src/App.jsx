@@ -23,6 +23,7 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage/>} />
       <Route path="/admission" element={<AdmissionPage/>} exact/>
+      <Route path="/admin/:college" element={<CollegePage />} />
       <Route path="/college/:particularcollege" element={<CollegePage/>} exact/>
       <Route path="/news" element={<NewsPage/>} exact/>
       <Route path="/exams" element={<ExamPage/>} exact/>
@@ -30,6 +31,7 @@ function App() {
       <Route path="/tools" element={<ToolsPage/>} exact/>
       <Route path="/allColleges" element={<AllColleges/>} exact/> 
       <Route path="/schedular" element={<SchedularPage/>} exact/> 
+      
     </Routes>
     <CollegeFooter/>
   </ScrollToTop>
