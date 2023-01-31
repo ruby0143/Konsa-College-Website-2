@@ -10,50 +10,48 @@ import Cutoff from "../components/ParticularCollege/Cutoff";
 import Placements from "../components/ParticularCollege/Placements";
 import CollegePageHeader from "../components/Header/collegePageHeader/collegePageHeader";
 import axios from "axios";
+import RightSection from "../components/ParticularCollege/RightSection";
 
 const CollegePage = () => {
-  const [result, setResult] = useState([]);
-  const [admin, setAdmin] = useState(false);
-  const path = useLocation().pathname;
+
+  const [result, setResult] = useState([])
+
+  const path = useLocation().pathname
 
   useEffect(() => {
-    const px = path.split("/");
-    if (px[1] === "admin") {
-      setAdmin(true);
-    }
-    console.log(admin);
-    axios
-      .get(`http://localhost:5000${path}`)
-      .then((res) => {
-        console.log(res.data);
-        setResult(res.data);
+    axios.get(`https://konsa-college-backend-production.up.railway.app${path}`)
+      .then(res => {
+        console.log(res.data)
+        setResult(res.data)
       })
-      .catch((err) => console.log("error: ", err));
-  }, []);
+      .catch(err => console.log("error: ", err))
+  }, [])
 
   return (
     <>
-      {admin ? (
-        <h1>admin</h1>
-      ) : (
+      {result ? (
         <>
-          {result ? (
-            <div className="bg-[#F5F5F5]">
-              <CollegePageHeader result={result} />
-              <Overview result={result}></Overview>
-              <Connectivity result={result} />
-              <FeeStructure result={result} />
-              <Scholarship result={result} />
-              <AboutCollege result={result} />
-              <Cutoff result={result} />
-              <Placements result={result} />
-              <CollegeReview result={result} />
-            </div>
-          ) : (
-            <div>No College Found</div>
-          )}
+        {/* left  */}
+        <div className="bg-[#F5F5F5] md:max-w-[70%]">
+          <CollegePageHeader result={result} />
+          <Overview result={result}></Overview>
+          <Connectivity result={result} />
+          <FeeStructure result={result} />
+          <Scholarship result={result} />
+          <AboutCollege result={result} />
+          <Cutoff result={result} />
+          <Placements result={result} />
+          <CollegeReview result={result} />
+        </div>
+        {/* right  */}
+        <div className="bg-[#F5F5F5] md:max-w-[30%] hidden md:visible">
+          <RightSection result={result}></RightSection>
+        </div>
         </>
-      )}
+  ): (<div>
+    No College Found
+  </div>)
+}
     </>
   );
 };

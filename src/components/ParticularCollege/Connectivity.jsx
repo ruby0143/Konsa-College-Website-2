@@ -4,7 +4,7 @@ import "./Connectivity.css";
 function Connectivty(props) {
   return (
     <div className="flex">
-      <div className="container mt-[2.5rem] md:max-w-[60%] md:mx-[3rem] md:my-[5rem]">
+      <div className="container mt-[2.5rem]">
         <div className="text-xl m-3 font-semibold text-[#303030]">Connectivity</div>
         <hr />
         <div className="cnt-body">
@@ -36,7 +36,7 @@ function Connectivty(props) {
           </div>
         </div>
       </div>
-      <div className="flex-col md:inline-block hidden">
+      {/* <div className="flex-col md:inline-block hidden">
         <div className="dontMiss mt-[3rem] md:mx-[1.5rem] md:mt-[5rem]" style={{ boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.08)", bordeRadius: "10px" }}>
           <h2 className=' text-[#303030] text-md m-3 font-semibold'>Don't Miss This</h2>
           <hr />
@@ -58,7 +58,7 @@ function Connectivty(props) {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
 
   );

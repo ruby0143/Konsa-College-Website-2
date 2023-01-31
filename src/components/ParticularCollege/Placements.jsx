@@ -2,25 +2,33 @@ import React from 'react'
 
 function Placements(props) {
   return (
-    <div className='mt-10 md:max-w-[60%] md:mx-[3rem] md:my-[5rem]'>
-      <h2 className='text-xl m-3 font-semibold text-[#303030] mt-[3.5rem]'>Placement Stats</h2>
+    <div className='my-[2rem]'>
+      <h2 className='text-xl m-3 font-semibold text-[#303030] '>Placement Stats</h2>
       <hr />
-      <div className="m-3 flex justify-around mt-5">
-        <div className="highest p-3 shadow-md rounded-lg md:px-6">
+      <div className="flex whitespace-nowrap mt-5 px-3" style={{ overflowX: "auto" }}>
+        <div className="highest p-3 rounded-lg md:px-6 mr-3 shadow-[0.952381px_1.90476px_4.7619px_rgba(0,0,0,0.1)]">
           <div className="amount flex justify-around">
             <img className="icon h-4 w-7" src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/icons/package.png" />
-            <p className='font-semibold text-[#EE7C00] -mt-1'>RS {props.result.highest_package} Cr</p>
+            <p className='font-semibold text-[#EE7C00] -mt-1'>RS {props.result.highest_package}</p>
           </div>
           <hr />
           <p className='mt-2'>Highest Package</p>
         </div>
-        <div className="average p-3 shadow-md rounded-lg md:px-6">
+        <div className="average p-3 rounded-lg md:px-6 mr-3 shadow-[0.952381px_1.90476px_4.7619px_rgba(0,0,0,0.1)]">
           <div className="amount flex justify-around">
             <img className="icon h-4 w-7" src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/icons/package.png" />
-            <p className='font-semibold text-[#EE7C00] -mt-1'>RS {props.result.median_package} Cr</p>
+            <p className='font-semibold text-[#EE7C00] -mt-1'>RS {props.result.average_package}</p>
           </div>
           <hr />
           <p className='mt-2'>Average Package</p>
+        </div>
+        <div className="Median p-3 rounded-lg md:px-6 shadow-[0.952381px_1.90476px_4.7619px_rgba(0,0,0,0.1)]">
+          <div className="amount flex justify-around">
+            <img className="icon h-4 w-7" src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/icons/package.png" />
+            <p className='font-semibold text-[#EE7C00] -mt-1'>RS {props.result.median_package}</p>
+          </div>
+          <hr />
+          <p className='mt-2'>Median Package</p>
         </div>
       </div>
     </div>

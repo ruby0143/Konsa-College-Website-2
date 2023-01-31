@@ -5,7 +5,7 @@ import { TbBuildingSkyscraper } from "react-icons/tb"
 const CollegeReview = (props) => {
   return (
     <>
-      <div className='w-[100vw] py-2 flex flex-col md:max-w-[60%] md:mx-[3rem]'>
+      <div className='w-[100vw] py-2 flex flex-col'>
         <div className='w-full py-2'>
           <h3 className='text-xl m-3 font-semibold text-[#303030]'>Companies Visited</h3>
           <hr className='w-full text-gray-500' />

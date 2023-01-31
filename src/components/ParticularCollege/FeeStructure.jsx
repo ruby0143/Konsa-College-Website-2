@@ -6,7 +6,7 @@ import {AiOutlineArrowRight} from "react-icons/ai"
 function FeeStructure() {
   return (
     <div className="flex">
-      <div className="container md:max-w-[60%] md:mx-[3rem] md:my-[5rem]">
+      <div className="container">
         <div className="text-xl m-3 font-semibold text-[#303030]">Fee Structure</div>
         <hr />
         <div className="college-fee">
@@ -230,7 +230,7 @@ function FeeStructure() {
           </div>
         </div>
       </div>
-      <div className="flex-col md:inline-block hidden">
+      {/* <div className="flex-col md:inline-block hidden">
         <div className="dontMiss mt-[3rem] md:mx-[1.5rem] md:mt-[5rem]" style={{ boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.08)", bordeRadius: "10px" }}>
           <h2 className=' text-[#303030] text-md m-3 font-semibold'>Related Colleges</h2>
           <hr />
@@ -246,7 +246,7 @@ function FeeStructure() {
             <AiOutlineArrowRight className="w-20% h-6 w-6 m-3"></AiOutlineArrowRight>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
