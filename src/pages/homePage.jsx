@@ -14,7 +14,7 @@ const HomePage = () => {
   const setCollegeDataList = useCollegeDataStore((state) => state.setCollegeDataList)
 
   useEffect(() => {
-    axios.get("https://konsa-college-backend-production.up.railway.app/allcolleges")
+    axios.get("https://konsa-college-backend-production-0c4c.up.railway.app/allcolleges")
          .then((res)=>{
             setCollegeDataList(res.data)
          })

@@ -11,7 +11,7 @@ const SchedularPage = () => {
   const [examData, setExamData] = useState([])
 
   useEffect(() => {
-    axios.get("http://localhost:5000/exams")
+    axios.get("https://konsa-college-backend-production-0c4c.up.railway.app/exams")
          .then((res)=>{
             setExamData(res.data)
          })
