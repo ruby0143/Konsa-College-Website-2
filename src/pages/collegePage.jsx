@@ -12,37 +12,48 @@ import CollegePageHeader from "../components/Header/collegePageHeader/collegePag
 import axios from "axios";
 
 const CollegePage = () => {
-  
-  const [result,setResult] = useState([])
-
-  const path = useLocation().pathname
+  const [result, setResult] = useState([]);
+  const [admin, setAdmin] = useState(false);
+  const path = useLocation().pathname;
 
   useEffect(() => {
-    axios.get(`https://konsa-college-backend-production.up.railway.app${path}`)
-         .then(res => {
-            console.log(res.data)
-            setResult(res.data)
-          })
-         .catch(err => console.log("error: ",err))
-  }, [])
+    const px = path.split("/");
+    if (px[1] === "admin") {
+      setAdmin(true);
+    }
+    console.log(admin);
+    axios
+      .get(`http://localhost:5000${path}`)
+      .then((res) => {
+        console.log(res.data);
+        setResult(res.data);
+      })
+      .catch((err) => console.log("error: ", err));
+  }, []);
 
   return (
     <>
-      {result?(
-        <div className="bg-[#F5F5F5]">
-          <CollegePageHeader result={result} />
-          <Overview result={result}></Overview>
-          <Connectivity result={result} />
-          <FeeStructure result={result} />
-          <Scholarship result={result} />
-          <AboutCollege result={result} />
-          <Cutoff result={result} />
-          <Placements result={result} />
-          <CollegeReview result={result} />
-        </div>
-      ):(<div>
-       No College Found
-      </div>)}
+      {admin ? (
+        <h1>admin</h1>
+      ) : (
+        <>
+          {result ? (
+            <div className="bg-[#F5F5F5]">
+              <CollegePageHeader result={result} />
+              <Overview result={result}></Overview>
+              <Connectivity result={result} />
+              <FeeStructure result={result} />
+              <Scholarship result={result} />
+              <AboutCollege result={result} />
+              <Cutoff result={result} />
+              <Placements result={result} />
+              <CollegeReview result={result} />
+            </div>
+          ) : (
+            <div>No College Found</div>
+          )}
+        </>
+      )}
     </>
   );
 };

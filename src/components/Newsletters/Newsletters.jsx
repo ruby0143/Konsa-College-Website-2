@@ -6,7 +6,7 @@ function Newsletters() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/news")
+      .get("https://konsa-college-backend-production-0c4c.up.railway.app/news")
       .then((response) => {
         if (response.status !== 500) {
           setNews(response.data);
