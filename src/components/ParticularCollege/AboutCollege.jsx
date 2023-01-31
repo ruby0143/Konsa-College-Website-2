@@ -2,7 +2,7 @@ import React from 'react'
 
 function AboutCollege(props) {
   return (
-    <div className='about mt-10 md:max-w-[60%] md:mx-[3rem] md:my-[5rem]'>
+    <div className='about mt-10'>
       <h2 className='text-xl m-3 font-semibold text-[#303030]'>About College</h2>
       <hr />
       <div className="pts m-3 md:flex">

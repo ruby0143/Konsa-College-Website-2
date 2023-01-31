@@ -91,7 +91,7 @@ const CollegeFooter = () => {
           </h2>
         </div>
       </div>
-      <div className="mob:hidden desk:w-full desk:h-[50px] desk:flex desk:justify-center desk:items-center bg-white text-gray-600">
+      <div className="mob:hidden desk:w-full desk:h-[50px] desk:flex desk:justify-center desk:items-center text-white bg-[#0e0e0e] md:bg-white md:text-gray-600">
         <h2 className="text-center ">Konsa College @ Copyright 2022</h2>
       </div>
     </div>
