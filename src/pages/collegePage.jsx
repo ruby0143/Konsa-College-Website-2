@@ -33,8 +33,8 @@ const CollegePage = () => {
         <div>
           {/* left  */}
           <CollegePageHeader result={result} />
-          <div className="flex">
-            <div className="bg-[#F5F5F5] md:max-w-[70%]">
+          <div className="md:flex justify-between">
+            <div className="bg-[#F5F5F5] md:max-w-[65%] md:pl-[2rem]">
               <Overview result={result}></Overview>
               <Connectivity result={result} />
               <FeeStructure result={result} />
@@ -45,7 +45,7 @@ const CollegePage = () => {
               <CollegeReview result={result} />
             </div>
             {/* right  */}
-            <div className="bg-[rgb(245,245,245)] md:max-w-[30%] ">
+            <div className="bg-[rgb(245,245,245)] md:max-w-[35%] pr-[2rem] md:inline-block hidden">
               <RightSection result={result}></RightSection>
             </div>
           </div>
