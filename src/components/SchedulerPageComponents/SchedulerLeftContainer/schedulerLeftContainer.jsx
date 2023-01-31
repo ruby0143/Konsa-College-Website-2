@@ -1,7 +1,8 @@
 import React from 'react'
+import CouncellingDataContainer from './councellingDataContainer'
 import ExamDataContainer from './examDataContainer'
 
-const SchedulerLeftContainer = ({examData}) => {
+const SchedulerLeftContainer = ({examData, councellingData}) => {
 
 
 
@@ -21,8 +22,8 @@ const SchedulerLeftContainer = ({examData}) => {
         </div>
         <div className='flex flex-wrap justify-between'>
             {
-              examData?.map(exam => {
-                return <ExamDataContainer key={exam._id} exam={exam}/>
+              councellingData?.map(exam => {
+                return <CouncellingDataContainer key={exam._id} exam={exam}/>
               })
             }
         </div>

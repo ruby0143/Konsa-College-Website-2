@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ExamDataContainer = ({exam}) => {
+const CouncellingDataContainer = ({exam}) => {
   
   return (
-    <div className='bg-white rounded-md shadow-md h-[186px] md:h-[206px] lg:h-[236px] xl:h-[300px] w-[48%] md:w-[31%] mb-4 md:mb-6'>
+    <div className='bg-white rounded-md shadow-md h-[186px] md:h-[206px] lg:h-[236px] xl:h-[276px] w-[48%] md:w-[31%] mb-4 md:mb-6'>
       <div className='h-[50%] flex justify-center items-center'>
         <img 
             src={exam.img} 
@@ -28,4 +28,4 @@ const ExamDataContainer = ({exam}) => {
   )
 }
 
-export default ExamDataContainer
+export default CouncellingDataContainer
