@@ -30,28 +30,30 @@ const CollegePage = () => {
   return (
     <>
       {result ? (
-        <>
-        {/* left  */}
-        <div className="bg-[#F5F5F5] md:max-w-[70%]">
+        <div>
+          {/* left  */}
           <CollegePageHeader result={result} />
-          <Overview result={result}></Overview>
-          <Connectivity result={result} />
-          <FeeStructure result={result} />
-          <Scholarship result={result} />
-          <AboutCollege result={result} />
-          <Cutoff result={result} />
-          <Placements result={result} />
-          <CollegeReview result={result} />
+          <div className="flex">
+            <div className="bg-[#F5F5F5] md:max-w-[70%]">
+              <Overview result={result}></Overview>
+              <Connectivity result={result} />
+              <FeeStructure result={result} />
+              <Scholarship result={result} />
+              <AboutCollege result={result} />
+              <Cutoff result={result} />
+              <Placements result={result} />
+              <CollegeReview result={result} />
+            </div>
+            {/* right  */}
+            <div className="bg-[rgb(245,245,245)] md:max-w-[30%] ">
+              <RightSection result={result}></RightSection>
+            </div>
+          </div>
         </div>
-        {/* right  */}
-        <div className="bg-[#F5F5F5] md:max-w-[30%] hidden md:visible">
-          <RightSection result={result}></RightSection>
-        </div>
-        </>
-  ): (<div>
-    No College Found
-  </div>)
-}
+      ) : (<div>
+        No College Found
+      </div>)
+      }
     </>
   );
 };
