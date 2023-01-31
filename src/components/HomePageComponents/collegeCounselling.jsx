@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import IIT_Bombay_logo from "../../assets/counsellingColleges/IIT_Bombay.svg"
 import IIT_Delhi_logo from "../../assets/counsellingColleges/IIT_Delhi.svg"
 import IIT_Kharagpur_logo from "../../assets/counsellingColleges/IIT_Kharagpur.svg"
@@ -10,71 +10,84 @@ import IGDTUW_logo from "../../assets/counsellingColleges/IGDTUW.svg"
 import IITD_logo from "../../assets/counsellingColleges/IITD.svg"
 import DSEU_logo from "../../assets/counsellingColleges/DSEU.svg"
 import CounsellingContainer from './InnerContainers/counsellingContainer'
+import axios from 'axios';
 
 const CollegeCounselling = () => {
 
-  const collegeCounsellings = [
-    {
-      id: 1,
-      counsellingName : "JoSAA",
-      fullForm : "Joint Seat Allocation Authority",
-      collegeList : [
-        { logo : IIT_Bombay_logo },
-        { logo : IIT_Delhi_logo },
-        { logo : IIT_Kharagpur_logo },
-        { logo : IIT_Hamirpur_logo },
-        { logo : NIT_logo },
-      ]
-    },
-    {
-      id: 2,
-      counsellingName : "JAC",
-      fullForm : "Joint Admission Counselling",
-      collegeList : [
-        { logo : DTU_logo },
-        { logo : NSUT_logo },
-        { logo : IGDTUW_logo },
-        { logo : IITD_logo },
-        { logo : DSEU_logo },
-      ]
-    },
-    {
-      id: 3,
-      counsellingName : "MHT - CET",
-      fullForm : "Maharashtra Common Entrance Test",
-      collegeList : [
-        { logo : DTU_logo },
-        { logo : NSUT_logo },
-        { logo : IGDTUW_logo },
-        { logo : IITD_logo },
-        { logo : DSEU_logo },
-      ]
-    },
-    {
-      id: 4,
-      counsellingName : "MHT - CET",
-      fullForm : "Maharashtra Common Entrance Test",
-      collegeList : [
-        { logo : DTU_logo },
-        { logo : NSUT_logo },
-        { logo : IGDTUW_logo },
-        { logo : IITD_logo },
-        { logo : DSEU_logo },
-      ]
-    },
-    {
-      id: 5,
-      counsellingName : "MHT - CET",
-      fullForm : "Maharashtra Common Entrance Test",
-      collegeList : [
-        { logo : DTU_logo },
-        { logo : NSUT_logo },
-        { logo : IGDTUW_logo },
-        { logo : IITD_logo },
-        { logo : DSEU_logo },
-      ]
-    },
-  ]
+  // const counselling = [
+  //   {
+  //     id: 1,
+  //     counsellingName : "JoSAA",
+  //     fullForm : "Joint Seat Allocation Authority",
+  //     collegeList : [
+  //       { logo : IIT_Bombay_logo },
+  //       { logo : IIT_Delhi_logo },
+  //       { logo : IIT_Kharagpur_logo },
+  //       { logo : IIT_Hamirpur_logo },
+  //       { logo : NIT_logo },
+  //     ]
+  //   },
+  //   {
+  //     id: 2,
+  //     counsellingName : "JAC",
+  //     fullForm : "Joint Admission Counselling",
+  //     collegeList : [
+  //       { logo : DTU_logo },
+  //       { logo : NSUT_logo },
+  //       { logo : IGDTUW_logo },
+  //       { logo : IITD_logo },
+  //       { logo : DSEU_logo },
+  //     ]
+  //   },
+  //   {
+  //     id: 3,
+  //     counsellingName : "MHT - CET",
+  //     fullForm : "Maharashtra Common Entrance Test",
+  //     collegeList : [
+  //       { logo : DTU_logo },
+  //       { logo : NSUT_logo },
+  //       { logo : IGDTUW_logo },
+  //       { logo : IITD_logo },
+  //       { logo : DSEU_logo },
+  //     ]
+  //   },
+  //   {
+  //     id: 4,
+  //     counsellingName : "MHT - CET",
+  //     fullForm : "Maharashtra Common Entrance Test",
+  //     collegeList : [
+  //       { logo : DTU_logo },
+  //       { logo : NSUT_logo },
+  //       { logo : IGDTUW_logo },
+  //       { logo : IITD_logo },
+  //       { logo : DSEU_logo },
+  //     ]
+  //   },
+  //   {
+  //     id: 5,
+  //     counsellingName : "MHT - CET",
+  //     fullForm : "Maharashtra Common Entrance Test",
+  //     collegeList : [
+  //       { logo : DTU_logo },
+  //       { logo : NSUT_logo },
+  //       { logo : IGDTUW_logo },
+  //       { logo : IITD_logo },
+  //       { logo : DSEU_logo },
+  //     ]
+  //   },
+  // ]
+
+  const [counselling,setCounselling] = useState([]);
+  useEffect(()=>{
+    axios.get("http://localhost:5000/councelling")
+    .then(response=>{
+      setCounselling(response.data);
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+  })
+ 
 
   return (
     <div className='mb-4' >
@@ -83,8 +96,8 @@ const CollegeCounselling = () => {
       </div>
       <div className='flex md:max-w-[1100px] md:m-auto items-center overflow-x-auto overflow-y-hidden gap-3 py-2'>
         {
-          collegeCounsellings.map(counselling => {
-            return <CounsellingContainer key={counselling.id} counsellingName={counselling.counsellingName} fullForm={counselling.fullForm} collegeList={counselling.collegeList} />
+          counselling.map(college => {
+            return <CounsellingContainer key={college.id} counsellingName={college.exam_name} fullForm={college.sub_heading} collegeList={college.top_colleges} collegeLink={college.apply_link}/>
           })  
         }
           <button className='min-w-[170px] md:min-w-[200px] lg:min-w-[250px] h-[136px] md:h-[156px] lg:h-[170px] flex justify-center items-center shadow-md rounded-md border border-gray-200   bg-gradient-to-r from-white to-[#fff6ec] font-medium cursor-pointer'>
