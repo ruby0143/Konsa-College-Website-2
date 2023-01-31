@@ -37,6 +37,8 @@ const CollegePage = () => {
     <>
       {result ? (
         <div className="bg-[#F5F5F5]">
+        <div>
+          {/* left  */}
           <CollegePageHeader result={result} />
           <Overview result={result}></Overview>
           <Connectivity result={result} />
@@ -55,6 +57,27 @@ const CollegePage = () => {
       ) : (
         <div>No College Found</div>
       )}
+          <div className="md:flex justify-between">
+            <div className="bg-[#F5F5F5] md:max-w-[65%] md:pl-[2rem]">
+              <Overview result={result}></Overview>
+              <Connectivity result={result} />
+              <FeeStructure result={result} />
+              <Scholarship result={result} />
+              <AboutCollege result={result} />
+              <Cutoff result={result} />
+              <Placements result={result} />
+              <CollegeReview result={result} />
+            </div>
+            {/* right  */}
+            <div className="bg-[rgb(245,245,245)] md:max-w-[35%] pr-[2rem] md:inline-block hidden">
+              <RightSection result={result}></RightSection>
+            </div>
+          </div>
+        </div>
+      ) : (<div>
+        No College Found
+      </div>)
+      }
     </>
   );
 };

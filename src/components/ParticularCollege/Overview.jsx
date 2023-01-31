@@ -64,22 +64,7 @@ function Overview(props) {
             </div>
           </div>
         </div>
-        {/* right */}
-        {/* <div>
-          <div className="newsFeeds mt-[3rem] md:max-w-[40%] md:mx-[1.5rem] md:mt-[5rem] md:inline-block hidden">
-            <h2 className=' text-[#303030] text-md m-3 font-semibold'>News Feeds</h2>
-            <hr />
-            <div className='flex'>
-              <div className='flex'>
-                <img src="" alt="" />
-                <div className="content flex-col">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero ut temporibus dolorem, dolor tempore nemo?</p>
-                  <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, natus?</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
+
     </>
   )
 }
