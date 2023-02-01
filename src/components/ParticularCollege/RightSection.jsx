@@ -1,8 +1,25 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import graduation from "../../assets/rightSection/graduation.png";
+import axios from "axios";
 
 function RightSection(props) {
+  const [phone, setPhone] = useState();
+  const postPhone = () => {
+    const doc = {
+      name: "",
+      phone: phone,
+    };
+
+    axios
+      .post("https://konsa-college-backend-production-0c4c.up.railway.app/phone", doc)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="flex-row px-10">
       <div className="newsFeeds mt-[3rem]">
@@ -127,8 +144,12 @@ function RightSection(props) {
               type="text"
               placeholder="Please enter your Mobile No."
               className="p-3 bg-[#F5F5F5] w-[80%]"
+              onChange={e=>{
+                setPhone(e.target.value);
+              }}
+              value={phone}
             />
-            <AiOutlineArrowRight className="w-20% h-6 w-6 m-3"></AiOutlineArrowRight>
+            <AiOutlineArrowRight className="w-20% h-6 w-6 m-3" onClick={postPhone}></AiOutlineArrowRight>
           </div>
         </div>
       </div>

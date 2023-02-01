@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaLinkedinIn, FaGooglePlay } from "react-icons/fa";
 import { FiInstagram } from "react-icons/fi";
 import { IoIosMail } from "react-icons/io";
 import { BsYoutube } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
-
+import axios from "axios";
 const CollegeFooter = () => {
+  const [phone, setPhone] = useState();
+  const postPhone = () => {
+    const doc = {
+      name: "",
+      phone: phone,
+    };
+
+    axios
+      .post("https://konsa-college-backend-production-0c4c.up.railway.app/phone", doc)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const Link = [
     { link: "ABOUT", route: "/particularcollege" },
     { link: "PRIVACY POLICY", route: "/particularcollege" },
@@ -19,7 +35,10 @@ const CollegeFooter = () => {
 
       <div className="w-full flex mob:flex-col mob:justify-center desk:flex-row desk:justify-between desk:p-4 desk:px-16 h-min-[45vh] bg-[#0E0E0E] text-white">
         <div className="mob:hidden desk:w-1/3 desk:mb-6">
-          <img src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/KonsaCollege.png" className="w-[180px] text-center"></img>
+          <img
+            src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/KonsaCollege.png"
+            className="w-[180px] text-center"
+          ></img>
           <p className="w-[250px] mt-[-20px]">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
             explicabo, nisi similique excepturi voluptatibus neque eveniet.
@@ -66,7 +85,10 @@ const CollegeFooter = () => {
           </div>
 
           <div className="mob:flex mob:justify-center desk:hidden">
-            <img src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/KonsaCollege.png" alt="logo"></img>
+            <img
+              src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/KonsaCollege.png"
+              alt="logo"
+            ></img>
           </div>
           <h2 className="text-center p-1">Subscribe to Our Newsletter</h2>
 
@@ -75,11 +97,18 @@ const CollegeFooter = () => {
               <input
                 className="p-2 w-[70vw] md:w-[50vw] lg:w-[30vw] text-gray-500 text-center text-base focus:outline-none"
                 placeholder="Please enter your mobile no"
+                onChange={(e) => {
+                  setPhone(e.target.value);
+                }}
+                value={phone}
               />
               <span>
-                <img src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/line.png" className="mr-2" />
+                <img
+                  src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/line.png"
+                  className="mr-2"
+                />
               </span>
-              <button className="bg-white text-gray-500">
+              <button className="bg-white text-gray-500" onClick={postPhone}>
                 <span>
                   <img src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/arrow.png" />
                 </span>
