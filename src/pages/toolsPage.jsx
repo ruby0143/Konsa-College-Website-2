@@ -1,8 +1,12 @@
 import React from 'react'
-
+import ToolsHead from '../components/toolsPage/toolsHead'
+import ToolBody from '../components/toolsPage/toolBody'
 const ToolsPage = () => {
   return (
-    <div>ToolsPage</div>
+    <div>
+      <ToolsHead />
+      <ToolBody />
+    </div>
   )
 }
 
