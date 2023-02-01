@@ -12,7 +12,6 @@ import MainNavbar from "./components/Navbar/MainNavbar";
 import AllColleges from "./pages/AllColleges";
 import SchedularPage from "./pages/schedularPage";
 
-
 function App() {
 
   return (
