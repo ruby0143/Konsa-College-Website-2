@@ -17,7 +17,7 @@ const SchedularPage = () => {
             setExamData(res.data)
          })
 
-    axios.get("http://localhost:5000/councelling")
+    axios.get("https://konsa-college-backend-production-0c4c.up.railway.app/councelling")
          .then((res)=>{
             console.log("councelling: ",res.data);
             setCouncellingData(res.data)

@@ -30,8 +30,7 @@ function App() {
       <Route path="/forum" element={<ForumPage/>} exact/>
       <Route path="/tools" element={<ToolsPage/>} exact/>
       <Route path="/allColleges" element={<AllColleges/>} exact/> 
-      <Route path="/schedular" element={<SchedularPage/>} exact/> 
-      
+      <Route path="/scheduler" element={<SchedularPage/>} exact/> 
     </Routes>
     <CollegeFooter/>
   </ScrollToTop>

@@ -22,7 +22,7 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
                     })
                 }
                 </ul>
-                <div className='flex gap-2 py-[6px] px-[22px] text-white text-sm font-medium rounded-full bg-[#EE7C00]' >
+                <div className='hidden gap-2 py-[6px] px-[22px] text-white text-sm font-medium rounded-full bg-[#EE7C00]' >
                     <div className='cursor-pointer'>Login</div>
                     <div>/</div>
                     <div className='cursor-pointer'>Sign In</div>
