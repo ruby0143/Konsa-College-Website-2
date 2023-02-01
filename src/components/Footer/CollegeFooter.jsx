@@ -45,23 +45,23 @@ const CollegeFooter = () => {
           <div className=" flex flex-row justify-center mob:gap-x-4 desk:gap-x-6 text-black desk:order-4 desk:mt-2">
             <FaGooglePlay
               size={40}
-              className="bg-white rounded-full p-2 cursor-pointer hover:text-green-500 ease-in-out duration-300 hover:scale-105"
+              className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
             />
             <FaLinkedinIn
               size={40}
-              className="bg-white rounded-full p-2 cursor-pointer hover:text-green-500 ease-in-out duration-300 hover:scale-105"
+              className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
             />
             <FiInstagram
               size={40}
-              className="bg-white rounded-full p-2 cursor-pointer hover:text-green-500 ease-in-out duration-300 hover:scale-105"
+              className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
             />
             <IoIosMail
               size={40}
-              className="bg-white rounded-full p-2 cursor-pointer hover:text-green-500 ease-in-out duration-300 hover:scale-105"
+              className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
             />
             <BsYoutube
               size={40}
-              className="bg-white rounded-full p-2 cursor-pointer hover:text-green-500 ease-in-out duration-300 hover:scale-105"
+              className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
             />
           </div>
 
