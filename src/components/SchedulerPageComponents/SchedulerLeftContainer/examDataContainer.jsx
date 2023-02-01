@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 const ExamDataContainer = ({exam}) => {
   
@@ -20,8 +21,11 @@ const ExamDataContainer = ({exam}) => {
                 Last date to apply: {new Date(exam.date).toLocaleDateString()}
             </div>  
         </div>
+
         <button className='w-full rounded-full bg-white border border-[#EE7C00] text-[10px] md:text-[12px] lg:text-[14px] py-[2px] font-medium md:font-semibold text-[#EE7C00]'>
-            Apply Now
+          <a href={exam.apply_link} className="w-full h-full">
+              Apply Now
+          </a>
         </button>
       </div>
     </div>
