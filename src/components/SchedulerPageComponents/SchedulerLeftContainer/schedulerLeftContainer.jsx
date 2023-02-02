@@ -28,7 +28,7 @@ const SchedulerLeftContainer = ({examData, councellingData}) => {
       </div>  
       
       <div className='mb-4'>
-        <div className="mb-4">
+        <div className="mb-4 md:mb-8">
             <div className='text-xl md:text-2xl lg:text-3xl text-[#303030] font-medium'>Exams</div>
             <hr className='mt-2'/>
         </div>
