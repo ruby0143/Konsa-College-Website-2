@@ -1,6 +1,7 @@
 import React from 'react'
 import ToolsHead from '../components/toolsPage/toolsHead'
 import ToolBody from '../components/toolsPage/toolBody'
+import RightSection from '../components/ParticularCollege/RightSection'
 const ToolsPage = () => {
   return (
     <div>
@@ -10,7 +11,7 @@ const ToolsPage = () => {
           <ToolBody />
         </div>
         <div className='hidden md:inline-flex md:w-[26%] bg-white px-8'>
-          Right container
+          <RightSection/>
         </div>
       </div>
     </div>

@@ -1,11 +1,12 @@
-import React,{useState,useEffect} from "react";
+import React,{useState} from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import graduation from "../../assets/rightSection/graduation.png";
 import example from "../../assets/iithyerabad.jpg"
 import axios from "axios";
 
 function RightSection(props) {
+
   const [phone, setPhone] = useState();
+
   const postPhone = () => {
     const doc = {
       name: "",
@@ -20,6 +21,7 @@ function RightSection(props) {
       .catch((err) => {
         console.log(err);
       });
+
   };
 
   return (

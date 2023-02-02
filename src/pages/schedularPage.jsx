@@ -19,7 +19,6 @@ const SchedularPage = () => {
 
     axios.get("https://konsa-college-backend-production-0c4c.up.railway.app/councelling")
          .then((res)=>{
-            console.log("councelling: ",res.data);
             setCouncellingData(res.data)
          })
   }, [])
