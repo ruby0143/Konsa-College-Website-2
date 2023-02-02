@@ -3,6 +3,7 @@ import { BsFillGeoAltFill } from 'react-icons/bs'
 import { AiOutlineLeft } from "react-icons/ai"
 import collegePageBanner from "../../../assets/background/iit_bhu_background.svg"
 
+
 const CollegePageHeader = (props) => {
 
   return (
@@ -25,9 +26,9 @@ const CollegePageHeader = (props) => {
               <div className='mr-1' >
                 <BsFillGeoAltFill className='text-white text-xl' />
               </div>
-              <div className='text-white leading-4 w-[90%] font-light text-[14px] md:text-center'>
-                {props.result.college_name}
-              </div>
+              <a href={`https://www.google.co.in/maps/search/${props.result.college_location}`} className='text-white leading-4 w-[90%] font-light text-[14px] md:text-center'>
+                {props.result.college_location ? props.result.college_location : props.result.college_name}
+              </a>
             </div>
           </div>
         </div>
