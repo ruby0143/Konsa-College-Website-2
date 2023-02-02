@@ -17,7 +17,7 @@ const CouncellingDataContainer = ({councelling}) => {
                 {councelling.exam_name}
             </div>
             <div className='text-[9px] md:text-[11px] lg:text-[13px] xl:text-base font-medium justify-self-end'>
-                Last date to apply: {new Date(exam.date).toLocaleDateString()}
+                Last date to apply: {new Date(councelling.date).toLocaleDateString()}
             </div>  
         </div>
         <button className='w-full rounded-full bg-white border border-[#EE7C00] text-[10px] md:text-[12px] lg:text-[14px] py-[2px] font-medium md:font-semibold text-[#EE7C00]'>
