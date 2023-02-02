@@ -43,7 +43,7 @@ const Exams = () => {
                 return (
                   <a href={exam.apply_link}>
                     <div
-                      key={exam.id}
+                      key={idx}
                       className="h-[56px] md:h-[158px] min-w-[158px] flex md:flex-col items-center justify-evenly shadow-md rounded-md border border-gray-100 bg-white"
                     >
                       <div>
