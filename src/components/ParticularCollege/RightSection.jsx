@@ -1,6 +1,7 @@
 import React from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import graduation from "../../assets/rightSection/graduation.png";
+import example from "../../assets/iithyerabad.jpg"
 
 function RightSection(props) {
   return (
@@ -14,19 +15,21 @@ function RightSection(props) {
           {props.news?.map((newsItem, idx) => {
             if (idx < 4) {
               return (
-                <a href={newsItem.link_to_article}>
-                  <div className="flex justify-between mb-8">
-                    <img src={newsItem.icon} alt="" />
-                    <div className="content flex-col ml-3">
-                      <p className="font-bold text-[#363636] mb-2 text-[16px]">
-                        {newsItem.heading_text}
-                      </p>
-                      <span className="text-[#A7A7A7] tracking-wide">
-                        {newsItem.date}
-                      </span>
+                <div>
+                  <a href={newsItem.link_to_article}>
+                    <div className="flex justify-start mb-5">
+                      <img src={newsItem.icon} alt="" className="w-[4rem] h-[4rem]" />
+                      <div className="content flex-col ml-3">
+                        <p className="font-bold text-[#363636] mb-2 text-[12px]">
+                          {newsItem.heading_text}
+                        </p>
+                        <span className="text-[#A7A7A7] tracking-wide text-[11px]">
+                          {newsItem.date}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </a>
+                  </a>
+                </div>
               );
             }
           })}
@@ -34,13 +37,13 @@ function RightSection(props) {
       </div>
       <div className="flex-col md:inline-block hidden">
         <div
-          className="dontMiss mt-[3rem] md:mx-[1.5rem] md:mt-[5rem]"
+          className="dontMiss mt-[1.5rem] w-[22rem]"
           style={{
             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.08)",
             bordeRadius: "10px",
           }}
         >
-          <h2 className=" text-[#303030] text-md m-3 font-semibold">
+          <h2 className=" text-[#303030] text-[18px] m-3 font-semibold">
             Don't Miss This
           </h2>
           <hr />
@@ -48,9 +51,9 @@ function RightSection(props) {
             if (idx < 4) {
               return (
                 <a href={counsel.apply_link}>
-                  <div className="flex justify-between px-4 py-6">
-                    <h2 className="">{counsel.exam_name}</h2>
-                    <button className="bg-[#EE7C00] text-white rounded-[46px] px-[2rem]">
+                  <div className="flex justify-around px-4 py-5">
+                    <h2 className="font-semibold w-[5rem]">{counsel.exam_name}</h2>
+                    <button className="bg-[#EE7C00] text-white rounded-[46px] px-[2rem] py-[.1rem]">
                       Fill Now
                     </button>
                   </div>
@@ -60,32 +63,34 @@ function RightSection(props) {
           })}
         </div>
         <div
-          className="explore mt-[3rem] md:mx-[1.5rem] md:mt-[5rem]"
+          className="explore mt-[3rem] w-[22rem]"
           style={{
             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.08)",
             bordeRadius: "10px",
           }}
         >
-          <h2 className=" text-[#303030] text-md m-3 font-semibold">
+          <h2 className=" text-[#303030] text-[18px] m-3 font-semibold">
             Exams To Explore
           </h2>
           <hr />
-          <div className="flex-col">
+          <div className="flex-col m-[2rem] pb-[.5rem]">
             {props.exams?.map((exam, idx) => {
               if (idx < 4) {
                 return (
-                  <a href={exam.apply_link}>
-                    <div className="flex">
-                      <img
-                        className="w-[30px] md:w-[100px] md:h-[80px]"
-                        src={exam.img}
-                        alt=""
-                      />
-                      <div className="content flex-col">
-                        <p>{exam.exam_name}</p>
+                  <div className="mb-[2rem]">
+                    <a href={exam.apply_link}>
+                      <div className="flex">
+                        <img
+                          className="w-[4rem] h-[4rem] mr-[]"
+                          src={exam.img}
+                          alt=""
+                        />
+                        <div className="content flex-col">
+                          <p className="font-semibold ml-[2rem]">{exam.exam_name}</p>
+                        </div>
                       </div>
-                    </div>
-                  </a>
+                    </a>
+                  </div>
                 );
               }
             })}
@@ -94,23 +99,23 @@ function RightSection(props) {
       </div>
       <div className="flex-col md:inline-block hidden">
         <div
-          className="dontMiss mt-[3rem] md:mx-[1.5rem] md:mt-[5rem]"
+          className="dontMiss mt-[3rem] w-[22rem]"
           style={{
             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.08)",
             bordeRadius: "10px",
           }}
         >
-          <h2 className=" text-[#303030] text-md m-3 font-semibold">
+          <h2 className="text-[#303030] text-[18px] m-3 font-semibold">
             Related Colleges
           </h2>
           <hr />
-          <div className="flex justify-between px-4 py-6">
-            <img src="" alt="" />
-            <p>Indian Institute of Technology Delhi</p>
+          <div className="flex justify-between m-[2rem] pb-[2rem]">
+            <img src={example} alt="" className="w-[4rem] h-[4rem]"/>
+            <p className="font-semibold ml-[2rem]">Indian Institute of Technology Delhi</p>
           </div>
         </div>
         <div
-          className="subscribe mt-[3rem] md:mx-[1.5rem] md:mt-[5rem]"
+          className="subscribe mt-[3rem] w-[22rem]"
           style={{
             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.08)",
             bordeRadius: "10px",
