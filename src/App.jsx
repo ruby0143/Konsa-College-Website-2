@@ -12,7 +12,6 @@ import MainNavbar from "./components/Navbar/MainNavbar";
 import AllColleges from "./pages/AllColleges";
 import SchedularPage from "./pages/schedularPage";
 
-
 function App() {
 
   return (
@@ -30,8 +29,7 @@ function App() {
       <Route path="/forum" element={<ForumPage/>} exact/>
       <Route path="/tools" element={<ToolsPage/>} exact/>
       <Route path="/allColleges" element={<AllColleges/>} exact/> 
-      <Route path="/schedular" element={<SchedularPage/>} exact/> 
-      
+      <Route path="/scheduler" element={<SchedularPage/>} exact/> 
     </Routes>
     <CollegeFooter/>
   </ScrollToTop>

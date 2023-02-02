@@ -46,7 +46,7 @@ const Colleges = () => {
 
       </>):(<>
         {
-              collegeList.map((college,idx) => {
+              collegeList.slice(0,5).map((college,idx) => {
                 if(idx<6){
                   return <CollegeContainer key={idx} collegeName={college.college_name} collegeLogo={college.college_logo_link} collegeBanner={college.header_photo_link} collegeId={college.college_uuid}/>
                 }

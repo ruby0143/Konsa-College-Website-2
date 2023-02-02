@@ -22,8 +22,8 @@ const SchedulerLeftContainer = ({examData, councellingData}) => {
         </div>
         <div className='flex flex-wrap justify-between'>
             {
-              councellingData?.map(exam => {
-                return <CouncellingDataContainer key={exam._id} exam={exam}/>
+              councellingData?.map(councelling => {
+                return <CouncellingDataContainer key={councelling._id} exam={councelling}/>
               })
             }
         </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const CounsellingContainer = ({
   counsellingName,
@@ -16,11 +15,15 @@ const CounsellingContainer = ({
         <div className="text-[10px] md:text-sm inline-block md:w-[70%] text-[#4e4e4e] font-semibold text-center">
           {fullForm}
         </div>
-        <div className="flex items-center justify-evenly w-full">
+        <div className="mt-1 flex items-center justify-evenly w-full">
           {collegeList?.map((college, id) => {
             return (
-              <div key={id}>
-                <img src={college.logo_link} alt="college logo" />
+              <div key={id} className="w-5 h-5 md:w-7 md:w-7">
+                <img 
+                  src={college.logo_link} 
+                  alt="college logo"
+                  className="w-full h-full object-fill"
+                />
               </div>
             );
           })}

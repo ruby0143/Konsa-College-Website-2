@@ -70,8 +70,8 @@ const MainNavbar = () => {
         icon : toolsRouteIcon
     },
     {
-        path: "/schedular",
-        route: "schedular",
+        path: "/scheduler",
+        route: "Scheduler",
         icon : comparatorRouteIcon
     },
   ]

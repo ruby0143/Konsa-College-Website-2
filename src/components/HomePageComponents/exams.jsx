@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import JEE_Main_logo from "../../assets/Exams/JEE_Main.svg";
 import CollegeSkeleton from "../AllColleges/Components/CollegeSkeleton";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Exams = () => {
   const [Exams, setExams] = useState([]);
@@ -66,9 +67,9 @@ const Exams = () => {
             })}
           </>
         )}
-            <button className="min-w-[158px] h-[56px] md:h-[158px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-gradient-to-r from-white to-[#fff6ec] font-medium cursor-pointer">
+            <Link to="/scheduler" className="min-w-[158px] h-[56px] md:h-[158px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-gradient-to-r from-white to-[#fff6ec] font-medium cursor-pointer">
               <div className="text-sm text-[#EE7C00]">Show More &#10140;</div>
-            </button>
+            </Link>
       </div>
     </div>
   );
