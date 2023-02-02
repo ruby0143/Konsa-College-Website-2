@@ -52,13 +52,11 @@ function toolBody() {
           pMax.push(arr[i]["percentile"] + Math.max(r1, r2))
         }
       }
-      console.log("Your Predicted Percentile is from ", Math.min(...pMin) * shiftVal, " to ", Math.max(...pMax) * shiftVal)
       return {minVal: Math.min(...pMin) * shiftVal, maxVal: Math.max(...pMax) * shiftVal}
     }
     
     setPrediction(percentileRangeGen(arr,marks,shiftVal));
   }
-
 
   return (
     <div className="max-w-[450px]  md:m-6">
@@ -71,7 +69,7 @@ function toolBody() {
               className="bg-[#F5F5F5] w-full h-[35px] mb-2 focus:outline-none border text-[#9ca3b7] border-[#dcdcdc] rounded-sm flex items-center justify-between px-4 "
               onClick={()=>setIsOpen(prevState => !prevState)}
             >
-              <span>Choose Your Shift</span>
+              {shift !== ""?<span>{shift}</span>:<span>Choose Your Shift</span>}
               {!isOpen?<AiOutlineDown className="text-[#787878]" />:<AiOutlineUp className="#787878"/>}
             </button>
             
@@ -113,7 +111,7 @@ function toolBody() {
         >
           Predict Now
         </button>
-        {<div className="m-2 text-center bg-[#F5F5F5] p-2 py-3 mt-6">
+        {JSON.stringify(prediction) !== '{}' && <div className="m-2 text-center bg-[#F5F5F5] p-2 py-3 mt-6">
             <div className="m-2 mx-0 text-sm font-semibold">Your Expected Percentile is this</div>
             <div className="m-2 text-[#EE7C00] font-semibold">{`${prediction.minVal} - ${prediction.maxVal}`}</div>
         </div>}
