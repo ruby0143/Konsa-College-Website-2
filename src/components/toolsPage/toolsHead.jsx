@@ -1,6 +1,4 @@
 import React from "react";
-import { BsFillGeoAltFill } from "react-icons/bs";
-import { AiOutlineLeft } from "react-icons/ai";
 
 function toolsHead(props) {
   return (
