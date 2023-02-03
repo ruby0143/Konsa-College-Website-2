@@ -76,10 +76,10 @@ const CollegePage = () => {
         console.log(err);
       });
   }, []);
-
+  console.log(result,"res");
   return (
     <>
-      {result ? (
+      {result !== 0 ? (
         <div>
           {/* left  */}
           <CollegePageHeader result={result} />
