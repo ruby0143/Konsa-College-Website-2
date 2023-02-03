@@ -1,14 +1,4 @@
 import React, { useState, useEffect } from "react";
-import IIT_Bombay_logo from "../../assets/counsellingColleges/IIT_Bombay.svg";
-import IIT_Delhi_logo from "../../assets/counsellingColleges/IIT_Delhi.svg";
-import IIT_Kharagpur_logo from "../../assets/counsellingColleges/IIT_Kharagpur.svg";
-import IIT_Hamirpur_logo from "../../assets/counsellingColleges/IIT_Hamirpur.svg";
-import NIT_logo from "../../assets/counsellingColleges/NIT.svg";
-import DTU_logo from "../../assets/counsellingColleges/DTU.svg";
-import NSUT_logo from "../../assets/counsellingColleges/NSUT.svg";
-import IGDTUW_logo from "../../assets/counsellingColleges/IGDTUW.svg";
-import IITD_logo from "../../assets/counsellingColleges/IITD.svg";
-import DSEU_logo from "../../assets/counsellingColleges/DSEU.svg";
 import CounsellingContainer from "./InnerContainers/counsellingContainer";
 import axios from "axios";
 import CollegeSkeleton from "../AllColleges/Components/CollegeSkeleton";
@@ -54,7 +44,7 @@ const CollegeCounselling = () => {
               if (idx < 4) {
                 return (
                   <CounsellingContainer
-                    key={college.id}
+                    key={idx}
                     counsellingName={college.exam_name}
                     fullForm={college.sub_heading}
                     collegeList={college.top_colleges}

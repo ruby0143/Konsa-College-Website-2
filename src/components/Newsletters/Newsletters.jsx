@@ -24,9 +24,9 @@ function Newsletters() {
       <h2 className="my-6 text-[20px] font-semibold text-center text-[#303030] sm:text-[1.5rem]">
         Newsletters
       </h2>
-      {News.map((newsItem) => {
+      {News.map((newsItem,idx) => {
         return (
-          <a href={newsItem.link_to_article}>
+          <a href={newsItem.link_to_article} key={idx}>
             <div
               className="box m-auto mx-3 flex px-5 py-2 mb-6 sm:py-4 sm:px-8 justify-center max-w-[850px]"
               style={{

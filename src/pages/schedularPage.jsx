@@ -19,7 +19,6 @@ const SchedularPage = () => {
 
     axios.get("https://konsa-college-backend-production-0c4c.up.railway.app/councelling")
          .then((res)=>{
-            console.log("councelling: ",res.data);
             setCouncellingData(res.data)
          })
   }, [])
@@ -31,7 +30,7 @@ const SchedularPage = () => {
           <div className='w-full md:w-[74%] bg-white px-4 md:px-8'>
             <SchedulerLeftContainer examData={examData} councellingData={councellingData}/>
           </div>
-          <div className='hidden md:inline md:w-[26%] bg-white px-8 md:px-8'>
+          <div className='hidden md:inline-flex md:w-[26%] bg-white px-8 md:px-8'>
             <SchedulerRightContainer/>
           </div>
         </div>

@@ -21,7 +21,8 @@ const CollegePage = () => {
   const [admin, setAdmin] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const path = useLocation().pathname;
-  console.log(path);
+  
+  
   useEffect(() => {
     const pass = searchParams.get("password");
     if (pass === "FamLearn123") {

@@ -23,10 +23,9 @@ function Overview(props) {
             <div className='mt-[1.4rem]'>
               <p className='text-[13px] leading-[15.75px] text-[#3A3A3A] mx-[10px]'>{props.result.overview}</p>
               <div className="flex-col mt-[2rem] mx-[10px] justify-around align-middle">
-                <div className='flex items-center justify-around'>
+                <div className='flex items-center justify-around md:justify-start'>
                   {/* ranking  */}
-                  <div className="nirf flex bg-[#FCFCFC] rounded-[3.85464px] p-2 items-center justify-around min-w-[150px] shadow-[1px_1px_6px_rgba(0,0,0,0.07)] hover:shadow-[3px_3px_5px_0px_rgba(0,0,0,0.07)]
-">
+                  <div className="nirf flex bg-[#FCFCFC] rounded-[3.85464px] p-2 items-center justify-around min-w-[150px] shadow-[1px_1px_6px_rgba(0,0,0,0.07)] hover:shadow-[3px_3px_5px_0px_rgba(0,0,0,0.07)] md:mr-[4rem]">
                     <img src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/features/NIRF.png" alt="NIRF logo" className='h-[32.31px]' />
                     <div className="rank">
                       <p className='text-[14px] text-[#2E2E2E] text-center font-semibold'>{props.result.nirf}</p>
@@ -37,7 +36,7 @@ function Overview(props) {
                   <div className="area flex bg-[#FCFCFC] rounded-[3.85464px] p-2 items-center justify-evenly min-w-[150px] shadow-[1px_1px_6px_rgba(0,0,0,0.07)] hover:shadow-[3px_3px_5px_0px_rgba(0,0,0,0.07)]">
                     <img src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/features/Area.png" alt="Area logo" className='h-[32.31px]' />
                     <div className="campusArea">
-                      <p className='text-[14px] text-[#2E2E2E] text-center font-semibold'>568 Acres</p>
+                      <p className='text-[14px] text-[#2E2E2E] text-center font-semibold'>{props.result.college_campus_area ? props.result.college_campus_area : `696 Acres`}</p>
                       <p className='text-[14px] text-[#2E2E2E] text-center'>Campus Area</p>
                     </div>
                   </div>

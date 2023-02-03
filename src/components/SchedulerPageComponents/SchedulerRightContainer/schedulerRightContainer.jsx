@@ -1,9 +1,8 @@
 import React from 'react'
-
 const SchedulerRightContainer = () => {
   return (
     <div>
-      scheduler right container
+      Right Container
     </div>
   )
 }

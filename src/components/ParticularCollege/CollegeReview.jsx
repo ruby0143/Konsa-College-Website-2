@@ -25,8 +25,7 @@ const CollegeReview = (props) => {
 
         </div>
 
-
-        <div className='py-2 mb-[3rem]'>
+        {props.result.review_video ? <div className='py-2 mb-[3rem]'>
           <h3 className='text-xl m-3 font-semibold text-[#303030]'>College Review Video</h3>
           <hr className='w-full text-gray-500' />
           <div className='flex justify-center md:justify-start'>
@@ -41,7 +40,8 @@ const CollegeReview = (props) => {
               </div>
             </section>
           </div>
-        </div>
+        </div>:<div></div>}
+        
       </div>
     </>
   )
