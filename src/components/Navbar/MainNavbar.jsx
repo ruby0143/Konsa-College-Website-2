@@ -137,11 +137,11 @@ const MainNavbar = () => {
 
           <div className='flex-1 flex flex-col justify-end items-center gap-8' >
             <div>
-              <img 
+            <a href="/"><img 
                 src={KonsaCollegeLogo} 
                 alt="Konsa College Logo"
                 className='m-auto'
-              />
+              /></a>
             </div>
             <div className='flex w-full justify-evenly items-center' >
               {

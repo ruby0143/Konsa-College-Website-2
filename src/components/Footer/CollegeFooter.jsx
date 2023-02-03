@@ -23,11 +23,11 @@ const CollegeFooter = () => {
       });
   };
   const Link = [
-    { link: "ABOUT", route: "/particularcollege" },
-    { link: "PRIVACY POLICY", route: "/particularcollege" },
-    { link: "TERM OF USE", route: "/particularcollege" },
-    { link: "CONTACT US", route: "/particularcollege" },
-    { link: "SUPPORT US", route: "/particularcollege" },
+    { link: "ABOUT", route: "/allcolleges" },
+    { link: "PRIVACY POLICY", route: "/allcolleges" },
+    { link: "TERM OF USE", route: "/allcolleges" },
+    { link: "CONTACT US", route: "/allcolleges" },
+    { link: "SUPPORT US", route: "/allcolleges" },
   ];
   return (
     <div div className="w-full">

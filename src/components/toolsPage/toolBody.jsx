@@ -29,9 +29,9 @@ function toolBody() {
   const handlePredicter = () =>{
     let shiftType = shift
     let shiftVal = 0;
-      if(shiftType === "Easy") shiftVal = 0.99
-      else if(shiftType === "Moderate") shiftVal = 0.95 
-      else shiftVal = 0.90;
+      if(shiftType === "Easy") shiftVal = 0.9
+      else if(shiftType === "Moderate") shiftVal = 1 
+      else shiftVal = 1.1;
       
     let marks = inputMarks
 
@@ -40,6 +40,7 @@ function toolBody() {
     function percentileRangeGen(arr, marks, shiftVal) {
       let pMin = []
       let pMax = []
+      marks = marks*shiftVal
     
       for (var i = 0; i < arr.length; i++) {
         let lowerBound = arr[i]["marksLowerBound"]
@@ -52,7 +53,7 @@ function toolBody() {
           pMax.push(arr[i]["percentile"] + Math.max(r1, r2))
         }
       }
-      return {minVal: Math.min(...pMin) * shiftVal, maxVal: Math.max(...pMax) * shiftVal}
+      return {minVal: Math.min(...pMin), maxVal: Math.max(...pMax)}
     }
     
     setPrediction(percentileRangeGen(arr,marks,shiftVal));
