@@ -12,6 +12,7 @@ import MainNavbar from "./components/Navbar/MainNavbar";
 import AllColleges from "./pages/AllColleges";
 import SchedularPage from "./pages/schedularPage";
 import Err_404 from "./pages/err_404";
+import Comming_Soon from "./pages/comming_soon";
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
       <Route path="/allColleges" element={<AllColleges/>} exact/> 
       <Route path="/scheduler" element={<SchedularPage/>} exact/> 
       <Route path="*" element={<Err_404/>} exact/>
+      <Route path="/soon" element={<Comming_Soon/>} exact/>
     </Routes>
     <CollegeFooter/>
   </ScrollToTop>
