@@ -1,5 +1,5 @@
 import React from 'react'
-
+    
 // social icons import
 import instaIcon from '../assets/icons/insta.png';
 import linkedinIcon from '../assets/icons/linkedin.png'
