@@ -12,7 +12,7 @@ import CollegePageHeader from "../components/Header/collegePageHeader/collegePag
 import axios from "axios";
 import RightSection from "../components/ParticularCollege/RightSection";
 import { FaPassport } from "react-icons/fa";
-import Comming_Soon from "./Comming_Soon";
+import Comming_Soon from "./comming_soon";
 
 const CollegePage = () => {
   const [result, setResult] = useState([]);

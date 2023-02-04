@@ -1,4 +1,5 @@
 import React from "react";
+import './container.css';
 
 const CounsellingContainer = ({
   counsellingName,
@@ -12,7 +13,7 @@ const CounsellingContainer = ({
         <div className="text-xl font-bold text-[#4e4e4e] text-center">
           {counsellingName}
         </div>
-        <div className="text-[10px] md:text-sm inline-block md:w-[70%] text-[#4e4e4e] font-semibold text-center">
+        <div className="text-[10px] md:text-sm inline-block md:w-[70%] text-[#4e4e4e] font-semibold text-center custom-truncate">
           {fullForm}
         </div>
         <div className="mt-1 flex items-center justify-evenly w-full">

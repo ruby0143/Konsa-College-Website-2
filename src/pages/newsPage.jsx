@@ -1,5 +1,5 @@
 import React from "react";
-import Comming_Soon from "./Comming_Soon";
+import Comming_Soon from "./comming_soon";
 
 const NewsPage = () => {
   return (

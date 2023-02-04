@@ -1,11 +1,17 @@
+:root {
+    --base_color: #ee7c00;
+    --secondary_color: #ffffff00;
+}
 
-
-.dotted{
-    content:"";
+.dotted {
+    content: "";
     position: absolute;
     z-index: 1;
     left: 2.2rem;
     margin-top: 3.1rem;
-    border-left: 2px dotted #444;
+    border-left: 3px solid;
+    border-image: linear-gradient(to bottom, #ffffff00, #ffffff00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c0000, #ffffff00, #ffffff00);
+    border-image-slice: 1;
+    background-color: transparent;
     height: 238px;
 }
