@@ -11,6 +11,7 @@ import ScrollToTop from "./ScrollToTop"
 import MainNavbar from "./components/Navbar/MainNavbar";
 import AllColleges from "./pages/AllColleges";
 import SchedularPage from "./pages/schedularPage";
+import Err_404 from "./pages/err_404";
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
       <Route path="/tools" element={<ToolsPage/>} exact/>
       <Route path="/allColleges" element={<AllColleges/>} exact/> 
       <Route path="/scheduler" element={<SchedularPage/>} exact/> 
+      <Route path="*" element={<Err_404/>} exact/>
     </Routes>
     <CollegeFooter/>
   </ScrollToTop>
