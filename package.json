@@ -15,6 +15,7 @@
     "react-icons": "^4.7.1",
     "react-infinite-scroll-component": "^6.1.0",
     "react-router-dom": "^6.4.5",
+    "sweetalert2": "^11.7.1",
     "tailwind-scrollbar-hide": "^1.1.7",
     "victory": "^36.6.8",
     "zustand": "^4.3.2"
