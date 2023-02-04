@@ -4,7 +4,7 @@ import "./Scholarship.css";
 function Scholarship(props) {
   return (
     <div className="container">
-      <div className="cnt-head text-xl m-3 font-semibold text-[#303030] mt-8">Scholarship</div>
+      <div className="cnt-head text-xl m-3 font-bold text-[#303030] mt-8">Scholarship</div>
       <hr />
       <div className="cnt-body fs mt-[1.5rem]">
         {props.result.scholarships?.map((point, id) => {

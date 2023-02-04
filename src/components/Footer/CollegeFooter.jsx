@@ -5,8 +5,11 @@ import { IoIosMail } from "react-icons/io";
 import { BsYoutube } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 const CollegeFooter = () => {
   const [phone, setPhone] = useState();
+  const [showAlert, setShowAlert] = useState(false);
+
   const postPhone = () => {
     const doc = {
       name: "",
@@ -14,9 +17,24 @@ const CollegeFooter = () => {
     };
 
     axios
-      .post("https://konsa-college-backend-production-0c4c.up.railway.app/phone", doc)
+      .post(
+        "https://konsa-college-backend-production-0c4c.up.railway.app/phone",
+        doc
+      )
       .then((res) => {
         console.log(res);
+        setShowAlert(true);
+        Swal.fire({
+          title: "Congratulations!",
+          text: "You have been subscribed!",
+          animation: false,
+          customClass: {
+            popup: "animated bounceIn faster",
+          },
+          showConfirmButton: false,
+          timer: 5000,
+          onClose: () => setShowAlert(false),
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -90,6 +108,7 @@ const CollegeFooter = () => {
               alt="logo"
             ></img>
           </div>
+
           <h2 className="text-center p-1">Subscribe to Our Newsletter</h2>
 
           <div className=" flex flex-row justify-center">
@@ -115,6 +134,7 @@ const CollegeFooter = () => {
               </button>
             </div>
           </div>
+
           <h2 className="desk:hidden text-center py-5">
             Konsa College @ Copyright 2022
           </h2>

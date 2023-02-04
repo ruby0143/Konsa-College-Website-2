@@ -12,6 +12,7 @@ import CollegePageHeader from "../components/Header/collegePageHeader/collegePag
 import axios from "axios";
 import RightSection from "../components/ParticularCollege/RightSection";
 import { FaPassport } from "react-icons/fa";
+import Comming_Soon from "./Comming_Soon";
 
 const CollegePage = () => {
   const [result, setResult] = useState([]);
@@ -85,13 +86,13 @@ const CollegePage = () => {
           {/* left  */}
           <CollegePageHeader result={result} />
           <div className="md:flex justify-between">
-            <div className="bg-[#F5F5F5] md:max-w-[65%] md:pl-[2rem]">
+            <div className="md:max-w-[65%] md:pl-[2rem]">
               <Overview result={result}></Overview>
               <Connectivity result={result} />
               <FeeStructure result={result} />
               <Scholarship result={result} />
               <AboutCollege result={result} />
-              <Cutoff result={result} />
+              {/* <Cutoff result={result} /> */}
               <Placements result={result} />
               <CollegeReview result={result} />
               {admin ? (
@@ -110,7 +111,7 @@ const CollegePage = () => {
               ) : null}
             </div>
             {/* right  */}
-            <div className="bg-[rgb(245,245,245)] md:max-w-[35%] pr-[2rem] md:inline-block hidden">
+            <div className="md:max-w-[35%] pr-[2rem] md:inline-block hidden">
               <RightSection
                 result={result}
                 news={news}
@@ -121,7 +122,9 @@ const CollegePage = () => {
           </div>
         </div>
       ) : (
-        <div>No College Found</div>
+        <div>
+          <Comming_Soon />
+        </div>
       )}
     </>
   );

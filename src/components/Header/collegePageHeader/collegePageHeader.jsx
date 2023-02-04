@@ -10,7 +10,7 @@ const CollegePageHeader = (props) => {
     <>
       <div className="w-full h-[376px] relative" style={{filter: "drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.25))"}}>
         <div className='absolute h-full w-full brightness-50' >
-          <img src={props.result.header_photo_link} alt="College Page Banner" className='h-full md:w-full' />
+          <img src={props.result.header_photo_link} alt="College Page Banner" className='h-full md:w-full object-cover' />
         </div>
         <div className='absolute top-0 left-0 m-4 md:left-1/2 md:transform md:-translate-x-1/2'>
           <span><AiOutlineLeft className='text-[#FCFCFC] w-[24px] h-[26px] -ml-2 sm:hidden'></AiOutlineLeft></span>

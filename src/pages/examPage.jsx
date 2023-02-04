@@ -1,8 +1,11 @@
 import React from 'react'
+import Comming_Soon from "./Comming_Soon";
 
 const ExamPage = () => {
   return (
-    <div>ExamPage</div>
+    <div>
+      <Comming_Soon />
+    </div>
   )
 }
 

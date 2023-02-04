@@ -22,7 +22,7 @@ const CounsellingContainer = ({
                 <img 
                   src={college.logo_link} 
                   alt="college logo"
-                  className="w-full h-full object-fill"
+                  className="w-full h-full object-cover"
                 />
               </div>
             );

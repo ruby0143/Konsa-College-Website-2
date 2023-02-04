@@ -8,9 +8,6 @@ const Colleges = () => {
   const [skeleton, setSkeleton] = useState(true);
 
   const [collegeList, setColleges] = useState([]);
- 
-
- 
 
   const getData = async () => {
     await axios
@@ -21,7 +18,6 @@ const Colleges = () => {
         if (response.data != "404") {
           setColleges(response.data);
           setSkeleton(false);
-          
         } else {
           console.log("Error!");
         }
@@ -65,11 +61,21 @@ const Colleges = () => {
             })}
           </>
         )}
-        <Link to="/allcolleges">
-          <div className="min-w-[210px] flex-grow-1 md:min-w-[230px] h-[164px] md:h-[184px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-gradient-to-r from-white to-[#fff6ec] font-medium cursor-pointer">
-            <div className="text-sm text-[#EE7C00]">Show More &#10140;</div>
-          </div>
-        </Link>
+        {collegeList.length >= 5 ? (
+          <>
+            <Link to="/allcolleges">
+              <div className="min-w-[210px] flex-grow-1 md:min-w-[230px] h-[164px] md:h-[184px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-gradient-to-r from-white to-[#fff6ec] font-medium cursor-pointer">
+                <div className="text-sm text-[#EE7C00]">Show More &#10140;</div>
+              </div>
+            </Link>
+          </>
+        ) : (
+          <>
+            {/* 
+            Let's see what can be added!
+           */}
+          </>
+        )}
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ function FeeStructure() {
   return (
     <div className="flex">
       <div className="container">
-        <div className="text-xl m-3 font-semibold text-[#303030]">Fee Structure</div>
+        <div className="text-xl m-3 font-bold text-[#303030]">Fee Structure</div>
         <hr />
         <div className="college-fee">
           <div className="text-md m-3 mt-5 font-semibold text-[#303030] text-[17px] md:-mb-[2rem]">College Fees</div>

@@ -10,9 +10,9 @@ const ToolsPage = () => {
         <div className='w-full md:w-[74%] bg-white px-4 md:px-8'>
           <ToolBody />
         </div>
-        <div className='hidden md:inline-flex md:w-[26%] bg-white px-8'>
+        {/* <div className='hidden md:inline-flex md:w-[26%] bg-white px-8'>
           <RightSection/>
-        </div>
+        </div> */}
       </div>
     </div>
   )

@@ -1,6 +1,5 @@
 import React,{useState} from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import example from "../../assets/iithyerabad.jpg"
 import axios from "axios";
 
 function RightSection(props) {
@@ -63,7 +62,7 @@ function RightSection(props) {
             bordeRadius: "10px",
           }}
         >
-          <h2 className=" text-[#303030] text-[18px] m-3 font-semibold">
+          <h2 className="pt-5 text-[#303030] text-[18px] m-3 font-semibold">
             Don't Miss This
           </h2>
           <hr />
@@ -89,7 +88,7 @@ function RightSection(props) {
             bordeRadius: "10px",
           }}
         >
-          <h2 className=" text-[#303030] text-[18px] m-3 font-semibold">
+          <h2 className="pt-5 text-[#303030] text-[18px] m-3 font-semibold">
             Exams To Explore
           </h2>
           <hr />
@@ -101,7 +100,7 @@ function RightSection(props) {
                     <a href={exam.apply_link}>
                       <div className="flex">
                         <img
-                          className="w-[4rem] h-[4rem] mr-[]"
+                          className="w-[4rem] h-[4rem] mr-[] object-cover"
                           src={exam.img}
                           alt=""
                         />
@@ -125,13 +124,21 @@ function RightSection(props) {
             bordeRadius: "10px",
           }}
         >
-          <h2 className="text-[#303030] text-[18px] m-3 font-semibold">
+          <h2 className="pt-5 text-[#303030] text-[18px] m-3 font-semibold">
             Related Colleges
           </h2>
           <hr />
           <div className="flex justify-between m-[2rem] pb-[2rem]">
-            <img src={example} alt="" className="w-[4rem] h-[4rem]"/>
+            <img src="https://th.bing.com/th/id/R.ceca379fca1497cbfa932a5b0ca6df14?rik=WKOse3rAlhPgGQ&riu=http%3a%2f%2fwww.sit.iitd.ac.in%2fsite-assets%2fimages%2fiitd_logo.png&ehk=KPeib6S57WAjOE%2fltX5SgTpJZ3I2SjKMisRHxIr9lyo%3d&risl=&pid=ImgRaw&r=0" alt="" className="w-[4rem] h-[4rem]"/>
             <p className="font-semibold ml-[2rem]">Indian Institute of Technology Delhi</p>
+          </div>
+          <div className="flex justify-between m-[2rem] pb-[2rem]">
+            <img src="https://i.pinimg.com/originals/f7/b7/86/f7b786921ab3444631dba2ac1edb56f9.png" alt="" className="w-[4rem] h-[4rem]"/>
+            <p className="font-semibold ml-[2rem]">Indian Institute of Technology Bombay</p>
+          </div>
+          <div className="flex justify-between m-[2rem] pb-[2rem]">
+            <img src="https://elibraryiitbhu.remotexs.in/sites/default/files/logo_img.png" alt="" className="w-[4rem] h-[4rem]"/>
+            <p className="font-semibold ml-[2rem]">Indian Institute of Technology BHU</p>
           </div>
         </div>
         <div

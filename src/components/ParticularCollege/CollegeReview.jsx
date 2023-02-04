@@ -7,7 +7,7 @@ const CollegeReview = (props) => {
     <>
       <div className='w-[100vw] py-2 flex flex-col'>
         <div className='w-full py-2'>
-          <h3 className='text-xl m-3 font-semibold text-[#303030]'>Companies Visited</h3>
+          <h3 className='text-xl m-3 font-bold text-[#303030]'>Companies Visited</h3>
           <hr className='w-full text-gray-500' />
           <ul className="mx-4">
             {props.result.top_recruiters?.map((item, id) => {
@@ -26,7 +26,7 @@ const CollegeReview = (props) => {
         </div>
 
         {props.result.review_video ? <div className='py-2 mb-[3rem]'>
-          <h3 className='text-xl m-3 font-semibold text-[#303030]'>College Review Video</h3>
+          <h3 className='text-xl m-3 font-bold text-[#303030]'>College Review Video</h3>
           <hr className='w-full text-gray-500' />
           <div className='flex justify-center md:justify-start'>
             <section

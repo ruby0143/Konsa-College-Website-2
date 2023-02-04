@@ -5,7 +5,7 @@ function Connectivty(props) {
   return (
     <div className="flex">
       <div className="container mt-[2.5rem]">
-        <div className="text-xl m-3 font-semibold text-[#303030]">Connectivity</div>
+        <div className="text-xl m-3 font-bold text-[#303030]">Connectivity</div>
         <hr />
         <div className="cnt-body">
           <div className="my-[2rem] mx-[0.5rem] relative">
