@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import './container.css';
 
 const CollegeContainer = ({
   collegeName,
@@ -23,7 +24,7 @@ const CollegeContainer = ({
           </div>
         </div>
         <div className="h-[54px] md:h-[64px] flex items-center justify-center">
-          <div className="text-sm md:text-base text-center w-[90%]">
+          <div className="text-sm md:text-base text-center w-[90%] custom-truncate">
             {collegeName}
           </div>
         </div>
