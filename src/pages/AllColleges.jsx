@@ -47,6 +47,7 @@ const AllColleges = () => {
           console.log("College Not Found!");
         } else {
           setPaginatedData([...response.data.results]);
+        
           setSkeleton(false)
           // console.log(">>>",response.data.results)
           // console.log(">>>",paginatedData)
@@ -66,7 +67,7 @@ const AllColleges = () => {
         if (response.status === 500) {
           console.log("College Not Found!");
         } else {
-          setPaginatedData([...paginatedData,...response.data.results]);
+          setPaginatedData([...paginatedData,...response.data.results]);     
           setSkeleton(false)
           // console.log(">>>",response.data.results)
           // console.log(">>>",paginatedData)
@@ -78,11 +79,16 @@ const AllColleges = () => {
       });
   };
 
+
   useEffect(() => {
-    getDataWithPagination()
-    getMoreData()
+    getDataWithPagination();
+    getMoreData();
     getData();
   }, []);
+
+  
+
+  
 
   const handleFilter = (event) => {
     const searchWord = event.target.value;
@@ -104,6 +110,8 @@ const AllColleges = () => {
     setFilteredData([]);
     setWordEntered("");
   };
+
+  console.log(paginatedData);
 
   return (
     <>
