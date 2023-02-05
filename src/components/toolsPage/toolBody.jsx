@@ -16,8 +16,13 @@ function toolBody() {
   const [apiResponseData, setApiResponseData] = useState([])
   const [isOpen, setIsOpen] = useState(false)
   const [shift, setShift] = useState("")
-  const [inputMarks, setInputMarks] = useState(0)
+  const [inputMarks, setInputMarks] = useState(-1)
   const [prediction, setPrediction] = useState({})
+
+  // err validations
+  const [shiftError, setShiftError] = useState("")
+  const [inputMarksError, setInputMarksError] = useState("")
+  const [isError, setIsError] = useState(false)
   
   const shiftList = [
     {shift:"Easy"},
@@ -25,46 +30,75 @@ function toolBody() {
     {shift:"Hard"},
   ]
 
-  // on clicking predict
-  const handlePredicter = () =>{
-    let shiftType = shift
-    let shiftVal = 0;
-      if(shiftType === "Easy") shiftVal = 0.9
-      else if(shiftType === "Moderate") shiftVal = 1 
-      else shiftVal = 1.1;
-      
-    let marks = inputMarks
+  const handleValidationError = () =>{
 
-    let arr = apiResponseData
-
-    function percentileRangeGen(arr, marks, shiftVal) {
-      let pMin = []
-      let pMax = []
-      marks = marks*shiftVal
-    
-      for (var i = 0; i < arr.length; i++) {
-        let lowerBound = arr[i]["marksLowerBound"]
-        let upperBound = arr[i]["marksUpperBound"]
-        if (marks > lowerBound && marks < upperBound) {
-          let r1 = Math.round(Math.random().toFixed(4) * 100000000) / 100000000;
-          let r2 = Math.round(Math.random().toFixed(4) * 100000000) / 100000000;
-          Math.max(r1, r2)
-          pMin.push(arr[i]["percentile"] + Math.min(r1, r2))
-          pMax.push(arr[i]["percentile"] + Math.max(r1, r2))
-        }
-      }
-      return {minVal: Math.min(...pMin), maxVal: Math.max(...pMax)}
+    if(inputMarks === -1){
+      setInputMarksError("Score required to be entered!")
+      setIsError(true)
     }
     
-    setPrediction(percentileRangeGen(arr,marks,shiftVal));
+    if(shift === ""){
+      setShiftError("Shift required to be selected!")
+      setIsError(true)
+    }
+
+
+    else {
+      setIsError(false)
+    }
+  }
+  
+  const handlePredicter = (e) =>{
+    e.preventDefault();
+    
+    if(!isError){
+      console.log(isError)
+      console.log("api function call")
+      let shiftType = shift
+      let shiftVal = 0;
+        if(shiftType === "Easy") shiftVal = 0.9
+        else if(shiftType === "Moderate") shiftVal = 1 
+        else shiftVal = 1.1;
+        
+      let marks = inputMarks
+
+      let arr = apiResponseData
+
+      function percentileRangeGen(arr, marks, shiftVal) {
+        let pMin = []
+        let pMax = []
+        marks = marks*shiftVal
+      
+        for (var i = 0; i < arr.length; i++) {
+          let lowerBound = arr[i]["marksLowerBound"]
+          let upperBound = arr[i]["marksUpperBound"]
+          if (marks > lowerBound && marks < upperBound) {
+            let r1 = Math.round(Math.random().toFixed(4) * 100000000) / 100000000;
+            let r2 = Math.round(Math.random().toFixed(4) * 100000000) / 100000000;
+            Math.max(r1, r2)
+            pMin.push(arr[i]["percentile"] + Math.min(r1, r2))
+            pMax.push(arr[i]["percentile"] + Math.max(r1, r2))
+          }
+        }
+        return {minVal: Math.min(...pMin), maxVal: Math.max(...pMax)}
+      }
+      
+      setPrediction(percentileRangeGen(arr,marks,shiftVal));
+
+      setShift("")
+      setInputMarks(-1)
+
+    }  else {
+      return ;
+    }
   }
 
   return (
     <div className="max-w-[450px]  md:m-6">
-      <div className="m-6 flex flex-col align-center my-14">
+      <form className="m-6 flex flex-col align-center my-14" onSubmit={handlePredicter}>
         <div className="text-center font-semibold text-[#303030]">Enter your JEE Main 2023 Details</div>
         <div className="m-3 my-5">
-          <div className="text-[#787878]">Your Shift</div>
+          <div className="text-[#787878]">Your Shift*</div>
           <div className="relative flex flex-col items-center w-full">
             <button 
               className="bg-[#F5F5F5] w-full h-[35px] mb-2 focus:outline-none border text-[#9ca3b7] border-[#dcdcdc] rounded-sm flex items-center justify-between px-4 "
@@ -90,11 +124,11 @@ function toolBody() {
                 })
               }
             </div>}
-
           </div>
+          {shiftError !== "" && shift === "" && <div className="text-red-600">{shiftError}</div>}  
         </div>
         <div className="m-3">
-          <div className="text-[#787878]">Enter your score out of 200</div>
+          <div className="text-[#787878]">Enter your score out of 200*</div>
           <div>
             <input 
               type="number" 
@@ -103,12 +137,14 @@ function toolBody() {
               placeholder="Enter your JEE Marks" 
               className="bg-[#F5F5F5] w-full my-1 h-[35px] rounded-[4px] border-solid border-1 border-black p-3"
               onChange={(e) => setInputMarks(e.target.value)}
-            />
+              />
           </div>
+              {inputMarksError !== "" && inputMarks === -1 && <div className="text-red-600">{inputMarksError}</div>}  
         </div>
         <button 
-          onClick={handlePredicter}
+          type="submit"
           className="bg-[#EE7C00] text-white rounded-[46px] px-[1rem] py-[.4rem] text-center w-[120px] m-auto my-2" 
+          onClick={handleValidationError}
         >
           Predict Now
         </button>
@@ -116,7 +152,7 @@ function toolBody() {
             <div className="m-2 mx-0 text-sm font-semibold">Your Expected Percentile is this</div>
             <div className="m-2 text-[#EE7C00] font-semibold">{`${prediction.minVal} - ${prediction.maxVal}`}</div>
         </div>}
-      </div>
+      </form>
     </div>
   );
 }
