@@ -128,7 +128,7 @@ function toolBody() {
           {shiftError !== "" && shift === "" && <div className="text-red-600">{shiftError}</div>}  
         </div>
         <div className="m-3">
-          <div className="text-[#787878]">Enter your score out of 200*</div>
+          <div className="text-[#787878]">Enter your score out of 300*</div>
           <div>
             <input 
               type="number" 

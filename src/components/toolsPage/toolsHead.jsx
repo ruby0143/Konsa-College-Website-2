@@ -7,7 +7,7 @@ function toolsHead(props) {
         className="w-full h-[376px] relative"
         style={{ filter: "drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.25))" }}
       >
-        <div className="absolute h-full w-full brightness-50">
+        <div className="absolute h-full w-full object-cover brightness-50">
           <img
             src={
               "https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/Percentile_Predictor.png"
