@@ -36,12 +36,11 @@ function toolBody() {
       setInputMarksError("Score required to be entered!")
       setIsError(true)
     }
-    
+
     if(shift === ""){
       setShiftError("Shift required to be selected!")
       setIsError(true)
     }
-
 
     else {
       setIsError(false)
