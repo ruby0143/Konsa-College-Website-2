@@ -8,7 +8,7 @@ const SchedularPageHeader = () => {
             Scheduler
         </div>
         <div className='mb-3 md:mb-6 tracking-wider md:text-2xl '>
-            Don't Miss These Important Deadlines
+            Never Miss Any Date Again!
         </div>
         <div className='mb-4 flex items-center shadow-sm md:shadow-md py-[8px] px-[16px] rounded-md bg-white' >
             <input 
