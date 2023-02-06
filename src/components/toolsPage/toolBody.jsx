@@ -84,8 +84,8 @@ function toolBody() {
             console.log(pMax)
           }
         }
-        minVal = Math.min(...pMin).toString().split(".")[0]+"."+Math.min(...pMin).toString().split(".")[1].substring(1,5)
-        maxVal = Math.max(...pMax).toString().split(".")[0]+"."+Math.max(...pMax).toString().split(".")[1].substring(1,5)
+        var minVal = Math.min(...pMin).toString().split(".")[0]+"."+Math.min(...pMin).toString().split(".")[1].substring(1,5)
+        var maxVal = Math.max(...pMax).toString().split(".")[0]+"."+Math.max(...pMax).toString().split(".")[1].substring(1,5)
         console.log(`Min Val: ${minVal} & Max Val: ${maxVal}`)
         return {minVal: minVal, maxVal: maxVal}
       }
