@@ -4,7 +4,7 @@ function toolsHead(props) {
   return (
     <>
       <div
-        className="w-full h-[376px] relative"
+        className="w-full h-[476px] md:h-[426px] relative"
         style={{ filter: "drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.25))" }}
       >
         <div className="absolute h-full w-full object-cover brightness-50">

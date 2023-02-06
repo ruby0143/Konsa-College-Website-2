@@ -93,14 +93,14 @@ function toolBody() {
   }
 
   return (
-    <div className="max-w-[450px]  md:m-6">
+    <div className="w-[90%] lg:w-[50%]  md:m-6">
       <form className="m-6 flex flex-col align-center my-14" onSubmit={handlePredicter}>
-        <div className="text-center font-semibold text-[#303030]">Enter your JEE Main 2023 Details</div>
-        <div className="m-3 my-5">
-          <div className="text-[#787878]">Your Shift*</div>
+        <div className="text-center md:text-2xl font-semibold text-[#303030]">Enter your JEE Main 2023 Details</div>
+        <div className="mx-3 my-5 md:mt-8">
+          <div className="text-[#787878] md:text-xl">Your Shift*</div>
           <div className="relative flex flex-col items-center w-full">
             <button 
-              className="bg-[#F5F5F5] w-full h-[35px] mb-2 focus:outline-none border text-[#9ca3b7] border-[#dcdcdc] rounded-sm flex items-center justify-between px-4 "
+              className="bg-[#F5F5F5] w-full h-[35px] md:h-[45px] mb-2 focus:outline-none border text-[#9ca3b7] border-[#dcdcdc] rounded-sm flex items-center justify-between px-4 "
               onClick={()=>setIsOpen(prevState => !prevState)}
             >
               {shift !== ""?<span>{shift}</span>:<span>Choose Your Shift</span>}
@@ -126,15 +126,15 @@ function toolBody() {
           </div>
           {shiftError !== "" && shift === "" && <div className="text-red-600">{shiftError}</div>}  
         </div>
-        <div className="m-3">
-          <div className="text-[#787878]">Enter your score out of 300*</div>
+        <div className="mx-3 my-5">
+          <div className="text-[#787878] md:text-xl">Enter your score out of 300*</div>
           <div>
             <input 
               type="number" 
               required
               style={{border : "solid 1px #DCDCDC"}} 
               placeholder="Enter your JEE Marks" 
-              className="bg-[#F5F5F5] w-full my-1 h-[35px] rounded-[4px] border-solid border-1 border-black p-3"
+              className="bg-[#F5F5F5] w-full my-1 h-[35px] md:h-[45px] rounded-[4px] border-solid border-1 border-black p-3"
               onChange={(e) => setInputMarks(e.target.value)}
               />
           </div>
@@ -142,7 +142,7 @@ function toolBody() {
         </div>
         <button 
           type="submit"
-          className="bg-[#EE7C00] text-white rounded-[46px] px-[1rem] py-[.4rem] text-center w-[120px] m-auto my-2" 
+          className="bg-[#EE7C00] text-white rounded-[46px] px-[1rem] py-[.4rem] text-center w-[120px] md:w-[180px] md:text-xl m-auto my-2 md:my-4" 
           onClick={handleValidationError}
         >
           Predict Now
