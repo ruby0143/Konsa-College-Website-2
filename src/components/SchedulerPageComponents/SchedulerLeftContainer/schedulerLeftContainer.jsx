@@ -7,10 +7,10 @@ const SchedulerLeftContainer = ({examData, councellingData}) => {
   return (
     <div>
       {/* Content Shown in Mobile View Start */}
-      <div className='md:hidden text-xs mb-6 text-justify text-[14px]'>
+      <div className='md:hidden mb-6 text-justify text-[14px]'>
         Busy with studies and not finding time to stay updated with the latest dates of engineering exams?
       </div>
-      <div style={{ textAlign: 'justify' }} className='md:hidden mb-6 text-justify'>
+      <div style={{ textAlign: 'justify' }} className='md:hidden mb-6 text-xs text-justify'>
         This section helps engineering students stay updated with important exam dates. This feature offers a comprehensive calendar of all upcoming engineering exams, including important deadlines and dates. The Scheduler helps students stay organized and never miss a deadline again, giving them the best chance of success in their exams. Get ahead of the curve and take advantage of every important date with KonsaCollege's Scheduler.
       </div>
       {/* Content Shown in Mobile View End */}
