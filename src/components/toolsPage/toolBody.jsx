@@ -3,14 +3,17 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
+import data from './test'
 
 function toolBody() {
 
   useEffect(() => {
-    axios.get("https://api.sheety.co/2465db155c118f5b6011ad00d0835bd4/percentilePredictorData/data")
-         .then((res)=>{
-            setApiResponseData(res.data.data)
-         })
+    
+    setApiResponseData(data)
+    // axios.get("https://api.sheety.co/2465db155c118f5b6011ad00d0835bd4/percentilePredictorData/data")
+    //      .then((res)=>{
+            // setApiResponseData(res.data.data)
+        //  })
   },[])
 
   const [apiResponseData, setApiResponseData] = useState([])
@@ -67,19 +70,24 @@ function toolBody() {
         let pMin = []
         let pMax = []
         marks = marks*shiftVal
-      
+
         for (var i = 0; i < arr.length; i++) {
-          let lowerBound = arr[i]["marksLowerBound"]
-          let upperBound = arr[i]["marksUpperBound"]
+          let lowerBound = arr[i]["Marks Lower Bound"]
+          let upperBound = arr[i]["Marks Upper Bound"]
           if (marks > lowerBound && marks < upperBound) {
+            console.log(upperBound, ">", marks, ">", lowerBound)
             let r1 = Math.round(Math.random().toFixed(4) * 100000000) / 100000000;
             let r2 = Math.round(Math.random().toFixed(4) * 100000000) / 100000000;
-            Math.max(r1, r2)
-            pMin.push(arr[i]["percentile"] + Math.min(r1, r2))
-            pMax.push(arr[i]["percentile"] + Math.max(r1, r2))
+            pMin.push(arr[i]["Percentile"] + Math.min(r1, r2))
+            pMax.push(arr[i]["Percentile"] + Math.max(r1, r2))
+            console.log(pMin)
+            console.log(pMax)
           }
         }
-        return {minVal: Math.min(...pMin), maxVal: Math.max(...pMax)}
+        minVal = Math.min(...pMin).toString().split(".")[0]+"."+Math.min(...pMin).toString().split(".")[1].substring(1,5)
+        maxVal = Math.max(...pMax).toString().split(".")[0]+"."+Math.max(...pMax).toString().split(".")[1].substring(1,5)
+        console.log(`Min Val: ${minVal} & Max Val: ${maxVal}`)
+        return {minVal: minVal, maxVal: maxVal}
       }
       
       setPrediction(percentileRangeGen(arr,marks,shiftVal));
