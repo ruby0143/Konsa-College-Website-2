@@ -58,8 +58,9 @@ const CollegeFooter = () => {
             className="w-[180px] text-center"
           ></img>
           <p className="w-[250px] mt-[-20px]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-            explicabo, nisi similique excepturi voluptatibus neque eveniet.
+            KonsaCollege is the ultimate destination for engineering counseling
+            and support, offering comprehensive guidance and resources to help 
+            aspiring engineers achieve their goals.
           </p>
         </div>
 
