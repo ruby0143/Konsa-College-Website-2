@@ -19,7 +19,7 @@ const CounsellingContainer = ({
         <div className="mt-1 flex items-center justify-evenly w-full">
           {collegeList?.map((college, id) => {
             return (
-              <div key={id} className="w-5 h-5 md:w-7 md:w-7">
+              <div key={id} className="w-5 h-5 md:w-7">
                 <img 
                   src={college.logo_link} 
                   alt="college logo"
