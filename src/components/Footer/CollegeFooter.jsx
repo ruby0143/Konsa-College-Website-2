@@ -83,22 +83,27 @@ const CollegeFooter = () => {
           <div className=" flex flex-row justify-center mob:gap-x-4 desk:gap-x-6 text-black desk:order-4 desk:mt-2">
             <FaGooglePlay
               size={40}
+              onClick="window.open('https://play.google.com/store/apps/details?id=com.konsa.college&hl=en_IN&gl=US&pli=1', '_blank', 'noopener,noreferrer')"
               className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
             />
             <FaLinkedinIn
               size={40}
+              onClick="window.open('https://www.linkedin.com/company/konsa-college/', '_blank', 'noopener,noreferrer')"
               className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
             />
             <FiInstagram
               size={40}
+              onClick="window.open('https://instagram.com/konsacollege.in', '_blank', 'noopener,noreferrer')"
               className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
             />
             <IoIosMail
               size={40}
+              onClick="window.open('mailto:tech@konsacollege.com')"
               className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
             />
             <BsYoutube
               size={40}
+              onClick="window.open('https://youtube.com/@konsacollege8914', '_blank', 'noopener,noreferrer')"
               className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
             />
           </div>

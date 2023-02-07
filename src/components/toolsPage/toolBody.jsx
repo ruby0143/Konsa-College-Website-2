@@ -93,7 +93,7 @@ function toolBody() {
       setPrediction(percentileRangeGen(arr,marks,shiftVal));
 
       setShift("")
-      setInputMarks(-1)
+      setInputMarks()
 
     }  else {
       return ;
@@ -105,7 +105,7 @@ function toolBody() {
       <form className="m-6 flex flex-col align-center my-14" onSubmit={handlePredicter}>
         <div className="text-center md:text-2xl font-semibold text-[#303030]">Enter your JEE Main 2023 Details</div>
         <div className="mx-3 my-5 md:mt-8">
-          <div className="text-[#787878] md:text-xl">Your Shift*</div>
+          <div className="text-[#787878] md:text-xl">Your Shift <span className="text-red-600">*</span></div>
           <div className="relative flex flex-col items-center w-full">
             <button 
               className="bg-[#F5F5F5] w-full h-[35px] md:h-[45px] mb-2 focus:outline-none border text-[#9ca3b7] border-[#dcdcdc] rounded-sm flex items-center justify-between px-4 "
@@ -135,11 +135,11 @@ function toolBody() {
           {shiftError !== "" && shift === "" && <div className="text-red-600">{shiftError}</div>}  
         </div>
         <div className="mx-3 my-5">
-          <div className="text-[#787878] md:text-xl">Enter your score out of 300*</div>
+          <div className="text-[#787878] md:text-xl">Enter your score out of 300 <span className="text-red-600">*</span></div>
           <div>
             <input 
               type="number" 
-              required
+              required min="-10" max="300"
               style={{border : "solid 1px #DCDCDC"}} 
               placeholder="Enter your JEE Marks" 
               className="bg-[#F5F5F5] w-full my-1 h-[35px] md:h-[45px] rounded-[4px] border-solid border-1 border-black p-3"
