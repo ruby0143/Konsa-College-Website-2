@@ -60,6 +60,7 @@ const AllColleges = () => {
   };
 
   const getMoreData = async () => {
+    setSkeleton(true)
     const page = Math.ceil(paginatedData.length / limit) + 1;
     await axios
       .get(`https://konsa-college-backend-production-0c4c.up.railway.app/allclgs?page=${page}&limit=${limit}`)
@@ -148,7 +149,7 @@ const AllColleges = () => {
      </div>
         ) : (<>
          {wordEntered.length ? (
-          <div className="grid grid-cols-1 gap-6  p-8  xxs:px-12 xs:grid-cols-2 xs:px-4 sm:grid-cols-2 sm:p-12 md:px-20 lg:grid-cols-3 lg:p-16 xl:grid-cols-4">
+          <div className="grid grid-cols-1 gap-6  p-8  xxs:px-12 xs:grid-cols-2 xs:px-4 sm:grid-cols-2 sm:p-12 md:pt-10 lg:grid-cols-3 lg:pt-10 xl:grid-cols-4">
             {filteredData.map((college) => {
               return (
                 <CollegeContainer
@@ -166,7 +167,7 @@ const AllColleges = () => {
           dataLength={paginatedData.length}
           next={getMoreData}
           hasMore={paginatedData.length<result.length}>
-            <div className="grid grid-cols-1 gap-6  p-8  xxs:px-12 xs:grid-cols-2 xs:px-4 sm:grid-cols-2 sm:p-12 md:px-20 lg:grid-cols-3 lg:p-16 xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-6  p-8  xxs:px-12 xs:grid-cols-2 xs:px-4 sm:grid-cols-2 sm:p-12 md:pt-10 lg:grid-cols-3 lg:pt-10 xl:grid-cols-4">
             {paginatedData?.map((college) => {
               return (
                 <CollegeContainer
