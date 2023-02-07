@@ -13,9 +13,10 @@ import AllColleges from "./pages/AllColleges";
 import SchedularPage from "./pages/schedularPage";
 import Err_404 from "./pages/err_404";
 import Comming_Soon from "./pages/comming_soon";
+import { useStateContext } from "./Context/useStateContext";
 
 function App() {
-
+const {skeleton,loader}=useStateContext()
   return (
   <>
   <Router>
@@ -35,7 +36,7 @@ function App() {
       <Route path="*" element={<Err_404/>} exact/>
       <Route path="/soon" element={<Comming_Soon/>} exact/>
     </Routes>
-    <CollegeFooter/>
+    {loader?(null):(<CollegeFooter/>)}
   </ScrollToTop>
   </Router>
   </>

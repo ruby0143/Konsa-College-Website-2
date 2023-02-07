@@ -4,12 +4,13 @@ const Context = createContext();
 
 export const StateContext = ({ children }) => {
   const [link,setLink] = useState();
-
+  const [skeleton,setSkeleton]=useState(true)
+  const [loader,setLoader]=useState(false)
 
   return (
     <Context.Provider
       value={{
-       link,setLink
+       link,setLink,skeleton,setSkeleton,loader,setLoader,
       }}
     >
       {children}
