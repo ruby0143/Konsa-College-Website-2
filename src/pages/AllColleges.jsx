@@ -86,10 +86,6 @@ const AllColleges = () => {
     getData();
   }, []);
 
-  
-
-  
-
   const handleFilter = (event) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
@@ -115,7 +111,8 @@ const AllColleges = () => {
 
   return (
     <>
-      <div className="w-[full] bg-[#EFEFEF] h-[30vh] flex flex-col justify-center items-center p-3">
+      <div className="w-[full]  h-[30vh] flex flex-col justify-center items-center p-3"
+      style={{background:"linear-gradient(180deg, rgba(238, 124, 0, 0.5) -68.86%, rgba(238, 124, 0, 0) 100%)"}}>
         <div className="text-xl md:text-2xl font-semibold text-gray-700 font-roboto">
           Explore From 200+ Colleges.....
         </div>
@@ -133,9 +130,9 @@ const AllColleges = () => {
         </div>
       </div>
       <div className="mb-4">
-        <div className="text-center text-xl md:text-2xl mb-1 font-semibold text-[#303030]">
+        {/* <div className="text-center text-xl md:text-2xl mb-1 font-semibold text-[#303030]">
           Colleges
-        </div>
+        </div> */}
 
         {skeleton ? (
      <div className="grid grid-cols-1 gap-6  p-8  xxs:px-12 xs:grid-cols-2 xs:px-4 sm:grid-cols-2 sm:p-12 md:px-20 lg:grid-cols-3 lg:p-16 xl:grid-cols-4">

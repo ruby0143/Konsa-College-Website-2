@@ -71,9 +71,6 @@ const Colleges = () => {
           </>
         ) : (
           <>
-            {/* 
-            Let's see what can be added!
-           */}
           </>
         )}
       </div>
