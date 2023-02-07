@@ -59,7 +59,7 @@ const CollegeFooter = () => {
           ></img>
           <p className="w-[250px] mt-[-20px]">
             KonsaCollege is the ultimate destination for engineering counseling
-            and support, offering comprehensive guidance and resources to help 
+            and support, offering comprehensive guidance and resources to help
             aspiring engineers achieve their goals.
           </p>
         </div>
@@ -81,31 +81,36 @@ const CollegeFooter = () => {
 
         <div className="mob:w-full desk:w-1/3 flex flex-col justify-center gap-y-2">
           <div className=" flex flex-row justify-center mob:gap-x-4 desk:gap-x-6 text-black desk:order-4 desk:mt-2">
-            <FaGooglePlay
-              size={40}
-              onClick="window.open('https://play.google.com/store/apps/details?id=com.konsa.college&hl=en_IN&gl=US&pli=1', '_blank', 'noopener,noreferrer')"
-              className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
-            />
-            <FaLinkedinIn
-              size={40}
-              onClick="window.open('https://www.linkedin.com/company/konsa-college/', '_blank', 'noopener,noreferrer')"
-              className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
-            />
-            <FiInstagram
-              size={40}
-              onClick="window.open('https://instagram.com/konsacollege.in', '_blank', 'noopener,noreferrer')"
-              className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
-            />
-            <IoIosMail
-              size={40}
-              onClick="window.open('mailto:tech@konsacollege.com')"
-              className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
-            />
-            <BsYoutube
-              size={40}
-              onClick="window.open('https://youtube.com/@konsacollege8914', '_blank', 'noopener,noreferrer')"
-              className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
-            />
+            <a href={'https://play.google.com/store/apps/details?id=com.konsa.college&hl=en_IN&gl=US&pli=1'}>
+              <FaGooglePlay
+                size={40}
+                className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
+              />
+            </a>
+            <a href={'https://www.linkedin.com/company/konsa-college/'}>
+              <FaLinkedinIn
+                size={40}
+                className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
+              />
+            </a>
+            <a href={'https://instagram.com/konsacollege.in'}>
+              <FiInstagram
+                size={40}
+                className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
+              />
+            </a>
+            <a href={'mailto:tech@konsacollege.com'}>
+              <IoIosMail
+                size={40}
+                className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
+              />
+            </a>
+            <a href={'https://youtube.com/@konsacollege8914'}>
+              <BsYoutube
+                size={40}
+                className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
+              />
+            </a>
           </div>
 
           <div className="mob:flex mob:justify-center desk:hidden">
