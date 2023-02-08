@@ -36,7 +36,7 @@ function toolBody() {
   const handleValidationError = () =>{
 
     if(inputMarks === -1){
-      setInputMarksError("Score required to be entered!")
+      setInputMarksError("Score `require`d to be entered!")
       setIsError(true)
     }
 
