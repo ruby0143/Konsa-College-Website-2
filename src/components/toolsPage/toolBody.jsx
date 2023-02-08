@@ -108,7 +108,7 @@ function toolBody() {
           <div className="text-[#787878] md:text-xl">Your Shift <span className="text-red-600">*</span></div>
           <div className="relative flex flex-col items-center w-full">
             <button 
-              className="bg-[#F5F5F5] w-full h-[35px] md:h-[45px] mb-2 focus:outline-none border text-[#9ca3b7] border-[#dcdcdc] rounded-sm flex items-center justify-between px-4 "
+              className="bg-[#ffffff] w-full h-[35px] md:h-[45px] mb-2 focus:outline-none border text-[#9ca3b7] border-[#dcdcdc] rounded-sm flex items-center justify-between px-4 "
               onClick={()=>setIsOpen(prevState => !prevState)}
             >
               {shift !== ""?<span>{shift}</span>:<span>Choose Your Shift</span>}
@@ -142,7 +142,7 @@ function toolBody() {
               required min="-10" max="300"
               style={{border : "solid 1px #DCDCDC"}} 
               placeholder="Enter your JEE Marks" 
-              className="bg-[#F5F5F5] w-full my-1 h-[35px] md:h-[45px] rounded-[4px] border-solid border-1 border-black p-3"
+              className="bg-[#ffffff] w-full my-1 h-[35px] md:h-[45px] rounded-[4px] border-solid border-1 border-black p-3"
               onChange={(e) => setInputMarks(e.target.value)}
               />
           </div>
