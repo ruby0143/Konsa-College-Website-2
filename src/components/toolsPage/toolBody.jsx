@@ -101,7 +101,7 @@ function toolBody() {
   }
 
   return (
-    <div className="w-[90%] lg:w-[50%]  md:m-6">
+    <div className="w-[90%] lg:w-[50%]  md:m-6 bg-[#F9F9F9] rounded-sm">
       <form className="m-6 flex flex-col align-center my-14" onSubmit={handlePredicter}>
         <div className="text-center md:text-2xl font-semibold text-[#303030]">Enter your JEE Main 2023 Details</div>
         <div className="mx-3 my-5 md:mt-8">

@@ -4,6 +4,20 @@ import axios from "axios";
 function Newsletters() {
   const [News, setNews] = useState([]);
 
+  function zuluToLongDate(zuluTime) {
+    const date = new Date(zuluTime);
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric'
+    };
+    return date.toLocaleDateString('en-US',options);
+  }
+
+
   useEffect(() => {
     axios
       .get("https://konsa-college-backend-production-0c4c.up.railway.app/news")
@@ -44,7 +58,7 @@ function Newsletters() {
                 </h4>
                 <div className="bottom flex justify-between">
                   <p className="date text-[#747474] text-[12px] sm:text-[14px]">
-                    {newsItem.date}
+                    {zuluToLongDate(newsItem.date)}
                   </p>
                   <div className="more flex w-[75px] sm:w-[90px] justify-between sm:justify-around">
                     <p className="text-[12px] font-semibold sm:text-[14px]">
