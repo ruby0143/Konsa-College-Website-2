@@ -24,11 +24,11 @@ const Exams = () => {
   }, []);
 
   return (
-    <div className="mb-4">
-      <div className="text-center text-xl md:text-2xl mb-1 font-semibold text-[#303030]">
+    <div className="mb-4 md:mb-8">
+      <div className="text-center text-xl md:text-2xl mb-1 md:mb-2 font-semibold text-[#303030]">
         Exams
       </div>
-      <div className="flex md:max-w-[1100px] md:m-auto items-center overflow-x-auto gap-3 py-2">
+      <div className="no-scrollbar flex md:max-w-[1100px] md:m-auto items-center overflow-x-auto gap-3 py-2">
         {skeleton ? (
           <>
             <CollegeSkeleton />

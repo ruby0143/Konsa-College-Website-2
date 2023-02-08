@@ -5,6 +5,19 @@ import axios from "axios";
 function RightSection(props) {
 
   const [phone, setPhone] = useState();
+  
+  function zuluToLongDate(zuluTime) {
+    const date = new Date(zuluTime);
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric'
+    };
+    return date.toLocaleDateString('en-US',options);
+  }
 
   const postPhone = () => {
     const doc = {
@@ -43,7 +56,7 @@ function RightSection(props) {
                           {newsItem.heading_text}
                         </p>
                         <span className="text-[#A7A7A7] tracking-wide text-[11px]">
-                          {newsItem.date}
+                          {zuluToLongDate(newsItem.date)}
                         </span>
                       </div>
                     </div>
