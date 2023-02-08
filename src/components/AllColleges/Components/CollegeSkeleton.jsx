@@ -3,7 +3,7 @@ import React from 'react';
 
 function CollegeSkeleton() {
 return (
-  <div role="status" className=" animate-pulse min-w-[230px] max-w-[300px] shadow-md rounded-md border border-gray-100 bg-white ">
+  <div role="status" className=" animate-pulse  w-[300px] shadow-md rounded-md border border-gray-100 bg-white ">
     <div className="flex items-center justify-center h-36  bg-gray-300 rounded dark:bg-gray-700">
       <svg
         className="w-12 h-12 text-gray-200 dark:text-gray-600"
