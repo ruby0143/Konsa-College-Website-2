@@ -36,7 +36,7 @@ const {skeleton,loader}=useStateContext()
       <Route path="*" element={<Err_404/>} exact/>
       <Route path="/soon" element={<Comming_Soon/>} exact/>
     </Routes>
-    {skeleton || loader?(null):(<CollegeFooter/>)}
+    {loader?(null):(<CollegeFooter/>)}
   </ScrollToTop>
   </Router>
   </>
