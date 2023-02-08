@@ -67,7 +67,7 @@ const Exams = () => {
             })}
           </>
         )}
-            <Link to="/scheduler" className="min-w-[158px] h-[56px] md:h-[158px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-gradient-to-r from-white to-[#fff6ec] font-medium cursor-pointer">
+            <Link to="/scheduler" className="min-w-[158px] h-[56px] md:h-[158px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-white hover:bg-gradient-to-r from-white to-[#fff6ec] transition-all duration-500 font-medium cursor-pointer">
               <div className="text-sm text-[#EE7C00]">Show More &#10140;</div>
             </Link>
       </div>

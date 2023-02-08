@@ -64,7 +64,7 @@ const Colleges = () => {
         {collegeList.length >= 5 ? (
           <>
             <Link to="/allcolleges">
-              <div className="min-w-[210px] flex-grow-1 md:min-w-[230px] h-[164px] md:h-[184px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-gradient-to-r from-white to-[#fff6ec] font-medium cursor-pointer">
+              <div className="min-w-[210px] flex-grow-1 md:min-w-[230px] h-[164px] md:h-[184px] flex justify-center items-center shadow-md rounded-md border bg-white hover:bg-gradient-to-r from-white to-[#fff6ec] transition-all duration-500 from-white to-[#fff6ec] font-medium cursor-pointer">
                 <div className="text-sm text-[#EE7C00]">Show More &#10140;</div>
               </div>
             </Link>
