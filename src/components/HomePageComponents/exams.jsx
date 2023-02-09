@@ -24,8 +24,8 @@ const Exams = () => {
   }, []);
 
   return (
-    <div className="mb-4">
-      <div className="text-center text-xl md:text-2xl mb-1 font-semibold text-[#303030]">
+    <div className="mb-4 md:mb-8">
+      <div className="text-center text-xl md:text-2xl mb-1 md:mb-2 font-semibold text-[#303030]">
         Exams
       </div>
       <div className="no-scrollbar flex md:max-w-[1100px] md:m-auto items-center overflow-x-auto gap-3 py-2">
@@ -67,8 +67,8 @@ const Exams = () => {
             })}
           </>
         )}
-            <Link to="/scheduler" className="min-w-[158px] h-[56px] md:h-[158px] flex justify-center items-center shadow-md rounded-md border border-gray-200 hover:bg-gradient-to-r from-white to-[#fff6ec] hover:text-[#EE7C00] font-medium cursor-pointer">
-              <div className="text-sm">Show More &#10140;</div>
+            <Link to="/scheduler" className="min-w-[158px] h-[56px] md:h-[158px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-white hover:bg-gradient-to-r from-white to-[#fff6ec] transition-all duration-500 font-medium cursor-pointer">
+              <div className="text-sm text-[#EE7C00]">Show More &#10140;</div>
             </Link>
       </div>
     </div>

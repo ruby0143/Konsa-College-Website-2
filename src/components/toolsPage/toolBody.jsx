@@ -21,6 +21,7 @@ function toolBody() {
   const [shift, setShift] = useState("")
   const [inputMarks, setInputMarks] = useState(-1)
   const [prediction, setPrediction] = useState({})
+  const [click,setClick] = useState(true);
 
   // err validations
   const [shiftError, setShiftError] = useState("")
@@ -36,7 +37,7 @@ function toolBody() {
   const handleValidationError = () =>{
 
     if(inputMarks === -1){
-      setInputMarksError("Score required to be entered!")
+      setInputMarksError("Score `require`d to be entered!")
       setIsError(true)
     }
 
@@ -108,8 +109,8 @@ function toolBody() {
           <div className="text-[#787878] md:text-xl">Your Shift <span className="text-red-600">*</span></div>
           <div className="relative flex flex-col items-center w-full">
             <button 
-              className="bg-[#F5F5F5] w-full h-[35px] md:h-[45px] mb-2 focus:outline-none border text-[#9ca3b7] border-[#dcdcdc] rounded-sm flex items-center justify-between px-4 "
-              onClick={()=>setIsOpen(prevState => !prevState)}
+              className="bg-[#ffffff] w-full h-[35px] md:h-[45px] mb-2 focus:outline-none border text-[#9ca3b7] border-[#dcdcdc] rounded-sm flex items-center justify-between px-4 "
+              onClick={()=>{setIsOpen(prevState => !prevState);console.log(isOpen)}}
             >
               {shift !== ""?<span>{shift}</span>:<span>Choose Your Shift</span>}
               {!isOpen?<AiOutlineDown className="text-[#787878]" />:<AiOutlineUp className="#787878"/>}
@@ -142,7 +143,7 @@ function toolBody() {
               required min="-10" max="300"
               style={{border : "solid 1px #DCDCDC"}} 
               placeholder="Enter your JEE Marks" 
-              className="bg-[#F5F5F5] w-full my-1 h-[35px] md:h-[45px] rounded-[4px] border-solid border-1 border-black p-3"
+              className="bg-[#ffffff] w-full my-1 h-[35px] md:h-[45px] rounded-[4px] border-solid border-1 border-black p-3"
               onChange={(e) => setInputMarks(e.target.value)}
               />
           </div>
@@ -155,10 +156,13 @@ function toolBody() {
         >
           Predict Now
         </button>
-        {JSON.stringify(prediction) !== '{}' && <div className="m-2 text-center bg-[#F5F5F5] p-2 py-3 mt-6">
+        {
+          isOpen ?  (JSON.stringify(prediction) !== '{}' && <div className="m-2 text-center bg-[#F5F5F5] p-2 py-3 mt-6">
             <div className="m-2 mx-0 text-sm font-semibold">Your Expected Percentile is this</div>
             <div className="m-2 text-[#EE7C00] font-semibold">{`${prediction.minVal} - ${prediction.maxVal}`}</div>
-        </div>}
+        </div>): null 
+        }
+        
       </form>
     </div>
   );

@@ -32,8 +32,8 @@ const Colleges = () => {
   }, []);
 
   return (
-    <div className="mb-4">
-      <div className="text-center text-xl md:text-2xl mb-1 font-semibold text-[#303030]">
+    <div className="mb-4 md:mb-8">
+      <div className="text-center text-xl md:text-2xl mb-1 md:mb-2 font-semibold text-[#303030]">
         Colleges
       </div>
       <div className="no-scrollbar flex md:max-w-[1100px] md:m-auto items-center overflow-x-auto overflow-y-hidden gap-3 py-2">
@@ -64,8 +64,8 @@ const Colleges = () => {
         {collegeList.length >= 5 ? (
           <>
             <Link to="/allcolleges">
-              <div className="min-w-[210px] flex-grow-1 md:min-w-[230px] h-[164px] md:h-[184px] flex justify-center items-center shadow-md rounded-md border border-gray-200 hover:bg-gradient-to-r from-white to-[#fff6ec] hover:text-[#EE7C00]  font-medium cursor-pointer">
-                <div className="text-sm ">Show More &#10140;</div>
+              <div className="min-w-[210px] flex-grow-1 md:min-w-[230px] h-[164px] md:h-[184px] flex justify-center items-center shadow-md rounded-md border bg-white hover:bg-gradient-to-r from-white to-[#fff6ec] transition-all duration-500 font-medium cursor-pointer">
+                <div className="text-sm text-[#EE7C00]">Show More &#10140;</div>
               </div>
             </Link>
           </>

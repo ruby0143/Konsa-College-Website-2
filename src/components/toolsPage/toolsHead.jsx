@@ -4,7 +4,7 @@ function toolsHead(props) {
   return (
     <>
       <div
-        className="w-full h-[476px] xxs:h-[400px] xs:h-[440px] relative"
+        className="w-full h-[476px] xxs:h-[400px] xs:h-[440px]  md:h-[400px] relative"
         style={{ filter: "drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.25))" }}
       >
         <div className="absolute h-full w-full object-cover">
@@ -22,8 +22,8 @@ function toolsHead(props) {
             </div>
           </div>
 
-          <div className="m-6  mt-10 md:mt-10  sm:mt-20 md:w-full ">
-            <p className="text-black text-md font-normal md:w-[80vw] md:m-auto xs:mx-3 xs:text-lg xs:text-center md:text-xl ">
+          <div className="m-6  mt-10 md:mt-12  sm:mt-20 md:w-full ">
+            <p className="text-black text-md font-normal md:w-[82vw] md:m-auto xs:mx-3 xs:text-lg xs:text-center md:text-xl ">
             KonsaCollege introduces its percentile predictor, a helpful tool for engineering aspirants to determine their expected percentile. This innovative feature provides personalized insights and predictions based on the student's performance and helps them gauge their chances of getting into their desired college. With its user-friendly interface and accurate predictions, KonsaCollege's percentile predictor is a must-have tool for every aspiring engineer.
             </p>
           </div>
