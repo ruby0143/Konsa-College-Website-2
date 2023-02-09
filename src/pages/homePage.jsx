@@ -23,7 +23,7 @@ const HomePage = () => {
   return (
     <>
       <HomeHeader/>
-      <div className='max-w-[1200px] m-auto'>
+      <div className='max-w-[1200px] m-auto md:mx-2'>
         <FeaturesOffered/>
         <CollegesPredictor />
         <Newsletters/>

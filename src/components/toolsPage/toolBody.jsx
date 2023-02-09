@@ -102,17 +102,18 @@ function toolBody() {
   }
 
   return (
-    <div className="w-[90%] lg:w-[50%] m-5 md:m-6 bg-[#F9F9F9] rounded-sm">
-      <form className="m-6 flex flex-col align-center my-14" onSubmit={handlePredicter}>
+    <div className="w-full  m-5 md:m-6 ">
+      <div className="bg-[#F9F9F9] p-1 rounded-sm">
+      <form className="m-6 flex flex-col align-center my-14 " onSubmit={handlePredicter}>
         <div className="text-center md:text-2xl font-semibold text-[#303030]">Enter your JEE Main 2023 Details</div>
         <div className="mx-3 my-5 md:mt-8">
-          <div className="text-[#787878] md:text-xl">Your Shift <span className="text-red-600">*</span></div>
+          <div className="text-[#606060] md:text-xl py-3">Your Shift <span className="text-red-600">*</span></div>
           <div className="relative flex flex-col items-center w-full">
             <button 
               className="bg-[#ffffff] w-full h-[35px] md:h-[45px] mb-2 focus:outline-none border text-[#9ca3b7] border-[#dcdcdc] rounded-sm flex items-center justify-between px-4 "
               onClick={()=>{setIsOpen(prevState => !prevState);console.log(isOpen)}}
             >
-              {shift !== ""?<span>{shift}</span>:<span>Choose Your Shift</span>}
+              {shift !== ""?<span>{shift}</span>:<span className="text-lg">Choose Your Shift</span>}
               {!isOpen?<AiOutlineDown className="text-[#787878]" />:<AiOutlineUp className="#787878"/>}
             </button>
             
@@ -136,14 +137,14 @@ function toolBody() {
           {shiftError !== "" && shift === "" && <div className="text-red-600">{shiftError}</div>}  
         </div>
         <div className="mx-3 my-5">
-          <div className="text-[#787878] md:text-xl">Enter your score out of 300 <span className="text-red-600">*</span></div>
+          <div className="text-[#606060] md:text-xl py-3 ">Enter your score out of 300 <span className="text-red-600">*</span></div>
           <div>
             <input 
               type="number" 
               required min="-10" max="300"
               style={{border : "solid 1px #DCDCDC"}} 
               placeholder="Enter your JEE Marks" 
-              className="bg-[#ffffff] w-full my-1 h-[35px] md:h-[45px] rounded-[4px] border-solid border-1 border-black p-3"
+              className="bg-[#ffffff] text-lg w-full my-1 h-[35px] md:h-[45px] rounded-[4px] border-solid border-1 border-black p-3"
               onChange={(e) => setInputMarks(e.target.value)}
               />
           </div>
@@ -164,6 +165,7 @@ function toolBody() {
         }
         
       </form>
+      </div>
     </div>
   );
 }

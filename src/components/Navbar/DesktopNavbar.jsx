@@ -9,7 +9,7 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
   return (
     <>
         <nav className='w-full bg-black md:bg-white flex px-3 md:px-12 items-center justify-between shadow-lg' >
-            <div className='h-[54px] -ml-5' >
+            <div className='h-[54px] -ml-1 ' >
                 <a href="/"><img className='h-full' src={konsaCollegeLogo} alt="konsa-college-logo"/></a>
             </div>
             <div className='hidden md:flex items-center gap-10'>

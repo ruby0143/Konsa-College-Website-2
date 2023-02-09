@@ -37,18 +37,7 @@ const CollegePage = () => {
       })
       .catch((err) => console.log("error: ", err));
 
-    axios
-      .get("https://konsa-college-backend-production-0c4c.up.railway.app/news")
-      .then((response) => {
-        if (response.status !== 500) {
-          setNews(response.data);
-        } else {
-          console.log("error");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    
 
     axios
       .get("https://konsa-college-backend-production-0c4c.up.railway.app/exams")
@@ -111,7 +100,7 @@ const CollegePage = () => {
               ) : null}
             </div>
             {/* right  */}
-            <div className="md:max-w-[35%] pr-[2rem] md:inline-block hidden">
+            <div className="md:max-w-[34%]  md:inline-block hidden">
               <RightSection
                 result={result}
                 news={news}
