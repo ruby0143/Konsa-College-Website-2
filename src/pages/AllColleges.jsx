@@ -131,10 +131,10 @@ const AllColleges = () => {
           </span>
         </div>
       </div>
-      <div className="mb-10">
+      <div className="mb-[50px]">
         {skeleton ? (
       <div className="w-full p-6 flex justify-center flex-col items-center">
-            <div className="grid grid-cols-1 gap-6  xs:grid-cols-2  sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-10  xs:grid-cols-2  sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4">
             <CollegeSkeleton />
             <CollegeSkeleton />
             <CollegeSkeleton />
@@ -149,7 +149,7 @@ const AllColleges = () => {
           <>
             {wordEntered.length ? (
               <div className="w-full p-6 flex justify-center flex-col items-center">
-                <div className="grid grid-cols-1 gap-6  xs:grid-cols-2  sm:grid-cols-2  lg:grid-cols-3  xl:grid-cols-4">
+                <div className="grid grid-cols-1 gap-10  xs:grid-cols-2  sm:grid-cols-2  lg:grid-cols-3  xl:grid-cols-4">
                 {filteredData.map((college) => {
                   return (
                     <CollegeContainer
@@ -170,7 +170,7 @@ const AllColleges = () => {
                 hasMore={paginatedData.length < result.length}
               >
                 <div className="w-full p-6 flex justify-center flex-col items-center">
-                  <div className="grid grid-cols-1 gap-6  xs:grid-cols-2  sm:grid-cols-2   lg:grid-cols-3  xl:grid-cols-4">
+                  <div className="grid grid-cols-1 gap-12  xs:grid-cols-2  sm:grid-cols-2   lg:grid-cols-3  xl:grid-cols-4">
                     {paginatedData?.map((college) => {
                       return (
                         <>
