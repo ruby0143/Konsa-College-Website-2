@@ -18,10 +18,21 @@ body{
 }
 
 ::-webkit-scrollbar-thumb{
+    display: none;
     border: 1px solid transparent;
     background-color: #dadada7c;
     border-radius: 10px;
     background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    display: inline;
+    border: 1px solid transparent;
+    background-color: #dadada7c;
+    border-radius: 10px;
+    background-clip: content-box;
+    transition: all;
+    transition-duration: 500ms;
 }
 
 .horizontal-scroll::-webkit-scrollbar-thumb{
