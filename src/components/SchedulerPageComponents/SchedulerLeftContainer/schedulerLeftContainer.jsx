@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { AiOutlineArrowDown } from 'react-icons/ai'
 import CouncellingDataContainer from './councellingDataContainer'
 import ExamDataContainer from './examDataContainer'
 
 const SchedulerLeftContainer = ({examData, councellingData}) => {
+
+  const [examDataLimit, setExamDataLimit] = useState(3)
+  const [councellingDataLimit, setCouncellingDataLimit] = useState(3)
 
   return (
     <div className='mb-12'>
@@ -34,13 +37,13 @@ const SchedulerLeftContainer = ({examData, councellingData}) => {
         </div>
         <div className='flex flex-wrap justify-between mb-2 md:mb-4'>
             {
-              councellingData?.map(councelling => {
+              councellingData?.slice(0,councellingDataLimit).map(councelling => {
                 return <CouncellingDataContainer key={councelling._id} councelling={councelling}/>
               })
             }
         </div>
         <div className='mb-6 flex justify-center items-center'>
-          <button className='flex items-center py-2 px-6 md:px-8 rounded-full text-sm md:text-base md:font-medium text-[#5a5a5a] hover:text-[#fcfcfc] bg-[#f4f4f4] hover:bg-[#EE7C00] shadow-md transition-all duration-300'>
+          <button onClick={()=>setCouncellingDataLimit(prev => prev + 3)} className='flex items-center py-2 px-6 md:px-8 rounded-full text-sm md:text-base md:font-medium text-[#5a5a5a] hover:text-[#fcfcfc] bg-[#f4f4f4] hover:bg-[#EE7C00] shadow-md transition-all duration-300'>
             <span className='mr-2'>Show more</span>
             <AiOutlineArrowDown/>
           </button>
@@ -54,13 +57,13 @@ const SchedulerLeftContainer = ({examData, councellingData}) => {
         </div>
         <div className='flex flex-wrap justify-between mb-2 md:mb-4'>
             {
-              examData?.map(exam => {
+              examData?.slice(0,examDataLimit).map(exam => {
                 return <ExamDataContainer key={exam._id} exam={exam}/>
               })
             }
         </div>
         <div className='mb-6 flex justify-center items-center'>
-          <button className='flex items-center py-2 px-6 md:px-8 rounded-full text-sm md:text-base md:font-medium text-[#5a5a5a] hover:text-[#fcfcfc] bg-[#f4f4f4] hover:bg-[#EE7C00] shadow-md transition-all duration-300'>
+          <button onClick={()=>setExamDataLimit(prev => prev + 3)} className='flex items-center py-2 px-6 md:px-8 rounded-full text-sm md:text-base md:font-medium text-[#5a5a5a] hover:text-[#fcfcfc] bg-[#f4f4f4] hover:bg-[#EE7C00] shadow-md transition-all duration-300'>
             <span className='mr-2'>Show more</span>
             <AiOutlineArrowDown/>
           </button>

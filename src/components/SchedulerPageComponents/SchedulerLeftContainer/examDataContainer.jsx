@@ -21,7 +21,7 @@ const ExamDataContainer = ({exam}) => {
             </div>  
         </div>
 
-        <a href={exam.apply_link} className="w-full rounded-full bg-white border border-[#EE7C00] text-[10px] md:text-[12px] lg:text-[14px] py-[2px] lg:py-[4px] font-medium md:font-semibold text-[#EE7C00] hover:bg-[#EE7C00] hover:text-white transition-all duration-500">
+        <a href={exam.apply_link} className="w-full rounded-full bg-white border border-[#EE7C00] text-[10px] md:text-[12px] lg:text-[14px] py-[2px] lg:py-[4px] font-medium md:font-semibold text-[#EE7C00] hover:bg-[#EE7C00] hover:text-white transition-all duration-300">
           <button className='h-full w-full rounded-full bg-none'>
                 Apply Now
           </button>
