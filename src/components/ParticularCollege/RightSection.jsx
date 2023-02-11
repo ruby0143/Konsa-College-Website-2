@@ -11,7 +11,7 @@ function RightSection(props) {
   
 
   return (
-    <div className="flex-row px-4 lg:px-12">
+    <div className="flex-row px-4 lg:pl-12">
       <RightNews />
       <RightCounselling />
       <RelatedColleges />

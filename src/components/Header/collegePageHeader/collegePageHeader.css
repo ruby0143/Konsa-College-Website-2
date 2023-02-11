@@ -11,3 +11,9 @@
     background: url("../../../assets/background/iit_bhu_background.svg") no-repeat center center/cover;
     filter: brightness(0.4);
 }
+
+@media only screen and (min-width: 280px) and (max-width: 380px ){
+    .collegeLocation{
+        font-size: 14px;
+    }
+}

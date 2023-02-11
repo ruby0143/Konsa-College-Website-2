@@ -74,8 +74,8 @@ const CollegePage = () => {
         <div>
           {/* left  */}
           <CollegePageHeader result={result} />
-          <div className="md:flex justify-between">
-            <div className="md:max-w-[65%] md:pl-[2rem]">
+          <div className="md:flex justify-between md:px-12">
+            <div className="md:max-w-[65%] px-4 md:px-0">
               <Overview result={result}></Overview>
               <Connectivity result={result} />
               <FeeStructure result={result} />
@@ -83,6 +83,7 @@ const CollegePage = () => {
               <AboutCollege result={result} />
               {/* <Cutoff result={result} /> */}
               <Placements result={result} />
+              
               <CollegeReview result={result} />
               {admin ? (
                 <a

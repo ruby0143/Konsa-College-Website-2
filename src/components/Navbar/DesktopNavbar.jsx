@@ -8,9 +8,9 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
 
   return (
     <>
-        <nav className='w-full bg-black md:bg-white flex px-3 md:px-12 items-center justify-between shadow-lg' >
-            <div className='h-[54px] -ml-1 ' >
-                <a href="/"><img className='h-full' src={konsaCollegeLogo} alt="konsa-college-logo"/></a>
+        <nav className='bg-black md:bg-white flex px-3 md:px-12 items-center justify-between shadow-lg '>
+            <div className='h-[54px] -ml-1' >
+                <a href="/"><img className='h-full -ml-[.3rem]' src={konsaCollegeLogo} alt="konsa-college-logo"/></a>
             </div>
             <div className='hidden md:flex items-center gap-10'>
                 <ul className='flex items-center cursor-pointer gap-10'>
