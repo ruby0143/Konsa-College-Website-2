@@ -1,5 +1,5 @@
 :root {
-    --base_color: #ee7c00;
+    --base_color: #888888;
     --secondary_color: #ffffff00;
 }
 
@@ -7,10 +7,10 @@
     content: "";
     position: absolute;
     z-index: 1;
-    left: 2.2rem;
+    left: 2.1rem;
     margin-top: 3.1rem;
     border-left: 3px solid;
-    border-image: linear-gradient(to bottom, #ffffff00, #ffffff00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c00, #ffffff00, #ee7c0000, #ffffff00, #ffffff00);
+    border-image: linear-gradient(to bottom, #ffffff00, #ffffff00, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #888888, #ffffff00, #88888800, #ffffff00, #ffffff00);
     border-image-slice: 1;
     background-color: transparent;
     height: 238px;

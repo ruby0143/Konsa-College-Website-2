@@ -2,7 +2,7 @@
 .labels{
     position: relative;
     top:5%;
-    margin: 5%;
+    margin: 5% 0;
 }
 .chart{
     display: flex;

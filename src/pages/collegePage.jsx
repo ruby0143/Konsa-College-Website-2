@@ -13,8 +13,12 @@ import axios from "axios";
 import RightSection from "../components/ParticularCollege/RightSection";
 import { FaPassport } from "react-icons/fa";
 import Comming_Soon from "./comming_soon";
+import { Link } from "react-scroll";
+import { useStateContext } from "../Context/useStateContext";
+
 
 const CollegePage = () => {
+  const {setAcPage}=useStateContext()
   const [result, setResult] = useState([]);
   const [news, setNews] = useState([]);
   const [exams, setExams] = useState([]);
@@ -22,6 +26,18 @@ const CollegePage = () => {
   const [admin, setAdmin] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const path = useLocation().pathname;
+  const [active, setActive] = useState();
+
+  const Items = [
+    { name: "Overview"},
+    { name: "Connectivity"},
+    { name: "Fee Structure"},
+    { name: "Scholarship"},
+    { name: "About College"},
+    { name: "Cutt Off"},
+    { name: "Placement Stats"},
+    { name: "College Review Video"},
+  ];
   
   
   useEffect(() => {
@@ -36,8 +52,6 @@ const CollegePage = () => {
         setResult(res.data);
       })
       .catch((err) => console.log("error: ", err));
-
-    
 
     axios
       .get("https://konsa-college-backend-production-0c4c.up.railway.app/exams")
@@ -74,16 +88,32 @@ const CollegePage = () => {
         <div>
           {/* left  */}
           <CollegePageHeader result={result} />
-          <div className="md:flex justify-between">
-            <div className="md:max-w-[65%] md:pl-[2rem]">
-              <Overview result={result}></Overview>
-              <Connectivity result={result} />
-              <FeeStructure result={result} />
-              <Scholarship result={result} />
-              <AboutCollege result={result} />
+          <div className="md:flex justify-between md:px-12">
+            <div className="md:max-w-[65%] px-4 md:px-0">
+              <div className='mt-[3rem] flex sm:hidden' style={{ overflowX: "auto" }}>
+              {Items.map((item,id)=>{return (
+                <div
+                  key={id}
+                  className="mr-3 min-w-[180px] py-4 bg-[white] active:bg-[#EE7C00] active:text-[white] hover:bg-[#EE7C00] hover:text-[white] text-center cursor-pointer"
+                  style={{ borderRadius: "5px", border: "1px solid #E9E9E9" }}
+                >
+                  <Link duration={100} spy smooth offset={-180} to={item.name}>
+                    {item.name}
+                  </Link>
+                </div>
+              );})}
+              </div>
+              
+              <section id="Overview"><Overview result={result}/> </section>
+              <section id="Connectivity"><Connectivity result={result} /></section>
+              <section id="Fee Structure"><FeeStructure result={result} /></section>
+              <section id="Scholarship"><Scholarship result={result} /></section>
+              
+              <section id="About College"><AboutCollege result={result}/></section>
               {/* <Cutoff result={result} /> */}
-              <Placements result={result} />
-              <CollegeReview result={result} />
+             <section id="Placement Stats"> <Placements result={result} /></section>
+              
+             <section id="College Review Video"> <CollegeReview result={result} /></section>
               {admin ? (
                 <a
                   href={`https://Data-Collection-Portal-Konsa-College.ishkapoor.repl.co/approve/${result.sno}`}

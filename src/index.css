@@ -1,7 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Roboto:wght@300;400&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Roboto:wght@300;400&display=swap');
 
 body{
     background-color: #fcfcfc;
@@ -18,10 +18,21 @@ body{
 }
 
 ::-webkit-scrollbar-thumb{
+    display: none;
     border: 1px solid transparent;
     background-color: #dadada7c;
     border-radius: 10px;
     background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    display: inline;
+    border: 1px solid transparent;
+    background-color: #dadada7c;
+    border-radius: 10px;
+    background-clip: content-box;
+    transition: all;
+    transition-duration: 500ms;
 }
 
 .horizontal-scroll::-webkit-scrollbar-thumb{

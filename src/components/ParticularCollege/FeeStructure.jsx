@@ -6,10 +6,10 @@ function FeeStructure() {
   return (
     <div className="flex">
       <div className="container">
-        <div className="text-xl m-3 font-bold text-[#303030]">Fee Structure</div>
+        <div className="text-xl my-3 font-bold text-[#303030]">Fee Structure</div>
         <hr />
         <div className="college-fee">
-          <div className="text-md m-3 mt-5 font-semibold text-[#303030] text-[17px] md:-mb-[2rem]">College Fees</div>
+          <div className="text-md my-3 mt-5 font-semibold text-[#303030] text-[17px] md:-mb-[2rem]">College Fees</div>
           <div className="md:flex md:items-center">
             <div className="chart -mt-[3rem] md:inline-block">
               <svg width={320} height={280} className="chart-style">
@@ -119,7 +119,7 @@ function FeeStructure() {
           </div>
         </div>
         <div className="hostel-fee mt-[3rem]">
-          <div className="text-md m-3 mt-5 md:-mb-[2rem] font-semibold text-[#303030] text-[17px]">Hostel Fees</div>
+          <div className="text-md my-3 mt-5 md:-mb-[2rem] font-semibold text-[#303030] text-[17px]">Hostel Fees</div>
           <div className="md:flex md:items-center">
             <div className="chart -mt-[3rem] md:inline-block">
               <svg width={320} height={280} className="chart-style">
