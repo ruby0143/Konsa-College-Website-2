@@ -1,7 +1,7 @@
 import React from 'react'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import {AiOutlineLine} from "react-icons/ai"
-import { Crad } from '../TopColleges/Crad'
+import { Crad } from './Crad'
 
 export const TopColleges = () => {
     const slideLeft = () => {

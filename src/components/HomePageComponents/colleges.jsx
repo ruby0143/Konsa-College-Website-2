@@ -36,7 +36,7 @@ const Colleges = () => {
       <div className="text-center text-xl md:text-2xl mb-1 md:mb-2 font-semibold text-[#303030]">
         Colleges
       </div>
-      <div className="no-scrollbar flex md:max-w-[1100px] md:m-auto items-center overflow-x-auto overflow-y-hidden gap-3 py-2">
+      <div className="no-scrollbar flex md:max-w-[1150px] md:m-auto items-center overflow-x-auto overflow-y-hidden gap-3 py-2">
         {skeleton ? (
           <>
             <CollegeSkeleton />

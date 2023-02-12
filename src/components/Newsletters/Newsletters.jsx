@@ -42,18 +42,18 @@ function Newsletters() {
         return (
           <a href={newsItem.link_to_article} key={idx}>
             <div
-              className="box m-auto mx-3 flex px-5 py-2 mb-6 sm:py-4 sm:px-8 justify-center max-w-[850px]"
+              className="box m-auto mx-3 flex px-5 py-2 mb-6 sm:py-4 sm:px-8 justify-center"
               style={{
                 boxShadow: "1px 2px 6px 1px rgba(0, 0, 0, 0.13)",
                 borderRadius: "5px",
               }}
             >
               <img src={newsItem.icon} alt="" className="w-10 h-10" />
-              <div className="content flex-col ml-3">
+              <div className="content flex-col ml-3 px-3">
                 <h3 className="text-[14px] font-semibold leading-4 mb-1 sm:text-[16px]">
                   {newsItem.heading_text}
                 </h3>
-                <h4 className="text-[#646464] text-[12px] leading-4 mb-2 sm:text-[14px]">
+                <h4 className="text-[#646464] text-[12px] leading-4 mb-2 sm:text-[14px] py-2">
                   {newsItem.sub_heading_text}
                 </h4>
                 <div className="bottom flex justify-between">
@@ -61,7 +61,7 @@ function Newsletters() {
                     {zuluToLongDate(newsItem.date)}
                   </p>
                   <div className="more flex w-[75px] sm:w-[90px] justify-between sm:justify-around">
-                    <p className="text-[12px] font-semibold sm:text-[14px]">
+                    <p className="text-[12px] font-semibold sm:text-[14px] md:text-[15px]">
                       Read more
                     </p>
                     <img

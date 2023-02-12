@@ -13,6 +13,7 @@ import AllColleges from "./pages/AllColleges";
 import SchedularPage from "./pages/schedularPage";
 import Err_404 from "./pages/err_404";
 import Comming_Soon from "./pages/comming_soon";
+import TrendAnalysis from "./pages/trendAnalysis";
 import { useStateContext } from "./Context/useStateContext";
 
 function App() {
@@ -33,6 +34,7 @@ const {skeleton,loader}=useStateContext()
       <Route path="/tools" element={<ToolsPage/>} exact/>
       <Route path="/allColleges" element={<AllColleges/>} exact/> 
       <Route path="/scheduler" element={<SchedularPage/>} exact/> 
+      <Route path="/trends" element={<TrendAnalysis/>} exact/> 
       <Route path="*" element={<Err_404/>} exact/>
       <Route path="/soon" element={<Comming_Soon/>} exact/>
     </Routes>

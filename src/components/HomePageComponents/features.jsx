@@ -5,7 +5,7 @@ import Exams from './exams'
 
 const FeaturesOffered = () => {
   return (
-    <div className='w-full mt-12 px-4'>
+    <div className='w-full mt-12 px-2 md:px-0'>
       <CollegeCounselling/>
       <Exams/>
       <Colleges/>

@@ -28,7 +28,7 @@ const Exams = () => {
       <div className="text-center text-xl md:text-2xl mb-1 md:mb-2 font-semibold text-[#303030]">
         Exams
       </div>
-      <div className="no-scrollbar flex md:max-w-[1100px] md:m-auto items-center overflow-x-auto gap-3 py-2">
+      <div className="no-scrollbar flex md:max-w-[1150px] md:m-auto items-center overflow-x-auto gap-3 py-2">
         {skeleton ? (
           <>
             <CollegeSkeleton />
@@ -44,7 +44,7 @@ const Exams = () => {
                   <a href={exam.apply_link}>
                     <div
                       key={idx}
-                      className="h-[56px] md:h-[158px] min-w-[158px] flex md:flex-col items-center justify-evenly shadow-md rounded-md border border-gray-100 bg-white"
+                      className="h-[56px] md:h-[158px] mx-1.5 min-w-[158px] flex md:flex-col items-center justify-evenly shadow-md rounded-md border border-gray-100 bg-white"
                     >
                       <div>
                         <img
