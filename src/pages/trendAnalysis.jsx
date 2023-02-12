@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { createChart, } from "lightweight-charts";
-import { ChartComponent } from "../components/chartComponent";
+
 function trendAnalysis() {
   useEffect(()=>{
     const ele = document.querySelector("#chart");
