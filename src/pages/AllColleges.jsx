@@ -186,7 +186,7 @@ const AllColleges = () => {
                     })}
                   </div>
                   {loader? (
-                    <div className="w-full flex justify-center my-5">
+                    <div className="w-full flex justify-center items-center h-[200px]">
                       <ClipLoader
                         size={50}
                         aria-label="Loading Spinner"

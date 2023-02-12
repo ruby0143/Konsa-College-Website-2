@@ -14,9 +14,11 @@ import RightSection from "../components/ParticularCollege/RightSection";
 import { FaPassport } from "react-icons/fa";
 import Comming_Soon from "./comming_soon";
 import { Link } from "react-scroll";
+import { useStateContext } from "../Context/useStateContext";
 
 
 const CollegePage = () => {
+  const {setAcPage}=useStateContext()
   const [result, setResult] = useState([]);
   const [news, setNews] = useState([]);
   const [exams, setExams] = useState([]);
