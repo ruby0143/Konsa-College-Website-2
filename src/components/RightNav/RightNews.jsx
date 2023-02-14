@@ -43,7 +43,7 @@ function RightNews() {
           if (idx < 4) {
             return (
               <div>
-                <a href={newsItem.link_to_article}>
+                <a href={newsItem.link_to_article} target="_blank">
                   <div className="flex justify-start mb-5">
                     <img
                       src={newsItem.icon}

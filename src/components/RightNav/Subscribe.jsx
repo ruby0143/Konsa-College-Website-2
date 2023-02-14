@@ -67,7 +67,7 @@ function Subscribe() {
       </div>
       <div className="p-3">
         <div className=" flex flex-row justify-center  text-black desk:order-4 desk:mt-2 ">
-          <a
+          <a target="_blank"
             href={
               "https://play.google.com/store/apps/details?id=com.konsa.college&hl=en_IN&gl=US&pli=1"
             }
@@ -78,7 +78,7 @@ function Subscribe() {
               className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
             />
           </a>
-          <a
+          <a target="_blank"
             href={"https://www.linkedin.com/company/konsa-college/"}
             className="px-1"
           >
@@ -87,19 +87,19 @@ function Subscribe() {
               className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
             />
           </a>
-          <a href={"https://instagram.com/konsacollege.in"} className="px-1">
+          <a target="_blank" href={"https://instagram.com/konsacollege.in"} className="px-1">
             <FiInstagram
               size={40}
               className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
             />
           </a>
-          <a href={"mailto:tech@konsacollege.com"} className="px-1">
+          <a target="_blank" href={"mailto:tech@konsacollege.com"} className="px-1">
             <IoIosMail
               size={40}
               className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
             />
           </a>
-          <a href={"https://youtube.com/@konsacollege8914"}>
+          <a target="_blank" href={"https://youtube.com/@konsacollege8914"}>
             <BsYoutube
               size={40}
               className="bg-white rounded-full p-2 cursor-pointer hover:text-[#EE7C00] ease-in-out duration-300 hover:scale-105"
