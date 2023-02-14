@@ -41,11 +41,11 @@ const CollegeFooter = () => {
       });
   };
   const Link = [
-    { link: "ABOUT", route: "/allcolleges" },
-    { link: "PRIVACY POLICY", route: "/allcolleges" },
-    { link: "TERM OF USE", route: "/allcolleges" },
-    { link: "CONTACT US", route: "/allcolleges" },
-    { link: "SUPPORT US", route: "/allcolleges" },
+    { link: "ABOUT", route: "/soon" },
+    { link: "PRIVACY POLICY", route: "/soon" },
+    { link: "TERM OF USE", route: "/soon" },
+    { link: "CONTACT US", route: "/soon" },
+    { link: "SUPPORT US", route: "/soon" },
   ];
   return (
     <>
@@ -77,7 +77,7 @@ const CollegeFooter = () => {
               {Link.map((item, id) => {
                 return (
                   <React.Fragment key={id}>
-                    <NavLink key={id} to={item.route}>
+                    <NavLink key={id} to={item.route} target="_blank" rel="noopener noreferrer">
                       <div className="mob:text-center desk:w-[150px] font-roboto  text-[14px]">
                         {item.link}
                       </div>

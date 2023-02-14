@@ -69,7 +69,7 @@ const CollegePageHeader = (props) => {
                 <div className="">
                   <BsFillGeoAltFill className="text-white text-xl" />
                 </div>
-                <a
+                <a target="_blank"
                   href={`https://www.google.co.in/maps/search/${props.result.college_location}`}
                   className="collegeLocation text-white font-light md:text-[18px] md:text-center leading-[1.3rem] -mt-[3px] ml-[.3rem]"
                 >
