@@ -31,29 +31,28 @@ const CollegePage = () => {
   const [showSec,setShowSec]=useState(false)
 
   
-const Items = ["Overview","Connectivity","Fee Structure","Scholarship","About College","Placement Stats"]; 
+const Items = ["Overview","Connectivity","Fee Structure","Scholarship","About College","Placement Stats","College Review Video"]; 
 
   
   useEffect(() => {
-
-    
     const pass = searchParams.get("password");
     if (pass === "FamLearn123") {
       setAdmin(true);
     }
     axios
-      .get(`https://konsa-college-backend-production-0c4c.up.railway.app${path}`)
+      .get(
+        `https://konsa-college-backend-production-0c4c.up.railway.app${path}`
+      )
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data.review_video);
         setResult(res.data);
-        setSection([...Items])
-        if(result?.review_video){
-          if(section.includes("College Review Video")){
-           setShowSec(true)
-          }else{
-            setSection([...section,"College Review Video"])
-            setShowSec(true)
-          }
+        // setSection([...Items]);
+        if (res.data.review_video.length===0) {
+          const resp = Items.filter(words=>words!=="College Review Video")
+          setSection(resp)
+          // console.log(">",resp)
+        }else{
+          setSection(Items)
         }
       })
       .catch((err) => console.log("error: ", err));
@@ -83,9 +82,6 @@ const Items = ["Overview","Connectivity","Fee Structure","Scholarship","About Co
       .catch((err) => {
         console.log(err);
       });
-
-
-     
   }, [setResult,setSection]);
   return (
     <>

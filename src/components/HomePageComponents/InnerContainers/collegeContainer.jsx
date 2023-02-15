@@ -15,6 +15,7 @@ const CollegeContainer = ({
           <div className={`absolute brightness-50 w-full`}>
             <img
               src={collegeBanner}
+              loading="lazy"
               alt="College Banner"
               className="h-[128px] md:h-[130px] w-full"
             />
