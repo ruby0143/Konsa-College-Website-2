@@ -1,10 +1,15 @@
-import React, { useEffect } from "react";
-import { createChart, } from "lightweight-charts";
+import React, { useEffect, useState } from "react";
+import { createChart } from "lightweight-charts";
+import axios from "axios";
 
 function trendAnalysis() {
-  useEffect(()=>{
+  const [colleges, setColleges] = useState([]);
+  const [selectedCollege, setSelectefCollege] = useState(null);
+  
+
+  useEffect(() => {
     const ele = document.querySelector("#chart");
-    console.log(ele,"ok");
+    console.log(ele, "ok");
 
     const chart = createChart(ele, { width: 500, height: 300 });
     const lineSeries = chart.addLineSeries();
@@ -21,9 +26,16 @@ function trendAnalysis() {
       { time: "2019-04-20", value: 74.43 },
     ]);
 
-  },[])
-
-
+    axios
+      .get(
+        "https://konsa-college-backend-production-0c4c.up.railway.app/allcolleges"
+      )
+      .then((res) => {
+        setColleges(res.data);
+      });
+  }, []);
+  console.log(colleges, "ok");
+  console.log(selectedCollege, "okk");
   return (
     <div className="p-3 ">
       <div className="head md:p-7">
@@ -61,7 +73,7 @@ function trendAnalysis() {
             </div>
             <select
               name="states"
-              className="my-3 p-2 w-full border-solid border-black border rounded-md"
+              className="my-3 p-2 w-full border-solid border-[#D1D5DB] border rounded-md"
             >
               <option value="Arunachal Pradesh">Arunachal Pradesh</option>
             </select>
@@ -93,33 +105,45 @@ function trendAnalysis() {
             </div>
             <select
               name="colleges"
-              className="my-3 p-2 w-full border-solid border-black border rounded-md"
+              className="my-3 p-2 w-full border-solid border-[#D1D5DB] border rounded-md"
+              onChange={(e) => {
+                setSelectefCollege(e.target.value);
+              }}
             >
-              <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+              {colleges?.map((college, idx) => {
+                return (
+                  <option value={college.college_name}>
+                    {college.college_name}
+                  </option>
+                );
+              })}
             </select>
           </div>
+
           <div className="course my-3 md:px-10 md:w-[33%]">
             <div className="flex justify-between">
               <span>Course</span>
             </div>
             <select
               name="states"
-              className="my-3 p-2 w-full border-solid border-black border rounded-md"
+              className="my-3 p-2 w-full border-solid border-[#D1D5DB] border rounded-md"
             >
               <option value="Arunachal Pradesh">Arunachal Pradesh</option>
             </select>
           </div>
-          <div className="program my-3 md:px-10 md:w-[33%]">
-            <div className="flex justify-between">
-              <span>Program</span>
+          {selectedCollege ? (
+            <div className="program my-3 md:px-10 md:w-[33%]">
+              <div className="flex justify-between">
+                <span>Program</span>
+              </div>
+              <select
+                name="states"
+                className="my-3 p-2 w-full border-solid border-[#D1D5DB] border rounded-md"
+              >
+                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+              </select>
             </div>
-            <select
-              name="states"
-              className="my-3 p-2 w-full border-solid border-black border rounded-md"
-            >
-              <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-            </select>
-          </div>
+          ) : null}
         </div>
         <div className="flex flex-col md:flex-row md:justify-between">
           <div className="seatType my-3 md:w-[50%] md:px-10">
@@ -128,7 +152,7 @@ function trendAnalysis() {
             </div>
             <select
               name="states"
-              className="my-3 p-2 w-full border-solid border-black border rounded-md"
+              className="my-3 p-2 w-full border-solid border-[#D1D5DB] border rounded-md"
             >
               <option value="Arunachal Pradesh">Arunachal Pradesh</option>
             </select>
@@ -139,17 +163,14 @@ function trendAnalysis() {
             </div>
             <select
               name="states"
-              className="my-3 p-2 w-full border-solid border-black border rounded-md"
+              className="my-3 p-2 w-full border-solid border-[#D1D5DB] border rounded-md"
             >
               <option value="Arunachal Pradesh">Arunachal Pradesh</option>
             </select>
           </div>
         </div>
       </div>
-      <div className="chart mt-5 " id="chart">
-        
-        
-      </div>
+      <div className="chart mt-5 " id="chart"></div>
     </div>
   );
 }
