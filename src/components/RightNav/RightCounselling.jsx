@@ -35,7 +35,7 @@ function RightCounselling() {
         {counselling?.map((counsel, idx) => {
           if (idx < 4) {
             return (
-              <a href={counsel.apply_link}>
+              <a href={counsel.apply_link} target="_blank">
                 <div className="flex justify-evenly px-1 py-4 ">
                   <h2 className="font-semibold w-[40%] px-3 lg:px-8 lg:w-[50%] ">
                     {counsel.exam_name}

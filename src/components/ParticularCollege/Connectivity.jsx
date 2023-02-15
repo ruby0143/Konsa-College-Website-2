@@ -19,17 +19,17 @@ function Connectivty(props) {
 
             {props.result.connectivity?.map((item, index) => {
               return (
-                <div className="flex justify-start mb-[2rem]" key={index}>
-                  <div className="p-[.6rem] h-11 min-w-[2.8rem] rounded-full my-[0.5rem] mx-[0.7rem]" style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
-                    <img className="h-full w-full" src={item.icon} />
-                  </div>
-                  <div className="flex-col items-center mt-[.3rem]">
-                    <div className="">
-                      <p className="underline">{item.trans}</p>
-                    </div>
-                    <span className="underline text-[#848484]">{item.dist}</span>
-                  </div>
-                </div>
+               <> {item.trans && <div className="flex justify-start mb-[2rem]" key={index}>
+               <div className="p-[.6rem] h-11 min-w-[2.8rem] rounded-full my-[0.5rem] mx-[0.7rem]" style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
+                 <img className="h-full w-full" src={item.icon} />
+               </div>
+               <div className="flex-col items-center mt-[.3rem]">
+                 <div className="">
+                   <p className="underline">{item.trans}</p>
+                 </div>
+                 <span className="underline text-[#848484]">{item.dist}</span>
+               </div>
+             </div>}</>
               )
             })}
 

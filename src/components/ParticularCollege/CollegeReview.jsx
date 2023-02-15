@@ -6,7 +6,7 @@ const CollegeReview = (props) => {
   return (
     <>
       <div className='flex flex-col'>
-        <div className='w-full'>
+        <div className='w-full mb-3'>
           <h3 className='text-xl my-3 font-bold text-[#303030]'>Companies Visited</h3>
           <hr className='w-full text-gray-500' />
           <ul className="">

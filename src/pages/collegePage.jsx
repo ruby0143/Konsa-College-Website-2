@@ -27,18 +27,12 @@ const CollegePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const path = useLocation().pathname;
   const [active, setActive] = useState();
+  const [section,setSection]=useState([])
+  const [showSec,setShowSec]=useState(false)
 
-  const Items = [
-    { name: "Overview"},
-    { name: "Connectivity"},
-    { name: "Fee Structure"},
-    { name: "Scholarship"},
-    { name: "About College"},
-    { name: "Cutt Off"},
-    { name: "Placement Stats"},
-    { name: "College Review Video"},
-  ];
   
+const Items = ["Overview","Connectivity","Fee Structure","Scholarship","About College","Placement Stats","College Review Video"]; 
+
   
   useEffect(() => {
     const pass = searchParams.get("password");
@@ -46,10 +40,20 @@ const CollegePage = () => {
       setAdmin(true);
     }
     axios
-      .get(`https://konsa-college-backend-production-0c4c.up.railway.app${path}`)
+      .get(
+        `https://konsa-college-backend-production-0c4c.up.railway.app${path}`
+      )
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data.review_video);
         setResult(res.data);
+        // setSection([...Items]);
+        if (res.data.review_video.length===0) {
+          const resp = Items.filter(words=>words!=="College Review Video")
+          setSection(resp)
+          // console.log(">",resp)
+        }else{
+          setSection(Items)
+        }
       })
       .catch((err) => console.log("error: ", err));
 
@@ -58,7 +62,6 @@ const CollegePage = () => {
       .then((response) => {
         if (response.status !== 500) {
           setExams(response.data);
-          setSkeleton(false);
         } else {
           console.log("error");
         }
@@ -74,14 +77,12 @@ const CollegePage = () => {
       .then((response) => {
         if (response.status != 500) {
           setCounselling(response.data);
-          setSkeleton(false);
         }
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
-  console.log(result,"res");
+  }, [setResult,setSection]);
   return (
     <>
       {result !== 0 ? (
@@ -91,17 +92,17 @@ const CollegePage = () => {
           <div className="md:flex justify-between md:px-12">
             <div className="md:max-w-[65%] px-4 md:px-0">
               <div className='mt-[3rem] flex sm:hidden' style={{ overflowX: "auto" }}>
-              {Items.map((item,id)=>{return (
+              {<>{section?.map((item,id)=>{return (
                 <div
                   key={id}
                   className="mr-3 min-w-[180px] py-4 bg-[white] active:bg-[#EE7C00] active:text-[white] hover:bg-[#EE7C00] hover:text-[white] text-center cursor-pointer"
                   style={{ borderRadius: "5px", border: "1px solid #E9E9E9" }}
                 >
-                  <Link duration={100} spy smooth offset={-180} to={item.name}>
-                    {item.name}
+                  <Link duration={100} spy smooth offset={-180} to={item}>
+                    {item}
                   </Link>
                 </div>
-              );})}
+              );})}</>}
               </div>
               
               <section id="Overview"><Overview result={result}/> </section>
