@@ -113,7 +113,7 @@ const CollegePredictor = () => {
                   "linear-gradient(158.5deg, #FFC88B 5.02%, #EE7C00 101.84%)",
               }}
             >
-              <p className="text-[#F3F3F3]  text-center  leading-9 tracking-wider text-[30px] font-bold">
+              <p className="text-[#F3F3F3]  text-center  leading-9 tracking-wide text-[28px] font-bold">
                 Lorem ipsum dolor sit amet consectetur. Lobortis porta volutpat
                 tellus pellentes
               </p>
