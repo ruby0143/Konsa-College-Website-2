@@ -7,7 +7,7 @@ const CollegePredictor = () => {
         College Predictor
       </h2>
       <div className=" flex justify-center mb-[60px]">
-        <p className="text-center w-[80%] mt-[30px] text-[#3C3B3B] leading-5 tracking-wide">
+        <p className="text-center w-[80%] mt-[30px] text-xl font-normal text-[#3C3B3B] leading-6 tracking-wider">
           Lorem ipsum dolor sit amet consectetur. Lobortis porta volutpat tellus
           pellentesque sodales eget quam enim. Risus et diam quis risus nunc ut
           porttitor tellus imperdiet. Id nunc turpis donec aliquam .
