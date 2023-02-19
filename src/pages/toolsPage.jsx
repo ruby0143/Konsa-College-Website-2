@@ -8,6 +8,7 @@ const ToolsPage = () => {
   const [news, setNews] = useState([]);
   const [exams, setExams] = useState([]);
   const [counselling, setCounselling] = useState([]);
+  const [skeleton,setSkeleton]=useState()
 
   useEffect(() => {
     axios
@@ -59,13 +60,13 @@ const ToolsPage = () => {
         <div className="w-full md:max-w-[65%] flex  justify-center bg-white px-4 ">
           <ToolBody />
         </div>
-        <div className="md:max-w-[34%] pr-[1rem] md:inline-block hidden">
+        {/* <div className="md:max-w-[34%] pr-[1rem] md:inline-block hidden">
           <RightSection
             news={news}
             exams={exams}
             counselling={counselling}
           ></RightSection>
-        </div>
+        </div> */}
       </div>
     </div>
   );

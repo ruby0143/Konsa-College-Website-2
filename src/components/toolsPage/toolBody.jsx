@@ -8,12 +8,7 @@ import data from './test'
 function toolBody() {
 
   useEffect(() => {
-    
     setApiResponseData(data)
-    // axios.get("https://api.sheety.co/2465db155c118f5b6011ad00d0835bd4/percentilePredictorData/data")
-    //      .then((res)=>{
-            // setApiResponseData(res.data.data)
-        //  })
   },[])
 
   const [apiResponseData, setApiResponseData] = useState([])
@@ -22,8 +17,6 @@ function toolBody() {
   const [inputMarks, setInputMarks] = useState(-1)
   const [prediction, setPrediction] = useState({})
   const [click,setClick] = useState(true);
-
-  // err validations
   const [shiftError, setShiftError] = useState("")
   const [inputMarksError, setInputMarksError] = useState("")
   const [isError, setIsError] = useState(false)
@@ -35,18 +28,15 @@ function toolBody() {
   ]
 
   const handleValidationError = () =>{
-
-    if(inputMarks === -1){
+       if(inputMarks === -1){
       setInputMarksError("Score `require`d to be entered!")
       setIsError(true)
     }
-
     if(shift === ""){
       setShiftError("Shift required to be selected!")
       setIsError(true)
     }
-
-    else {
+     else {
       setIsError(false)
     }
   }
@@ -96,8 +86,6 @@ function toolBody() {
       setShift("")
       setInputMarks()
 
-    }  else {
-      return ;
     }
   }
 
