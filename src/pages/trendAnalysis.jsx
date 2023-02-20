@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { createChart } from "lightweight-charts";
+import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import axios from "axios";
 
 function trendAnalysis() {
@@ -17,6 +17,7 @@ function trendAnalysis() {
   const [requiredInst, setReqInst] = useState(false);
   const [requiredProg, setReqProg] = useState(false);
   const [reqSeat, setReqseat] = useState(false);
+  const [chart, setChart] = useState([]);
 
   const castes = [
     "EWS",
@@ -70,26 +71,99 @@ function trendAnalysis() {
     "Puducherry",
   ];
 
-  useEffect(() => {
-    const ele = document.querySelector("#chart");
+  const data = [
+    {
+      name: 'Page A',
+      uv: 4000,
+      pv: 2400,
+      amt: 2400,
+    },
+    {
+      name: 'Page B',
+      uv: 3000,
+      pv: 1398,
+      amt: 2210,
+    },
+    {
+      name: 'Page C',
+      uv: 2000,
+      pv: 9800,
+      amt: 2290,
+    },
+    {
+      name: 'Page D',
+      uv: 2780,
+      pv: 3908,
+      amt: 2000,
+    },
+    {
+      name: 'Page E',
+      uv: 1890,
+      pv: 4800,
+      amt: 2181,
+    },
+    {
+      name: 'Page F',
+      uv: 2390,
+      pv: 3800,
+      amt: 2500,
+    },
+    {
+      name: 'Page G',
+      uv: 3490,
+      pv: 4300,
+      amt: 2100,
+    },
+  ];
 
-    const chart = createChart(ele, { width: 500, height: 300 });
-    const lineSeries = chart.addLineSeries();
-    lineSeries.setData([
-      { time: "2019-04-11", value: 0.01 },
-      { time: "2019-04-12", value: 96.63 },
-      { time: "2019-04-13", value: 76.64 },
-      { time: "2019-04-14", value: 81.89 },
-      { time: "2019-04-15", value: 74.43 },
-      { time: "2019-04-16", value: 80.01 },
-      { time: "2019-04-17", value: 96.63 },
-      { time: "2019-04-18", value: 76.64 },
-      { time: "2019-04-19", value: 81.89 },
-      { time: "2019-04-20", value: 74.43 },
-    ]);
+  const submit =
+    (selectedState ? true : false) &&
+    (selectedCollege ? true : false) &&
+    (selectedBranch ? true : false) &&
+    (selectedCaste ? true : false) &&
+    (selectedGender ? true : false);
+  console.log(chart, "api");
+
+  const renderCustomAxisTick = ({ x, y, payload }) => {
+    let label = '';
+
+    switch (payload.value) {
+
+      case '1':
+        label = "Round 1";
+        break;
+
+      case '2':
+        label = "Round 2";
+        break;
+      case '3':
+        label = "Round 3";
+        break;
+      case '4':
+        label = "Round 4";
+        break;
+      case '5':
+        label = "Round 5";
+        break;
+      case '6':
+        label = "Round 6";
+        break;
+
+      default:
+        label = "";
+    }
+
+    return (
+      <text x={x - 12} y={y + 4} width={24} height={24} fill="#666" textAnchor="middle">{label}</text>);
+
+  };
+
+  useEffect(() => {
 
     axios
-      .get("https://konsa-college-backend-production-0c4c.up.railway.app/branches")
+      .get(
+        "https://konsa-college-backend-production-0c4c.up.railway.app/branches"
+      )
       .then((res) => {
         const arr = res.data;
         arr.forEach((ele) => {
@@ -108,6 +182,30 @@ function trendAnalysis() {
       });
   }, []);
 
+  useEffect(() => {
+    if (submit) {
+      axios
+        .post("https://konsa-college-backend-production-0c4c.up.railway.app/trends", {
+          Institute: selectedCollege,
+          Program: selectedBranch,
+          Gender: selectedGender,
+          Caste: selectedCaste,
+        })
+        .then((resp) => {
+          console.log(resp.data);
+          setChart(resp.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [
+    selectedState,
+    selectedCollege,
+    selectedBranch,
+    selectedCaste,
+    selectedGender,
+  ]);
   // console.log(colleges,"ok");
   // console.log(selectedCollege, "okk");
   // console.log(filteredBranches, "br123");
@@ -350,15 +448,17 @@ function trendAnalysis() {
                 if (selectedCaste === null) {
                   setReqseat(true);
                 }
-                if(selectedCollege === null){
+                if (selectedCollege === null) {
                   setReqInst(true);
                 }
-                if(selectedBranch === null){
+                if (selectedBranch === null) {
                   setReqProg(true);
                 }
               }}
             >
-              <option value="Female-Only">Female Only</option>
+              <option value="Female-only (including Supernumerary)">
+                Female Only
+              </option>
               <option selected value="Gender-Neutral">
                 Gender Neutral
               </option>
@@ -366,9 +466,32 @@ function trendAnalysis() {
           </div>
         </div>
       </div>
-      <div className="chart mt-5 " id="chart"></div>
+      <div className="chart mt-5 " id="chart">
+        <ResponsiveContainer width="90%" height={300} >
+
+          <LineChart
+
+            data={chart}
+            margin={{
+              top: 20,
+              right: 30,
+              left: -10,
+              bottom: 5,
+            }}
+          >
+            <XAxis dataKey={"Round"} />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+
+            <Line type="monotone" dataKey="Closing_Rank" stroke="#8884d8" activeDot={{ r: 5 }} />
+
+            <Line type="monotone" dataKey="Opening_Rank" stroke="#82ca9d" activeDot={{ r: 5 }} />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }
-
+// tick={renderCustomAxisTick}
 export default trendAnalysis;
