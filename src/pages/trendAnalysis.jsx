@@ -244,7 +244,7 @@ function trendAnalysis() {
                   type="radio"
                   value="Mains"
                   onChange={(e) => setRank(e.target.value)}
-                  checked="checked"
+                  
                   name="rank"
                 ></input>
                 <label>JEE (Main)</label>
