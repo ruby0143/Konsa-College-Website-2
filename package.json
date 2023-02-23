@@ -18,6 +18,7 @@
     "react-router-dom": "^6.4.5",
     "react-scroll": "^1.8.9",
     "react-spinners": "^0.13.8",
+    "recharts": "^2.4.3",
     "sweetalert2": "^11.7.1",
     "tailwind-scrollbar-hide": "^1.1.7",
     "victory": "^36.6.8",
