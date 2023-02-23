@@ -69,6 +69,8 @@ function trendAnalysis() {
     "Lakshadweep",
     "Puducherry",
   ];
+  const url = "https://konsa-college-backend.vercel.app";
+
 
   useEffect(() => {
     const ele = document.querySelector("#chart");
@@ -89,7 +91,7 @@ function trendAnalysis() {
     ]);
 
     axios
-      .get("https://konsa-college-backend-production-0c4c.up.railway.app/branches")
+      .get(url+"/branches")
       .then((res) => {
         const arr = res.data;
         arr.forEach((ele) => {

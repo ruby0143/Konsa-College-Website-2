@@ -10,14 +10,16 @@ const SchedularPage = () => {
 
   const [examData, setExamData] = useState([])
   const [councellingData, setCouncellingData] = useState([])
+  const url = "https://konsa-college-backend.vercel.app";
+
 
   useEffect(() => {
-    axios.get("https://konsa-college-backend-production-0c4c.up.railway.app/exams")
+    axios.get(url+"/exams")
          .then((res)=>{
             setExamData(res.data)
          })
 
-    axios.get("https://konsa-college-backend-production-0c4c.up.railway.app/councelling")
+    axios.get(url+"/councelling")
          .then((res)=>{
             setCouncellingData(res.data)
          })

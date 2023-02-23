@@ -32,6 +32,8 @@ const CollegePage = () => {
 
   
 const Items = ["Overview","Connectivity","Fee Structure","Scholarship","About College","Placement Stats","College Review Video"]; 
+const url = "https://konsa-college-backend.vercel.app";
+
 
   
   useEffect(() => {
@@ -41,7 +43,7 @@ const Items = ["Overview","Connectivity","Fee Structure","Scholarship","About Co
     }
     axios
       .get(
-        `https://konsa-college-backend-production-0c4c.up.railway.app${path}`
+        url+`${path}`
       )
       .then((res) => {
         // console.log(res.data.review_video);
@@ -58,7 +60,7 @@ const Items = ["Overview","Connectivity","Fee Structure","Scholarship","About Co
       .catch((err) => console.log("error: ", err));
 
     axios
-      .get("https://konsa-college-backend-production-0c4c.up.railway.app/exams")
+      .get(url+"/exams")
       .then((response) => {
         if (response.status !== 500) {
           setExams(response.data);
@@ -72,7 +74,7 @@ const Items = ["Overview","Connectivity","Fee Structure","Scholarship","About Co
 
     axios
       .get(
-        "https://konsa-college-backend-production-0c4c.up.railway.app/councelling"
+        url+"/councelling"
       )
       .then((response) => {
         if (response.status != 500) {

@@ -5,11 +5,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Exams = () => {
+const url = "https://konsa-college-backend.vercel.app";
+
   const [Exams, setExams] = useState([]);
   const [skeleton, setSkeleton] = useState(true);
   useEffect(() => {
     axios
-      .get("https://konsa-college-backend-production-0c4c.up.railway.app/exams")
+      .get(url+"/exams")
       .then((response) => {
         if (response.status !== 500) {
           setExams(response.data);

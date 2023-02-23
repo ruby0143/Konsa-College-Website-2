@@ -3,9 +3,11 @@ import axios from "axios";
 
 function RightNews() {
   const [news, setNews] = useState([]);
+  const url = "https://konsa-college-backend.vercel.app";
+
   useEffect(() => {
     axios
-      .get("https://konsa-college-backend-production-0c4c.up.railway.app/news")
+      .get(url+"/news")
       .then((response) => {
         if (response.status !== 500) {
           setNews(response.data);
