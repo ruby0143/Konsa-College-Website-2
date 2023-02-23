@@ -3,6 +3,8 @@ import axios from "axios";
 
 function Newsletters() {
   const [News, setNews] = useState([]);
+  const url = "https://konsa-college-backend.vercel.app";
+
 
   function zuluToLongDate(zuluTime) {
     const date = new Date(zuluTime);
@@ -20,7 +22,7 @@ function Newsletters() {
 
   useEffect(() => {
     axios
-      .get("https://konsa-college-backend-production-0c4c.up.railway.app/news")
+      .get(url+"/news")
       .then((response) => {
         if (response.status !== 500) {
           setNews(response.data);

@@ -164,7 +164,7 @@ function trendAnalysis() {
 
     axios
       .get(
-        "https://konsa-college-backend-production-0c4c.up.railway.app/branches"
+        url+"/branches"
       )
       .then((res) => {
         const arr = res.data;
@@ -187,7 +187,7 @@ function trendAnalysis() {
   useEffect(() => {
     if (submit) {
       axios
-        .post("https://konsa-college-backend-production-0c4c.up.railway.app/trends", {
+        .post(url+"/trends", {
           Institute: selectedCollege,
           Program: selectedBranch,
           Gender: selectedGender,

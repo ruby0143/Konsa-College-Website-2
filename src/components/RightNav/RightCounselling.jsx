@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+
 function RightCounselling() {
   const [counselling, setCounselling] = useState([]);
   const url = "https://konsa-college-backend.vercel.app";
 
   useEffect(() => {
     axios
-      .get(
-        url+"/councelling"
-      )
+      .get(url + "/councelling")
       .then((response) => {
         if (response.status != 500) {
           setCounselling(response.data);
@@ -53,8 +52,6 @@ function RightCounselling() {
           }
         })}
       </div>
-      
- 
     </div>
   );
 }
