@@ -17,6 +17,7 @@ import TrendAnalysis from "./pages/trendAnalysis";
 import { useStateContext } from "./Context/useStateContext";
 import CollegePredictor from "./pages/CollegePredictor";
 import PercentilePredictor from "./pages/percentilePredictor";
+import CutoffPage from "./pages/cutoffPage";
 
 function App() {
 const {skeleton,loader}=useStateContext()
@@ -41,7 +42,7 @@ const {skeleton,loader}=useStateContext()
       <Route path="/soon" element={<Comming_Soon/>} exact/>
       <Route path="/collegePredictor" element={<CollegePredictor/>} exact/>
       <Route path="/percentilePredictor" element={<PercentilePredictor/>} exact/>
-
+      <Route path="/college/:particularcollege/cutoff" element={<CutoffPage/>} exact/>
 
     </Routes>
     <CollegeFooter/>

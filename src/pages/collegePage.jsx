@@ -111,7 +111,7 @@ const Items = ["Overview","Connectivity","Fee Structure","Scholarship","About Co
               <section id="Scholarship"><Scholarship result={result} /></section>
               
               <section id="About College"><AboutCollege result={result}/></section>
-              {/* <Cutoff result={result} /> */}
+             <section><Cutoff result={result} /></section>
              <section id="Placement Stats"> <Placements result={result} /></section>
               
              <section id="College Review Video"> <CollegeReview result={result} /></section>

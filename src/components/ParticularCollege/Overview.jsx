@@ -68,7 +68,7 @@ function Overview(props) {
               return (
                 <div
                   id={index}
-                  className="hover:bg-[#303030] hover:text-[white] rounded-md mr-4 border-[1px] border-[rgba(233,233,233,1)] px-4 py-[.2rem] text-center text-[#2E2E2E] text-[14px]"
+                  className="rounded-md mr-4 border-[1px] border-[rgba(233,233,233,1)] px-4 py-[.2rem] text-center text-[#2E2E2E] text-[14px]"
                   style={{
                     background:
                       "linear-gradient(99.71deg, #F8F8F8 -20.28%, rgba(240, 240, 240, 0) 131.37%)",
@@ -92,7 +92,7 @@ function Overview(props) {
               return (
                 <div
                   id={index}
-                  className="hover:bg-[#303030] hover:text-[white] rounded-md mr-4 border-[1px] border-[rgba(233,233,233,1)] px-4 py-[.2rem] text-center text-[#2E2E2E] text-[14px]"
+                  className="rounded-md mr-4 border-[1px] border-[rgba(233,233,233,1)] px-4 py-[.2rem] text-center text-[#2E2E2E] text-[14px]"
                   style={{
                     background:
                       "linear-gradient(99.71deg, #F8F8F8 -20.28%, rgba(240, 240, 240, 0) 131.37%)",
