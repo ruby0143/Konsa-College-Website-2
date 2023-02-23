@@ -8,11 +8,13 @@ const Colleges = () => {
   const [skeleton, setSkeleton] = useState(true);
 
   const [collegeList, setColleges] = useState([]);
+const url = "https://konsa-college-backend.vercel.app";
+
 
   const getData = async () => {
     await axios
       .get(
-        "https://konsa-college-backend-production-0c4c.up.railway.app/allcolleges"
+        url+"/allcolleges"
       )
       .then((response) => {
         if (response.data != "404") {

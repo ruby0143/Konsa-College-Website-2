@@ -70,6 +70,8 @@ function trendAnalysis() {
     "Lakshadweep",
     "Puducherry",
   ];
+  const url = "https://konsa-college-backend.vercel.app";
+
 
   const data = [
     {

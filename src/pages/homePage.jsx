@@ -12,9 +12,11 @@ const HomePage = () => {
 
   // zustand config - calling store to add item
   const setCollegeDataList = useCollegeDataStore((state) => state.setCollegeDataList)
+const url = "https://konsa-college-backend.vercel.app";
+
 
   useEffect(() => {
-    axios.get("https://konsa-college-backend-production-0c4c.up.railway.app/allcolleges")
+    axios.get(url+"/allcolleges")
          .then((res)=>{
             setCollegeDataList(res.data)
          })

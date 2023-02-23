@@ -6,12 +6,14 @@ import { Link } from "react-router-dom";
 
 const CollegeCounselling = () => {
   const [skeleton, setSkeleton] = useState(true);
+const url = "https://konsa-college-backend.vercel.app";
+
 
   const [counselling, setCounselling] = useState([]);
   useEffect(() => {
     axios
       .get(
-        "https://konsa-college-backend-production-0c4c.up.railway.app/councelling"
+        url+"/councelling"
       )
       .then((response) => {
         if (response.status != 500) {

@@ -5,7 +5,6 @@ import ExamPage from "./pages/examPage";
 import ForumPage from "./pages/forumPage";
 import HomePage from "./pages/homePage";
 import NewsPage from "./pages/newsPage";
-import ToolsPage from "./pages/toolsPage";
 import CollegeFooter from "./components/Footer/CollegeFooter";
 import ScrollToTop from "./ScrollToTop"
 import MainNavbar from "./components/Navbar/MainNavbar";
@@ -34,7 +33,6 @@ const {skeleton,loader}=useStateContext()
       <Route path="/news" element={<NewsPage/>} exact/>
       <Route path="/exams" element={<ExamPage/>} exact/>
       <Route path="/forum" element={<ForumPage/>} exact/>
-      <Route path="/tools" element={<ToolsPage/>} exact/>
       <Route path="/allColleges" element={<AllColleges/>} exact/> 
       <Route path="/scheduler" element={<SchedularPage/>} exact/> 
       <Route path="/trends" element={<TrendAnalysis/>} exact/> 
@@ -42,8 +40,6 @@ const {skeleton,loader}=useStateContext()
       <Route path="/soon" element={<Comming_Soon/>} exact/>
       <Route path="/collegePredictor" element={<CollegePredictor/>} exact/>
       <Route path="/percentilePredictor" element={<PercentilePredictor/>} exact/>
-      <Route path="/college/:particularcollege/cutoff" element={<CutoffPage/>} exact/>
-
     </Routes>
     <CollegeFooter/>
   </ScrollToTop>

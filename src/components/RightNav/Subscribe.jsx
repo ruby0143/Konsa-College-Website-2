@@ -6,6 +6,8 @@ import { BsYoutube } from "react-icons/bs";
 
 function Subscribe() {
   const [phone, setPhone] = useState();
+  const url = "https://konsa-college-backend.vercel.app";
+
 
   const postPhone = () => {
     const doc = {
@@ -15,7 +17,7 @@ function Subscribe() {
 
     axios
       .post(
-        "https://konsa-college-backend-production-0c4c.up.railway.app/phone",
+        url+"/phone",
         doc
       )
       .then((res) => {

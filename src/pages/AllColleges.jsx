@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import {
   Link,
@@ -14,8 +13,8 @@ import { useStateContext } from "../Context/useStateContext";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const AllColleges = () => {
-  const {setSkeleton,skeleton,loader,setLoader}=useStateContext()
-  const [paginatedData,setPaginatedData]=useState([])
+  const { setSkeleton, skeleton, loader, setLoader } = useStateContext();
+  const [paginatedData, setPaginatedData] = useState([]);
   const [result, setResult] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
@@ -23,17 +22,18 @@ const AllColleges = () => {
   const query = useLocation();
   // console.log("query", query);
   const PORT = 5000;
-  const limit = 12
+  const limit = 12;
+  const url = "https://konsa-college-backend.vercel.app";
 
   const getData = async () => {
     await axios
-      .get("https://konsa-college-backend-production-0c4c.up.railway.app/allcolleges")
+      .get(url + "/allcolleges")
       .then((response) => {
         if (response.status === 500) {
           console.log("College Not Found!");
         } else {
           setResult(response.data);
-          setSkeleton(false)
+          setSkeleton(false);
         }
       })
       .catch((err) => {
@@ -41,10 +41,9 @@ const AllColleges = () => {
       });
   };
 
-
   const getDataWithPagination = async () => {
     await axios
-      .get(`https://konsa-college-backend-production-0c4c.up.railway.app/allclgs?page=1&limit=${limit}`)
+      .get(url + `/allclgs?page=1&limit=${limit}`)
       .then((response) => {
         if (response.status === 500) {
           console.log("College Not Found!");
@@ -60,18 +59,18 @@ const AllColleges = () => {
   };
 
   const getMoreData = async () => {
-    setLoader(true)
+    setLoader(true);
     const page = Math.ceil(paginatedData.length / limit) + 1;
     await axios
-      .get(`https://konsa-college-backend-production-0c4c.up.railway.app/allclgs?page=${page}&limit=${limit}`)
+      .get(url + `/allclgs?page=${page}&limit=${limit}`)
       .then((response) => {
         if (response.status === 500) {
           console.log("College Not Found!");
         } else {
-          setPaginatedData([...paginatedData,...response.data.results]);  
-          if(result.length>50){
-            setLoader(false)
-            console.log(loader)
+          setPaginatedData([...paginatedData, ...response.data.results]);
+          if (result.length > 50) {
+            setLoader(false);
+            console.log(loader);
           }
         }
       })
@@ -84,9 +83,10 @@ const AllColleges = () => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
     const newFilter = result.filter((value) => {
-      return value.college_name
-        .toLowerCase()
-        .includes(searchWord.toLowerCase()) || value.college_uuid.toLowerCase().includes(searchWord.toLowerCase());
+      return (
+        value.college_name.toLowerCase().includes(searchWord.toLowerCase()) ||
+        value.college_uuid.toLowerCase().includes(searchWord.toLowerCase())
+      );
     });
 
     if (searchWord === "") {
@@ -99,9 +99,8 @@ const AllColleges = () => {
   useEffect(() => {
     getDataWithPagination();
     getMoreData();
-    getData()
+    getData();
   }, []);
-
 
   return (
     <>
@@ -133,35 +132,35 @@ const AllColleges = () => {
       </div>
       <div className="mb-[50px]">
         {skeleton ? (
-      <div className="w-full p-6 flex justify-center flex-col items-center">
+          <div className="w-full p-6 flex justify-center flex-col items-center">
             <div className="grid grid-cols-1 gap-10  xs:grid-cols-2  sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4">
-            <CollegeSkeleton />
-            <CollegeSkeleton />
-            <CollegeSkeleton />
-            <CollegeSkeleton />
-            <CollegeSkeleton />
-            <CollegeSkeleton />
-            <CollegeSkeleton />
-            <CollegeSkeleton />
+              <CollegeSkeleton />
+              <CollegeSkeleton />
+              <CollegeSkeleton />
+              <CollegeSkeleton />
+              <CollegeSkeleton />
+              <CollegeSkeleton />
+              <CollegeSkeleton />
+              <CollegeSkeleton />
+            </div>
           </div>
-      </div>
         ) : (
           <>
             {wordEntered.length ? (
               <div className="w-full p-6 flex justify-center flex-col items-center">
                 <div className="grid grid-cols-1 gap-10  xs:grid-cols-2  sm:grid-cols-2  lg:grid-cols-3  xl:grid-cols-4">
-                {filteredData.map((college) => {
-                  return (
-                    <CollegeContainer
-                      key={college.college_uuid}
-                      collegeName={college.college_name}
-                      collegeLogo={college.college_logo_link}
-                      collegeBanner={college.header_photo_link}
-                      collegeId={college.college_uuid}
-                    />
-                  );
-                })}
-              </div>
+                  {filteredData.map((college) => {
+                    return (
+                      <CollegeContainer
+                        key={college.college_uuid}
+                        collegeName={college.college_name}
+                        collegeLogo={college.college_logo_link}
+                        collegeBanner={college.header_photo_link}
+                        collegeId={college.college_uuid}
+                      />
+                    );
+                  })}
+                </div>
               </div>
             ) : (
               <InfiniteScroll
@@ -185,7 +184,7 @@ const AllColleges = () => {
                       );
                     })}
                   </div>
-                  {loader? (
+                  {loader ? (
                     <div className="w-full flex justify-center items-center h-[200px]">
                       <ClipLoader
                         size={50}
@@ -193,7 +192,7 @@ const AllColleges = () => {
                         data-testid="loader"
                       />
                     </div>
-                  ):(null)}
+                  ) : null}
                 </div>
               </InfiniteScroll>
             )}

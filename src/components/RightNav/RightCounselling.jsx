@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 function RightCounselling() {
   const [counselling, setCounselling] = useState([]);
+  const url = "https://konsa-college-backend.vercel.app";
+
   useEffect(() => {
     axios
       .get(
-        "https://konsa-college-backend-production-0c4c.up.railway.app/councelling"
+        url+"/councelling"
       )
       .then((response) => {
         if (response.status != 500) {
