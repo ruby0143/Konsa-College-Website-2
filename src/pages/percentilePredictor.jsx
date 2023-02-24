@@ -82,9 +82,11 @@ const CollegePredictor = () => {
       } 
       console.log("error m aya");
       return 
-    } else {
+    } 
+    
+    else if(inputMarks !== "" && shift !== ""){
       handlePredicter()
-    }
+    } 
     
   };
 
