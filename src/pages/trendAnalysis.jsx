@@ -8,7 +8,7 @@ function trendAnalysis() {
   const [filteredBranches, setFilteredBranches] = useState([]);
   const [selectedRank, setRank] = useState("Mains");
   const [selectedState, setState] = useState(null);
-  const [selectedCollege, setSelectefCollege] = useState(null);
+  const [selectedCollege, setSelectedCollege] = useState(null);
   const [selectedBranch, setBranch] = useState(null);
   const [selectedCaste, setCaste] = useState(null);
   const [selectedGender, setGender] = useState("Gender-Neutral");
@@ -18,6 +18,7 @@ function trendAnalysis() {
   const [requiredProg, setReqProg] = useState(false);
   const [reqSeat, setReqseat] = useState(false);
   const [chart, setChart] = useState([]);
+  const [noData,setBool] = useState(false);
 
   const castes = [
     "EWS",
@@ -33,90 +34,15 @@ function trendAnalysis() {
   ];
 
   const states = [
-    "Andhra Pradesh",
-    "Arunachal Pradesh",
-    "Assam",
-    "Bihar",
-    "Chhattisgarh",
-    "Goa",
-    "Gujarat",
-    "Haryana",
-    "Himachal Pradesh",
-    "Jammu and Kashmir",
-    "Jharkhand",
-    "Karnataka",
-    "Kerala",
-    "Madhya Pradesh",
-    "Maharashtra",
-    "Manipur",
-    "Meghalaya",
-    "Mizoram",
-    "Nagaland",
-    "Odisha",
-    "Punjab",
-    "Rajasthan",
-    "Sikkim",
-    "Tamil Nadu",
-    "Telangana",
-    "Tripura",
-    "Uttarakhand",
-    "Uttar Pradesh",
-    "West Bengal",
-    "Andaman and Nicobar Islands",
-    "Chandigarh",
-    "Dadra and Nagar Haveli",
-    "Daman and Diu",
-    "Delhi",
-    "Lakshadweep",
-    "Puducherry",
+    "AI",
+    "HS",
+    "GO",
+    "JK"
   ];
   const url = "https://konsa-college-backend.vercel.app";
 
 
-  const data = [
-    {
-      name: 'Page A',
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
-    },
-    {
-      name: 'Page B',
-      uv: 3000,
-      pv: 1398,
-      amt: 2210,
-    },
-    {
-      name: 'Page C',
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
-    },
-    {
-      name: 'Page D',
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
-    },
-    {
-      name: 'Page E',
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
-    },
-    {
-      name: 'Page F',
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
-    },
-    {
-      name: 'Page G',
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
-    },
-  ];
+  
 
   const submit =
     (selectedState ? true : false) &&
@@ -124,7 +50,7 @@ function trendAnalysis() {
     (selectedBranch ? true : false) &&
     (selectedCaste ? true : false) &&
     (selectedGender ? true : false);
-  console.log(chart, "api");
+ 
 
   const renderCustomAxisTick = ({ x, y, payload }) => {
     let label = '';
@@ -192,10 +118,23 @@ function trendAnalysis() {
           Program: selectedBranch,
           Gender: selectedGender,
           Caste: selectedCaste,
+          Quota : selectedState,
         })
         .then((resp) => {
           console.log(resp.data);
-          setChart(resp.data);
+          const chartEle = document.querySelector("#chart");
+          if(resp.data.length === 0){
+            console.log("No data found");
+            
+            chartEle.classList.add("blur-[2px]");
+            setBool(true);
+          }
+          else{
+            setBool(false);
+            setChart(resp.data);
+            chartEle.classList.remove("blur-[2px]");
+          }
+          
         })
         .catch((err) => {
           console.log(err);
@@ -220,6 +159,7 @@ function trendAnalysis() {
     selectedBranch,
     selectedCaste,
     selectedGender,
+    noData,
     "details"
   );
 
@@ -238,7 +178,7 @@ function trendAnalysis() {
       </div>
       <div className="options p-2 mt-2">
         <div className="flex flex-col md:flex-row md:justify-between">
-          <div className="rankTpye md:px-10 my-3 md:w-[33%]">
+          <div className="rankTpye md:px-10 my-3 md:w-[50%]">
             <div>Rank Type</div>
             <div className="py-2 flex justify-between">
               <div>
@@ -246,7 +186,7 @@ function trendAnalysis() {
                   type="radio"
                   value="Mains"
                   onChange={(e) => setRank(e.target.value)}
-                  
+                  checked
                   name="rank"
                 ></input>
                 <label>JEE (Main)</label>
@@ -262,7 +202,7 @@ function trendAnalysis() {
               </div>
             </div>
           </div>
-          <div className="homeStates my-3 md:w-[33%] md:px-10">
+          <div className="homeStates my-3 md:w-[50%] md:px-10">
             <div className="flex justify-between">
               <span>Home State</span>
               <span className="text-[10px] pt-1.5">
@@ -290,49 +230,7 @@ function trendAnalysis() {
               </div>
             ) : null}
           </div>
-          <div className="instituteTypes my-3 md:px-10 md:w-[33%]">
-            <div className="flex justify-between">
-              <span>Institute Types</span>
-            </div>
-            <div className="opts mt-3 flex justify-between">
-              <div className="">
-                <input
-                  type="checkbox"
-                  value="NITs"
-                  onChange={(e) =>
-                    setTypes(function (prev) {
-                      return [...prev, e.target.value];
-                    })
-                  }
-                ></input>
-                <label className="px-2">NITs</label>
-              </div>
-              <div className="">
-                <input
-                  type="checkbox"
-                  value="IITs"
-                  onChange={(e) =>
-                    setTypes(function (prev) {
-                      return [...prev, e.target.value];
-                    })
-                  }
-                ></input>
-                <label className="px-2">IITs</label>
-              </div>
-              <div className="">
-                <input
-                  type="checkbox"
-                  value="GFTIs"
-                  onChange={(e) =>
-                    setTypes(function (prev) {
-                      return [...prev, e.target.value];
-                    })
-                  }
-                ></input>
-                <label className="px-2">GFTIs</label>
-              </div>
-            </div>
-          </div>
+          
         </div>
         <div className="flex flex-col md:flex-row md:justify-between">
           <div className="institutes my-3 md:px-10 md:w-[50%]">
@@ -343,7 +241,7 @@ function trendAnalysis() {
               name="colleges"
               className="my-3 p-2 w-full border-solid border-[#D1D5DB] border rounded-md"
               onChange={(e) => {
-                setSelectefCollege(e.target.value);
+                setSelectedCollege(e.target.value);
                 setReqInst(false);
                 setFilteredBranches(branches.get(e.target.value));
                 if (selectedState === null) {
@@ -355,7 +253,12 @@ function trendAnalysis() {
                 Select a college
               </option>
               {colleges?.map((college, idx) => {
-                return <option value={college}>{college}</option>;
+                if(selectedRank === "Advance"){
+                  return (college.includes("Indian Institute of Technology") ? (<option value={college}>{college}</option>) : null)
+                }
+                else{
+                  return (!(college.includes("Indian Institute of Technology")) ? (<option value={college}>{college}</option>) : null)
+                }
               })}
             </select>
             {requiredInst ? (
@@ -468,11 +371,11 @@ function trendAnalysis() {
           </div>
         </div>
       </div>
-      <div className="chart mt-5 " id="chart">
+      <div className="chart mt-5 " >
         <ResponsiveContainer width="90%" height={300} >
 
           <LineChart
-
+            id="chart"
             data={chart}
             margin={{
               top: 20,
@@ -485,12 +388,20 @@ function trendAnalysis() {
             <YAxis />
             <Tooltip />
             <Legend />
-
+          
             <Line type="monotone" dataKey="Closing_Rank" stroke="#8884d8" activeDot={{ r: 5 }} />
 
             <Line type="monotone" dataKey="Opening_Rank" stroke="#82ca9d" activeDot={{ r: 5 }} />
           </LineChart>
         </ResponsiveContainer>
+        {noData ? (<div className='absolute'>
+        <div>
+          <h1 className="mt-20" >No Data Available</h1>
+        </div>
+        
+        </div>) : null}
+        
+        
       </div>
     </div>
   );
