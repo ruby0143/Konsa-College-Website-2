@@ -17,6 +17,7 @@ import { useStateContext } from "./Context/useStateContext";
 import CollegePredictor from "./pages/CollegePredictor";
 import PercentilePredictor from "./pages/percentilePredictor";
 import CutoffPage from "./pages/cutoffPage";
+import ExamRecommender from "./pages/examRecommender";
 
 function App() {
 const {skeleton,loader}=useStateContext()
@@ -40,6 +41,7 @@ const {skeleton,loader}=useStateContext()
       <Route path="/soon" element={<Comming_Soon/>} exact/>
       <Route path="/collegePredictor" element={<CollegePredictor/>} exact/>
       <Route path="/percentilePredictor" element={<PercentilePredictor/>} exact/>
+      <Route path="/examRecommender" element={<ExamRecommender/>} exact/>
       <Route path="/college/:particularcollege/cutoff" element={<CutoffPage/>} exact/>
     </Routes>
     <CollegeFooter/>

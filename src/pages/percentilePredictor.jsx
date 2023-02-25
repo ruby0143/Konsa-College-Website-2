@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import data from "../components/toolsPage/test";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 
-const CollegePredictor = () => {
+const PercentilePredictor = () => {
   useEffect(() => {
     setApiResponseData(data);
   }, []);
@@ -228,4 +228,4 @@ const CollegePredictor = () => {
   );
 };
 
-export default CollegePredictor;
+export default PercentilePredictor;
