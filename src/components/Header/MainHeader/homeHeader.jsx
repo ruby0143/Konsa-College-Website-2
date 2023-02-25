@@ -1,5 +1,6 @@
 // import axios from 'axios'
-import React, { useState } from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import useCollegeDataStore from '../../../utils/AllCollegeData-Store'
@@ -9,6 +10,27 @@ const HomeHeader = () => {
   
   const collegeDataList = useCollegeDataStore((state) => state.collegeDataList)
   const [searchTerm, setSearchTerm] = useState("")
+  const [searchResults, setSearchResults] = useState([])
+
+  useEffect(()=>{
+    if(!searchTerm){
+        setSearchResults([])
+        return 
+    }
+
+    ( async () => {
+        const url = 'https://konsa-college-backend.vercel.app/search'
+        const {data} = await axios.get(url,{
+            params : {
+                term: searchTerm
+            },
+        })
+
+        setSearchResults(data)
+    })()
+
+    console.log("atlas data: ", searchResults);
+  },[searchTerm])
 
   return (
     <div className='w-full'>
@@ -40,7 +62,7 @@ const HomeHeader = () => {
             <div className={` ${searchTerm !== "" ? "inline-flex" : "hidden"} w-[324px] md:w-[600px] lg:w-[780px] z-30 relative`}>
                 <div className='absolute rounded-b-md max-h-[300px] w-full overflow-y-scroll overflow-x-hidden bg-white shadow-md mt-8 md:mt-10 transition-all duration-300'>
                     {
-                        collegeDataList.filter(college => college.college_name.toLowerCase().includes(searchTerm.toLowerCase()) || college.college_uuid.toLowerCase().includes(searchTerm)).map((college,index)=>{
+                        searchResults.map((college,index)=>{
                             return <Link 
                                         key={index} 
                                         to={`/college/${college.college_uuid}`}

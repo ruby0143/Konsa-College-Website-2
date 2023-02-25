@@ -43,9 +43,8 @@ const url = "https://konsa-college-backend.vercel.app";
             {Exams.map((exam, idx) => {
               if (idx < 5) {
                 return (
-                  <a href={exam.apply_link}>
+                  <a href={exam.apply_link} key={idx}>
                     <div
-                      key={idx}
                       className="h-[56px] md:h-[158px] mx-1.5 min-w-[158px] flex md:flex-col items-center justify-evenly shadow-md rounded-md border border-gray-100 bg-white"
                     >
                       <div>
