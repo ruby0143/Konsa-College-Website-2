@@ -8,10 +8,17 @@ const CollegePredictor = () => {
   const [isOpens, setIsOpens] = useState(false);
   const [Eligibility, setEligibility] = useState("");
   const [Category, setCategory] = useState("");
-  const [selectedGender, setGender] = useState("Gender-Neutral");
+  const [selectedGender, setGender] = useState("");
   const [data, setData] = useState();
   const [rank, setRank] = useState();
   const [pwd, setPwd] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [RankError, setRankError] = useState(false);
+  const [CategoryError, setCategoryError] = useState(false);
+  const [EligibilityError, setEligibilityError] = useState(false);
+  const [CasteError, setCasteError] = useState(false);
+  const [GenderError, setGenderError] = useState(false);
+  const [PwdError, setPwdError] = useState(false);
 
   const url = "https://konsa-college-backend.vercel.app";
 
@@ -36,41 +43,81 @@ const CollegePredictor = () => {
       .catch((err) => {
         console.log(err);
       });
-
-   
   }, [setPwd, setCategory]);
 
   const handleSubmit = () => {
-    console.log(Category)
-    // let filter = data?.filter((clg) => {
-    //   if (
-    //     clg.Seat_Type === Category &&
-    //     clg.Gender === selectedGender &&
-    //     clg.Opening_Rank > rank &&
-    //     rank < clg.Closing_Rank
-    //   ) {
-    //     return clg;
-    //   }
-    // });
+    console.log(Category, rank, Eligibility, selectedGender);
+    let filter = data?.filter((clg) => {
+      if (
+        clg.Seat_Type === Category &&
+        clg.Gender === selectedGender &&
+        clg.Opening_Rank > rank &&
+        rank < clg.Closing_Rank
+      ) {
+        return clg;
+      }
+    });
 
-    // let homeclg = filter?.filter((clg) => {
-    //   if (
-    //     clg.Institute.split(" ")[clg.Institute.split(" ").length - 1] ===
-    //     Eligibility
-    //   ) {
-    //     return clg;
-    //   }
-    // });
-    // let othclg = filter?.filter((clg) => {
-    //   if (
-    //     clg.Institute.split(" ")[clg.Institute.split(" ").length - 1] !==
-    //     Eligibility
-    //   ) {
-    //     return clg;
-    //   }
-    // });
+    let homeclg = filter?.filter((clg) => {
+      if (
+        clg.Institute.split(" ")[clg.Institute.split(" ").length - 1] ===
+        Eligibility
+      ) {
+        return clg;
+      }
+    });
+    let othclg = filter?.filter((clg) => {
+      if (
+        clg.Institute.split(" ")[clg.Institute.split(" ").length - 1] !==
+        Eligibility
+      ) {
+        return clg;
+      }
+    });
 
-    // console.log(filter, homeclg, othclg);
+    console.log(filter, homeclg, othclg);
+  };
+
+  const handleValidationError = () => {
+    handleSubmit();
+
+    // if (
+    //   rank === "" ||
+    //   Eligibility === "" ||
+    //   selectedGender === "" ||
+    //   Category === "" ||
+    //   pwd
+    // )
+    //   setIsError(true);
+
+    // if (isError) {
+    //   if (rank === "") {
+    //     setRankError("Rank required to be entered!");
+    //   }
+
+    //   if (Eligibility === "") {
+    //     setEligibilityError("State required to be selected!");
+    //   }
+    //   if (Category === "") {
+    //     setCategoryError("Category required to be selected!");
+    //   }
+    //   if (selectedGender === "") {
+    //     setGenderError("Gender required to be selected!");
+    //   }
+    //   if (PwdError === "") {
+    //     setPwdError("PwD required to be selected!");
+    //   }
+    //   console.log("error m aya");
+    //   return;
+    // } else if (
+    //   rank !== "" &&
+    //   Eligibility !== "" &&
+    //   castes !== "" &&
+    //   selectedGender !== "" &&
+    //   Category !== ""
+    // ) {
+    //   handleSubmit();
+    // }
   };
 
   const CategoryList = ["EWS", "OBC-NCL", "OPEN", "SC", "ST"];
@@ -118,8 +165,13 @@ const CollegePredictor = () => {
               type="text"
               placeholder="Enter Your Rank"
             ></input>
+            {RankError !== "" && rank === '' && (
+              <div className="text-red-600 mob:text-xs">{RankError}</div>
+            )}
 
-            <h6 className="mt-[25px] mob:mt-[15px] mob:text-[13px]">State Your Eligibility</h6>
+            <h6 className="mt-[25px] mob:mt-[15px] mob:text-[13px]">
+              State Your Eligibility
+            </h6>
 
             <div
               className="relative flex flex-row mt-[6px] justify-start items-center w-full p-[6px] rounded-[2px] bg-[#ffffff]"
@@ -166,8 +218,13 @@ const CollegePredictor = () => {
                 </div>
               )}
             </div>
+            {EligibilityError !== "" && Eligibility === "" && (
+              <div className="text-red-600 mob:text-xs">{EligibilityError}</div>
+            )}
 
-            <h6 className="mt-[25px] mob:mt-[15px] mob:text-[13px]">Your Category</h6>
+            <h6 className="mt-[25px] mob:mt-[15px] mob:text-[13px]">
+              Your Category
+            </h6>
 
             <div
               className="relative flex flex-row mt-[8px] justify-start  items-center w-full p-[6px] rounded-[2px] bg-[#ffffff]"
@@ -235,6 +292,9 @@ const CollegePredictor = () => {
                 </div>
               )}
             </div>
+            {CategoryError !== "" && Category === "" && (
+              <div className="text-red-600 mob:text-xs">{CategoryError}</div>
+            )}
 
             <div className="flex flex-col mt-[25px] mob:mt-[5px] justify-start">
               <div className="w-full">
@@ -248,7 +308,9 @@ const CollegePredictor = () => {
                       value="Male"
                       onChange={() => setGender("Gender-Neutral")}
                     />
-                    <label className="mob:text-[13px]" for="html">Male</label>
+                    <label className="mob:text-[13px]" for="html">
+                      Male
+                    </label>
                   </div>
                   <div className="w-[30%] flex gap-x-2">
                     <input
@@ -260,10 +322,15 @@ const CollegePredictor = () => {
                       name="gender"
                       value="Female"
                     />
-                    <label className="mob:text-[13px]" for="css">Female</label>
+                    <label className="mob:text-[13px]" for="css">
+                      Female
+                    </label>
                   </div>
                 </div>
               </div>
+              {GenderError !== "" && selectedGender === "" && (
+                <div className="text-red-600 mob:text-xs">{GenderError}</div>
+              )}
               <div className="w-full mt-[20px] mob:mt-[5px]">
                 <h6 className=" mob:text-[13px] ">Are You Pwd</h6>
                 <div className="w-full flex flex-row mt-[5px] ">
@@ -275,10 +342,12 @@ const CollegePredictor = () => {
                       value="Yes"
                       onChange={() => {
                         setPwd(true);
-                        setCategory("Enter your Pwd Category")
+                        setCategory("");
                       }}
                     />
-                    <label className="mob:text-[13px]" for="html">Yes</label>
+                    <label className="mob:text-[13px]" for="html">
+                      Yes
+                    </label>
                   </div>
                   <div className="w-[30%] flex pl-1  gap-x-2">
                     <input
@@ -288,13 +357,19 @@ const CollegePredictor = () => {
                       value="No"
                       onChange={() => {
                         setPwd(false);
+                        setCategory("");
                       }}
                     />
-                    <label className="mob:text-[13px]" for="css">No</label>
+                    <label className="mob:text-[13px]" for="css">
+                      No
+                    </label>
                   </div>
                 </div>
               </div>
             </div>
+            {PwdError !== "" && castes === "" && (
+              <div className="text-red-600 mob:text-xs">{PwdError}</div>
+            )}
 
             <div className="w-full flex justify-center mt-[30px] mob:mt-[30px]">
               <div
@@ -306,7 +381,7 @@ const CollegePredictor = () => {
               >
                 <button
                   className="text-[#FFFFFF] p-1 mob:text-sm"
-                  onClick={() => handleSubmit()}
+                  onClick={() => handleValidationError()}
                 >
                   Predict Now
                 </button>
