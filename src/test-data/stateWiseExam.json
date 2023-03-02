@@ -1,0 +1,426 @@
+[
+    {
+        "Location":"All India",
+        "Exams":[
+            {
+                "name": "JEE Main",
+                "uuid": "jeemain",
+                "grade": 1,
+                "target_location": "All India",
+                "study_material": [
+                    {
+                    "text": "",
+                    "link": ""
+                    },
+                    {
+                    "text": "",
+                    "link": ""
+                    }
+                ],
+                "apply_link": "https://jeemain.nta.nic.in/",
+                "logo_link": "",
+                "type": false,
+                "description": "",
+                "full_name": "Joint Entrance Examination Main"
+            },
+            {
+                "name": "JEE Advanced",
+                "uuid": "jeeadvanced",
+                "grade": 2,
+                "target_location": "All India",
+                "study_material": [
+                    {
+                    "text": "",
+                    "link": ""
+                    },
+                    {
+                    "text": "",
+                    "link": ""
+                    }
+                ],
+                "apply_link": "https://jeeadv.ac.in/",
+                "logo_link": "",
+                "type": false,
+                "description": "",
+                "full_name": "Joint Entrance Examination Advanced"
+            },
+            {
+                "name": "BITSAT",
+                "uuid": "bitsat",
+                "grade": 4,
+                "target_location": "All India",
+                "study_material": [
+                  {
+                    "text": "",
+                    "link": ""
+                  },
+                  {
+                    "text": "",
+                    "link": ""
+                  }
+                ],
+                "apply_link": "https://www.bitsadmission.com/",
+                "logo_link": "",
+                "type": false,
+                "description": "",
+                "full_name": "Birla Institute of Technology and Science Admission Test"
+            },
+            {
+                "name": "VITEEE",
+                "uuid": "viteee",
+                "grade": 5,
+                "target_location": "All India",
+                "study_material": [
+                  {
+                    "text": "",
+                    "link": ""
+                  },
+                  {
+                    "text": "",
+                    "link": ""
+                  }
+                ],
+                "apply_link": "https://viteee.vit.ac.in/",
+                "logo_link": "",
+                "type": false,
+                "description": "",
+                "full_name": "Vellore Institute of Technology Engineering Entrance Exam"
+            },
+            {
+                "name": "MET",
+                "uuid": "met",
+                "grade": 5,
+                "target_location": "All India",
+                "study_material": [
+                  {
+                    "text": "",
+                    "link": ""
+                  },
+                  {
+                    "text": "",
+                    "link": ""
+                  }
+                ],
+                "apply_link": "https://manipal.edu/mu/admission/indian-students/online-entrance-exam-overview.html",
+                "logo_link": "",
+                "type": false,
+                "description": "",
+                "full_name": "Manipal Entrance Test"                
+            },
+            {
+                "name": "SRMJEEE",
+                "uuid": "srmjee",
+                "grade": 6,
+                "target_location": "All India",
+                "study_material": [
+                  {
+                    "text": "",
+                    "link": ""
+                  },
+                  {
+                    "text": "",
+                    "link": ""
+                  }
+                ],
+                "apply_link": "https://www.srmist.edu.in/admission-india/",
+                "logo_link": "",
+                "type": false,
+                "description": "",
+                "full_name": "SRM Joint Engineering Entrance Examination"
+            },
+            {
+                "name": "KCET",
+                "uuid": "kcet",
+                "grade": 7,
+                "target_location": "All India",
+                "study_material": [
+                  {
+                    "text": "",
+                    "link": ""
+                  },
+                  {
+                    "text": "",
+                    "link": ""
+                  }
+                ],
+                "apply_link": "https://cetonline.karnataka.gov.in/kea/",
+                "logo_link": "",
+                "type": false,
+                "description": "",
+                "full_name": "Karnataka Common Entrance Test"   
+            },
+            {
+                "name": "MHT CET",
+                "uuid": "mhtcet",
+                "grade": 8,
+                "target_location": "All India",
+                "study_material": [
+                  {
+                    "text": "",
+                    "link": ""
+                  },
+                  {
+                    "text": "",
+                    "link": ""
+                  }
+                ],
+                "apply_link": "http://cetcell.mahacet.org/",
+                "logo_link": "",
+                "type": false,
+                "description": "",
+                "full_name": "Maharashtra Common Entrance Test"
+            },
+            {
+                "name": "UPESEAT",
+                "uuid": "upseat",
+                "grade": 9,
+                "target_location": "All India",
+                "study_material": [
+                  {
+                    "text": "",
+                    "link": ""
+                  },
+                  {
+                    "text": "",
+                    "link": ""
+                  }
+                ],
+                "apply_link": "",
+                "logo_link": "",
+                "type": false,
+                "description": "",
+                "full_name": "University of Petroleum & Energy Studies Engineering Aptitude Test"
+            },
+            {
+                "name": "LPUNEST",
+                "uuid": "lpunest",
+                "grade": 12,
+                "target_location": "All India",
+                "study_material": [
+                  {
+                    "text": "",
+                    "link": ""
+                  },
+                  {
+                    "text": "",
+                    "link": ""
+                  }
+                ],
+                "apply_link": "https://nest.lpu.in/",
+                "logo_link": "",
+                "type": false,
+                "description": "",
+                "full_name": "Lovely Professional University National Entrance and Scholarship Test"
+            },
+            {
+                "name": "UGEE",
+                "uuid": "ugee",
+                "grade": 13,
+                "target_location": "All India",
+                "study_material": [
+                  {
+                    "text": "",
+                    "link": ""
+                  },
+                  {
+                    "text": "",
+                    "link": ""
+                  }
+                ],
+                "apply_link": "https://ugadmissions.iiit.ac.in/ugee2023/",
+                "logo_link": "",
+                "type": false,
+                "description": "",
+                "full_name": "Undergraduate Entrance Exam"
+            },
+            {
+                "name": "UCEED",
+                "uuid": "uceed",
+                "grade": 14,
+                "target_location": "All India",
+                "study_material": [
+                  {
+                    "text": "",
+                    "link": ""
+                  },
+                  {
+                    "text": "",
+                    "link": ""
+                  }
+                ],
+                "apply_link": "https://www.uceed.iitb.ac.in/2023/",
+                "logo_link": "",
+                "type": false,
+                "description": "",
+                "full_name": "Undergraduate Common Entrance Examination for Design"
+            },
+            {
+                "name": "COMEDK",
+                "uuid": "comedk",
+                "grade": 15,
+                "target_location": "All India",
+                "study_material": [
+                  {
+                    "text": "",
+                    "link": ""
+                  },
+                  {
+                    "text": "",
+                    "link": ""
+                  }
+                ],
+                "apply_link": "https://www.comedk.org/",
+                "logo_link": "",
+                "type": false,
+                "description": "",
+                "full_name": "Consortium of Medical, Engineering, and Dental Colleges of Karnataka"
+              },
+              {
+                "name": "KIITEEE",
+                "uuid": "kiiteee",
+                "grade": 16,
+                "target_location": "All India",
+                "study_material": [
+                  {
+                    "text": "",
+                    "link": ""
+                  },
+                  {
+                    "text": "",
+                    "link": ""
+                  }
+                ],
+                "apply_link": "https://kiit.ac.in/",
+                "logo_link": "",
+                "type": false,
+                "description": "",
+                "full_name": "Kalinga Institute of Industrial Technology"
+              },
+              {
+                "name": "ISIAT",
+                "uuid": "isiat",
+                "grade": 17,
+                "target_location": "All India",
+                "study_material": [
+                  {
+                    "text": "",
+                    "link": ""
+                  },
+                  {
+                    "text": "",
+                    "link": ""
+                  }
+                ],
+                "apply_link": "https://www.isical.ac.in/~admission/",
+                "logo_link": "",
+                "type": false,
+                "description": "For b-stat and maths.",
+                "full_name": "Indian Statistical Institute Admission Test"
+              }
+        ]
+    },
+    {
+        "Location":"Andhra Pradesh",
+        "Exams":[
+            {
+                "name": "AP EAMCET",
+                "uuid": "apeamcet",
+                "grade": 10,
+                "target_location": "Andhra Pradesh",
+                "study_material": [
+                  {
+                    "text": "",
+                    "link": ""
+                  },
+                  {
+                    "text": "",
+                    "link": ""
+                  }
+                ],
+                "apply_link": "https://cets.apsche.ap.gov.in/APSCHEHome.aspx",
+                "logo_link": "",
+                "type": false,
+                "description": "",
+                "full_name": "Andhra Pradesh Engineering, Agriculture, and Medical Common Entrance Test"
+              }
+        ]
+    },
+    {
+        "Location":"Telangana",
+        "Exams":[
+            {
+                "name": "TS EAMCET",
+                "uuid": "tseamcet",
+                "grade": 11,
+                "target_location": "Telangana",
+                "study_material": [
+                  {
+                    "text": "",
+                    "link": ""
+                  },
+                  {
+                    "text": "",
+                    "link": ""
+                  }
+                ],
+                "apply_link": "https://eamcet.tsche.ac.in/",
+                "logo_link": "",
+                "type": false,
+                "description": "",
+                "full_name": "Telangana State Engineering, Agriculture, and Medical Common Entrance Test"
+              }
+        ]
+    },
+    {
+        "Location":"Gujarat",
+        "Exams":[
+            {
+                "name": "GUJCET",
+                "uuid": "gujcet",
+                "grade": 18,
+                "target_location": "Gujrat",
+                "study_material": [
+                  {
+                    "text": "",
+                    "link": ""
+                  },
+                  {
+                    "text": "",
+                    "link": ""
+                  }
+                ],
+                "apply_link": "https://gujcet.gseb.org/",
+                "logo_link": "",
+                "type": false,
+                "description": "",
+                "full_name": "Gujarat Common Entrance Test"
+              }
+        ]  
+    },
+    {
+        "Location":"West Bengal",
+        "Exams":[
+            {
+                "name": "WBJEE",
+                "uuid": "wbjee",
+                "grade": 7,
+                "target_location": "West Bengal",
+                "study_material": [
+                  {
+                    "text": "",
+                    "link": ""
+                  },
+                  {
+                    "text": "",
+                    "link": ""
+                  }
+                ],
+                "apply_link": "https://wbjeeb.nic.in/WBJEEBBoardCMS/Page/Page?PageId=1&LangId=P",
+                "logo_link": "",
+                "type": false,
+                "description": "",
+                "full_name": "West Bengal Joint Entrance Exam"
+              }
+        ]
+    }
+]

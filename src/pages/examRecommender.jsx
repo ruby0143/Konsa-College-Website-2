@@ -1,11 +1,26 @@
-import React, { useRef, useState } from 'react'
+import axios from 'axios'
+import React, { useEffect, useRef, useState } from 'react'
 import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
 
 const ExamRecommender = () => {
 
-    const [isOpen, setIsOpen] = useState([])
+    const [apiRecommendedExamData, setApiRecommendedExamData] = useState([])
+    const [isOpen, setIsOpen] = useState(false)
     let nameref = useRef()
     let stateref = useRef()
+    const url = "https://konsa-college-backend.vercel.app";
+    
+
+    useEffect(() => {
+      (async () => {
+       await axios.get(url + '/recommendedExams')
+                  .then((res) =>{
+                    setApiRecommendedExamData(res.data)
+                  })
+      })()
+    },[])
+
+    console.log("response: ", apiRecommendedExamData);
 
         return (
         <div className="bg-[#F5F5F5]">
@@ -70,25 +85,21 @@ const ExamRecommender = () => {
                       )}
                     </div> 
                  
-                  {/* {
+                  {
                     isOpen && (
-                    <div className="absolute z-10 top-[35px] left-0 right-[1px] w-full text-[#9ca3b7] border-[#dcdcdc] bg-[#F5F5F5]">
-                      {shiftList.map((shift) => {
+                    <div className="absolute z-10 top-[35px] left-0 right-[1px] w-full text-[#9ca3b7] border-[#dcdcdc] bg-[#F5F5F5] h-[150px] overflow-y-scroll overflow-x-hidden">
+                      {apiRecommendedExamData.map((data,idx) => {
                         return (
                           <div
-                            key={shift.shift}
+                            key={idx}
                             className="w-full px-3 hover:bg-[#ffffff] shadow-sm cursor-pointer rounded-sm leading-10"
-                            onClick={() => {
-                              setShift(shift.shift);
-                              setIsOpen(false);
-                            }}
                           >
-                            {shift.shift}
+                            {data.Location}
                           </div>
                         );
                       })}
                     </div>
-                  )} */}
+                  )}
                 </div>
     
                 {/* {shiftError !== "" && shift === "" && (
@@ -119,22 +130,10 @@ const ExamRecommender = () => {
                     "linear-gradient(158.5deg, #FFC88B 5.02%, #EE7C00 101.84%)",
                 }}
               >
-                {/* { JSON.stringify(prediction) !== "{}" ? (
-                    <div>
-                      <p className="text-[#F3F3F3]  text-center  leading-9 tracking-wide text-[28px] font-bold">
-                        Your Expected Percentile is
-                      </p>
-                      <p className="text-[#F3F3F3]  text-center  leading-9 tracking-wide text-[28px] font-bold">
-                        {`${prediction.minVal} - ${prediction.maxVal}`}
-                      </p>
-                    </div>
-                  )
-                 : (
-                  <p className="text-[#F3F3F3]  text-center  leading-9 tracking-wide text-[28px] font-bold">
-                    Lorem ipsum dolor sit amet consectetur. Lobortis porta volutpat
-                    tellus pellentes
-                  </p>
-                )} */}
+              <p className="text-[#F3F3F3]  text-center  leading-9 tracking-wide text-[28px] font-bold">
+                Lorem ipsum dolor sit amet consectetur. Lobortis porta volutpat
+                tellus pellentes
+              </p>
               </div>
             </div>
           </div>
