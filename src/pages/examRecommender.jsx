@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
 
 const ExamRecommender = () => {
@@ -8,20 +8,113 @@ const ExamRecommender = () => {
     const [isOpen, setIsOpen] = useState(false)
     let nameref = useRef()
     let stateref = useRef()
-    const url = "https://konsa-college-backend.vercel.app";
+
+    const locations = [
+     {
+        "name":"All India"
+     },
+     {
+        "name":"Andhra Pradesh"
+     },
+     {
+        "name":"Arunachal Pradesh"
+     },
+     {
+        "name":"Assam"
+     },
+     {
+        "name":"Bihar"
+     },
+     {
+        "name":"Chhattisgarh"
+     },
+     {
+        "name":"Delhi"
+     },
+     {
+        "name":"Goa"
+     },
+     {
+        "name":"Gujarat"
+     },
+     {
+        "name":"Haryana"
+     },
+     {
+        "name":"Himachal Pradesh"
+     },
+     {
+        "name":"Jharkhand"
+     },
+     {
+        "name":"Karnataka"
+     },
+     {
+        "name":"Kerala"
+     },
+     {
+        "name":"Madhya Pradesh"
+     },
+     {
+        "name":"Maharashtra"
+     },
+     {
+        "name":"Manipur"
+     },
+     {
+        "name":"Meghalaya"
+     },
+     {
+        "name":"Mizoram"
+     },
+     {
+        "name":"Nagaland"
+     },
+     {
+        "name":"Odisha"
+     },
+     {
+        "name":"Punjab"
+     },
+     {
+        "name":"Rajasthan"
+     },
+     {
+        "name":"Sikkim"
+     },
+     {
+        "name":"Tamil Nadu"
+     },
+     {
+        "name":"Telangana"
+     },
+     {
+        "name":"Tripura"
+     },
+     {
+        "name":"Uttar Pradesh"
+     },
+     {
+        "name":"Uttarakhand"
+     },
+     {
+        "name":"West Bengal"
+     }
+    ]
     
-
-    useEffect(() => {
-      (async () => {
-       await axios.get(url + '/recommendedExams')
-                  .then((res) =>{
-                    setApiRecommendedExamData(res.data)
-                  })
+    function handleDataFetch(location){
+      ( async () => {
+        const url = "https://konsa-college-backend.vercel.app/recommendedExams";
+        const {data} = await axios.get(url,{
+          params : {
+            location: location
+          },
+        })
+        setApiRecommendedExamData(data[0])
       })()
-    },[])
-
-    console.log("response: ", apiRecommendedExamData);
-
+      setIsOpen(false)
+    }
+    
         return (
         <div className="bg-[#F5F5F5]">
           <h2 className="pt-[80px] font-roboto font-bold text-[30px] text-[#3C3B3B] text-center tracking-wider">
@@ -88,13 +181,14 @@ const ExamRecommender = () => {
                   {
                     isOpen && (
                     <div className="absolute z-10 top-[35px] left-0 right-[1px] w-full text-[#9ca3b7] border-[#dcdcdc] bg-[#F5F5F5] h-[150px] overflow-y-scroll overflow-x-hidden">
-                      {apiRecommendedExamData.map((data,idx) => {
+                      {locations.map((state,idx) => {
                         return (
                           <div
                             key={idx}
+                            onClick={()=>handleDataFetch(state.name)}
                             className="w-full px-3 hover:bg-[#ffffff] shadow-sm cursor-pointer rounded-sm leading-10"
                           >
-                            {data.Location}
+                            {state.name}
                           </div>
                         );
                       })}
