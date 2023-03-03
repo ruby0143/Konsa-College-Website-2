@@ -1,10 +1,13 @@
 import axios from 'axios'
 import React, { useRef, useState } from 'react'
 import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
+import RecommendedExamsContainer from '../components/ExamRecommendation/recommendedExams'
+import ToolsModal from '../components/Modal/toolsModal'
 
 const ExamRecommender = () => {
 
     const [apiRecommendedExamData, setApiRecommendedExamData] = useState([])
+    const [isModalOpen, setIsModalOpen] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     let nameref = useRef()
     let stateref = useRef()
@@ -111,11 +114,19 @@ const ExamRecommender = () => {
           },
         })
         setApiRecommendedExamData(data[0])
+        setIsOpen(false)
+        setIsModalOpen(true)
       })()
-      setIsOpen(false)
     }
     
         return (
+        <>
+        {
+          isModalOpen && <ToolsModal>
+            <RecommendedExamsContainer recommendedExams={apiRecommendedExamData} setIsModalOpen={setIsModalOpen}/>
+          </ToolsModal>
+        }
+
         <div className="bg-[#F5F5F5]">
           <h2 className="pt-[80px] font-roboto font-bold text-[30px] text-[#3C3B3B] text-center tracking-wider">
             Exam Recommendation
@@ -134,7 +145,7 @@ const ExamRecommender = () => {
             <div
               className="w-[60%] h-[450px] bg-[#FFFFFF] flex flex-row mb-[80px]"
               style={{ boxShadow: "-3px 0px 4px 2px rgba(0, 0, 0, 0.04)" }}
-            >
+              >
               <div className="w-[53%] flex-col font-roboto p-[40px] bg-[url('/Stroke.svg')] bg-contain">
                 <h4 className="mt-[22px] text-center font-bold">
                   Enter Your Details
@@ -144,14 +155,14 @@ const ExamRecommender = () => {
                 <h6 className="mt-[26px]">Your Name</h6>
                 <div  
                   className="relative flex mt-[8px] justify-betweeb h-[34px] items-center w-full rounded-[2px] bg-[#ffffff]" style={{border:"1px solid #D3D3D3"}}
-                >
+                  >
                   <input
                     className="focus:outline-none text-[#ACACAC] text-sm tracking-wide w-[100%] h-full p-2"
                     type="text"
                     placeholder="Enter Your Name"
                     required
                     ref={nameref}
-                  />
+                    />
                 </div>
     
                 {/* {inputMarksError !== "" && inputMarks === "" && (
@@ -169,24 +180,24 @@ const ExamRecommender = () => {
                       required
                       className="focus:outline-none text-[#ACACAC] text-sm tracking-wide w-[90%] h-full p-2"
                       ref={stateref}
-                    />
+                      />
                     <div onClick={()=>setIsOpen(prev=>!prev)} className="w-[10%] h-full flex justify-center items-center cursor-pointer">
                       {!isOpen ? (
                         <AiOutlineDown className="text-[#ACACAC]" />
-                      ) : (
-                        <AiOutlineUp className="text-[#ACACAC]" />
-                      )}
+                        ) : (
+                          <AiOutlineUp className="text-[#ACACAC]" />
+                          )}
                     </div> 
                  
                   {
                     isOpen && (
-                    <div className="absolute z-10 top-[35px] left-0 right-[1px] w-full text-[#9ca3b7] border-[#dcdcdc] bg-[#F5F5F5] h-[150px] overflow-y-scroll overflow-x-hidden">
+                      <div className="absolute z-10 top-[35px] left-0 right-[1px] w-full text-[#9ca3b7] border-[#dcdcdc] bg-[#F5F5F5] h-[150px] overflow-y-scroll overflow-x-hidden">
                       {locations.map((state,idx) => {
                         return (
                           <div
-                            key={idx}
-                            onClick={()=>handleDataFetch(state.name)}
-                            className="w-full px-3 hover:bg-[#ffffff] shadow-sm cursor-pointer rounded-sm leading-10"
+                          key={idx}
+                          onClick={()=>handleDataFetch(state.name)}
+                          className="w-full px-3 hover:bg-[#ffffff] shadow-sm cursor-pointer rounded-sm leading-10"
                           >
                             {state.name}
                           </div>
@@ -205,12 +216,12 @@ const ExamRecommender = () => {
                     className="w-[50%] bg-[#EE7C00] cursor-pointer rounded-[2px] flex justify-center"
                     style={{
                       boxShadow:
-                        "0px 1.52083px 1.52083px 1.52083px rgba(204, 204, 204, 0.1)",
+                      "0px 1.52083px 1.52083px 1.52083px rgba(204, 204, 204, 0.1)",
                     }}
-                  >
+                    >
                     <button
                       className="text-[#FFFFFF] p-1"
-                    >
+                      >
                       Suggest Now
                     </button>
                   </div>
@@ -221,9 +232,9 @@ const ExamRecommender = () => {
                 className="w-[47%] flex justify-center flex-col p-3 items-center"
                 style={{
                   background:
-                    "linear-gradient(158.5deg, #FFC88B 5.02%, #EE7C00 101.84%)",
+                  "linear-gradient(158.5deg, #FFC88B 5.02%, #EE7C00 101.84%)",
                 }}
-              >
+                >
               <p className="text-[#F3F3F3]  text-center  leading-9 tracking-wide text-[28px] font-bold">
                 Lorem ipsum dolor sit amet consectetur. Lobortis porta volutpat
                 tellus pellentes
@@ -232,6 +243,7 @@ const ExamRecommender = () => {
             </div>
           </div>
         </div>
+      </>  
       );    
 }
 
