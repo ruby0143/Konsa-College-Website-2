@@ -3,7 +3,8 @@ import { AiOutlineClose } from 'react-icons/ai'
 
 
 const RecommendedExamsContainer = ({recommendedExams, setIsModalOpen}) => {
-  let RecommendedExams = recommendedExams.Exams
+  console.log("exams:",recommendedExams[0]);
+  let RecommendedExams = recommendedExams[0].Exams
 
   return (
     <div className='w-full h-full flex flex-col mob:justify-evenly justify-between'>

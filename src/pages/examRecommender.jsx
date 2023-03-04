@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
 import RecommendedExamsContainer from '../components/ExamRecommendation/recommendedExams'
 import ToolsModal from '../components/Modal/toolsModal'
 
@@ -9,12 +8,10 @@ const ExamRecommender = () => {
 
   const apiRecommendedExamData = useRef({})
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  
   const [selectedState, setSelectedState] = useState("")
-  const [userName, setUserName] = useState("")
+  // const [userName, setUserName] = useState("")
   
-  // const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
     
   const locations = [
      {
@@ -109,34 +106,26 @@ const ExamRecommender = () => {
      }
   ]
   
-  
-  function handleDataFetch(location){
-      ( async () => {
-        const url = "https://konsa-college-backend.vercel.app/recommendedExams";
-        const {data} = await axios.get(url,{
-          params : {
-            location: location
-          },
-        })
-        console.log("data aya: ", data[0]);
-        apiRecommendedExamData.current = data[0]
-        setIsDropdownOpen(false);
-        setSelectedState(location);
-        console.log("data:",apiRecommendedExamData);
-      })()
-    }
-    
-    const handleFormSubmit = (e) => {
-      e.preventDefault();
-      setIsModalOpen(true)
-      setSelectedState("");
-      setUserName("");
+    const handleFormSubmit = () => {
+      if(selectedState !== ""){
+        ( async () => {
+          const url = "https://konsa-college-backend.vercel.app/recommendedExams";
+          const {data} = await axios.get(url,{
+            params : {
+              location: selectedState
+            },
+          })
+          apiRecommendedExamData.current = data 
+          setIsModalOpen(true)
+          setSelectedState("");
+        })()
+      }
     }
 
         return (
         <>
         {
-          isModalOpen && <ToolsModal>
+          isModalOpen && apiRecommendedExamData.current !== [] && <ToolsModal>
             <RecommendedExamsContainer recommendedExams={apiRecommendedExamData.current} setIsModalOpen={setIsModalOpen}/>
           </ToolsModal>
         }
@@ -149,7 +138,7 @@ const ExamRecommender = () => {
             JEE Mains 2023
           </h3>
           <div className=" flex justify-center mb-[60px] mob:mb-[40px]">
-            <p className="text-center w-[80%]  mt-[20px] mob:mt-[8px] text-xl mob:text-base font-normal mob:font-light text-[#3C3B3B] desk:leading-6 mob:leading-4 desk:tracking-wider">
+            <p className="text-center w-[80%]  mt-[20px] mob:mt-[8px] text-xl mob:text-base mob:font-light text-[#3C3B3B] desk:leading-6 mob:leading-5 desk:tracking-wider">
               Lorem ipsum dolor sit amet consectetur. Lobortis porta volutpat tellus
               pellentesque sodales eget quam enim. Risus et diam quis risus nunc ut
               porttitor tellus imperdiet. Id nunc turpis donec aliquam .
@@ -161,8 +150,8 @@ const ExamRecommender = () => {
               style={{ boxShadow: "-3px 0px 4px 2px rgba(0, 0, 0, 0.04)" }}
               >
               <form 
+                onSubmit={handleSubmit(handleFormSubmit)}
                 className="desk:w-[53%] flex-col font-roboto p-[40px] bg-[url('/Stroke.svg')] bg-contain bg-no-repeat"
-                onSubmit={handleFormSubmit}
               >
                 <h4 className="mt-[22px] mob:mt-[11px] text-center font-bold text-sm mob:font-medium">
                   Enter Your Details
@@ -176,61 +165,46 @@ const ExamRecommender = () => {
                   <input
                     type="text"
                     placeholder="Enter Your Name"
-                    required
-                    value={userName}
-                    onChange={e=>setUserName(e.target.value)}
-                    className="rounded-[2px] bg-[#FFFFFF] mt-[8px] text-[#ACACAC] text-sm mob:text-xs tracking-wide focus:outline-none w-full h-full p-[6px]"
-                    style={{
-                      boxShadow:
-                        "0px 1.52083px 1.52083px 1.52083px rgba(204, 204, 204, 0.1)",
-                      border: "0.760417px solid #CCCCCC",
-                    }}
+                    // onChange={e=>setUserName(e.target.value)}
+                    {...register("name", { required: "name field is required" })} 
+                    className={`rounded-[2px] bg-[#FFFFFF] text-[#ACACAC] text-sm mob:text-xs tracking-wide focus:outline-none border ${errors.name ? "border-red-500" : "border-gray-300"} w-full h-full p-[6px]`}
                     />
                 </div>
     
-                {/* {inputMarksError !== "" && inputMarks === "" && (
-                  <div className="text-red-600">{inputMarksError}</div>
-                )} */}
+                {errors.name && <div 
+                  className='text-sm text-red-500 mt-1'
+                >
+                  {errors.name.message}
+                </div>}
 
                 {/* STATE */}
-                <h6 className="mt-[26px] mob:text-[13px] mob:mt-[18px] ">State of Eligibilty</h6>
-                <div  
-                  className="relative flex mt-[8px] justify-betweeb h-[34px] items-center w-full rounded-[2px] bg-[#ffffff] cursor-pointer" 
-                  style={{border:"1px solid #D3D3D3"}}
-                  onClick={()=>setIsDropdownOpen(prev=>!prev)}
+                <h6 className="mt-[26px] mob:text-[13px] mob:mt-[18px] mb-2">State of Eligibilty</h6>
+
+                <select 
+                  className={`w-full rounded-[2px] px-1 h-[35px] text-[#ACACAC] text-sm bg-[#ffffff] cursor-pointer focus:outline-none border ${errors.state ? "border-red-500" : "border-gray-300"}`}
+                  {...register("state",{required: "State field is required"})}
+                  onChange={e=>setSelectedState(e.target.value)}
                 >
-                    <div className='focus:outline-none text-[#ACACAC] text-sm tracking-wide w-[90%] h-full p-2'>
-                      {selectedState === "" ? "Enter Your State" : selectedState}
-                    </div>  
-                    <div className="w-[10%] h-full flex justify-center items-center cursor-pointer">
-                      {!isDropdownOpen ? (
-                        <AiOutlineDown className="text-[#ACACAC]" />
-                        ) : (
-                          <AiOutlineUp className="text-[#ACACAC]" />
-                          )}
-                    </div> 
-                 
+                  <option value="" className='text-[#ACACAC]'>-- Enter Your State --</option>
                   {
-                    isDropdownOpen && (
-                      <div className="absolute z-10 top-[35px] left-0 right-[1px] w-full text-[#9ca3b7] border-[#dcdcdc] bg-[#F5F5F5] h-[150px] overflow-y-scroll overflow-x-hidden">
-                      {locations.map((state,idx) => {
-                        return (
-                          <div
-                            key={idx}
-                            onClick={()=>{handleDataFetch(state.name)}}
-                            className="w-full px-3 hover:bg-[#ffffff] shadow-sm cursor-pointer rounded-sm leading-10"
-                          >
-                            {state.name}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
+                    locations.map((state,idx)=>{
+                      return (
+                        <option 
+                          key={idx} 
+                          className="w-full px-3 hover:bg-[#ffffff] shadow-sm cursor-pointer"
+                        >
+                          {state.name}
+                        </option>
+                      )
+                    })
+                  }
+                </select>
     
-                {/* {shiftError !== "" && shift === "" && (
-                  <div className="text-red-600">{shiftError}</div>
-                )} */}
+                {errors.state && <div 
+                  className='text-sm text-red-500 mt-1'
+                >
+                  {errors.state.message}
+                </div>}
     
                 <div className="w-full flex justify-center mt-[44px] mob:mt-[30px]">
                   <div
