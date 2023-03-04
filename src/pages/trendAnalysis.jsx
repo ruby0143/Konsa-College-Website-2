@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, Label } from 'recharts';
 import axios from "axios";
 
 function trendAnalysis() {
@@ -17,8 +17,9 @@ function trendAnalysis() {
   const [requiredInst, setReqInst] = useState(false);
   const [requiredProg, setReqProg] = useState(false);
   const [reqSeat, setReqseat] = useState(false);
-  const [chart, setChart] = useState([]);
-  const [noData,setBool] = useState(false);
+
+  const [chartData, setChartData] = useState([]);
+  const [noData, setBool] = useState(false);
 
   const castes = [
     "EWS",
@@ -42,7 +43,7 @@ function trendAnalysis() {
   const url = "https://konsa-college-backend.vercel.app";
 
 
-  
+
 
   const submit =
     (selectedState ? true : false) &&
@@ -50,47 +51,15 @@ function trendAnalysis() {
     (selectedBranch ? true : false) &&
     (selectedCaste ? true : false) &&
     (selectedGender ? true : false);
- 
 
-  const renderCustomAxisTick = ({ x, y, payload }) => {
-    let label = '';
 
-    switch (payload.value) {
 
-      case '1':
-        label = "Round 1";
-        break;
-
-      case '2':
-        label = "Round 2";
-        break;
-      case '3':
-        label = "Round 3";
-        break;
-      case '4':
-        label = "Round 4";
-        break;
-      case '5':
-        label = "Round 5";
-        break;
-      case '6':
-        label = "Round 6";
-        break;
-
-      default:
-        label = "";
-    }
-
-    return (
-      <text x={x - 12} y={y + 4} width={24} height={24} fill="#666" textAnchor="middle">{label}</text>);
-
-  };
 
   useEffect(() => {
 
     axios
       .get(
-        url+"/branches"
+        url + "/branches"
       )
       .then((res) => {
         const arr = res.data;
@@ -113,28 +82,49 @@ function trendAnalysis() {
   useEffect(() => {
     if (submit) {
       axios
-        .post(url+"/trends", {
+        .post(url + "/trends", {
           Institute: selectedCollege,
           Program: selectedBranch,
           Gender: selectedGender,
           Caste: selectedCaste,
-          Quota : selectedState,
+          Quota: selectedState,
         })
         .then((resp) => {
-          console.log(">>",resp.data);
+          
+          const years = resp.data;
+          console.log(">>", years);
           const chartEle = document.querySelector("#chart");
-          if(resp.data.length === 0){
+
+          if (years.y20.length === 0 && years.y21.length === 0 && years.y22.length===0 ) {
             console.log("No data found");
-            
             chartEle.classList.add("blur-[2px]");
             setBool(true);
           }
-          else{
+          else {
             setBool(false);
-            setChart(resp.data);
+            setChartData([]);
+            for (let i = 0; i < 6; i++) {
+              const round = {};
+              if (years.y20[i] !== undefined) {
+                round.year2020 = years.y20[i].Closing_Rank;
+                round.round = years.y20[i].Round;
+              }
+              if (years.y22[i] !== undefined) {
+                round.year2022 = years.y22[i].Closing_Rank;
+                round.round = years.y22[i].Round;
+              }
+              if (years.y21[i] !== undefined) {
+                round.year2021 = years.y21[i].Closing_Rank;
+                round.round = years.y21[i].Round;
+              }
+              setChartData(function (prev) {
+                return [...prev, round];
+              })
+            }
+
             chartEle.classList.remove("blur-[2px]");
           }
-          
+
         })
         .catch((err) => {
           console.log(err);
@@ -162,7 +152,7 @@ function trendAnalysis() {
     noData,
     "details"
   );
-
+  console.log(chartData, "finalData");
   return (
     <div className="p-3 ">
       <div className="head md:p-7">
@@ -182,11 +172,11 @@ function trendAnalysis() {
             <div>Rank Type</div>
             <div className="py-2 flex justify-between items-center">
               <div className="flex justify-center items-center" >
-                <input 
+                <input
                   type="radio"
                   value="Mains"
                   onChange={(e) => setRank(e.target.value)}
-                  checked
+                  checked="checked"
                   name="rank"
                 ></input>
                 <label>JEE (Main)</label>
@@ -230,7 +220,7 @@ function trendAnalysis() {
               </div>
             ) : null}
           </div>
-          
+
         </div>
         <div className="flex flex-col md:flex-row md:justify-between">
           <div className="institutes my-3 md:px-10 md:w-[50%]">
@@ -253,10 +243,10 @@ function trendAnalysis() {
                 Select a college
               </option>
               {colleges?.map((college, idx) => {
-                if(selectedRank === "Advance"){
+                if (selectedRank === "Advance") {
                   return (college.includes("Indian Institute of Technology") ? (<option value={college}>{college}</option>) : null)
                 }
-                else{
+                else {
                   return (!(college.includes("Indian Institute of Technology")) ? (<option value={college}>{college}</option>) : null)
                 }
               })}
@@ -371,37 +361,42 @@ function trendAnalysis() {
           </div>
         </div>
       </div>
-      <div className="chart mt-5 " >
-        <ResponsiveContainer width="90%" height={300} >
+      <div className="chart mt-7" >
+        <ResponsiveContainer width="90%" height={400} >
 
           <LineChart
             id="chart"
-            data={chart}
+            data={chartData}
             margin={{
-              top: 20,
+              top: 0,
               right: 30,
               left: -10,
               bottom: 5,
             }}
           >
-            <XAxis dataKey={"Round"} />
+            <XAxis dataKey={"round"} height={80}>
+              <Label value="Rounds"  position="insideBottom"/>
+            </XAxis>
             <YAxis />
             <Tooltip />
-            <Legend />
-          
-            <Line type="monotone" dataKey="Closing_Rank" stroke="#8884d8" activeDot={{ r: 5 }} />
 
-            <Line type="monotone" dataKey="Opening_Rank" stroke="#82ca9d" activeDot={{ r: 5 }} />
+            <Line type="monotone" dataKey="year2020" stroke="#8884d8" activeDot={{ r: 5 }} />
+
+            <Line type="monotone" dataKey="year2021" stroke="#82ca9d" activeDot={{ r: 5 }} />
+
+            <Line type="monotone" dataKey="year2022" stroke="#FFCCCB" activeDot={{ r: 5 }} />
+
+            <Legend  verticalAlign="top" height={80}   />
           </LineChart>
         </ResponsiveContainer>
         {noData ? (<div className='absolute'>
-        <div>
-          <h1 className="mt-20" >No Data Available</h1>
-        </div>
-        
+          <div>
+            <h1 className="mt-20" >No Data Available</h1>
+          </div>
+
         </div>) : null}
-        
-        
+
+
       </div>
     </div>
   );
