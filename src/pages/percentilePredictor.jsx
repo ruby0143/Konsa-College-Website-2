@@ -91,15 +91,22 @@ const PercentilePredictor = () => {
     if (isError) {
       if (inputMarks === "") {
         setInputMarksError("Score required to be entered!");
+        setInputMarks("")
+      setIsError(false)
+        
       }
 
       if (shift === "") {
         setShiftError("Shift required to be selected!");
+        setShift("")
+      setIsError(false)
+        
       }
       console.log("error m aya");
       return;
     } else if (inputMarks !== "" && shift !== "") {
       handlePredicter();
+      setIsError(false)
     }
   };
 

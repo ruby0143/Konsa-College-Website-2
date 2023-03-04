@@ -26,7 +26,6 @@ const CollegePredictor = () => {
   const [dreamBtn, setDreamBtn] = useState(true);
   const [sureBtn, setSureBtn] = useState(false);
   const [safeBtn, setSafeBtn] = useState(false);
-  const [skel,setSkel]=useState(false)
 
   // const url = "http://localhost:5000";
   const url = "https://konsa-college-backend.vercel.app";
@@ -44,13 +43,22 @@ const CollegePredictor = () => {
     if (isError) {
       if (rank === "") {
         setRankError("Rank required to be entered!");
+      setIsError(false)
+      setRank("")
+
       }
 
       if (Eligibility === "") {
         setEligibilityError("State required to be selected!");
+      setIsError(false)
+      setEligibility("")
+
       }
       if (Category === "") {
         setCategoryError("Category required to be selected!");
+      setIsError(false)
+      setCategory("")
+
       }
       // if (selectedGender === "") {
       //   setGenderError("Gender required to be selected!");
@@ -68,6 +76,8 @@ const CollegePredictor = () => {
       Category !== ""
     ) {
       handleSubmit();
+      setIsError(false)
+
     }
   };
 
