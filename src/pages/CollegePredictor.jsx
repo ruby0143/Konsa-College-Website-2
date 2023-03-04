@@ -1,32 +1,85 @@
 import React, { useState, useEffect } from "react";
-import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
+import { AiOutlineDown, AiOutlineUp,AiOutlineClose} from "react-icons/ai";
 import axios from "axios";
 import state from "../components/toolsPage/states";
+import { CSVDownload } from "react-csv";
 
 const CollegePredictor = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpens, setIsOpens] = useState(false);
   const [Eligibility, setEligibility] = useState("");
   const [Category, setCategory] = useState("");
-  const [selectedGender, setGender] = useState("");
-  const [data, setData] = useState();
-  const [rank, setRank] = useState();
+  const [selectedGender, setGender] = useState("Gender-Neutral");
+  const [rank, setRank] = useState("");
   const [pwd, setPwd] = useState(false);
   const [isError, setIsError] = useState(false);
   const [RankError, setRankError] = useState(false);
   const [CategoryError, setCategoryError] = useState(false);
   const [EligibilityError, setEligibilityError] = useState(false);
-  const [CasteError, setCasteError] = useState(false);
-  const [GenderError, setGenderError] = useState(false);
-  const [PwdError, setPwdError] = useState(false);
+  // const [CasteError, setCasteError] = useState(false);
+  // const [GenderError, setGenderError] = useState(false);
+  // const [PwdError, setPwdError] = useState(false);
+  const [res, setRes] = useState(false);
+  const [predictedColleges, setPredictedColleges] = useState([]);
+  const [mapColleges, setMapColleges] = useState([]);
+  const [download, setDownload] = useState(false);
+  const [dreamBtn, setDreamBtn] = useState(true);
+  const [sureBtn, setSureBtn] = useState(false);
+  const [safeBtn, setSafeBtn] = useState(false);
+  const [skel,setSkel]=useState(false)
 
+  // const url = "http://localhost:5000";
   const url = "https://konsa-college-backend.vercel.app";
 
-  useEffect(() => {
+  const handleValidationError = () => {
+    if (
+      rank === "" ||
+      Eligibility === "" ||
+      // selectedGender === "" ||
+      Category === ""
+    ) {
+      setIsError(true);
+    }
+
+    if (isError) {
+      if (rank === "") {
+        setRankError("Rank required to be entered!");
+      }
+
+      if (Eligibility === "") {
+        setEligibilityError("State required to be selected!");
+      }
+      if (Category === "") {
+        setCategoryError("Category required to be selected!");
+      }
+      // if (selectedGender === "") {
+      //   setGenderError("Gender required to be selected!");
+      // }
+      // if (PwdError === "") {
+      //   setPwdError("PwD required to be selected!");
+      // }
+      console.log("error m aya");
+      return;
+    } else if (
+      rank !== "" &&
+      Eligibility !== "" &&
+      castes !== "" &&
+      // selectedGender !== "" &&
+      Category !== ""
+    ) {
+      handleSubmit();
+    }
+  };
+
+  const handleSubmit = () => {
+    console.log(Category, rank, Eligibility, selectedGender);
     let temp1;
     let temp2;
     axios
-      .get(url + "/allrounds")
+      .post(url + "/collegePredictor", {
+        Gender: selectedGender,
+        Caste: Category,
+      })
       .then((resp) => {
         let clg = resp?.data?.filter((clg) => {
           if (clg?.Opening_Rank.length > 0) {
@@ -34,31 +87,31 @@ const CollegePredictor = () => {
             temp2 = clg.Closing_Rank;
             clg.Opening_Rank = Number.parseInt(temp1);
             clg.Closing_Rank = Number.parseInt(temp2);
-            return clg;
+            if (clg.Opening_Rank < rank && rank < clg.Closing_Rank) {
+              return clg;
+            }
           }
         });
-        setData(clg);
-        console.log(clg);
+        console.log("Dream", clg);
+        setPredictedColleges(clg);
+        setMapColleges(clg);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [setPwd, setCategory]);
+    setRes(true);
+  };
 
-  const handleSubmit = () => {
-    console.log(Category, rank, Eligibility, selectedGender);
-    let filter = data?.filter((clg) => {
-      if (
-        clg.Seat_Type === Category &&
-        clg.Gender === selectedGender &&
-        clg.Opening_Rank > rank &&
-        rank < clg.Closing_Rank
-      ) {
-        return clg;
-      }
-    });
+  const handleDream = () => {
+    console.log("Dream", predictedColleges);
+    setDreamBtn(true);
+    setSureBtn(false);
+    setSafeBtn(false);
+    setMapColleges(predictedColleges);
+  };
 
-    let homeclg = filter?.filter((clg) => {
+  const handleSafe = async () => {
+    let home = await predictedColleges?.filter((clg) => {
       if (
         clg.Institute.split(" ")[clg.Institute.split(" ").length - 1] ===
         Eligibility
@@ -66,7 +119,15 @@ const CollegePredictor = () => {
         return clg;
       }
     });
-    let othclg = filter?.filter((clg) => {
+    console.log("safe", home);
+    setSafeBtn(true);
+    setDreamBtn(false);
+    setSureBtn(false);
+    setMapColleges(home);
+  };
+
+  const handleSure = async () => {
+    let othclg = await predictedColleges?.filter((clg) => {
       if (
         clg.Institute.split(" ")[clg.Institute.split(" ").length - 1] !==
         Eligibility
@@ -74,54 +135,13 @@ const CollegePredictor = () => {
         return clg;
       }
     });
-
-    console.log(filter, homeclg, othclg);
+    console.log("sure", othclg);
+    setSureBtn(true);
+    setDreamBtn(false);
+    setSafeBtn(false);
+    setMapColleges(othclg);
   };
-
-  const handleValidationError = () => {
-    handleSubmit();
-
-    // if (
-    //   rank === "" ||
-    //   Eligibility === "" ||
-    //   selectedGender === "" ||
-    //   Category === "" ||
-    //   pwd
-    // )
-    //   setIsError(true);
-
-    // if (isError) {
-    //   if (rank === "") {
-    //     setRankError("Rank required to be entered!");
-    //   }
-
-    //   if (Eligibility === "") {
-    //     setEligibilityError("State required to be selected!");
-    //   }
-    //   if (Category === "") {
-    //     setCategoryError("Category required to be selected!");
-    //   }
-    //   if (selectedGender === "") {
-    //     setGenderError("Gender required to be selected!");
-    //   }
-    //   if (PwdError === "") {
-    //     setPwdError("PwD required to be selected!");
-    //   }
-    //   console.log("error m aya");
-    //   return;
-    // } else if (
-    //   rank !== "" &&
-    //   Eligibility !== "" &&
-    //   castes !== "" &&
-    //   selectedGender !== "" &&
-    //   Category !== ""
-    // ) {
-    //   handleSubmit();
-    // }
-  };
-
   const CategoryList = ["EWS", "OBC-NCL", "OPEN", "SC", "ST"];
-
   const castes = [
     "EWS (PwD)",
     "OBC-NCL (PwD)",
@@ -129,9 +149,148 @@ const CollegePredictor = () => {
     "SC (PwD)",
     "ST (PwD)",
   ];
+  const skeleton=[0,1,2,3,4,5,6,7,8,9,10]
 
   return (
-    <div className="bg-[#F5F5F5]">
+    <div
+      className="bg-[#F5F5F5] relative "
+      style={{ backgroundColor: res ? "rgba(0,0,0,0.6)" : null }}
+    >
+      {res && (
+        <div className="absolute z-50 w-[70%] top-[50px] left-[230px] mob:w-[90%] bg-[#FCFCFC] h-[80%] flex flex-col p-5">
+          <div className="w-full flex flex-row justify-between  ">
+            <div className="w-9/12 flex flex-row items-center justify-start gap-x-10 cursor-pointer">
+              <div
+                className={
+                  dreamBtn
+                    ? "text-[#505050] font-semibold hover:text-[#505050]"
+                    : "text-[#818181] font-semibold hover:text-[#505050]"
+                }
+                onClick={() => {
+                  handleDream();
+                }}
+              >
+                Dream(15)
+              </div>
+              <div
+                className={
+                  sureBtn
+                    ? "text-[#505050] font-semibold hover:text-[#505050]"
+                    : "text-[#818181] font-semibold hover:text-[#505050]"
+                }
+                onClick={() => {
+                  handleSure();
+                }}
+              >
+                Sure(20)
+              </div>
+              <div
+                className={
+                  safeBtn
+                    ? "text-[#505050] font-semibold hover:text-[#505050]"
+                    : "text-[#818181] font-semibold hover:text-[#505050]"
+                }
+                onClick={() => {
+                  handleSafe();
+                }}
+              >
+                Safe(15)
+              </div>
+            </div>
+            <div className="w-3/12 flex flex-row justify-end gap-x-2">
+              <button
+                onClick={() => {
+                  setDownload(true);
+                }}
+                className="bg-[#EE7C00] rounded-[2px] text-white p-[5px] px-4"
+              >
+                {download && (
+                  <CSVDownload data={predictedColleges} target="_blank" />
+                )}
+                Download
+              </button>
+              <button
+                onClick={() => {
+                  if (res) {
+                    setRes(false);
+                    setRank("");
+                    {
+                      setEligibility("");
+                      setCategory("");
+                      // setPwd(false);
+                      // setGender("Gender-Neutral");
+                    }
+                  }
+                }}
+                className="bg-[#EE7C00] rounded-[2px] text-white p-[5px] px-2"
+              >
+                <AiOutlineClose size={25} />
+              </button>
+            </div>
+          </div>
+
+          <div
+            className="mt-2 p-4 rounded-[3px] flex items-center font-semibold  "
+            style={{ backgroundColor: "rgba(238, 124, 0, 0.05)" }}
+          >
+            College
+          </div>
+          <div className="h-full overflow-x-hidden overflow-y-auto">
+            {mapColleges.length > 0 ? (
+              <>
+                {mapColleges?.map((clg, id) => {
+                  return (
+                    <div key={id}>
+                      <div className="w-full flex flex-row  items-center p-1">
+                        <div className="w-[5%]">
+                          <img
+                            src={id % 2 === 0 ? "./cp1.svg" : "./redlogo.svg"}
+                          ></img>
+                        </div>
+                        <div className="w-[75%] p-2 first-letter:flex flex-col">
+                          <div className="text-sm">{clg.Institute}</div>
+                          <div className="text-xs">
+                            {clg.Academic_Program_Name}
+                          </div>
+                        </div>
+                      </div>
+                      <hr></hr>
+                    </div>
+                  );
+                })}
+              </>
+            ) : (
+              <div
+                role="status"
+                className="w-full p-4 space-y-4  divide-y divide-gray-200  animate-pulse "
+              >
+                {skeleton?.map((item,i)=>{
+                 return(<>
+                  <div className="flex items-center justify-start gap-x-2 pt-2">
+                  <div class="flex items-center justify-center h-10 w-10 bg-gray-300 rounded-full">
+                    <svg
+                      class="w-6 h-6 text-gray-200"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                      fill="currentColor"
+                      viewBox="0 0 640 512"
+                    >
+                      <path d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="h-2.5 bg-gray-300 rounded-full  w-72 mb-2.5"></div>
+                    <div className="w-96 h-2 bg-gray-200 rounded-full "></div>
+                  </div>
+                  {/* <div className="h-2.5 bg-gray-300 rounded-full w-16"></div> */}
+                </div>
+                </>)
+                })}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
       <h2 className="pt-[30px] mob:pt-[16px] font-roboto font-bold mob:font-semibold text-[32px] mob:text-[18px] text-[#3C3B3B] text-center tracking-wider">
         College Predictor
       </h2>
@@ -142,12 +301,19 @@ const CollegePredictor = () => {
           porttitor tellus imperdiet. Id nunc turpis donec aliquam .
         </p>
       </div>
-      <div className=" flex justify-center bg-[url('/cpbg.svg')] desk:bg-cover  mob:bg-cover mob:bg-no-repeat mob:bg-bottom">
+      <div className="flex justify-center bg-[url('/cpbg.svg')] desk:bg-cover  mob:bg-cover mob:bg-no-repeat mob:bg-bottom">
         <div
-          className="desk:w-[60%] mob:w-[80%]  bg-[#FFFFFF] flex desk:flex-row mob:flex-col mb-[50px] mob:mb-[150px]"
+          className={
+            res
+              ? "invisible"
+              : "desk:w-[60%] mob:w-[80%]  bg-[#FFFFFF] flex desk:flex-row mob:flex-col mb-[50px] mob:mb-[150px]"
+          }
           style={{ boxShadow: "-3px 0px 4px 2px rgba(0, 0, 0, 0.04)" }}
         >
-          <div className="desk:w-[53%] flex-col font-roboto p-[40px] bg-[url('/Stroke.svg')] bg-contain bg-no-repeat">
+          <div
+            className="desk:w-[53%] flex-col font-roboto p-[40px] bg-[url('/Stroke.svg')] bg-contain bg-no-repeat"
+            style={{ backgroundColor: res ? "rgba(0,0,0,0.5)" : null }}
+          >
             <h4 className="mt-[18px] mob:mt-[11px] text-center font-bold text-sm mob:font-medium">
               Enter your JEE Mains 2023 Details
             </h4>
@@ -162,10 +328,12 @@ const CollegePredictor = () => {
                   "0px 1.52083px 1.52083px 1.52083px rgba(204, 204, 204, 0.1)",
                 border: "0.760417px solid #CCCCCC",
               }}
-              type="text"
+              type="number"
+              required
+              value={rank}
               placeholder="Enter Your Rank"
             ></input>
-            {RankError !== "" && rank === '' && (
+            {RankError !== "" && rank === "" && (
               <div className="text-red-600 mob:text-xs">{RankError}</div>
             )}
 
@@ -302,15 +470,14 @@ const CollegePredictor = () => {
                 <div className="flex w-full flex-row mt-[5px] gap-x-4">
                   <div className="w-[70%] flex  gap-x-2">
                     <input
+                      checked="checked"
                       type="radio"
                       id="Gender"
                       name="gender"
                       value="Male"
                       onChange={() => setGender("Gender-Neutral")}
                     />
-                    <label className="mob:text-[13px]" for="html">
-                      Male
-                    </label>
+                    <label className="mob:text-[13px]">Male</label>
                   </div>
                   <div className="w-[30%] flex gap-x-2">
                     <input
@@ -322,15 +489,13 @@ const CollegePredictor = () => {
                       name="gender"
                       value="Female"
                     />
-                    <label className="mob:text-[13px]" for="css">
-                      Female
-                    </label>
+                    <label className="mob:text-[13px]">Female</label>
                   </div>
                 </div>
               </div>
-              {GenderError !== "" && selectedGender === "" && (
+              {/* {GenderError !== "" && selectedGender === "" && (
                 <div className="text-red-600 mob:text-xs">{GenderError}</div>
-              )}
+              )} */}
               <div className="w-full mt-[20px] mob:mt-[5px]">
                 <h6 className=" mob:text-[13px] ">Are You Pwd</h6>
                 <div className="w-full flex flex-row mt-[5px] ">
@@ -341,35 +506,36 @@ const CollegePredictor = () => {
                       name="pwd"
                       value="Yes"
                       onChange={() => {
-                        setPwd(true);
-                        setCategory("");
+                        if (!pwd) {
+                          setPwd(true);
+                          setCategory("");
+                        }
                       }}
                     />
-                    <label className="mob:text-[13px]" for="html">
-                      Yes
-                    </label>
+                    <label className="mob:text-[13px]">Yes</label>
                   </div>
                   <div className="w-[30%] flex pl-1  gap-x-2">
                     <input
+                      checked
                       type="radio"
                       id="pwd"
                       name="pwd"
                       value="No"
                       onChange={() => {
-                        setPwd(false);
-                        setCategory("");
+                        if (pwd) {
+                          setPwd(false);
+                          setCategory("");
+                        }
                       }}
                     />
-                    <label className="mob:text-[13px]" for="css">
-                      No
-                    </label>
+                    <label className="mob:text-[13px]">No</label>
                   </div>
                 </div>
               </div>
             </div>
-            {PwdError !== "" && castes === "" && (
+            {/* {PwdError !== "" && castes === "" && (
               <div className="text-red-600 mob:text-xs">{PwdError}</div>
-            )}
+            )} */}
 
             <div className="w-full flex justify-center mt-[30px] mob:mt-[30px]">
               <div

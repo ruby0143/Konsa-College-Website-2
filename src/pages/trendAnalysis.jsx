@@ -121,7 +121,7 @@ function trendAnalysis() {
           Quota : selectedState,
         })
         .then((resp) => {
-          console.log(resp.data);
+          console.log(">>",resp.data);
           const chartEle = document.querySelector("#chart");
           if(resp.data.length === 0){
             console.log("No data found");
@@ -180,9 +180,9 @@ function trendAnalysis() {
         <div className="flex flex-col md:flex-row md:justify-between">
           <div className="rankTpye md:px-10 my-3 md:w-[50%]">
             <div>Rank Type</div>
-            <div className="py-2 flex justify-between">
-              <div>
-                <input
+            <div className="py-2 flex justify-between items-center">
+              <div className="flex justify-center items-center" >
+                <input 
                   type="radio"
                   value="Mains"
                   onChange={(e) => setRank(e.target.value)}
