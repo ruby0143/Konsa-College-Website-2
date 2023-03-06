@@ -1,14 +1,15 @@
 import axios from 'axios'
 import React, { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { AiOutlineClose } from 'react-icons/ai'
 import RecommendedExamsContainer from '../components/ExamRecommendation/recommendedExams'
 import ToolsModal from '../components/Modal/toolsModal'
 
 const ExamRecommender = () => {
 
-  const apiRecommendedExamData = useRef({})
+  const [apiRecommendedExamData, setApiREcommendedExamData] = useState([])
+  const [selectedState, setSelectedState] = useState("-- Enter your state --")
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [selectedState, setSelectedState] = useState("")
   // const [userName, setUserName] = useState("")
   
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -107,7 +108,7 @@ const ExamRecommender = () => {
   ]
   
     const handleFormSubmit = () => {
-      if(selectedState !== ""){
+      if(selectedState !== "-- Enter Your State --"){
         ( async () => {
           const url = "https://konsa-college-backend.vercel.app/recommendedExams";
           const {data} = await axios.get(url,{
@@ -115,9 +116,9 @@ const ExamRecommender = () => {
               location: selectedState
             },
           })
-          apiRecommendedExamData.current = data 
+          setApiREcommendedExamData(data) 
+          setSelectedState("-- Enter your state --");
           setIsModalOpen(true)
-          setSelectedState("");
         })()
       }
     }
@@ -125,9 +126,25 @@ const ExamRecommender = () => {
         return (
         <>
         {
-          isModalOpen && apiRecommendedExamData.current !== [] && <ToolsModal>
-            <RecommendedExamsContainer recommendedExams={apiRecommendedExamData.current} setIsModalOpen={setIsModalOpen}/>
-          </ToolsModal>
+          isModalOpen && (
+            apiRecommendedExamData.length > 0 ? (
+              <ToolsModal>
+                <RecommendedExamsContainer recommendedExams={apiRecommendedExamData} setIsModalOpen={setIsModalOpen}/>
+              </ToolsModal> 
+            ) : (
+              <ToolsModal>
+                <div className='w-full h-full flex flex-col'>
+                  <AiOutlineClose 
+                    className='self-end cursor-pointer'
+                    onClick={()=>setIsModalOpen(false)}
+                  />
+                  <div className='h-full w-full flex justify-center items-center text-5xl text-[#E77C00] font-bold'>
+                    Sorry, Exam data not found !!!
+                  </div>
+                </div>
+              </ToolsModal>
+            )
+          )
         }
 
         <div className="bg-[#F5F5F5]">
@@ -165,7 +182,7 @@ const ExamRecommender = () => {
                   <input
                     type="text"
                     placeholder="Enter Your Name"
-                    // onChange={e=>setUserName(e.target.value)}
+                    onChange={e=>setUserName(e.target.value)}
                     {...register("name", { required: "name field is required" })} 
                     className={`rounded-[2px] bg-[#FFFFFF] text-[#ACACAC] text-sm mob:text-xs tracking-wide focus:outline-none border ${errors.name ? "border-red-500" : "border-gray-300"} w-full h-full p-[6px]`}
                     />
@@ -184,8 +201,9 @@ const ExamRecommender = () => {
                   className={`w-full rounded-[2px] px-1 h-[35px] text-[#ACACAC] text-sm bg-[#ffffff] cursor-pointer focus:outline-none border ${errors.state ? "border-red-500" : "border-gray-300"}`}
                   {...register("state",{required: "State field is required"})}
                   onChange={e=>setSelectedState(e.target.value)}
+                  value={selectedState}
                 >
-                  <option value="" className='text-[#ACACAC]'>-- Enter Your State --</option>
+                  <option value="" className='text-[#ACACAC]'>{selectedState}</option>
                   {
                     locations.map((state,idx)=>{
                       return (
@@ -215,8 +233,8 @@ const ExamRecommender = () => {
                     }}
                     >
                     <button
+                      className="text-[#FFFFFF] w-full h-full p-1"
                       type='submit'
-                      className="text-[#FFFFFF] p-1"
                       >
                       Suggest Now
                     </button>
