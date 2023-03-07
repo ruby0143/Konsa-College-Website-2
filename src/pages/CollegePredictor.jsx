@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AiOutlineDown, AiOutlineUp,AiOutlineClose} from "react-icons/ai";
+import { AiOutlineDown, AiOutlineUp, AiOutlineClose } from "react-icons/ai";
 import axios from "axios";
 import state from "../components/toolsPage/states";
 import { CSVDownload } from "react-csv";
@@ -43,22 +43,16 @@ const CollegePredictor = () => {
     if (isError) {
       if (rank === "") {
         setRankError("Rank required to be entered!");
-      setIsError(false)
-      setRank("")
-
+        setIsError(false);
       }
 
       if (Eligibility === "") {
         setEligibilityError("State required to be selected!");
-      setIsError(false)
-      setEligibility("")
-
+        setIsError(false);
       }
       if (Category === "") {
         setCategoryError("Category required to be selected!");
-      setIsError(false)
-      setCategory("")
-
+        setIsError(false);
       }
       // if (selectedGender === "") {
       //   setGenderError("Gender required to be selected!");
@@ -76,12 +70,18 @@ const CollegePredictor = () => {
       Category !== ""
     ) {
       handleSubmit();
-      setIsError(false)
 
+      setIsError(false);
     }
   };
 
   const handleSubmit = () => {
+    setIsError(false);
+    setRankError("");
+    setCategoryError("");
+    setEligibilityError("");
+    // document.getElementsByClassName("rb").checked = false;
+
     console.log(Category, rank, Eligibility, selectedGender);
     let temp1;
     let temp2;
@@ -109,7 +109,12 @@ const CollegePredictor = () => {
       .catch((err) => {
         console.log(err);
       });
+
     setRes(true);
+    setIsError(false);
+    setRank("");
+    setCategory("");
+    setEligibility("");
   };
 
   const handleDream = () => {
@@ -159,7 +164,7 @@ const CollegePredictor = () => {
     "SC (PwD)",
     "ST (PwD)",
   ];
-  const skeleton=[0,1,2,3,4,5,6,7,8,9,10]
+  const skeleton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
     <div
@@ -274,27 +279,29 @@ const CollegePredictor = () => {
                 role="status"
                 className="w-full p-4 space-y-4  divide-y divide-gray-200  animate-pulse "
               >
-                {skeleton?.map((item,i)=>{
-                 return(<>
-                  <div className="flex items-center justify-start gap-x-2 pt-2">
-                  <div class="flex items-center justify-center h-10 w-10 bg-gray-300 rounded-full">
-                    <svg
-                      class="w-6 h-6 text-gray-200"
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                      fill="currentColor"
-                      viewBox="0 0 640 512"
-                    >
-                      <path d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="h-2.5 bg-gray-300 rounded-full  w-72 mb-2.5"></div>
-                    <div className="w-96 h-2 bg-gray-200 rounded-full "></div>
-                  </div>
-                  {/* <div className="h-2.5 bg-gray-300 rounded-full w-16"></div> */}
-                </div>
-                </>)
+                {skeleton?.map((item, i) => {
+                  return (
+                    <>
+                      <div className="flex items-center justify-start gap-x-2 pt-2">
+                        <div className="flex items-center justify-center h-10 w-10 bg-gray-300 rounded-full">
+                          <svg
+                            className="w-6 h-6 text-gray-200"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                            fill="currentColor"
+                            viewBox="0 0 640 512"
+                          >
+                            <path d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <div className="h-2.5 bg-gray-300 rounded-full  w-72 mb-2.5"></div>
+                          <div className="w-96 h-2 bg-gray-200 rounded-full "></div>
+                        </div>
+                        {/* <div className="h-2.5 bg-gray-300 rounded-full w-16"></div> */}
+                      </div>
+                    </>
+                  );
                 })}
               </div>
             )}
@@ -332,7 +339,7 @@ const CollegePredictor = () => {
             </h6>
             <input
               onChange={(e) => setRank(e.target.value)}
-              className="rounded-[2px] bg-[#FFFFFF] mt-[6px] text-[#ACACAC] text-sm mob:text-xs tracking-wide focus:outline-none w-full p-[6px]"
+              className="rounded-[2px] bg-[#FFFFFF] mt-[6px] text-[#ACACAC] text-sm mob:text-xs tracking-wide focus:outline-none border-none w-full p-[6px]"
               style={{
                 boxShadow:
                   "0px 1.52083px 1.52083px 1.52083px rgba(204, 204, 204, 0.1)",
@@ -352,11 +359,11 @@ const CollegePredictor = () => {
             </h6>
 
             <div
-              className="relative flex flex-row mt-[6px] justify-start items-center w-full p-[6px] rounded-[2px] bg-[#ffffff]"
+              className="relative flex flex-row mt-[6px] justify-start items-center w-full p-[6px] rounded-[2px] border-none focus:outline-none bg-[#ffffff]"
               style={{ border: "1px solid #D3D3D3" }}
             >
               <button
-                className="text-[#ACACAC] text-sm tracking-wide w-[90%] flex justify-start"
+                className="text-[#ACACAC] text-sm tracking-wide w-[90%] flex justify-start focus:outline-none border-none"
                 onClick={() => {
                   setIsOpen((prevState) => !prevState);
                 }}
@@ -378,7 +385,7 @@ const CollegePredictor = () => {
               )}
 
               {isOpen && (
-                <div className="absolute top-[35px] left-0 right-[1px] w-full z-50 text-[#9ca3b7] border-[#dcdcdc] bg-[#F5F5F5]">
+                <div className="absolute top-[35px] left-0 right-[1px] w-full h-[280px] z-[100] text-[#9ca3b7] border-[#dcdcdc] bg-[#F5F5F5]  overflow-x-hidden overflow-y-auto">
                   {state.map((state) => {
                     return (
                       <div
@@ -405,11 +412,11 @@ const CollegePredictor = () => {
             </h6>
 
             <div
-              className="relative flex flex-row mt-[8px] justify-start  items-center w-full p-[6px] rounded-[2px] bg-[#ffffff]"
+              className="relative flex flex-row mt-[8px] justify-start  items-center w-full p-[6px] rounded-[2px] bg-[#ffffff] "
               style={{ border: "1px solid #D3D3D3" }}
             >
               <button
-                className="text-[#ACACAC] text-sm tracking-wide w-[90%] flex justify-start"
+                className="text-[#ACACAC] text-sm tracking-wide w-[90%] flex justify-start focus:outline-none border-none"
                 onClick={() => {
                   setIsOpens((prevState) => !prevState);
                 }}
@@ -480,9 +487,9 @@ const CollegePredictor = () => {
                 <div className="flex w-full flex-row mt-[5px] gap-x-4">
                   <div className="w-[70%] flex  gap-x-2">
                     <input
-                      checked="checked"
+                      className="rb"
                       type="radio"
-                      id="Gender"
+                      // id="rb"
                       name="gender"
                       value="Male"
                       onChange={() => setGender("Gender-Neutral")}
@@ -491,11 +498,12 @@ const CollegePredictor = () => {
                   </div>
                   <div className="w-[30%] flex gap-x-2">
                     <input
+                      className="rb"
                       onChange={() =>
                         setGender("Female-only (including Supernumerary)")
                       }
                       type="radio"
-                      id="Gender"
+                      // id="rb"
                       name="gender"
                       value="Female"
                     />
@@ -511,8 +519,9 @@ const CollegePredictor = () => {
                 <div className="w-full flex flex-row mt-[5px] ">
                   <div className="w-[70%] flex gap-x-2">
                     <input
+                      className="rb"
                       type="radio"
-                      id="pwd"
+                      // id="pwd"
                       name="pwd"
                       value="Yes"
                       onChange={() => {
@@ -526,9 +535,9 @@ const CollegePredictor = () => {
                   </div>
                   <div className="w-[30%] flex pl-1  gap-x-2">
                     <input
-                      checked
+                      className="rb"
                       type="radio"
-                      id="pwd"
+                      // id="pwd"
                       name="pwd"
                       value="No"
                       onChange={() => {

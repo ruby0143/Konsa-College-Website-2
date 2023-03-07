@@ -16,14 +16,34 @@ const AllColleges = () => {
   const { setSkeleton, skeleton, loader, setLoader } = useStateContext();
   const [paginatedData, setPaginatedData] = useState([]);
   const [result, setResult] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
-  const [wordEntered, setWordEntered] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   const query = useLocation();
   // console.log("query", query);
   const PORT = 5000;
   const limit = 12;
   const url = "https://konsa-college-backend.vercel.app";
+
+  useEffect(() => {
+    if (!searchTerm) {
+      setSearchResults([]);
+      return;
+    }
+
+    (async () => {
+      const url = "https://konsa-college-backend.vercel.app/search";
+      const { data } = await axios.get(url, {
+        params: {
+          term: searchTerm,
+        },
+      });
+
+      setSearchResults(data);
+    })();
+
+    console.log("atlas data: ", searchResults);
+  }, [searchTerm]);
 
   const getData = async () => {
     await axios
@@ -79,23 +99,6 @@ const AllColleges = () => {
       });
   };
 
-  const handleFilter = (event) => {
-    const searchWord = event.target.value;
-    setWordEntered(searchWord);
-    const newFilter = result.filter((value) => {
-      return (
-        value.college_name.toLowerCase().includes(searchWord.toLowerCase()) ||
-        value.college_uuid.toLowerCase().includes(searchWord.toLowerCase())
-      );
-    });
-
-    if (searchWord === "") {
-      setFilteredData([]);
-    } else {
-      setFilteredData(newFilter);
-    }
-  };
-
   useEffect(() => {
     getDataWithPagination();
     getMoreData();
@@ -117,8 +120,8 @@ const AllColleges = () => {
 
         <div className=" relative w-[90%] md:w-[60%] lg:w-[45%]  flex flex-row justify-between items-center bg-white rounded-xl p-3 md:px-6 mt-3">
           <input
-            value={wordEntered}
-            onChange={handleFilter}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
             className="placeholder:text-xl w-[80%] font-roboto focus:outline-none text-gray-600 text-xl"
             placeholder="Search your Colleges....."
           ></input>
@@ -128,6 +131,25 @@ const AllColleges = () => {
               src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/Vector.png"
             ></img>
           </span>
+        </div>
+        <div
+          className={` ${
+            searchTerm !== "" ? "inline-flex" : "hidden"
+          } w-[90%] md:w-[60%] lg:w-[45%] z-30 relative desk:top-[-35px] mob:top-[-30px]`}
+        >
+          {/* <div className="absolute rounded-md max-h-[300px] w-full overflow-y-scroll overflow-x-hidden bg-white shadow-md mt-8 md:mt-10 transition-all duration-300">
+            {searchResults?.map((college, index) => {
+              return (
+                <Link
+                  key={index}
+                  to={`/college/${college.college_uuid}`}
+                  className="text-gray-800 md:cursor-pointer block font-medium text-sm md:text-base px-6 py-2 shadow-sm hover:bg-slate-100"
+                >
+                  {college.college_name}
+                </Link>
+              );
+            })}
+          </div> */}
         </div>
       </div>
       <div className="mb-[50px]">
@@ -146,10 +168,10 @@ const AllColleges = () => {
           </div>
         ) : (
           <>
-            {wordEntered.length ? (
+            {searchTerm.length ? (
               <div className="w-full p-6 flex justify-center flex-col items-center">
                 <div className="grid grid-cols-1 gap-10  xs:grid-cols-2  sm:grid-cols-2  lg:grid-cols-3  xl:grid-cols-4">
-                  {filteredData.map((college) => {
+                  {searchResults.map((college) => {
                     return (
                       <CollegeContainer
                         key={college.college_uuid}

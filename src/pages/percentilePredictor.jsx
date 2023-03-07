@@ -23,8 +23,10 @@ const PercentilePredictor = () => {
     { shift: "Hard" },
   ];
 
-  const handlePredicter = () => {
-    setShowPercentile(false);
+  const handlePredictor = () => {
+    setIsError(false);
+    setShiftError("");
+    setInputMarksError("");
 
     if (!isError) {
       let shiftType = shift;
@@ -82,31 +84,29 @@ const PercentilePredictor = () => {
       setPrediction(percentileRangeGen(arr, marks, shiftVal));
       setShift("");
       setInputMarks("");
+      setIsError(false);
     }
   };
 
   const handleValidationError = () => {
+    setShowPercentile(false);
+
     if (inputMarks === "" || shift === "") setIsError(true);
 
     if (isError) {
       if (inputMarks === "") {
         setInputMarksError("Score required to be entered!");
-        setInputMarks("")
-      setIsError(false)
-        
+        setIsError(false);
       }
 
       if (shift === "") {
         setShiftError("Shift required to be selected!");
-        setShift("")
-      setIsError(false)
-        
+        setIsError(false);
       }
       console.log("error m aya");
       return;
     } else if (inputMarks !== "" && shift !== "") {
-      handlePredicter();
-      setIsError(false)
+      handlePredictor();
     }
   };
 
@@ -147,7 +147,7 @@ const PercentilePredictor = () => {
                   required
                   value={shift}
                   onChange={(e) => {
-                    setShift(e.target.value), setIsOpen(true);
+                    setShift(e.target.value), setIsOpen(true),setShowPercentile(false);
                   }}
                   className="focus:outline-none  text-[#ACACAC] text-sm mob:text-xs tracking-wide w-[90%] h-full p-[7px]"
                 />
@@ -205,7 +205,9 @@ const PercentilePredictor = () => {
               ></input>
 
               {inputMarksError !== "" && inputMarks === "" && (
-                <div className="text-red-600 mob:text-xs">{inputMarksError}</div>
+                <div className="text-red-600 mob:text-xs">
+                  {inputMarksError}
+                </div>
               )}
 
               <div className="w-full flex justify-center mt-[44px] mob:mt-[30px]">
