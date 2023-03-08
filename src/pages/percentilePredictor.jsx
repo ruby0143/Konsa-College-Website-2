@@ -1,34 +1,28 @@
 import React, { useState, useEffect } from "react";
+import { useForm } from 'react-hook-form'
 import data from "../components/toolsPage/test";
-import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 
 const PercentilePredictor = () => {
   useEffect(() => {
     setApiResponseData(data);
   }, []);
 
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [apiResponseData, setApiResponseData] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
-  const [shift, setShift] = useState("");
+  const [shift, setShift] = useState("-- Enter Your Shift --");
   const [inputMarks, setInputMarks] = useState("");
   const [prediction, setPrediction] = useState({});
-  const [shiftError, setShiftError] = useState("");
-  const [inputMarksError, setInputMarksError] = useState("");
-  const [isError, setIsError] = useState(false);
   const [showPercentile, setShowPercentile] = useState(false);
 
   const shiftList = [
-    { shift: "Easy" },
-    { shift: "Moderate" },
-    { shift: "Hard" },
+    { type: "Easy" },
+    { type: "Moderate" },
+    { type: "Hard" },
   ];
 
   const handlePredictor = () => {
-    setIsError(false);
-    setShiftError("");
-    setInputMarksError("");
 
-    if (!isError) {
+    if (shift !== "-- Enter Your Shift --" && inputMarks !== "") {
       let shiftType = shift;
       let shiftVal = 0;
 
@@ -82,31 +76,8 @@ const PercentilePredictor = () => {
       }
       setShowPercentile(true);
       setPrediction(percentileRangeGen(arr, marks, shiftVal));
-      setShift("");
+      setShift("-- Enter Your Shift --");
       setInputMarks("");
-      setIsError(false);
-    }
-  };
-
-  const handleValidationError = () => {
-    setShowPercentile(false);
-
-    if (inputMarks === "" || shift === "") setIsError(true);
-
-    if (isError) {
-      if (inputMarks === "") {
-        setInputMarksError("Score required to be entered!");
-        setIsError(false);
-      }
-
-      if (shift === "") {
-        setShiftError("Shift required to be selected!");
-        setIsError(false);
-      }
-      console.log("error m aya");
-      return;
-    } else if (inputMarks !== "" && shift !== "") {
-      handlePredictor();
     }
   };
 
@@ -130,85 +101,66 @@ const PercentilePredictor = () => {
             className="desk:w-[60%] mob:w-[80%] desk:h-[450px] bg-[#FFFFFF] flex desk:flex-row mob:flex-col mb-[80px] mob:mb-[150px]"
             style={{ boxShadow: "-3px 0px 4px 2px rgba(0, 0, 0, 0.04)" }}
           >
-            <div className="desk:w-[53%] flex-col font-roboto p-[40px] bg-[url('/Stroke.svg')] bg-contain bg-no-repeat">
+            <form 
+              onSubmit={handleSubmit(handlePredictor)}
+              className="desk:w-[53%] flex-col font-roboto p-[40px] bg-[url('/Stroke.svg')] bg-contain bg-no-repeat"
+            >
               <h4 className="mt-[22px] mob:mt-[11px] text-center font-bold text-sm mob:font-medium">
                 Enter your JEE Mains 2023 Details
               </h4>
-              <h6 className="mt-[35px] mob:mt-[20px] mob:text-[13px]">
-                Your Shift
-              </h6>
-              <div
-                className="relative flex mt-[8px] justify-between  items-center w-full rounded-[2px] bg-[#ffffff]"
-                style={{ border: "1px solid #D3D3D3" }}
-              >
-                <input
-                  type="text"
-                  placeholder="Choose Your Shift"
-                  required
-                  value={shift}
-                  onChange={(e) => {
-                    setShift(e.target.value), setIsOpen(true),setShowPercentile(false);
-                  }}
-                  className="focus:outline-none  text-[#ACACAC] text-sm mob:text-xs tracking-wide w-[90%] h-full p-[7px]"
-                />
-                <div
-                  onClick={() => setIsOpen((prev) => !prev)}
-                  className="w-[10%] h-full flex justify-center items-center cursor-pointer"
-                >
-                  {!isOpen ? (
-                    <AiOutlineDown className="text-[#ACACAC]" />
-                  ) : (
-                    <AiOutlineUp className="text-[#ACACAC]" />
-                  )}
-                </div>
 
-                {isOpen && (
-                  <div className="absolute z-10 top-[35px] left-0 right-[1px] w-full text-[#9ca3b7] border-[#dcdcdc] bg-[#F5F5F5]">
-                    {shiftList.map((shift) => {
+              <h6 className="mt-[26px] mob:text-[13px] mob:mt-[18px] mb-2">Your Shift</h6>
+
+              <select 
+                  className={`w-full rounded-[2px] px-1 h-[35px] text-[#ACACAC] text-sm bg-[#ffffff] cursor-pointer focus:outline-none border ${errors.shift ? "border-red-500" : "border-gray-300"}`}
+                  {...register("shift",{required: "shift field is required"})}
+                  onChange={e=>setShift(e.target.value)}
+                >
+                  <option className='text-[#ACACAC]' value="">{shift}</option>
+                  {
+                    shiftList.map((shift,idx)=>{
                       return (
-                        <div
-                          key={shift.shift}
-                          className="w-full px-3 hover:bg-[#ffffff] shadow-sm cursor-pointer rounded-sm leading-10"
-                          onClick={() => {
-                            setShift(shift.shift);
-                            setIsOpen(false);
-                          }}
+                        <option 
+                          key={idx} 
+                          value={shift.type}
+                          className="w-full px-3 hover:bg-[#ffffff] shadow-sm cursor-pointer"
                         >
-                          {shift.shift}
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-              {shiftError !== "" && shift === "" && (
-                <div className="text-red-600 mob:text-xs">{shiftError}</div>
-              )}
+                          {shift.type}
+                        </option>
+                      )
+                    })
+                  }
+                </select>
+    
+                {errors.shift && <div 
+                  className='text-sm text-red-500 mt-1'
+                >
+                  {errors.shift.message}
+                </div>}
 
               <h6 className="mt-[26px] mob:text-[13px] mob:mt-[18px] ">
-                Enter score out of 300{" "}
+                Enter score out of 300
               </h6>
-              <input
-                className="rounded-[2px] bg-[#FFFFFF] mt-[8px] text-[#ACACAC] text-sm mob:text-xs tracking-wide focus:outline-none w-full p-[6px]"
-                style={{
-                  boxShadow:
-                    "0px 1.52083px 1.52083px 1.52083px rgba(204, 204, 204, 0.1)",
-                  border: "0.760417px solid #CCCCCC",
-                }}
-                type="number"
-                value={inputMarks}
-                placeholder="Enter your JEE Marks"
-                onChange={(e) => setInputMarks(e.target.value)}
-                required
-                min="-10"
-                max="300"
-              ></input>
+              <div  
+                className="relative flex mt-[8px] justify-betweeb h-[34px] items-center w-full rounded-[2px]" 
+                >
+                <input
+                  {...register("score", { required: "name field is required" })} 
+                  className={`rounded-[2px] bg-[#FFFFFF] text-[#ACACAC] text-sm mob:text-xs tracking-wide focus:outline-none border ${errors.score ? "border-red-500" : "border-gray-300"} w-full h-full p-[6px]`}
+                  type="number"
+                  value={inputMarks}
+                  placeholder="Enter your JEE Marks"
+                  onChange={(e) => setInputMarks(e.target.value)}
+                  min="-10"
+                  max="300"
+                />
+              </div>
 
-              {inputMarksError !== "" && inputMarks === "" && (
-                <div className="text-red-600 mob:text-xs">
-                  {inputMarksError}
-                </div>
-              )}
+                {errors.score && <div 
+                  className='text-sm text-red-500 mt-1'
+                >
+                  {errors.score.message}
+                </div>}
 
               <div className="w-full flex justify-center mt-[44px] mob:mt-[30px]">
                 <div
@@ -220,13 +172,13 @@ const PercentilePredictor = () => {
                 >
                   <button
                     className="text-[#FFFFFF] p-1 mob:text-sm"
-                    onClick={handleValidationError}
+                    type="submit"
                   >
                     Predict Now
                   </button>
                 </div>
               </div>
-            </div>
+            </form>
 
             <div
               className="desk:w-[47%] flex justify-center flex-col  items-center "

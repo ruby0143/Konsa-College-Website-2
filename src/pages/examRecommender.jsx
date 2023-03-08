@@ -151,9 +151,7 @@ const ExamRecommender = () => {
           <h2 className="pt-[80px] mob:pt-[18px] font-roboto font-bold mob:font-semibold text-[30px] mob:text-[18px] text-[#3C3B3B] text-center tracking-wider">
             Exam Recommendation
           </h2>
-          <h3 className="pt-[20px] mob:pt-[8px] font-roboto font-bold mob:font-semibold text-[22px] mob:text-[17px] text-[#3C3B3B] text-center tracking-wider">
-            JEE Mains 2023
-          </h3>
+      
           <div className=" flex justify-center mb-[60px] mob:mb-[40px]">
             <p className="text-center w-[80%]  mt-[20px] mob:mt-[8px] text-xl mob:text-base mob:font-light text-[#3C3B3B] desk:leading-6 mob:leading-5 desk:tracking-wider">
               Lorem ipsum dolor sit amet consectetur. Lobortis porta volutpat tellus
@@ -182,7 +180,7 @@ const ExamRecommender = () => {
                   <input
                     type="text"
                     placeholder="Enter Your Name"
-                    onChange={e=>setUserName(e.target.value)}
+                    // onChange={e=>setUserName(e.target.value)}
                     {...register("name", { required: "name field is required" })} 
                     className={`rounded-[2px] bg-[#FFFFFF] text-[#ACACAC] text-sm mob:text-xs tracking-wide focus:outline-none border ${errors.name ? "border-red-500" : "border-gray-300"} w-full h-full p-[6px]`}
                     />
@@ -200,8 +198,7 @@ const ExamRecommender = () => {
                 <select 
                   className={`w-full rounded-[2px] px-1 h-[35px] text-[#ACACAC] text-sm bg-[#ffffff] cursor-pointer focus:outline-none border ${errors.state ? "border-red-500" : "border-gray-300"}`}
                   {...register("state",{required: "State field is required"})}
-                  onChange={e=>setSelectedState(e.target.value)}
-                  value={selectedState}
+                  onChange={e=>setSelectedState(e.target.value)}  
                 >
                   <option value="" className='text-[#ACACAC]'>{selectedState}</option>
                   {
@@ -209,6 +206,7 @@ const ExamRecommender = () => {
                       return (
                         <option 
                           key={idx} 
+                          value={state.name}
                           className="w-full px-3 hover:bg-[#ffffff] shadow-sm cursor-pointer"
                         >
                           {state.name}
