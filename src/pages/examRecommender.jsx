@@ -1,9 +1,9 @@
 import axios from 'axios'
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { AiOutlineClose } from 'react-icons/ai'
 import RecommendedExamsContainer from '../components/ExamRecommendation/recommendedExams'
-import ToolsModal from '../components/Modal/toolsModal'
+import ToolsModal from '../components/UI Components/Modal/toolsModal'
 
 const ExamRecommender = () => {
 
