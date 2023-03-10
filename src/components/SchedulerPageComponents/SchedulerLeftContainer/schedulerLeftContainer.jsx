@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { AiOutlineArrowDown } from 'react-icons/ai'
+import RoundLoader from '../../UI Components/loaders/RoundLoader'
 import CouncellingDataContainer from './councellingDataContainer'
 import ExamDataContainer from './examDataContainer'
 
@@ -35,15 +36,21 @@ const SchedulerLeftContainer = ({examData, councellingData}) => {
             <div className='text-xl md:text-2xl lg:text-3xl text-[#303030] font-medium'>Applications</div>
             <hr className='mt-2'/>
         </div>
-        <div className='flex flex-wrap justify-between mb-2 md:mb-4'>
-            {
-              councellingData?.slice(0,councellingDataLimit).map(councelling => {
-                return <CouncellingDataContainer key={councelling._id} councelling={councelling}/>
-              })
-            }
-        </div>
+        {councellingData ? (
+          <div className='flex flex-wrap justify-between mb-2 md:mb-4'>
+              {
+                councellingData?.slice(0,councellingDataLimit).map(councelling => {
+                  return <CouncellingDataContainer key={councelling._id} councelling={councelling}/>
+                })
+              }
+          </div>
+        ) : (
+          <div className='w-[40px] mx-auto my-4'>
+            <RoundLoader/>
+          </div>
+        )}
         <div className='mb-6 flex justify-center items-center'>
-          <button onClick={()=>setCouncellingDataLimit(prev => prev + 3)} className='flex items-center py-2 px-6 md:px-8 rounded-full text-sm md:text-base md:font-medium text-[#5a5a5a] hover:text-[#fcfcfc] bg-[#f4f4f4] hover:bg-[#EE7C00] shadow-md transition-all duration-300'>
+          <button onClick={()=>setCouncellingDataLimit(prev => prev + 3)} className='flex items-center py-2 px-6 md:px-8 rounded-full text-sm md:text-base md:font-medium text-[#5a5a5a] md:hover:text-[#fcfcfc] bg-[#f4f4f4] md:hover:bg-[#EE7C00] shadow-md transition-all duration-300'>
             <span className='mr-2'>Show more</span>
             <AiOutlineArrowDown/>
           </button>
@@ -55,15 +62,21 @@ const SchedulerLeftContainer = ({examData, councellingData}) => {
             <div className='text-xl md:text-2xl lg:text-3xl text-[#303030] font-medium'>Exams</div>
             <hr className='mt-2'/>
         </div>
-        <div className='flex flex-wrap justify-between mb-2 md:mb-4'>
+        {examData ? (
+          <div className='flex flex-wrap justify-between mb-2 md:mb-4'>
             {
               examData?.slice(0,examDataLimit).map(exam => {
                 return <ExamDataContainer key={exam._id} exam={exam}/>
               })
             }
-        </div>
+          </div>
+          ) : (
+            <div className='w-[40px] mx-auto my-4'>
+              <RoundLoader/>
+            </div>
+          )}
         <div className='mb-6 flex justify-center items-center'>
-          <button onClick={()=>setExamDataLimit(prev => prev + 3)} className='flex items-center py-2 px-6 md:px-8 rounded-full text-sm md:text-base md:font-medium text-[#5a5a5a] hover:text-[#fcfcfc] bg-[#f4f4f4] hover:bg-[#EE7C00] shadow-md transition-all duration-300'>
+          <button onClick={()=>setExamDataLimit(prev => prev + 3)} className='flex items-center py-2 px-6 md:px-8 rounded-full text-sm md:text-base md:font-medium text-[#5a5a5a] md:hover:text-[#fcfcfc] bg-[#f4f4f4] md:hover:bg-[#EE7C00] shadow-md transition-all duration-300'>
             <span className='mr-2'>Show more</span>
             <AiOutlineArrowDown/>
           </button>
