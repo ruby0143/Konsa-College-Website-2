@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Link,
   useLocation,
@@ -15,51 +15,42 @@ import ClipLoader from "react-spinners/ClipLoader";
 const AllColleges = () => {
   const { setSkeleton, skeleton, loader, setLoader } = useStateContext();
   const [paginatedData, setPaginatedData] = useState([]);
-  const [result, setResult] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [total, setTotal] = useState();
 
   const query = useLocation();
   // console.log("query", query);
-  const PORT = 5000;
   const limit = 12;
   const url = "https://konsa-college-backend.vercel.app";
+  // const url = "http://localhost:5000";
 
-  useEffect(() => {
-    if (!searchTerm) {
-      setSearchResults([]);
-      return;
-    }
-
-    (async () => {
-      const url = "https://konsa-college-backend.vercel.app/search";
-      const { data } = await axios.get(url, {
-        params: {
-          term: searchTerm,
-        },
-      });
-
-      setSearchResults(data);
-    })();
-
-    console.log("atlas data: ", searchResults);
-  }, [searchTerm]);
-
-  const getData = async () => {
-    await axios
-      .get(url + "/allcolleges")
-      .then((response) => {
-        if (response.status === 500) {
-          console.log("College Not Found!");
-        } else {
-          setResult(response.data);
-          setSkeleton(false);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const debounce = (func) => {
+    let timer;
+    return function (...args) {
+      const context = this;
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        timer = null;
+        func.apply(context, args);
+      }, 500);
+    };
   };
+
+  const handleChange = async (event) => {
+    const { value } = event.target;
+    setSearchTerm(event.target.value);
+    const url = "https://konsa-college-backend.vercel.app/search";
+    const { data } = await axios.get(url, {
+      params: {
+        term: value,
+      },
+    });
+    setSearchResults(data);
+    // console.log("atlas data: ", searchResults);
+  };
+
+  const optimisedVersion = useCallback(debounce(handleChange), []);
 
   const getDataWithPagination = async () => {
     await axios
@@ -68,9 +59,10 @@ const AllColleges = () => {
         if (response.status === 500) {
           console.log("College Not Found!");
         } else {
+          // console.log(response?.data.total)
           setPaginatedData([...response.data.results]);
+          setTotal(response?.data?.total);
           setSkeleton(false);
-          // if(result.length>50){setLoader(false)}
         }
       })
       .catch((err) => {
@@ -88,10 +80,8 @@ const AllColleges = () => {
           console.log("College Not Found!");
         } else {
           setPaginatedData([...paginatedData, ...response.data.results]);
-          if (result.length > 50) {
-            setLoader(false);
-            console.log(loader);
-          }
+          // console.log(response.data);
+          setLoader(false);
         }
       })
       .catch((err) => {
@@ -102,7 +92,6 @@ const AllColleges = () => {
   useEffect(() => {
     getDataWithPagination();
     getMoreData();
-    getData();
   }, []);
 
   return (
@@ -120,8 +109,8 @@ const AllColleges = () => {
 
         <div className=" relative w-[90%] md:w-[60%] lg:w-[45%]  flex flex-row justify-between items-center bg-white rounded-xl p-3 md:px-6 mt-3">
           <input
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            // value={searchTerm}
+            onChange={optimisedVersion}
             className="placeholder:text-xl w-[80%] font-roboto focus:outline-none text-gray-600 text-xl"
             placeholder="Search your Colleges....."
           ></input>
@@ -188,7 +177,7 @@ const AllColleges = () => {
               <InfiniteScroll
                 dataLength={paginatedData.length}
                 next={getMoreData}
-                hasMore={paginatedData.length < result.length}
+                hasMore={paginatedData.length < total}
               >
                 <div className="w-full p-6 flex justify-center flex-col items-center">
                   <div className="grid grid-cols-1 gap-12  xs:grid-cols-2  sm:grid-cols-2   lg:grid-cols-3  xl:grid-cols-4">
