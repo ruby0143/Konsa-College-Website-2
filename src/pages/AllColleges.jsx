@@ -110,6 +110,7 @@ const AllColleges = () => {
         <div className=" relative w-[90%] md:w-[60%] lg:w-[45%]  flex flex-row justify-between items-center bg-white rounded-xl p-3 md:px-6 mt-3">
           <input
             // value={searchTerm}
+            id="searchbar"
             onChange={optimisedVersion}
             className="placeholder:text-xl w-[80%] font-roboto focus:outline-none text-gray-600 text-xl"
             placeholder="Search your Colleges....."
