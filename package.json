@@ -21,6 +21,7 @@
     "react-router-dom": "^6.4.5",
     "react-scroll": "^1.8.9",
     "react-spinners": "^0.13.8",
+    "react-tooltip": "^5.10.0",
     "recharts": "^2.4.3",
     "rsuite": "^5.27.0",
     "sweetalert2": "^11.7.1",
