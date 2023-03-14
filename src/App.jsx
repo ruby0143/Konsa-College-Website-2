@@ -20,34 +20,34 @@ import CutoffPage from "./pages/cutoffPage";
 import ExamRecommender from "./pages/examRecommender";
 
 function App() {
-const {skeleton,loader}=useStateContext()
+  const { skeleton, loader } = useStateContext()
   return (
-  <>
-  <Router>
-  <ScrollToTop>
-  <MainNavbar/>
-    <Routes>
-      <Route path="/" element={<HomePage/>} />
-      <Route path="/admission" element={<AdmissionPage/>} exact/>
-      <Route path="/admin/:college" element={<CollegePage />} />
-      <Route path="/college/:particularcollege" element={<CollegePage/>} exact/>
-      <Route path="/news" element={<NewsPage/>} exact/>
-      <Route path="/exams" element={<ExamPage/>} exact/>
-      <Route path="/forum" element={<ForumPage/>} exact/>
-      <Route path="/allColleges" element={<AllColleges/>} exact/> 
-      <Route path="/scheduler" element={<SchedularPage/>} exact/> 
-      <Route path="/trends" element={<TrendAnalysis/>} exact/> 
-      <Route path="*" element={<Err_404/>} exact/>
-      <Route path="/soon" element={<Comming_Soon/>} exact/>
-      <Route path="/collegePredictor" element={<CollegePredictor/>} exact/>
-      <Route path="/percentilePredictor" element={<PercentilePredictor/>} exact/>
-      <Route path="/examRecommender" element={<ExamRecommender/>} exact/>
-      <Route path="/college/:particularcollege/cutoff" element={<CutoffPage/>} exact/>
-    </Routes>
-    <CollegeFooter/>
-  </ScrollToTop>
-  </Router>
-  </>
+    <>
+      <Router>
+        <ScrollToTop>
+          <MainNavbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/admission" element={<AdmissionPage />} exact />
+            <Route path="/admin/:college" element={<CollegePage />} />
+            <Route path="/college/:particularcollege" element={<CollegePage />} exact />
+            <Route path="/news" element={<NewsPage />} exact />
+            <Route path="/exams" element={<ExamPage />} exact />
+            <Route path="/forum" element={<ForumPage />} exact />
+            <Route path="/allColleges" element={<AllColleges />} exact />
+            <Route path="/scheduler" element={<SchedularPage />} exact />
+            <Route path="/trends" element={<TrendAnalysis />} exact />
+            <Route path="*" element={<Err_404 />} exact />
+            <Route path="/soon" element={<Comming_Soon />} exact />
+            <Route path="/collegePredictor" element={<CollegePredictor />} exact />
+            <Route path="/percentilePredictor" element={<PercentilePredictor />} exact />
+            <Route path="/examRecommender" element={<ExamRecommender />} exact />
+            <Route path="/college/:particularcollege/cutoff" element={<CutoffPage />} exact />
+          </Routes>
+          <CollegeFooter />
+        </ScrollToTop>
+      </Router>
+    </>
   )
 }
 

@@ -12,6 +12,7 @@ import RightNews from '../components/RightNav/RightNews'
 import Subscribe from '../components/RightNav/Subscribe'
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
+import { Helmet } from 'react-helmet'
 
 function CutoffPage() {
   const location = useLocation();
@@ -156,6 +157,35 @@ function CutoffPage() {
 
   return (
     <>
+      <Helmet>
+        <meta name="copyright" content="Konsa College" />
+        <meta name="viewport" content="width=device-width, intial-scale=1.0" />
+        <title>Konsacollege - Cutoff</title>
+        <meta name="description" content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today." />
+        <meta name="Abstract" content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today." />
+        <meta property="og:title" content="Konsacollege - Find the Best Colleges in India" />
+          <meta property="og:description" content="Looking for the best engineering college in India? Look no further than Konsacollege. Our comprehensive directory and user-friendly tools make it easy to find the right college hassle-free. Plus, our expert counselors are here to guide you every step of the way. Start your college search with Konsacollege today." />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://www.konsacollege.com" />
+          <meta property="og:site_name"
+            content="Konsacollege - Cutoff"/>
+          <meta property="og:image"
+            content="https://konsa-college-website.vercel.app/assets/KonsaCollege_desktopLogo-d9a0ad42.svg" />
+          <meta property="og:determiner" content="..." />
+          <meta name="twitter:card" content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today." />
+          <meta name="twitter:title" content="Konsacollege - Find the Best Colleges in India" />
+          <meta name="twitter:description" content="Finding the right college can be overwhelming, but Konsacollege makes it easy. With a vast directory of top engineering colleges in India and personalized counseling, we help students make informed decisions about their education. Start your search today and discover your dream college with Konsacollege." />
+          <meta name="twitter:image"
+            content="https://konsa-college-website.vercel.app/assets/KonsaCollege_desktopLogo-d9a0ad42.svg" />
+          <meta name="twitter:image:alt"
+            content="Konsa College Logo" />
+          <meta property="twitter:url" content="https://www.konsacollege.com" />
+          <meta property="twitter:site" content="@konsacollege" />
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="keyword1, keyword2, keyword3, keyword4" />
+        <meta name="audience" content="all" />
+        <meta name="distribution" content="global" />
+      </Helmet>
       {skel ? (
         <div
           role="status"
@@ -303,7 +333,7 @@ function CutoffPage() {
                 <SlArrowDown className='mr-3' />
               </div>
             </div>
-            <button className='text-[#EE7C00] border rounded-[34px] lg:rounded-[10px] border-[#EE7C00] text-sm lg:text-lg font-semibold px-7 lg:px-14 py-2 mx-auto' style={{display: "grid" }} onClick={handleCutoff}>
+            <button className='text-[#EE7C00] border rounded-[34px] lg:rounded-[10px] border-[#EE7C00] text-sm lg:text-lg font-semibold px-7 lg:px-14 py-2 mx-auto' style={{ display: "grid" }} onClick={handleCutoff}>
               Get Cutoff
             </button>
             {cutoffData && (
@@ -330,7 +360,7 @@ function CutoffPage() {
                       {program.map((prog, index) => {
                         return <div style={{ backgroundColor: index % 2 === 0 ? "rgba(238, 124, 0, 0.1)" : "#fff" }} className="h-[3.5rem] leading-[.9rem] p-[.5rem] lg:pl-[20px] lg:text-[16px] flex items-center" data-tooltip-id="my-tooltip" data-tooltip-content={prog}>{prog.split("(").shift()}</div>
                       })}
-                        <Tooltip id="my-tooltip" />
+                      <Tooltip id="my-tooltip" />
                     </div>
                     <div className='text-[#303030] w-[20%] text-[13px] text-center'>
                       {opening.map((op, index) => {
@@ -354,10 +384,10 @@ function CutoffPage() {
         </div>
         {/* right */}
         <div className="md:max-w-[34%] px-4 lg:pl-12 md:inline-block hidden lg:mt-6">
-            <RightNews></RightNews>
-            {program.length !== 0 && <RightCounselling></RightCounselling>}
-            <RelatedColleges></RelatedColleges>
-            <Subscribe></Subscribe>
+          <RightNews></RightNews>
+          {program.length !== 0 && <RightCounselling></RightCounselling>}
+          <RelatedColleges></RelatedColleges>
+          <Subscribe></Subscribe>
         </div>
       </div>
     </>
