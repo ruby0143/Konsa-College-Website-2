@@ -173,6 +173,7 @@ const PercentilePredictor = () => {
                   <button
                     className="text-[#FFFFFF] p-1 mob:text-sm"
                     type="submit"
+                    id="toolSubmit"
                   >
                     Predict Now
                   </button>
