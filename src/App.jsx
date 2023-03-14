@@ -37,6 +37,7 @@ function App() {
             <Route path="/allColleges" element={<AllColleges />} exact />
             <Route path="/scheduler" element={<SchedularPage />} exact />
             <Route path="/trends" element={<TrendAnalysis />} exact />
+            <Route path="/trends/:college/:branch" element={<TrendAnalysis />} exact />
             <Route path="*" element={<Err_404 />} exact />
             <Route path="/soon" element={<Comming_Soon />} exact />
             <Route path="/collegePredictor" element={<CollegePredictor />} exact />

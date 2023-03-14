@@ -2,32 +2,34 @@ import React, { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, Label } from 'recharts';
 import axios from "axios";
 import { Helmet } from "react-helmet";
+import { useLocation} from "react-router-dom";
 
 function trendAnalysis() {
   const [colleges, setColleges] = useState([]);
   const [branches, setBranches] = useState(new Map());
   const [filteredBranches, setFilteredBranches] = useState([]);
   const [selectedRank, setRank] = useState("Mains");
-  const [selectedState, setState] = useState(null);
+  const [selectedState, setState] = useState("AI");
   const [selectedCollege, setSelectedCollege] = useState(null);
   const [selectedBranch, setBranch] = useState(null);
-  const [selectedCaste, setCaste] = useState(null);
+  const [selectedCaste, setCaste] = useState("OPEN");
   const [selectedGender, setGender] = useState("Gender-Neutral");
   const [selectedInstTypes, setTypes] = useState([]);
   const [requiredState, setRequiredState] = useState(false);
   const [requiredInst, setReqInst] = useState(false);
   const [requiredProg, setReqProg] = useState(false);
   const [reqSeat, setReqseat] = useState(false);
-
+  const path = useLocation().pathname;
+  const [preSelectedCollege,setPreSelected] = useState();
+  const [preSelectedBranch,setPreSelectedBranch] = useState();
   const [chartData, setChartData] = useState([]);
   const [noData, setBool] = useState(false);
-
+  
   const castes = [
     "EWS",
     "EWS (PwD)",
     "OBC-NCL",
     "OBC-NCL (PwD)",
-    "OPEN",
     "OPEN (PwD)",
     "SC",
     "SC (PwD)",
@@ -36,7 +38,6 @@ function trendAnalysis() {
   ];
 
   const states = [
-    "AI",
     "HS",
     "GO",
     "JK"
@@ -57,6 +58,18 @@ function trendAnalysis() {
 
 
   useEffect(() => {
+    const params= path.split("/");
+    if(params[2]){
+      const cpath= params[2].split('-').join(" ");
+      setPreSelected(cpath);
+    }
+    if(params[3]){
+      const branch = params[3].split('-').join(" ");
+      setPreSelectedBranch(branch);
+      console.log(branch,"ok");
+    }
+
+    
 
     axios
       .get(
@@ -69,11 +82,13 @@ function trendAnalysis() {
           setColleges(function (prevState) {
             return [...prevState, col];
           });
+          
           const programs = ele.Array;
           const arrPgs = programs.split("'");
           setFilteredBranches(arrPgs);
           branches.set(col, arrPgs);
         });
+        
       })
       .catch((err) => {
         console.log(err);
@@ -238,8 +253,9 @@ function trendAnalysis() {
                   setRequiredState(false);
                 }}
               >
-                <option selected disabled>
-                  Select a state
+
+                <option selected value={"AI"}>
+                  {"AI"}
                 </option>
                 {states.map((state) => {
                   return <option value={state}>{state}</option>;
@@ -260,7 +276,9 @@ function trendAnalysis() {
               </div>
               <select
                 name="colleges"
+                id="clg"
                 className="my-3 p-2 w-full border-solid border-[#D1D5DB] border rounded-md"
+                
                 onChange={(e) => {
                   setSelectedCollege(e.target.value);
                   setReqInst(false);
@@ -269,17 +287,32 @@ function trendAnalysis() {
                     setRequiredState(true);
                   }
                 }}
+              
               >
                 <option selected disabled>
                   Select a college
                 </option>
                 {colleges?.map((college, idx) => {
-                  if (selectedRank === "Advance") {
-                    return (college.includes("Indian Institute of Technology") ? (<option value={college}>{college}</option>) : null)
+                 
+                  let curr = college.replace(',','').replace(', ',' ');
+                  
+                  if(curr===preSelectedCollege){
+                    if(selectedCollege === null){
+                      setSelectedCollege(college);
+                    }
+                    return (<option selected="selected" value={college}>{college}</option>);
+
                   }
-                  else {
-                    return (!(college.includes("Indian Institute of Technology")) ? (<option value={college}>{college}</option>) : null)
+                  else{
+                    if (selectedRank === "Advance") {
+                      return (college.includes("Indian Institute of Technology") ? (<option value={college}>{college}</option>) : null)
+                    }
+                    else {
+                      return (!(college.includes("Indian Institute of Technology")) ? (<option value={college}>{college}</option>) : null)
+                    }
                   }
+                  
+                  
                 })}
               </select>
               {requiredInst ? (
@@ -317,6 +350,14 @@ function trendAnalysis() {
                     Select a program
                   </option>
                   {filteredBranches?.map((branch, idx) => {
+                    {/* console.log(preSelectedBranch,branch,"this"); */}
+                    if(preSelectedBranch===branch){
+                      if(selectedBranch===null){
+                        setBranch(branch);
+                      }
+                      return (<option selected value={branch}>{branch}</option>);
+                      {/* console.log(preSelectedBranch,branch,"match"); */}
+                    }
                     if (idx % 2 != 0) {
                       return <option value={branch}>{branch}</option>;
                     }
@@ -349,8 +390,8 @@ function trendAnalysis() {
                   setReqseat(false);
                 }}
               >
-                <option selected disabled>
-                  Select a caste
+                <option selected value={"OPEN"}>
+                  {"OPEN"}
                 </option>
                 {castes.map((caste) => {
                   return <option value={caste}>{caste}</option>;
