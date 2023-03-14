@@ -61,7 +61,9 @@ function trendAnalysis() {
     const params= path.split("/");
     if(params[2]){
       const cpath= params[2].split('-').join(" ");
-      setPreSelected(cpath);
+      const temp = cpath.replace(',','').replace(', ',' ');
+      console.log(temp,'ok');
+      setPreSelected(temp);
     }
     if(params[3]){
       const branch = params[3].split('-').join(" ");
@@ -295,8 +297,9 @@ function trendAnalysis() {
                 {colleges?.map((college, idx) => {
                  
                   let curr = college.replace(',','').replace(', ',' ');
-                  
+                  {/* console.log(curr+"/"+preSelectedCollege,'123'); */}
                   if(curr===preSelectedCollege){
+                    console.log("match");
                     if(selectedCollege === null){
                       setSelectedCollege(college);
                     }
