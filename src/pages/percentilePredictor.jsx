@@ -200,7 +200,7 @@ const PercentilePredictor = () => {
                       "0px 1.52083px 1.52083px 1.52083px rgba(204, 204, 204, 0.1)",
                   }}
                 >
-                  <button
+                  <button id="toolSubmit"
                     className="text-[#FFFFFF] p-1 mob:text-sm"
                     type="submit"
                   >
