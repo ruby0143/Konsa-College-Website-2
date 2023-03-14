@@ -8,17 +8,14 @@ const Colleges = () => {
   const [skeleton, setSkeleton] = useState(true);
 
   const [collegeList, setColleges] = useState([]);
-const url = "https://konsa-college-backend.vercel.app";
-
+  const url = "https://konsa-college-backend.vercel.app";
 
   const getData = async () => {
     await axios
-      .get(
-        url+"/allcolleges"
-      )
+      .get(url + "/allclgs?page=1&limit=3")
       .then((response) => {
         if (response.data != "404") {
-          setColleges(response.data);
+          setColleges(response.data.results);
           setSkeleton(false);
         } else {
           console.log("Error!");
@@ -34,11 +31,11 @@ const url = "https://konsa-college-backend.vercel.app";
   }, []);
 
   return (
-    <div className="mb-4 md:mb-8">
-      <div className="text-center text-xl md:text-2xl mb-1 md:mb-2 font-semibold text-[#303030]">
+    <div className="mb-4 md:mb-8 ">
+      <div className="text-center text-xl md:text-2xl mb-4 md:mb-2 font-semibold text-[#303030]">
         Colleges
       </div>
-      <div className="no-scrollbar flex md:max-w-[1150px] md:m-auto items-center overflow-x-auto overflow-y-hidden gap-3 py-2">
+      <div className="no-scrollbar mt-4 flex md:max-w-[1150px] md:m-auto items-center overflow-x-auto overflow-y-hidden gap-3 py-2">
         {skeleton ? (
           <>
             <CollegeSkeleton />
@@ -61,18 +58,11 @@ const url = "https://konsa-college-backend.vercel.app";
                 />
               );
             })}
-          </>
-        )}
-        {collegeList.length >= 5 ? (
-          <>
             <Link to="/allcolleges">
               <div className="min-w-[210px] flex-grow-1 md:min-w-[230px] h-[164px] md:h-[184px] flex justify-center items-center shadow-md rounded-md border bg-white hover:bg-gradient-to-r from-white to-[#fff6ec] transition-all duration-500 font-medium cursor-pointer">
                 <div className="text-sm text-[#EE7C00]">Show More &#10140;</div>
               </div>
             </Link>
-          </>
-        ) : (
-          <>
           </>
         )}
       </div>

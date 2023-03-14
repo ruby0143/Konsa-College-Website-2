@@ -1,5 +1,5 @@
 import React from "react";
-import './container.css';
+import "./container.css";
 
 const CounsellingContainer = ({
   counsellingName,
@@ -9,7 +9,7 @@ const CounsellingContainer = ({
 }) => {
   return (
     <a href={collegeLink}>
-      <div className="min-w-[170px] md:min-w-[200px] lg:min-w-[250px] h-[136px] md:h-[156px] lg:h-[170px] px-[8px] py-[20px] flex flex-col items-center justify-between shadow-md rounded-md border border-gray-100 bg-white">
+      <div className="w-[220px] mob:w-[160px] h-[136px] md:h-[156px] lg:h-[170px] px-[8px] py-[20px] flex flex-col items-center justify-between shadow-md rounded-md border border-gray-100 bg-white">
         <div className="text-xl font-bold text-[#4e4e4e] text-center">
           {counsellingName}
         </div>
@@ -20,8 +20,8 @@ const CounsellingContainer = ({
           {collegeList?.map((college, id) => {
             return (
               <div key={id} className="w-5 h-5 md:w-7">
-                <img 
-                  src={college.logo_link} 
+                <img
+                  src={college.logo_link}
                   alt="college logo"
                   className="w-full h-full object-cover"
                 />

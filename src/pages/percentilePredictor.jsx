@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from 'react-hook-form'
 import data from "../components/toolsPage/test";
+import { Helmet } from "react-helmet";
 
 const PercentilePredictor = () => {
   useEffect(() => {
@@ -83,6 +84,35 @@ const PercentilePredictor = () => {
 
   return (
     <>
+      <Helmet>
+        <meta name="copyright" content="Konsa College" />
+        <meta name="viewport" content="width=device-width, intial-scale=1.0" />
+        <title>Konsacollege - Percentile Predictor</title>
+        <meta name="description" content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today." />
+        <meta name="Abstract" content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today." />
+        <meta property="og:title" content="Konsacollege - Find the Best Colleges in India" />
+          <meta property="og:description" content="Looking for the best engineering college in India? Look no further than Konsacollege. Our comprehensive directory and user-friendly tools make it easy to find the right college hassle-free. Plus, our expert counselors are here to guide you every step of the way. Start your college search with Konsacollege today." />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://www.konsacollege.com" />
+          <meta property="og:site_name"
+            content="Konsacollege - Percentile Predictor"/>
+          <meta property="og:image"
+            content="https://konsa-college-website.vercel.app/assets/KonsaCollege_desktopLogo-d9a0ad42.svg" />
+          <meta property="og:determiner" content="..." />
+          <meta name="twitter:card" content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today." />
+          <meta name="twitter:title" content="Konsacollege - Find the Best Colleges in India" />
+          <meta name="twitter:description" content="Finding the right college can be overwhelming, but Konsacollege makes it easy. With a vast directory of top engineering colleges in India and personalized counseling, we help students make informed decisions about their education. Start your search today and discover your dream college with Konsacollege." />
+          <meta name="twitter:image"
+            content="https://konsa-college-website.vercel.app/assets/KonsaCollege_desktopLogo-d9a0ad42.svg" />
+          <meta name="twitter:image:alt"
+            content="Konsa College Logo" />
+          <meta property="twitter:url" content="https://www.konsacollege.com" />
+          <meta property="twitter:site" content="@konsacollege" />
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="keyword1, keyword2, keyword3, keyword4" />
+        <meta name="audience" content="all" />
+        <meta name="distribution" content="global" />
+      </Helmet>
       <div className="bg-[#F5F5F5] ">
         <h2 className="pt-[80px] mob:pt-[18px] font-roboto font-bold mob:font-semibold text-[30px] mob:text-[18px] text-[#3C3B3B] text-center tracking-wider">
           Percentile Predictor
@@ -101,7 +131,7 @@ const PercentilePredictor = () => {
             className="desk:w-[60%] mob:w-[80%] desk:h-[450px] bg-[#FFFFFF] flex desk:flex-row mob:flex-col mb-[80px] mob:mb-[150px]"
             style={{ boxShadow: "-3px 0px 4px 2px rgba(0, 0, 0, 0.04)" }}
           >
-            <form 
+            <form
               onSubmit={handleSubmit(handlePredictor)}
               className="desk:w-[53%] flex-col font-roboto p-[40px] bg-[url('/Stroke.svg')] bg-contain bg-no-repeat"
             >
@@ -111,41 +141,41 @@ const PercentilePredictor = () => {
 
               <h6 className="mt-[26px] mob:text-[13px] mob:mt-[18px] mb-2">Your Shift</h6>
 
-              <select 
-                  className={`w-full rounded-[2px] px-1 h-[35px] text-[#ACACAC] text-sm bg-[#ffffff] cursor-pointer focus:outline-none border ${errors.shift ? "border-red-500" : "border-gray-300"}`}
-                  {...register("shift",{required: "shift field is required"})}
-                  onChange={e=>setShift(e.target.value)}
-                >
-                  <option className='text-[#ACACAC]' value="">{shift}</option>
-                  {
-                    shiftList.map((shift,idx)=>{
-                      return (
-                        <option 
-                          key={idx} 
-                          value={shift.type}
-                          className="w-full px-3 hover:bg-[#ffffff] shadow-sm cursor-pointer"
-                        >
-                          {shift.type}
-                        </option>
-                      )
-                    })
-                  }
-                </select>
-    
-                {errors.shift && <div 
-                  className='text-sm text-red-500 mt-1'
-                >
-                  {errors.shift.message}
-                </div>}
+              <select
+                className={`w-full rounded-[2px] px-1 h-[35px] text-[#ACACAC] text-sm bg-[#ffffff] cursor-pointer focus:outline-none border ${errors.shift ? "border-red-500" : "border-gray-300"}`}
+                {...register("shift", { required: "shift field is required" })}
+                onChange={e => setShift(e.target.value)}
+              >
+                <option className='text-[#ACACAC]' value="">{shift}</option>
+                {
+                  shiftList.map((shift, idx) => {
+                    return (
+                      <option
+                        key={idx}
+                        value={shift.type}
+                        className="w-full px-3 hover:bg-[#ffffff] shadow-sm cursor-pointer"
+                      >
+                        {shift.type}
+                      </option>
+                    )
+                  })
+                }
+              </select>
+
+              {errors.shift && <div
+                className='text-sm text-red-500 mt-1'
+              >
+                {errors.shift.message}
+              </div>}
 
               <h6 className="mt-[26px] mob:text-[13px] mob:mt-[18px] ">
                 Enter score out of 300
               </h6>
-              <div  
-                className="relative flex mt-[8px] justify-betweeb h-[34px] items-center w-full rounded-[2px]" 
-                >
+              <div
+                className="relative flex mt-[8px] justify-betweeb h-[34px] items-center w-full rounded-[2px]"
+              >
                 <input
-                  {...register("score", { required: "name field is required" })} 
+                  {...register("score", { required: "name field is required" })}
                   className={`rounded-[2px] bg-[#FFFFFF] text-[#ACACAC] text-sm mob:text-xs tracking-wide focus:outline-none border ${errors.score ? "border-red-500" : "border-gray-300"} w-full h-full p-[6px]`}
                   type="number"
                   value={inputMarks}
@@ -156,11 +186,11 @@ const PercentilePredictor = () => {
                 />
               </div>
 
-                {errors.score && <div 
-                  className='text-sm text-red-500 mt-1'
-                >
-                  {errors.score.message}
-                </div>}
+              {errors.score && <div
+                className='text-sm text-red-500 mt-1'
+              >
+                {errors.score.message}
+              </div>}
 
               <div className="w-full flex justify-center mt-[44px] mob:mt-[30px]">
                 <div
@@ -170,7 +200,7 @@ const PercentilePredictor = () => {
                       "0px 1.52083px 1.52083px 1.52083px rgba(204, 204, 204, 0.1)",
                   }}
                 >
-                  <button
+                  <button id="toolSubmit"
                     className="text-[#FFFFFF] p-1 mob:text-sm"
                     type="submit"
                     id="toolSubmit"

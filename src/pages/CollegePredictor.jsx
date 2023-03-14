@@ -3,6 +3,7 @@ import { AiOutlineDown, AiOutlineUp, AiOutlineClose } from "react-icons/ai";
 import axios from "axios";
 import state from "../components/toolsPage/states";
 import { CSVDownload } from "react-csv";
+import { Helmet } from "react-helmet";
 
 const CollegePredictor = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +27,8 @@ const CollegePredictor = () => {
   const [dreamBtn, setDreamBtn] = useState(true);
   const [sureBtn, setSureBtn] = useState(false);
   const [safeBtn, setSafeBtn] = useState(false);
+  const [oneThird, setOneThird] = useState();
+  const [doBlur, setDoBlur] = useState(false);
 
   // const url = "http://localhost:5000";
   const url = "https://konsa-college-backend.vercel.app";
@@ -102,9 +105,17 @@ const CollegePredictor = () => {
             }
           }
         });
-        console.log("Dream", clg);
-        setPredictedColleges(clg);
-        setMapColleges(clg);
+        const sort = clg.sort((a, b) => {
+          return a.Closing_Rank - b.Closing_Rank;
+        });
+        setOneThird(0);
+        if (sort.length < 8) {
+          setDoBlur(true);
+          setDownload(false);
+        }
+        console.log("Dream", sort);
+        setPredictedColleges(sort);
+        setMapColleges(sort);
       })
       .catch((err) => {
         console.log(err);
@@ -123,38 +134,46 @@ const CollegePredictor = () => {
     setSureBtn(false);
     setSafeBtn(false);
     setMapColleges(predictedColleges);
+    setOneThird(0);
   };
 
-  const handleSafe = async () => {
-    let home = await predictedColleges?.filter((clg) => {
-      if (
-        clg.Institute.split(" ")[clg.Institute.split(" ").length - 1] ===
-        Eligibility
-      ) {
-        return clg;
-      }
-    });
-    console.log("safe", home);
+  const handleSafe = () => {
+    // let home = predictedColleges?.filter((clg) => {
+    //   if (
+    //     clg.Institute.split(" ")[clg.Institute.split(" ").length - 1] ===
+    //     Eligibility
+    //   ) {
+    //     return clg;
+    //   }
+    // });
+    // console.log("safe", home);
+    // setMapColleges(home);
+
     setSafeBtn(true);
     setDreamBtn(false);
     setSureBtn(false);
-    setMapColleges(home);
+    setOneThird(Math.floor(predictedColleges.length / 3));
   };
 
-  const handleSure = async () => {
-    let othclg = await predictedColleges?.filter((clg) => {
-      if (
-        clg.Institute.split(" ")[clg.Institute.split(" ").length - 1] !==
-        Eligibility
-      ) {
-        return clg;
-      }
-    });
-    console.log("sure", othclg);
+  const handleSure = () => {
+    // let othclg =  predictedColleges?.filter((clg) => {
+    //   if (
+    //     clg.Institute.split(" ")[clg.Institute.split(" ").length - 1] !==
+    //     Eligibility
+    //   ) {
+    //     return clg;
+    //   }
+    // });
+    // console.log("sure", othclg);
+    // setMapColleges(othclg);
+
     setSureBtn(true);
     setDreamBtn(false);
     setSafeBtn(false);
-    setMapColleges(othclg);
+    setOneThird(
+      Math.floor(predictedColleges.length / 3) +
+      Math.floor(predictedColleges.length / 3)
+    );
   };
   const CategoryList = ["EWS", "OBC-NCL", "OPEN", "SC", "ST"];
   const castes = [
@@ -171,10 +190,51 @@ const CollegePredictor = () => {
       className="bg-[#F5F5F5] relative "
       style={{ backgroundColor: res ? "rgba(0,0,0,0.6)" : null }}
     >
+      <Helmet>
+        <meta name="copyright" content="Konsa College" />
+        <meta name="viewport" content="width=device-width, intial-scale=1.0" />
+        <title>Konsacollege - College Predictor</title>
+        <meta name="description" content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today." />
+        <meta name="Abstract" content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today." />
+        <meta property="og:title" content="Konsacollege - Find the Best Colleges in India" />
+          <meta property="og:description" content="Looking for the best engineering college in India? Look no further than Konsacollege. Our comprehensive directory and user-friendly tools make it easy to find the right college hassle-free. Plus, our expert counselors are here to guide you every step of the way. Start your college search with Konsacollege today." />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://www.konsacollege.com" />
+          <meta property="og:site_name"
+            content="Konsacollege - Home"/>
+          <meta property="og:image"
+            content="https://konsa-college-website.vercel.app/assets/KonsaCollege_desktopLogo-d9a0ad42.svg" />
+          <meta property="og:determiner" content="..." />
+          <meta name="twitter:card" content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today." />
+          <meta name="twitter:title" content="Konsacollege - Find the Best Colleges in India" />
+          <meta name="twitter:description" content="Finding the right college can be overwhelming, but Konsacollege makes it easy. With a vast directory of top engineering colleges in India and personalized counseling, we help students make informed decisions about their education. Start your search today and discover your dream college with Konsacollege." />
+          <meta name="twitter:image"
+            content="https://konsa-college-website.vercel.app/assets/KonsaCollege_desktopLogo-d9a0ad42.svg" />
+          <meta name="twitter:image:alt"
+            content="Konsa College Logo" />
+          <meta property="twitter:url" content="https://www.konsacollege.com" />
+          <meta property="twitter:site" content="@konsacollege" />
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="keyword1, keyword2, keyword3, keyword4" />
+        <meta name="audience" content="all" />
+        <meta name="distribution" content="global" />
+      </Helmet>
       {res && (
-        <div className="absolute z-50 w-[70%] top-[50px] left-[230px] mob:w-[90%] bg-[#FCFCFC] h-[80%] flex flex-col p-5">
-          <div className="w-full flex flex-row justify-between  ">
-            <div className="w-9/12 flex flex-row items-center justify-start gap-x-10 cursor-pointer">
+        <div className="absolute z-50 w-[70%] top-[50px] left-[230px] mob:w-[90%] bg-[#FCFCFC] h-[50%] flex flex-col p-5">
+          <div
+            className={
+              doBlur
+                ? "w-full flex flex-row justify-between"
+                : "w-full flex flex-row justify-between"
+            }
+          >
+            <div
+              className={
+                doBlur
+                  ? "w-9/12 flex flex-row items-center justify-start gap-x-10 cursor-pointer blur-sm"
+                  : "w-9/12 flex flex-row items-center justify-start gap-x-10 cursor-pointer"
+              }
+            >
               <div
                 className={
                   dreamBtn
@@ -185,7 +245,7 @@ const CollegePredictor = () => {
                   handleDream();
                 }}
               >
-                Dream(15)
+                Dream
               </div>
               <div
                 className={
@@ -197,7 +257,7 @@ const CollegePredictor = () => {
                   handleSure();
                 }}
               >
-                Sure(20)
+                Sure
               </div>
               <div
                 className={
@@ -209,15 +269,25 @@ const CollegePredictor = () => {
                   handleSafe();
                 }}
               >
-                Safe(15)
+                Safe
               </div>
             </div>
-            <div className="w-3/12 flex flex-row justify-end gap-x-2">
+            <div
+              className={
+                doBlur
+                  ? "w-3/12 flex flex-row justify-end gap-x-2"
+                  : "w-3/12 flex flex-row justify-end gap-x-2"
+              }
+            >
               <button
                 onClick={() => {
                   setDownload(true);
                 }}
-                className="bg-[#EE7C00] rounded-[2px] text-white p-[5px] px-4"
+                className={
+                  doBlur
+                    ? "bg-[#EE7C00] rounded-[2px] text-white p-[5px] px-4 blur-sm"
+                    : "bg-[#EE7C00] rounded-[2px] text-white p-[5px] px-4"
+                }
               >
                 {download && (
                   <CSVDownload data={predictedColleges} target="_blank" />
@@ -245,15 +315,20 @@ const CollegePredictor = () => {
           </div>
 
           <div
-            className="mt-2 p-4 rounded-[3px] flex items-center font-semibold  "
+            className={
+              doBlur
+                ? "mt-2 p-4 rounded-[3px] flex items-center font-semibold blur-sm"
+                : "mt-2 p-4 rounded-[3px] flex items-center font-semibold"
+            }
             style={{ backgroundColor: "rgba(238, 124, 0, 0.05)" }}
           >
             College
           </div>
-          <div className="h-full overflow-x-hidden overflow-y-auto">
+
+          <div className="overflow-x-hidden overflow-y-auto">
             {mapColleges.length > 0 ? (
               <>
-                {mapColleges?.map((clg, id) => {
+                {mapColleges?.slice(oneThird, oneThird + 5).map((clg, id) => {
                   return (
                     <div key={id}>
                       <div className="w-full flex flex-row  items-center p-1">
@@ -275,35 +350,43 @@ const CollegePredictor = () => {
                 })}
               </>
             ) : (
-              <div
-                role="status"
-                className="w-full p-4 space-y-4  divide-y divide-gray-200  animate-pulse "
-              >
-                {skeleton?.map((item, i) => {
-                  return (
-                    <>
-                      <div className="flex items-center justify-start gap-x-2 pt-2">
-                        <div className="flex items-center justify-center h-10 w-10 bg-gray-300 rounded-full">
-                          <svg
-                            className="w-6 h-6 text-gray-200"
-                            xmlns="http://www.w3.org/2000/svg"
-                            aria-hidden="true"
-                            fill="currentColor"
-                            viewBox="0 0 640 512"
-                          >
-                            <path d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z" />
-                          </svg>
-                        </div>
-                        <div>
-                          <div className="h-2.5 bg-gray-300 rounded-full  w-72 mb-2.5"></div>
-                          <div className="w-96 h-2 bg-gray-200 rounded-full "></div>
-                        </div>
-                        {/* <div className="h-2.5 bg-gray-300 rounded-full w-16"></div> */}
-                      </div>
-                    </>
-                  );
-                })}
-              </div>
+              <>
+                {doBlur ? (
+                  <div className="flex w-full h-[250px] justify-center items-center text-2xl font-semibold">
+                    No College Found
+                  </div>
+                ) : (
+                  <div
+                    role="status"
+                    className="w-full p-4 space-y-4  divide-y divide-gray-200  animate-pulse backdrop-blur-xl "
+                  >
+                    {skeleton?.map((item, i) => {
+                      return (
+                        <>
+                          <div className="flex items-center justify-start gap-x-2 pt-2">
+                            <div className="flex items-center justify-center h-10 w-10 bg-gray-300 rounded-full">
+                              <svg
+                                className="w-6 h-6 text-gray-200"
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true"
+                                fill="currentColor"
+                                viewBox="0 0 640 512"
+                              >
+                                <path d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z" />
+                              </svg>
+                            </div>
+                            <div>
+                              <div className="h-2.5 bg-gray-300 rounded-full  w-72 mb-2.5"></div>
+                              <div className="w-96 h-2 bg-gray-200 rounded-full "></div>
+                            </div>
+                            {/* <div className="h-2.5 bg-gray-300 rounded-full w-16"></div> */}
+                          </div>
+                        </>
+                      );
+                    })}
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>
@@ -564,7 +647,7 @@ const CollegePredictor = () => {
                     "0px 1.52083px 1.52083px 1.52083px rgba(204, 204, 204, 0.1)",
                 }}
               >
-                <button
+                <button id="toolSubmit"
                   className="text-[#FFFFFF] p-1 mob:text-sm"
                   onClick={() => handleValidationError()}
                 >

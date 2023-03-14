@@ -52,6 +52,7 @@ const HomeHeader = () => {
             <div className='flex items-center shadow-md py-[8px] px-[16px] rounded-md absolute bg-white' >
                 <FaSearch className='text-[#A7A7A7] ml-2 cursor-pointer text-lg'/>
                 <input 
+                    id="searchbar"
                     type='search' 
                     value={searchTerm}
                     onChange={(e)=>setSearchTerm(e.target.value)}
