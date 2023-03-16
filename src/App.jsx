@@ -18,6 +18,8 @@ import CollegePredictor from "./pages/CollegePredictor";
 import PercentilePredictor from "./pages/percentilePredictor";
 import CutoffPage from "./pages/cutoffPage";
 import ExamRecommender from "./pages/examRecommender";
+import TrendsHome from "./pages/trendsHome";
+import TrendsBranches from "./pages/trendsBranches";
 
 function App() {
   const { skeleton, loader } = useStateContext()
@@ -36,8 +38,10 @@ function App() {
             <Route path="/forum" element={<ForumPage />} exact />
             <Route path="/allColleges" element={<AllColleges />} exact />
             <Route path="/scheduler" element={<SchedularPage />} exact />
-            <Route path="/trends" element={<TrendAnalysis />} exact />
+            <Route path="/trendsAnalysis" element={<TrendAnalysis />} exact />
+            <Route path="/trends/:college" element={<TrendsBranches />} exact/>
             <Route path="/trends/:college/:branch" element={<TrendAnalysis />} exact />
+            <Route path="/trends" element = {<TrendsHome />} exact />
             <Route path="*" element={<Err_404 />} exact />
             <Route path="/soon" element={<Comming_Soon />} exact />
             <Route path="/collegePredictor" element={<CollegePredictor />} exact />
