@@ -13,7 +13,6 @@ const CollegePredictor = () => {
   const [selectedGender, setGender] = useState("Gender-Neutral");
   const [rank, setRank] = useState("");
   const [pwd, setPwd] = useState(false);
-  const [isError, setIsError] = useState(true);
   const [RankError, setRankError] = useState(false);
   const [CategoryError, setCategoryError] = useState(false);
   const [EligibilityError, setEligibilityError] = useState(false);
@@ -29,7 +28,6 @@ const CollegePredictor = () => {
   const [safeBtn, setSafeBtn] = useState(false);
   const [oneThird, setOneThird] = useState();
   const [doBlur, setDoBlur] = useState(false);
-
   const [homeCollege, setHomeCollege] = useState();
   const [homeMapCollege, setHomeMapCollege] = useState();
   const [oneThirdHome, setOneThirdHome] = useState();
@@ -40,48 +38,23 @@ const CollegePredictor = () => {
 
   const handleValidationError = () => {
     if (
-      rank === "" ||
-      Eligibility === "" ||
-      // selectedGender === "" ||
-      Category === ""
-    ) {
-      setIsError(true);
-    }else{
-      setIsError(false)
-    }
-
-    if (isError) {
-      if (rank === "") {
-        setRankError("Rank required to be entered!");
-        setIsError(false);
-      }
-
-      if (Eligibility === "") {
-        setEligibilityError("State required to be selected!");
-        setIsError(false);
-      }
-      if (Category === "") {
-        setCategoryError("Category required to be selected!");
-        setIsError(false);
-      }
-      // if (selectedGender === "") {
-      //   setGenderError("Gender required to be selected!");
-      // }
-      // if (PwdError === "") {
-      //   setPwdError("PwD required to be selected!");
-      // }
-      console.log("error m aya");
-      return;
-    } else if (
       rank !== "" &&
       Eligibility !== "" &&
-      castes !== "" &&
-      // selectedGender !== "" &&
+      // selectedGender === "" ||
       Category !== ""
     ) {
       handleSubmit();
+    }
 
-      setIsError(true);
+    if (rank === "") {
+      setRankError("Rank required to be entered!");
+    }
+
+    if (Eligibility === "") {
+      setEligibilityError("State required to be selected!");
+    }
+    if (Category === "") {
+      setCategoryError("Category required to be selected!");
     }
   };
 
@@ -165,7 +138,6 @@ const CollegePredictor = () => {
     setHomeMapCollege(homeCollege);
     setOneThird(0);
     setOneThirdHome(0);
-
   };
 
   const handleSafe = () => {
@@ -173,7 +145,7 @@ const CollegePredictor = () => {
     setDreamBtn(false);
     setSureBtn(false);
     setOneThird(Math.floor(predictedColleges.length / 3));
-    setOneThirdHome(Math.floor(homeCollege.length / 3))
+    setOneThirdHome(Math.floor(homeCollege.length / 3));
   };
 
   const handleSure = () => {
@@ -185,8 +157,7 @@ const CollegePredictor = () => {
         Math.floor(predictedColleges.length / 3)
     );
     setOneThird(
-      Math.floor(homeCollege.length / 3) +
-        Math.floor(homeCollege.length / 3)
+      Math.floor(homeCollege.length / 3) + Math.floor(homeCollege.length / 3)
     );
   };
   const CategoryList = ["EWS", "OBC-NCL", "OPEN", "SC", "ST"];
