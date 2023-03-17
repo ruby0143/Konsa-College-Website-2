@@ -60,7 +60,6 @@ const CollegePredictor = () => {
 
   const handleSubmit = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    setIsError(false);
     setRankError("");
     setCategoryError("");
     setEligibilityError("");
