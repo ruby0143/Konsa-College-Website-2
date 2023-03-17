@@ -2,23 +2,25 @@ import React, { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, Label } from 'recharts';
 import axios from "axios";
 import { Helmet } from "react-helmet";
+import { useLocation } from "react-router-dom";
 
 function trendAnalysis() {
+  const path = useLocation().pathname;
+  const params = path.split('/')
   const [colleges, setColleges] = useState([]);
   const [branches, setBranches] = useState(new Map());
   const [filteredBranches, setFilteredBranches] = useState([]);
   const [selectedRank, setRank] = useState("Mains");
-  const [selectedState, setState] = useState(null);
-  const [selectedCollege, setSelectedCollege] = useState(null);
-  const [selectedBranch, setBranch] = useState(null);
-  const [selectedCaste, setCaste] = useState(null);
+  const [selectedState, setState] = useState("AI");
+  const [selectedCollege, setSelectedCollege] = useState(params[2] ? params[2].split('-').join(" ") : null);
+  const [selectedBranch, setBranch] = useState(params[3] ? params[3].split('-').join(' ') : null);
+  const [selectedCaste, setCaste] = useState("OPEN");
   const [selectedGender, setGender] = useState("Gender-Neutral");
   const [selectedInstTypes, setTypes] = useState([]);
   const [requiredState, setRequiredState] = useState(false);
   const [requiredInst, setReqInst] = useState(false);
   const [requiredProg, setReqProg] = useState(false);
   const [reqSeat, setReqseat] = useState(false);
-
   const [chartData, setChartData] = useState([]);
   const [noData, setBool] = useState(false);
 
@@ -27,7 +29,6 @@ function trendAnalysis() {
     "EWS (PwD)",
     "OBC-NCL",
     "OBC-NCL (PwD)",
-    "OPEN",
     "OPEN (PwD)",
     "SC",
     "SC (PwD)",
@@ -36,7 +37,6 @@ function trendAnalysis() {
   ];
 
   const states = [
-    "AI",
     "HS",
     "GO",
     "JK"
@@ -69,11 +69,18 @@ function trendAnalysis() {
           setColleges(function (prevState) {
             return [...prevState, col];
           });
+
           const programs = ele.Array;
           const arrPgs = programs.split("'");
-          setFilteredBranches(arrPgs);
+
+          if (selectedCollege === col) {
+            // console.log("match");
+            setFilteredBranches(arrPgs);
+          }
+
           branches.set(col, arrPgs);
         });
+
       })
       .catch((err) => {
         console.log(err);
@@ -238,8 +245,9 @@ function trendAnalysis() {
                   setRequiredState(false);
                 }}
               >
-                <option selected disabled>
-                  Select a state
+
+                <option selected value={"AI"}>
+                  {"AI"}
                 </option>
                 {states.map((state) => {
                   return <option value={state}>{state}</option>;
@@ -260,7 +268,9 @@ function trendAnalysis() {
               </div>
               <select
                 name="colleges"
+                id="clg"
                 className="my-3 p-2 w-full border-solid border-[#D1D5DB] border rounded-md"
+                value={selectedCollege}
                 onChange={(e) => {
                   setSelectedCollege(e.target.value);
                   setReqInst(false);
@@ -269,17 +279,29 @@ function trendAnalysis() {
                     setRequiredState(true);
                   }
                 }}
+
               >
-                <option selected disabled>
+
+                {selectedCollege ? (<option selected value={selectedCollege}>{selectedCollege}</option>) : (<option selected disabled>
                   Select a college
-                </option>
+                </option>)}
                 {colleges?.map((college, idx) => {
-                  if (selectedRank === "Advance") {
-                    return (college.includes("Indian Institute of Technology") ? (<option value={college}>{college}</option>) : null)
+
+
+                  {/* console.log(college,selectedCollege); */ }
+                  if (college === selectedCollege) {
+                    console.log("match");
                   }
                   else {
-                    return (!(college.includes("Indian Institute of Technology")) ? (<option value={college}>{college}</option>) : null)
+                    if (selectedRank === "Advance") {
+                      return (college.includes("Indian Institute of Technology") ? (<option value={college}>{college}</option>) : null)
+                    }
+                    else {
+                      return (!(college.includes("Indian Institute of Technology")) ? (<option value={college}>{college}</option>) : null)
+                    }
                   }
+
+
                 })}
               </select>
               {requiredInst ? (
@@ -308,15 +330,23 @@ function trendAnalysis() {
                 <select
                   name="programs"
                   className="my-3 p-2 w-full border-solid border-[#D1D5DB] border rounded-md"
+                  value={selectedBranch}
                   onChange={(e) => {
                     setBranch(e.target.value);
                     setReqProg(false);
                   }}
                 >
-                  <option selected disabled>
-                    Select a program
-                  </option>
+                  {selectedBranch ? (<option value={selectedBranch} selected>{selectedBranch}</option>) :
+                    (<option selected disabled>
+                      Select a program
+                    </option>)}
+
                   {filteredBranches?.map((branch, idx) => {
+                    {/* console.log(preSelectedBranch,branch,"this"); */ }
+                    if (selectedBranch=== branch) {
+                      console.log("match");
+                      {/* console.log(preSelectedBranch,branch,"match"); */ }
+                    }
                     if (idx % 2 != 0) {
                       return <option value={branch}>{branch}</option>;
                     }
@@ -349,8 +379,8 @@ function trendAnalysis() {
                   setReqseat(false);
                 }}
               >
-                <option selected disabled>
-                  Select a caste
+                <option selected value={"OPEN"}>
+                  {"OPEN"}
                 </option>
                 {castes.map((caste) => {
                   return <option value={caste}>{caste}</option>;

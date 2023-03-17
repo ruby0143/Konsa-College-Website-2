@@ -263,6 +263,7 @@ const ExamRecommender = () => {
                     <button
                       className="text-[#FFFFFF] w-full h-full p-1"
                       type='submit'
+                      id='toolSubmit'
                       >
                       Suggest Now
                     </button>
