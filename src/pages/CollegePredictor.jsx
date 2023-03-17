@@ -612,7 +612,7 @@ const CollegePredictor = () => {
             <div className="flex flex-col mt-[20px] mob:mt-[5px] justify-start">
               <div className="w-full">
                 <h6 className=" mob:text-[13px] ">Gender</h6>
-                <div className="flex w-full flex-row mt-[1px] gap-x-4">
+                <div className="flex w-full flex-row mt-[3px] gap-x-4">
                   <div className="w-[70%] flex  gap-x-2">
                     <input
                       className="rb"
@@ -642,9 +642,9 @@ const CollegePredictor = () => {
               {/* {GenderError !== "" && selectedGender === "" && (
                 <div className="text-red-600 mob:text-xs">{GenderError}</div>
               )} */}
-              <div className="w-full mt-[10px] mob:mt-[5px]">
+              <div className="w-full mt-[20px] mob:mt-[5px]">
                 <h6 className=" mob:text-[13px] ">Are You Pwd</h6>
-                <div className="w-full flex flex-row mt-[1px] ">
+                <div className="w-full flex flex-row mt-[3px] ">
                   <div className="w-[70%] flex gap-x-2">
                     <input
                       className="rb"
@@ -684,7 +684,7 @@ const CollegePredictor = () => {
               <div className="text-red-600 mob:text-xs">{PwdError}</div>
             )} */}
 
-            <div className="w-full flex justify-center mt-[30px] mob:mt-[30px]">
+            <div className="w-full flex justify-center mt-[30px] mb-[30px] mob:mt-[30px]">
               <div
                 className="desk:w-[50%] bg-[#EE7C00] mob:px-8 rounded-[2px] mob:rounded-2xl flex justify-center"
                 style={{
