@@ -18,6 +18,7 @@ import CollegePredictor from "./pages/CollegePredictor";
 import PercentilePredictor from "./pages/percentilePredictor";
 import CutoffPage from "./pages/cutoffPage";
 import ExamRecommender from "./pages/examRecommender";
+import Tools from "./pages/tool"
 
 function App() {
   const { skeleton, loader } = useStateContext()
@@ -43,6 +44,7 @@ function App() {
             <Route path="/percentilePredictor" element={<PercentilePredictor />} exact />
             <Route path="/examRecommender" element={<ExamRecommender />} exact />
             <Route path="/college/:particularcollege/cutoff" element={<CutoffPage />} exact />
+            <Route path="/tools" element={<Tools/>} exact/>
           </Routes>
           <CollegeFooter />
         </ScrollToTop>

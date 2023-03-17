@@ -13,7 +13,7 @@ const CollegePredictor = () => {
   const [selectedGender, setGender] = useState("Gender-Neutral");
   const [rank, setRank] = useState("");
   const [pwd, setPwd] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState(true);
   const [RankError, setRankError] = useState(false);
   const [CategoryError, setCategoryError] = useState(false);
   const [EligibilityError, setEligibilityError] = useState(false);
@@ -29,6 +29,11 @@ const CollegePredictor = () => {
   const [safeBtn, setSafeBtn] = useState(false);
   const [oneThird, setOneThird] = useState();
   const [doBlur, setDoBlur] = useState(false);
+
+  const [homeCollege, setHomeCollege] = useState();
+  const [homeMapCollege, setHomeMapCollege] = useState();
+  const [oneThirdHome, setOneThirdHome] = useState();
+  const [allFilterCollege, setAllFilterCollege] = useState();
 
   // const url = "http://localhost:5000";
   const url = "https://konsa-college-backend.vercel.app";
@@ -79,6 +84,7 @@ const CollegePredictor = () => {
   };
 
   const handleSubmit = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setIsError(false);
     setRankError("");
     setCategoryError("");
@@ -108,14 +114,35 @@ const CollegePredictor = () => {
         const sort = clg.sort((a, b) => {
           return a.Closing_Rank - b.Closing_Rank;
         });
+        setAllFilterCollege(sort);
+        let othclg = sort?.filter((clg) => {
+          if (
+            clg.Institute.split(" ")[clg.Institute.split(" ").length - 1] !==
+            Eligibility
+          ) {
+            return clg;
+          }
+        });
         setOneThird(0);
         if (sort.length < 8) {
           setDoBlur(true);
           setDownload(false);
         }
-        console.log("Dream", sort);
-        setPredictedColleges(sort);
-        setMapColleges(sort);
+        console.log("Dream", othclg);
+        setPredictedColleges(othclg);
+        setMapColleges(othclg);
+
+        let home = sort?.filter((clg) => {
+          if (
+            clg.Institute.split(" ")[clg.Institute.split(" ").length - 1] ===
+            Eligibility
+          ) {
+            return clg;
+          }
+        });
+        console.log("home", home);
+        setHomeCollege(home);
+        setHomeMapCollege(home);
       })
       .catch((err) => {
         console.log(err);
@@ -134,18 +161,13 @@ const CollegePredictor = () => {
     setSureBtn(false);
     setSafeBtn(false);
     setMapColleges(predictedColleges);
+    setHomeMapCollege(homeCollege);
     setOneThird(0);
+    setOneThirdHome(0);
+
   };
 
   const handleSafe = () => {
-    // let home = predictedColleges?.filter((clg) => {
-    //   if (
-    //     clg.Institute.split(" ")[clg.Institute.split(" ").length - 1] ===
-    //     Eligibility
-    //   ) {
-    //     return clg;
-    //   }
-    // });
     // console.log("safe", home);
     // setMapColleges(home);
 
@@ -153,17 +175,10 @@ const CollegePredictor = () => {
     setDreamBtn(false);
     setSureBtn(false);
     setOneThird(Math.floor(predictedColleges.length / 3));
+    setOneThirdHome(Math.floor(homeCollege.length / 3))
   };
 
   const handleSure = () => {
-    // let othclg =  predictedColleges?.filter((clg) => {
-    //   if (
-    //     clg.Institute.split(" ")[clg.Institute.split(" ").length - 1] !==
-    //     Eligibility
-    //   ) {
-    //     return clg;
-    //   }
-    // });
     // console.log("sure", othclg);
     // setMapColleges(othclg);
 
@@ -172,7 +187,11 @@ const CollegePredictor = () => {
     setSafeBtn(false);
     setOneThird(
       Math.floor(predictedColleges.length / 3) +
-      Math.floor(predictedColleges.length / 3)
+        Math.floor(predictedColleges.length / 3)
+    );
+    setOneThird(
+      Math.floor(homeCollege.length / 3) +
+        Math.floor(homeCollege.length / 3)
     );
   };
   const CategoryList = ["EWS", "OBC-NCL", "OPEN", "SC", "ST"];
@@ -194,33 +213,59 @@ const CollegePredictor = () => {
         <meta name="copyright" content="Konsa College" />
         <meta name="viewport" content="width=device-width, intial-scale=1.0" />
         <title>Konsacollege - College Predictor</title>
-        <meta name="description" content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today." />
-        <meta name="Abstract" content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today." />
-        <meta property="og:title" content="Konsacollege - Find the Best Colleges in India" />
-          <meta property="og:description" content="Looking for the best engineering college in India? Look no further than Konsacollege. Our comprehensive directory and user-friendly tools make it easy to find the right college hassle-free. Plus, our expert counselors are here to guide you every step of the way. Start your college search with Konsacollege today." />
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://www.konsacollege.com" />
-          <meta property="og:site_name"
-            content="Konsacollege - Home"/>
-          <meta property="og:image"
-            content="https://konsa-college-website.vercel.app/assets/KonsaCollege_desktopLogo-d9a0ad42.svg" />
-          <meta property="og:determiner" content="..." />
-          <meta name="twitter:card" content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today." />
-          <meta name="twitter:title" content="Konsacollege - Find the Best Colleges in India" />
-          <meta name="twitter:description" content="Finding the right college can be overwhelming, but Konsacollege makes it easy. With a vast directory of top engineering colleges in India and personalized counseling, we help students make informed decisions about their education. Start your search today and discover your dream college with Konsacollege." />
-          <meta name="twitter:image"
-            content="https://konsa-college-website.vercel.app/assets/KonsaCollege_desktopLogo-d9a0ad42.svg" />
-          <meta name="twitter:image:alt"
-            content="Konsa College Logo" />
-          <meta property="twitter:url" content="https://www.konsacollege.com" />
-          <meta property="twitter:site" content="@konsacollege" />
+        <meta
+          name="description"
+          content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today."
+        />
+        <meta
+          name="Abstract"
+          content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today."
+        />
+        <meta
+          property="og:title"
+          content="Konsacollege - Find the Best Colleges in India"
+        />
+        <meta
+          property="og:description"
+          content="Looking for the best engineering college in India? Look no further than Konsacollege. Our comprehensive directory and user-friendly tools make it easy to find the right college hassle-free. Plus, our expert counselors are here to guide you every step of the way. Start your college search with Konsacollege today."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.konsacollege.com" />
+        <meta property="og:site_name" content="Konsacollege - Home" />
+        <meta
+          property="og:image"
+          content="https://konsa-college-website.vercel.app/assets/KonsaCollege_desktopLogo-d9a0ad42.svg"
+        />
+        <meta property="og:determiner" content="..." />
+        <meta
+          name="twitter:card"
+          content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today."
+        />
+        <meta
+          name="twitter:title"
+          content="Konsacollege - Find the Best Colleges in India"
+        />
+        <meta
+          name="twitter:description"
+          content="Finding the right college can be overwhelming, but Konsacollege makes it easy. With a vast directory of top engineering colleges in India and personalized counseling, we help students make informed decisions about their education. Start your search today and discover your dream college with Konsacollege."
+        />
+        <meta
+          name="twitter:image"
+          content="https://konsa-college-website.vercel.app/assets/KonsaCollege_desktopLogo-d9a0ad42.svg"
+        />
+        <meta name="twitter:image:alt" content="Konsa College Logo" />
+        <meta property="twitter:url" content="https://www.konsacollege.com" />
+        <meta property="twitter:site" content="@konsacollege" />
         <meta name="robots" content="index, follow" />
-        <meta name="keywords" content="keyword1, keyword2, keyword3, keyword4" />
+        <meta
+          name="keywords"
+          content="keyword1, keyword2, keyword3, keyword4"
+        />
         <meta name="audience" content="all" />
         <meta name="distribution" content="global" />
       </Helmet>
       {res && (
-        <div className="absolute z-50 w-[70%] top-[50px] left-[230px] mob:w-[90%] bg-[#FCFCFC] h-[50%] flex flex-col p-5">
+        <div className="absolute z-50 w-[70%] top-[50px] left-[230px] mob:w-[90%] bg-[#FCFCFC] h-[66%] flex flex-col p-5">
           <div
             className={
               doBlur
@@ -290,7 +335,7 @@ const CollegePredictor = () => {
                 }
               >
                 {download && (
-                  <CSVDownload data={predictedColleges} target="_blank" />
+                  <CSVDownload data={allFilterCollege} target="_blank" />
                 )}
                 Download
               </button>
@@ -348,6 +393,40 @@ const CollegePredictor = () => {
                     </div>
                   );
                 })}
+                {homeCollege.length > 0 && (
+                  <div
+                    className={
+                      doBlur
+                        ? "mt-2 p-4 rounded-[3px] flex items-center font-semibold blur-sm"
+                        : "mt-2 p-4 rounded-[3px] flex items-center font-semibold"
+                    }
+                    style={{ backgroundColor: "rgba(238, 124, 0, 0.05)" }}
+                  >
+                    Home College
+                  </div>
+                )}
+                {homeMapCollege
+                  ?.slice(oneThirdHome, oneThirdHome + 2)
+                  .map((clg, id) => {
+                    return (
+                      <div key={id}>
+                        <div className="w-full flex flex-row  items-center p-1">
+                          <div className="w-[5%]">
+                            <img
+                              src={id % 2 === 0 ? "./cp1.svg" : "./redlogo.svg"}
+                            ></img>
+                          </div>
+                          <div className="w-[75%] p-2 first-letter:flex flex-col">
+                            <div className="text-sm">{clg.Institute}</div>
+                            <div className="text-xs">
+                              {clg.Academic_Program_Name}
+                            </div>
+                          </div>
+                        </div>
+                        <hr></hr>
+                      </div>
+                    );
+                  })}
               </>
             ) : (
               <>
@@ -422,7 +501,7 @@ const CollegePredictor = () => {
             </h6>
             <input
               onChange={(e) => setRank(e.target.value)}
-              className="rounded-[2px] bg-[#FFFFFF] mt-[6px] text-[#ACACAC] text-sm mob:text-xs tracking-wide focus:outline-none border-none w-full p-[6px]"
+              className="rounded-[2px] bg-[#FFFFFF] mt-[2px] text-[#ACACAC] text-sm mob:text-xs tracking-wide focus:outline-none border-none w-full p-[6px]"
               style={{
                 boxShadow:
                   "0px 1.52083px 1.52083px 1.52083px rgba(204, 204, 204, 0.1)",
@@ -434,15 +513,15 @@ const CollegePredictor = () => {
               placeholder="Enter Your Rank"
             ></input>
             {RankError !== "" && rank === "" && (
-              <div className="text-red-600 mob:text-xs">{RankError}</div>
+              <div className="text-red-500 text-[14px]">{RankError}</div>
             )}
 
-            <h6 className="mt-[25px] mob:mt-[15px] mob:text-[13px]">
+            <h6 className="mt-[20px] mob:mt-[15px] mob:text-[13px]">
               State Your Eligibility
             </h6>
 
             <div
-              className="relative flex flex-row mt-[6px] justify-start items-center w-full p-[6px] rounded-[2px] border-none focus:outline-none bg-[#ffffff]"
+              className="relative flex flex-row mt-[2px] justify-start items-center w-full p-[6px] rounded-[2px] border-none focus:outline-none bg-[#ffffff]"
               style={{ border: "1px solid #D3D3D3" }}
             >
               <button
@@ -487,15 +566,15 @@ const CollegePredictor = () => {
               )}
             </div>
             {EligibilityError !== "" && Eligibility === "" && (
-              <div className="text-red-600 mob:text-xs">{EligibilityError}</div>
+              <div className="text-red-500 text-[14px]">{EligibilityError}</div>
             )}
 
-            <h6 className="mt-[25px] mob:mt-[15px] mob:text-[13px]">
+            <h6 className="mt-[20px] mob:mt-[15px] mob:text-[13px]">
               Your Category
             </h6>
 
             <div
-              className="relative flex flex-row mt-[8px] justify-start  items-center w-full p-[6px] rounded-[2px] bg-[#ffffff] "
+              className="relative flex flex-row mt-[2px] justify-start  items-center w-full p-[6px] rounded-[2px] bg-[#ffffff] "
               style={{ border: "1px solid #D3D3D3" }}
             >
               <button
@@ -561,13 +640,13 @@ const CollegePredictor = () => {
               )}
             </div>
             {CategoryError !== "" && Category === "" && (
-              <div className="text-red-600 mob:text-xs">{CategoryError}</div>
+              <div className="text-red-500 text-[14px]">{CategoryError}</div>
             )}
 
-            <div className="flex flex-col mt-[25px] mob:mt-[5px] justify-start">
+            <div className="flex flex-col mt-[20px] mob:mt-[5px] justify-start">
               <div className="w-full">
                 <h6 className=" mob:text-[13px] ">Gender</h6>
-                <div className="flex w-full flex-row mt-[5px] gap-x-4">
+                <div className="flex w-full flex-row mt-[1px] gap-x-4">
                   <div className="w-[70%] flex  gap-x-2">
                     <input
                       className="rb"
@@ -597,9 +676,9 @@ const CollegePredictor = () => {
               {/* {GenderError !== "" && selectedGender === "" && (
                 <div className="text-red-600 mob:text-xs">{GenderError}</div>
               )} */}
-              <div className="w-full mt-[20px] mob:mt-[5px]">
+              <div className="w-full mt-[10px] mob:mt-[5px]">
                 <h6 className=" mob:text-[13px] ">Are You Pwd</h6>
-                <div className="w-full flex flex-row mt-[5px] ">
+                <div className="w-full flex flex-row mt-[1px] ">
                   <div className="w-[70%] flex gap-x-2">
                     <input
                       className="rb"
@@ -647,7 +726,8 @@ const CollegePredictor = () => {
                     "0px 1.52083px 1.52083px 1.52083px rgba(204, 204, 204, 0.1)",
                 }}
               >
-                <button id="toolSubmit"
+                <button
+                  id="toolSubmit"
                   className="text-[#FFFFFF] p-1 mob:text-sm"
                   onClick={() => handleValidationError()}
                 >
