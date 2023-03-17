@@ -46,6 +46,8 @@ const CollegePredictor = () => {
       Category === ""
     ) {
       setIsError(true);
+    }else{
+      setIsError(false)
     }
 
     if (isError) {
@@ -79,7 +81,7 @@ const CollegePredictor = () => {
     ) {
       handleSubmit();
 
-      setIsError(false);
+      setIsError(true);
     }
   };
 
@@ -149,7 +151,6 @@ const CollegePredictor = () => {
       });
 
     setRes(true);
-    setIsError(false);
     setRank("");
     setCategory("");
     setEligibility("");
@@ -168,9 +169,6 @@ const CollegePredictor = () => {
   };
 
   const handleSafe = () => {
-    // console.log("safe", home);
-    // setMapColleges(home);
-
     setSafeBtn(true);
     setDreamBtn(false);
     setSureBtn(false);
@@ -179,9 +177,6 @@ const CollegePredictor = () => {
   };
 
   const handleSure = () => {
-    // console.log("sure", othclg);
-    // setMapColleges(othclg);
-
     setSureBtn(true);
     setDreamBtn(false);
     setSafeBtn(false);

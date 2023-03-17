@@ -20,6 +20,7 @@ import CutoffPage from "./pages/cutoffPage";
 import ExamRecommender from "./pages/examRecommender";
 import TrendsHome from "./pages/trendsHome";
 import TrendsBranches from "./pages/trendsBranches";
+import Tools from "./pages/tool"
 
 function App() {
   const { skeleton, loader } = useStateContext()
