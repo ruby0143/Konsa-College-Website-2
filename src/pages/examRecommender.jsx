@@ -106,10 +106,9 @@ const ExamRecommender = () => {
      {
         "name":"West Bengal"
      }
-  ]
-  
+  ] 
     const handleFormSubmit = () => {
-      if(selectedState !== "-- Enter Your State --"){
+      if(selectedState !== "-- Enter your state --"){
         ( async () => {
           const url = "https://konsa-college-backend.vercel.app/recommendedExams";
           const {data} = await axios.get(url,{
@@ -117,15 +116,17 @@ const ExamRecommender = () => {
               location: selectedState
             },
           })
-          setApiREcommendedExamData(data) 
+          setApiREcommendedExamData(data); 
           setSelectedState("-- Enter your state --");
-          setIsModalOpen(true)
+          setIsModalOpen(true);
         })()
       }
     }
 
         return (
         <>
+
+        {/* ---- SEO Configuration ----*/}
         <Helmet>
           <meta name="copyright" content="Konsa College" />
           <meta name="viewport" content="width=device-width, intial-scale=1.0" />
@@ -155,6 +156,8 @@ const ExamRecommender = () => {
           <meta name="audience" content="all" />
           <meta name="distribution" content="global"/>
         </Helmet>
+        {/* ---- SEO Configuration ---- */}
+
         {
           isModalOpen && (
             apiRecommendedExamData.length > 0 ? (
@@ -210,6 +213,7 @@ const ExamRecommender = () => {
                   <input
                     type="text"
                     placeholder="Enter Your Name"
+                    // value={userName}
                     // onChange={e=>setUserName(e.target.value)}
                     {...register("name", { required: "name field is required" })} 
                     className={`rounded-[2px] bg-[#FFFFFF] text-[#ACACAC] text-sm mob:text-xs tracking-wide focus:outline-none border ${errors.name ? "border-red-500" : "border-gray-300"} w-full h-full p-[6px]`}
@@ -229,6 +233,7 @@ const ExamRecommender = () => {
                   className={`w-full rounded-[2px] px-1 h-[35px] text-[#ACACAC] text-sm bg-[#ffffff] cursor-pointer focus:outline-none border ${errors.state ? "border-red-500" : "border-gray-300"}`}
                   {...register("state",{required: "State field is required"})}
                   onChange={e=>setSelectedState(e.target.value)}  
+                  value={selectedState}
                 >
                   <option value="" className='text-[#ACACAC]'>{selectedState}</option>
                   {

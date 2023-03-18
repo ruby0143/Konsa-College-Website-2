@@ -3,7 +3,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 
 
 const RecommendedExamsContainer = ({recommendedExams, setIsModalOpen}) => {
-  console.log("exams:",recommendedExams[0]);
+  
   let RecommendedExams = recommendedExams[0].Exams
 
   return (
@@ -29,8 +29,12 @@ const RecommendedExamsContainer = ({recommendedExams, setIsModalOpen}) => {
                     className="flex flex-col justify-between border border-gray-2 my-3 h-[130px] w-[270px] p-3 rounded-sm"
                    >
                       <div className='flex h-[60px]'>
-                        <div className='w-[60px] h-full bg-slate-400'>
-                          
+                        <div className='w-[60px] h-full bg-white'>
+                          {exam.logo_link !== "" ? <img 
+                            src={exam.logo_link} 
+                            alt="exam logo" 
+                            className='w-full h-full object-cover'
+                          /> : null}
                         </div>
                         <div className='ml-2'>
                           <div>
@@ -49,7 +53,14 @@ const RecommendedExamsContainer = ({recommendedExams, setIsModalOpen}) => {
                       <a>
                         <button
                           className='w-full text-center bg-[#EE7C00] text-white text-sm py-1 rounded-sm'
-                        >Apply</button>
+                        >
+                          {/* {<a 
+                            href={exam.apply_link ? exam.apply_link : ""}
+                            className="w-full h-full"
+                           > */}
+                            Apply
+                          {/* </a>} */}
+                        </button>
                       </a>
                   </div>
           })
