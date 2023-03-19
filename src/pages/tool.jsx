@@ -39,7 +39,7 @@ const tool = () => {
     },
     {
       img: "./tool1.svg",
-      heading: "College Predictor",
+      heading: "Percentile Predictor",
       desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
     },
     {
@@ -90,7 +90,6 @@ const tool = () => {
               <div className="bg-white rounded-3xl w-[400px] flex justify-between items-center mt-5">
                 <div className="flex justify-center items-center p-1 gap-2 gap-x-3 ml-2">
                   <div className="w-[20px]">
-                    {" "}
                     <img src="./search.svg"></img>
                   </div>
                   <div>
@@ -124,7 +123,6 @@ const tool = () => {
             <div>
               <div className="text-[17px] font-bold">{card.heading}</div>
               <div className="text-[#FFFFFF99] text-xs w-[200px]">{card.desc}</div>
-
             </div>
           </div>
           )})}
