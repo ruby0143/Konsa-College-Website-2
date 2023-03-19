@@ -14,7 +14,27 @@ const tool = () => {
     },
     {
       img: "./tool1.svg",
-      heading: "College Predictor",
+      heading: "Preference List Generator",
+      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+    },
+    {
+      img: "./tool1.svg",
+      heading: "Trend Analysis Tool",
+      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+    },
+    {
+      img: "./tool2.svg",
+      heading: "College Comparator",
+      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+    },
+    {
+      img: "./tool1.svg",
+      heading: "Preference List Generator",
+      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+    },
+    {
+      img: "./tool1.svg",
+      heading: "Scheduler",
       desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
     },
     {
@@ -23,8 +43,8 @@ const tool = () => {
       desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
     },
     {
-      img: "./tool2.svg",
-      heading: "Exam Recommendation",
+      img: "./tool1.svg",
+      heading: "College Predictor",
       desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
     },
     {
