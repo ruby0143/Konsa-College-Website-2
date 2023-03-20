@@ -24,7 +24,7 @@ function trendsHome() {
     const [selectedStates, setSelectedStates] = useState([]);
     const [i,setI] = useState(0);
     const [j,setJ] = useState(0);
-    const url = "https://konsa-college-website.vercel.app";
+    const url = "https://konsa-college-backend.vercel.app";
     const animatedComponents = makeAnimated();
 
     const instTypes = [{ value: 'IITs', label: 'IITs' }, { value: 'NITs', label: 'NITs' }, { value: 'IIITs', label: 'IITs' }];

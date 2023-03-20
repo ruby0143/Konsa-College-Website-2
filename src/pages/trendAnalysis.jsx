@@ -41,7 +41,7 @@ function trendAnalysis() {
     "GO",
     "JK"
   ];
-  const url = "https://konsa-college-website.vercel.app";
+  const url = "https://konsa-college-backend.vercel.app";
 
 
 

@@ -19,7 +19,7 @@ function trendsBranches() {
 
 
     const [branches, setBranches] = useState([]);
-    const url = "https://konsa-college-website.vercel.app";
+    const url = "https://konsa-college-backend.vercel.app";
    
 
   
