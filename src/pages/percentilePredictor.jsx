@@ -10,7 +10,7 @@ const PercentilePredictor = () => {
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [apiResponseData, setApiResponseData] = useState([]);
-  const [shift, setShift] = useState("-- Enter Your Shift --");
+  const [shift, setShift] = useState("-- Enter your shift --");
   const [inputMarks, setInputMarks] = useState("");
   const [prediction, setPrediction] = useState({});
   const [showPercentile, setShowPercentile] = useState(false);
@@ -145,8 +145,9 @@ const PercentilePredictor = () => {
                 className={`w-full rounded-[2px] px-1 h-[35px] text-[#ACACAC] text-sm bg-[#ffffff] cursor-pointer focus:outline-none border ${errors.shift ? "border-red-500" : "border-gray-300"}`}
                 {...register("shift", { required: "shift field is required" })}
                 onChange={e => setShift(e.target.value)}
+                value={shift}
               >
-                <option className='text-[#ACACAC]' value="">{shift}</option>
+                <option className='text-[#ACACAC]' value="">-- Enter your shift --</option>
                 {
                   shiftList.map((shift, idx) => {
                     return (

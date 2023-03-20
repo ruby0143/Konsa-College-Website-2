@@ -54,12 +54,12 @@ const RecommendedExamsContainer = ({recommendedExams, setIsModalOpen}) => {
                         <button
                           className='w-full text-center bg-[#EE7C00] text-white text-sm py-1 rounded-sm'
                         >
-                          {/* {<a 
+                          {<a 
                             href={exam.apply_link ? exam.apply_link : ""}
                             className="w-full h-full"
-                           > */}
+                           >
                             Apply
-                          {/* </a>} */}
+                          </a>}
                         </button>
                       </a>
                   </div>
