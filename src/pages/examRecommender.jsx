@@ -11,7 +11,7 @@ const ExamRecommender = () => {
   const [apiRecommendedExamData, setApiREcommendedExamData] = useState([])
   const [selectedState, setSelectedState] = useState("-- Enter your state --")
   const [isModalOpen, setIsModalOpen] = useState(false)
-  // const [userName, setUserName] = useState("")
+  const [userName, setUserName] = useState("")
   
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
     
@@ -109,7 +109,7 @@ const ExamRecommender = () => {
   ] 
     const handleFormSubmit = () => {
       if(selectedState !== "-- Enter your state --"){
-        ( async () => {
+        (async () => {
           const url = "https://konsa-college-backend.vercel.app/recommendedExams";
           const {data} = await axios.get(url,{
             params : {
@@ -118,6 +118,9 @@ const ExamRecommender = () => {
           })
           setApiREcommendedExamData(data); 
           setSelectedState("-- Enter your state --");
+          console.log("nametest1: ",userName);
+          setUserName("");
+          console.log("nametest2: ",userName);
           setIsModalOpen(true);
         })()
       }
@@ -209,15 +212,15 @@ const ExamRecommender = () => {
                 <h6 className="mt-[35px] mob:mt-[20px] mob:text-[13px]">Your Name</h6>
                 <div  
                   className="relative flex mt-[8px] justify-betweeb h-[34px] items-center w-full rounded-[2px]" 
-                  >
+                >
                   <input
-                    type="text"
-                    placeholder="Enter Your Name"
-                    // value={userName}
-                    // onChange={e=>setUserName(e.target.value)}
                     {...register("name", { required: "name field is required" })} 
                     className={`rounded-[2px] bg-[#FFFFFF] text-[#ACACAC] text-sm mob:text-xs tracking-wide focus:outline-none border ${errors.name ? "border-red-500" : "border-gray-300"} w-full h-full p-[6px]`}
-                    />
+                    type="text"
+                    value={userName}
+                    placeholder="Enter Your Name"
+                    onChange={(e)=>setUserName(e.target.value)}
+                  />
                 </div>
     
                 {errors.name && <div 
