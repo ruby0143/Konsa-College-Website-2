@@ -41,7 +41,7 @@ function trendAnalysis() {
     "GO",
     "JK"
   ];
-  const url = "https://konsa-college-backend.vercel.app";
+  const url = "http://localhost:5000";
 
 
 
@@ -64,21 +64,22 @@ function trendAnalysis() {
       )
       .then((res) => {
         const arr = res.data;
-        arr.forEach((ele) => {
+        arr.forEach((ele,idx) => {
+          
           const col = ele.Institute;
           setColleges(function (prevState) {
             return [...prevState, col];
           });
 
           const programs = ele.Array;
-          const arrPgs = programs.split("'");
-
+         
+          // console.log(col,programs,idx);
           if (selectedCollege === col) {
             // console.log("match");
-            setFilteredBranches(arrPgs);
+            setFilteredBranches(programs);
           }
 
-          branches.set(col, arrPgs);
+          branches.set(col, programs);
         });
 
       })
@@ -86,6 +87,7 @@ function trendAnalysis() {
         console.log(err);
       });
   }, []);
+
 
   useEffect(() => {
     if (submit) {
@@ -344,12 +346,10 @@ function trendAnalysis() {
                   {filteredBranches?.map((branch, idx) => {
                     {/* console.log(preSelectedBranch,branch,"this"); */ }
                     if (selectedBranch=== branch) {
-                      console.log("match");
+                      console.log(branch,"match");
                       {/* console.log(preSelectedBranch,branch,"match"); */ }
-                    }
-                    if (idx % 2 != 0) {
+                    }                  
                       return <option value={branch}>{branch}</option>;
-                    }
                   })}
                 </select>
                 {requiredProg ? (

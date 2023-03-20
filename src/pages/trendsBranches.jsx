@@ -19,7 +19,7 @@ function trendsBranches() {
 
 
     const [branches, setBranches] = useState([]);
-    const url = "https://konsa-college-backend.vercel.app";
+    const url = "http://localhost:5000";
    
 
   
@@ -36,9 +36,10 @@ function trendsBranches() {
                     
 
                     const programs = ele.Array;
-                    const arrPgs = programs.split("'");
+                    // const arrPgs = programs.split("'");
+                    // console.log(programs);
                     if(col===finalPath){
-                        setBranches(arrPgs);
+                        setBranches(programs);
                     }
                 });
 
@@ -63,7 +64,7 @@ function trendsBranches() {
                 <div className="body my-3 flex justify-center flex-col items-center md:mx-6 lg:mx-8">
                     <div className="grid grid-cols-1 gap-10  xs:grid-cols-2  sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5">
                         {branches?.map((branch,idx)=>{
-                            if(idx%2!==0){
+                            
                                 const addToPath = branch.split(" ").join('-');
                                 console.log(addToPath);
                                 return (
@@ -71,7 +72,7 @@ function trendsBranches() {
                                         <BranchCard instName={branch} link={addToPath} />
                                     
                                 );
-                            }
+                            
                             
                         })}
 
