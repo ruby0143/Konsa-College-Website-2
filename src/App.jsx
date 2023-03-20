@@ -20,7 +20,8 @@ import CutoffPage from "./pages/cutoffPage";
 import ExamRecommender from "./pages/examRecommender";
 import TrendsHome from "./pages/trendsHome";
 import TrendsBranches from "./pages/trendsBranches";
-import Tools from "./pages/tool"
+import Tools from "./pages/tool";
+import InstCutOff from "./pages/InstCutOff";
 
 function App() {
   const { skeleton, loader } = useStateContext()
@@ -47,6 +48,7 @@ function App() {
             <Route path="/soon" element={<Comming_Soon />} exact />
             <Route path="/collegePredictor" element={<CollegePredictor />} exact />
             <Route path="/percentilePredictor" element={<PercentilePredictor />} exact />
+            <Route path="/InstCutoff" element={<InstCutOff />} exact />
             <Route path="/examRecommender" element={<ExamRecommender />} exact />
             <Route path="/college/:particularcollege/cutoff" element={<CutoffPage />} exact />
             <Route path="/tools" element={<Tools/>} exact/>

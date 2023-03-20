@@ -22,12 +22,12 @@ function trendsHome() {
     const [colleges, setColleges] = useState([]);
     const [institutes, setInstitutes] = useState([]);
     const [selectedStates, setSelectedStates] = useState([]);
-    const [i,setI] = useState(0);
-    const [j,setJ] = useState(0);
+
+
     const url = "https://konsa-college-backend.vercel.app";
     const animatedComponents = makeAnimated();
 
-    const instTypes = [{ value: 'IITs', label: 'IITs' }, { value: 'NITs', label: 'NITs' }, { value: 'IIITs', label: 'IITs' }];
+    const instTypes = [{ value: 'IITs', label: 'IITs' }, { value: 'NITs', label: 'NITs' }, { value: 'IIITs', label: 'IIITs' }];
 
     useEffect(() => {
         axios
@@ -49,7 +49,7 @@ function trendsHome() {
             });
     }, []);
 
-    // console.log(institutes,selectedStates, "working");
+    console.log(institutes,selectedStates, "working");
     return (
         <>
             <div className="p-3 ">
@@ -71,10 +71,7 @@ function trendsHome() {
                             <div className="mt-4">
                                 <Select
                                     onChange={(e) => {
-                                        setInstitutes(function(prev){
-                                            return [...prev,e[i].value]
-                                        });
-                                        setI(i+1);
+                                        setInstitutes(e);
                                     }}
                                     closeMenuOnSelect={false}
                                     components={animatedComponents}
@@ -92,10 +89,8 @@ function trendsHome() {
                             <div className="mt-4">
                                 <Select
                                     onChange={(e) => {
-                                        setSelectedStates(function(prev){
-                                            return [...prev,e[j].value]
-                                        });
-                                        setJ(j+1);
+                                        setSelectedStates(e);
+
                                     }}
                                     closeMenuOnSelect={false}
                                     components={animatedComponents}
