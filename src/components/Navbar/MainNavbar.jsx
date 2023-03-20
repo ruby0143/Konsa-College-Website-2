@@ -69,11 +69,6 @@ const MainNavbar = () => {
         route: "Tools",
         icon : toolsRouteIcon
     },
-    {
-        path: "/scheduler",
-        route: "Scheduler",
-        icon : comparatorRouteIcon
-    },
   ]
 
   const socialMediaIcons = [

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const tool = () => {
   const tools = [
@@ -7,34 +8,44 @@ const tool = () => {
       heading: "College Predictor",
       link : "/collegePredictor",
       desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      route: "/collegePredictor"
     },
     {
       img: "./tool2.svg",
       heading: "Exam Recommendation",
       link : "/examRecommender",
       desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      route: "/examRecommender"
+    },
+    {
+      img: "./tool1.svg",
+      heading: "Preference List Generator",
+      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      route: "/soon"
+    },
+    {
+      img: "./tool1.svg",
+      heading: "Trend Analysis Tool",
+      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      route: "/trendsAnalysis"
+    },
+    {
+      img: "./tool2.svg",
+      heading: "College Comparator",
+      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      route: "/soon"
+    },
+    {
+      img: "./tool1.svg",
+      heading: "Scheduler",
+      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      route: "/scheduler"
     },
     {
       img: "./tool1.svg",
       heading: "Percentile Predictor",
-      link : "/percentilePredictor",
       desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
-    },
-    {
-      img: "./tool1.svg",
-      heading: "Trends Analysis",
-      link : "/trendsAnalysis",
-      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
-    },
-    {
-      img: "./tool2.svg",
-      heading: "",
-      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
-    },
-    {
-      img: "./tool1.svg",
-      heading: "College Predictor",
-      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      route: "/percentilePredictor"
     },
   ];
   const BlackContainer = [
@@ -74,7 +85,6 @@ const tool = () => {
               <div className="bg-white rounded-3xl w-[400px] flex justify-between items-center mt-5">
                 <div className="flex justify-center items-center p-1 gap-2 gap-x-3 ml-2">
                   <div className="w-[20px]">
-                    {" "}
                     <img src="./search.svg"></img>
                   </div>
                   <div>
@@ -108,7 +118,6 @@ const tool = () => {
             <div>
               <div className="text-[17px] font-bold">{card.heading}</div>
               <div className="text-[#FFFFFF99] text-xs w-[200px]">{card.desc}</div>
-
             </div>
           </div>
           )})}
@@ -133,7 +142,7 @@ const tool = () => {
         <div className="flex flex-row flex-wrap justify-center items-center gap-20 p-5 mt-10 mb-10">
           {tools.map((card,id) => {
             return (
-              <div key={id} className="w-[350px] flex justify-center items-center flex-col p-5 rounded-md shadow-lg">
+              <Link to={card.route} key={id} className="w-[350px] flex justify-center items-center flex-col p-5 rounded-md shadow-lg md:cursor-pointer">
                 <img src={card.img}></img>
                 <h3 className="text-xl font-semibold mt-3 text-[#3C3B3B] ">
                   {card.heading}
@@ -141,7 +150,7 @@ const tool = () => {
                 <p className="text-center text-xs tracking-wide mt-3 text-[#3C3B3B] mb-3 ">
                   {card.desc}
                 </p>
-              </div>
+              </Link>
             );
           })}
         </div>
