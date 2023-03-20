@@ -60,9 +60,7 @@ const CollegePredictor = () => {
 
   const handleSubmit = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    setRankError("");
-    setCategoryError("");
-    setEligibilityError("");
+
     // document.getElementsByClassName("rb").checked = false;
 
     console.log(Category, rank, Eligibility, selectedGender);
@@ -300,7 +298,8 @@ const CollegePredictor = () => {
                 }
               >
                 {download && (
-                  <CSVDownload data={allFilterCollege} target="_blank" />
+                  <CSVDownload data={allFilterCollege}   filename={"my-file.csv"}
+                  target="_blank" />
                 )}
                 Download
               </button>
@@ -370,6 +369,7 @@ const CollegePredictor = () => {
                     Home College
                   </div>
                 )}
+
                 {homeMapCollege
                   ?.slice(oneThirdHome, oneThirdHome + 2)
                   .map((clg, id) => {

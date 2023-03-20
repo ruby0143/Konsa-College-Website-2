@@ -6,7 +6,7 @@ import ForumPage from "./pages/forumPage";
 import HomePage from "./pages/homePage";
 import NewsPage from "./pages/newsPage";
 import CollegeFooter from "./components/Footer/CollegeFooter";
-import ScrollToTop from "./ScrollToTop"
+import ScrollToTop from "./ScrollToTop";
 import MainNavbar from "./components/Navbar/MainNavbar";
 import AllColleges from "./pages/AllColleges";
 import SchedularPage from "./pages/schedularPage";
@@ -20,10 +20,11 @@ import CutoffPage from "./pages/cutoffPage";
 import ExamRecommender from "./pages/examRecommender";
 import TrendsHome from "./pages/trendsHome";
 import TrendsBranches from "./pages/trendsBranches";
-import Tools from "./pages/tool"
+import Tools from "./pages/tool";
+import Branches from "./pages/branches";
 
 function App() {
-  const { skeleton, loader } = useStateContext()
+  const { skeleton, loader } = useStateContext();
   return (
     <>
       <Router>
@@ -33,29 +34,55 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/admission" element={<AdmissionPage />} exact />
             <Route path="/admin/:college" element={<CollegePage />} />
-            <Route path="/college/:particularcollege" element={<CollegePage />} exact />
+            <Route
+              path="/college/:particularcollege"
+              element={<CollegePage />}
+              exact
+            />
             <Route path="/news" element={<NewsPage />} exact />
             <Route path="/exams" element={<ExamPage />} exact />
             <Route path="/forum" element={<ForumPage />} exact />
             <Route path="/allColleges" element={<AllColleges />} exact />
             <Route path="/scheduler" element={<SchedularPage />} exact />
             <Route path="/trendsAnalysis" element={<TrendAnalysis />} exact />
-            <Route path="/trends/:college" element={<TrendsBranches />} exact/>
-            <Route path="/trends/:college/:branch" element={<TrendAnalysis />} exact />
-            <Route path="/trends" element = {<TrendsHome />} exact />
+            <Route path="/trends/:college" element={<TrendsBranches />} exact />
+            <Route
+              path="/trends/:college/:branch"
+              element={<TrendAnalysis />}
+              exact
+            />
+            <Route path="/trends" element={<TrendsHome />} exact />
+            <Route path="/branches" element={<Branches />} exact />
+
             <Route path="*" element={<Err_404 />} exact />
             <Route path="/soon" element={<Comming_Soon />} exact />
-            <Route path="/collegePredictor" element={<CollegePredictor />} exact />
-            <Route path="/percentilePredictor" element={<PercentilePredictor />} exact />
-            <Route path="/examRecommender" element={<ExamRecommender />} exact />
-            <Route path="/college/:particularcollege/cutoff" element={<CutoffPage />} exact />
-            <Route path="/tools" element={<Tools/>} exact/>
+            <Route
+              path="/collegePredictor"
+              element={<CollegePredictor />}
+              exact
+            />
+            <Route
+              path="/percentilePredictor"
+              element={<PercentilePredictor />}
+              exact
+            />
+            <Route
+              path="/examRecommender"
+              element={<ExamRecommender />}
+              exact
+            />
+            <Route
+              path="/college/:particularcollege/cutoff"
+              element={<CutoffPage />}
+              exact
+            />
+            <Route path="/tools" element={<Tools />} exact />
           </Routes>
           <CollegeFooter />
         </ScrollToTop>
       </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

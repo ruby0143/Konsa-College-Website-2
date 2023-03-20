@@ -5,26 +5,30 @@ const tool = () => {
     {
       img: "./tool1.svg",
       heading: "College Predictor",
+      link : "/collegePredictor",
       desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
     },
     {
       img: "./tool2.svg",
       heading: "Exam Recommendation",
+      link : "/examRecommender",
       desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
     },
     {
       img: "./tool1.svg",
-      heading: "College Predictor",
+      heading: "Percentile Predictor",
+      link : "/percentilePredictor",
       desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
     },
     {
       img: "./tool1.svg",
-      heading: "College Predictor",
+      heading: "Trends Analysis",
+      link : "/trendsAnalysis",
       desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
     },
     {
       img: "./tool2.svg",
-      heading: "Exam Recommendation",
+      heading: "",
       desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
     },
     {
