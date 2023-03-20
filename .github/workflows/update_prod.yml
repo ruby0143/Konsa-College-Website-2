@@ -1,0 +1,17 @@
+name: Update production branch from main (manual)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-production:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: Push changes to production branch from main
+        run: |
+          git push origin main:production
