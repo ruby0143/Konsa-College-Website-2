@@ -118,9 +118,7 @@ const ExamRecommender = () => {
           })
           setApiREcommendedExamData(data); 
           setSelectedState("-- Enter your state --");
-          console.log("nametest1: ",userName);
           setUserName("");
-          console.log("nametest2: ",userName);
           setIsModalOpen(true);
         })()
       }

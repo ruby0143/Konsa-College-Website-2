@@ -21,6 +21,7 @@ import ExamRecommender from "./pages/examRecommender";
 import TrendsHome from "./pages/trendsHome";
 import TrendsBranches from "./pages/trendsBranches";
 import Tools from "./pages/tool"
+import AuthModal from "./components/UI Components/Modal/authModal";
 
 function App() {
   const { skeleton, loader } = useStateContext()
