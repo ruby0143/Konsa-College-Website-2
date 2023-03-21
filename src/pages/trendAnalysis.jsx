@@ -37,6 +37,7 @@ function trendAnalysis() {
   ];
 
   const states = [
+    "OS",
     "HS",
     "GO",
     "JK"
@@ -64,21 +65,22 @@ function trendAnalysis() {
       )
       .then((res) => {
         const arr = res.data;
-        arr.forEach((ele) => {
+        arr.forEach((ele, idx) => {
+
           const col = ele.Institute;
           setColleges(function (prevState) {
             return [...prevState, col];
           });
 
           const programs = ele.Array;
-          const arrPgs = programs.split("'");
 
+          // console.log(col,programs,idx);
           if (selectedCollege === col) {
             // console.log("match");
-            setFilteredBranches(arrPgs);
+            setFilteredBranches(programs);
           }
 
-          branches.set(col, arrPgs);
+          branches.set(col, programs);
         });
 
       })
@@ -86,6 +88,7 @@ function trendAnalysis() {
         console.log(err);
       });
   }, []);
+
 
   useEffect(() => {
     if (submit) {
@@ -210,23 +213,19 @@ function trendAnalysis() {
               <div>Rank Type</div>
               <div className="py-2 flex justify-between items-center">
                 <div className="flex justify-center items-center" >
-                  <input
-                    type="radio"
-                    value="Mains"
-                    onChange={(e) => setRank(e.target.value)}
-                    checked="checked"
-                    name="rank"
-                  ></input>
-                  <label>JEE (Main)</label>
+
+
+                  <div class="flex items-center my-3">
+                    <input id="default-radio-1" type="radio" value="Mains" name="rank" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={(e) => setRank(e.target.value)} />
+                    <label for="default-radio-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300" >JEE (Main)</label>
+                  </div>
+
                 </div>
                 <div>
-                  <input
-                    type="radio"
-                    value="Advance"
-                    name="rank"
-                    onChange={(e) => setRank(e.target.value)}
-                  ></input>
-                  <label>JEE (Advance)</label>
+                  <div class="flex items-center my-3">
+                    <input id="default-radio-2" type="radio" value="Advance" name="rank" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cancel" onChange={(e) => setRank(e.target.value)} />
+                    <label for="default-radio-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">JEE (Advance)</label>
+                  </div>
                 </div>
               </div>
             </div>
@@ -272,9 +271,12 @@ function trendAnalysis() {
                 className="my-3 p-2 w-full border-solid border-[#D1D5DB] border rounded-md"
                 value={selectedCollege}
                 onChange={(e) => {
+
                   setSelectedCollege(e.target.value);
                   setReqInst(false);
+                  setBranch(null);
                   setFilteredBranches(branches.get(e.target.value));
+
                   if (selectedState === null) {
                     setRequiredState(true);
                   }
@@ -343,13 +345,11 @@ function trendAnalysis() {
 
                   {filteredBranches?.map((branch, idx) => {
                     {/* console.log(preSelectedBranch,branch,"this"); */ }
-                    if (selectedBranch=== branch) {
-                      console.log("match");
+                    if (selectedBranch === branch) {
+                      console.log(branch, "match");
                       {/* console.log(preSelectedBranch,branch,"match"); */ }
                     }
-                    if (idx % 2 != 0) {
-                      return <option value={branch}>{branch}</option>;
-                    }
+                    return <option value={branch}>{branch}</option>;
                   })}
                 </select>
                 {requiredProg ? (
@@ -440,19 +440,19 @@ function trendAnalysis() {
               </XAxis>
               <YAxis />
               <Tooltip />
+              {!noData ? (<><Line type="monotone" dataKey="year2020" stroke="#8884d8" activeDot={{ r: 5 }} />
 
-              <Line type="monotone" dataKey="year2020" stroke="#8884d8" activeDot={{ r: 5 }} />
+                <Line type="monotone" dataKey="year2021" stroke="#82ca9d" activeDot={{ r: 5 }} />
 
-              <Line type="monotone" dataKey="year2021" stroke="#82ca9d" activeDot={{ r: 5 }} />
+                <Line type="monotone" dataKey="year2022" stroke="#FFCCCB" activeDot={{ r: 5 }} /></>) : (null)}
 
-              <Line type="monotone" dataKey="year2022" stroke="#FFCCCB" activeDot={{ r: 5 }} />
 
               <Legend verticalAlign="top" height={80} />
             </LineChart>
           </ResponsiveContainer>
           {noData ? (<div className='absolute'>
             <div>
-              <h1 className="mt-20" >No Data Available</h1>
+              <h1 className="mt-20 text-xl" >No Data Available</h1>
             </div>
 
           </div>) : null}

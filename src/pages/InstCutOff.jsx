@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
-import InstCard from "../components/TrendAnalysis/InstCard";
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 
 
-
-function trendsHome() {
+function InstCutOff() {
     let states = [{ value: "Andhra Pradesh", label: "Andhra Pradesh" },
     { value: "Arunachal Pradesh", label: "Arunachal Pradesh" },
     { value: "Assam", label: "Assam" },
@@ -18,29 +16,39 @@ function trendsHome() {
     { value: "Himachal Pradesh", label: "Himachal Pradesh" },
     { value: "Jammu and Kashmir", label: "Jammu and Kashmir" }, { value: "Jharkhand", label: "Jharkhand" }, { value: "Karnataka", label: "Karnataka" }, { value: "Kerala", label: "Kerala" }, { value: "Madhya Pradesh", label: "Madhya Pradesh" }, { value: "Maharashtra", label: "Maharashtra" }, { value: "Manipur", label: "Manipur" }, { value: "Meghalaya", label: "Meghalaya" }, { value: "Mizoram", label: "Mizoram" }, { value: "Nagaland", label: "Nagaland" }, { value: "Odisha", label: "Odisha" }, { value: "Punjab", label: "Punjab" }, { value: "Rajasthan", label: "Rajasthan" }, { value: "Sikkim", label: "Sikkim" }, { value: "Tamil Nadu", label: "Tamil Nadu" }, { value: "Telangana", label: "Telangana" }, { value: "Tripura", label: "Tripura" }, { value: "Uttarakhand", label: "Uttarakhand" }, { value: "Uttar Pradesh", label: "Uttar Pradesh" }, { value: "West Bengal", label: "West Bengal" }, { value: "Andaman and Nicobar Islands", label: "Andaman and Nicobar Islands" }, { value: "Chandigarh", label: "Chandigarh" }, { value: "Dadra and Nagar Haveli", label: "Dadra and Nagar Haveli" }, { value: "Daman and Diu", label: "Daman and Diu" }, { value: "Delhi", label: "Delhi" }, { value: "Lakshadweep", label: "Lakshadweep" }, { value: "Puducherry", label: "Puducherry" },
     ]
-    const [state, setState] = useState(null);
-    const [colleges, setColleges] = useState([]);
-    const [institutes, setInstitutes] = useState([]);
+ 
+    const animatedComponents = makeAnimated();
     const [selectedStates, setSelectedStates] = useState([]);
-
+    const [filteredBranches, setFilteredBranches] = useState([]);
+    const [colleges, setColleges] = useState([]);
+    const [branches, setBranches] = useState(new Map());
+    const [selectedCollege,setSelectedCollege] = useState();
+    
 
     const url = "https://konsa-college-backend.vercel.app";
-    const animatedComponents = makeAnimated();
-
-    const instTypes = [{ value: 'IITs', label: 'IITs' }, { value: 'NITs', label: 'NITs' }, { value: 'IIITs', label: 'IIITs' }];
 
     useEffect(() => {
+
         axios
             .get(
                 url + "/branches"
             )
             .then((res) => {
                 const arr = res.data;
-                arr.forEach((ele) => {
+                arr.forEach((ele, idx) => {
+
                     const col = ele.Institute;
                     setColleges(function (prevState) {
-                        return [...prevState, col];
+                        return [...prevState, { value: col, label: col }];
                     });
+
+                    const programs = ele.Array;
+                    const temp = [];
+                    
+                    
+
+
+                    branches.set(col, programs);
                 });
 
             })
@@ -49,48 +57,38 @@ function trendsHome() {
             });
     }, []);
 
-    console.log(institutes,selectedStates, "working");
+    
+
     return (
         <>
             <div className="p-3 ">
-                <div className="head md:p-5">
+                <div className="head md:p-6">
                     <h2 className="text-2xl font-bold p-2">
-                        View All Institutes
+                        View Institute-wise Cut-offs
                     </h2>
-                    <p className="p-2">
-                        List of institutes participating in JoSAA.
-                    </p>
+                    <hr />
+                    <h3 className="p-2 mt-4 font-semibold">
+                        Filter by institute allows you to filter the cut-off data with the selected institutes and further narrow down with your choice of programs.
+                    </h3>
                 </div>
                 <div className="options p-2 mt-2">
                     <div className="flex flex-col md:flex-row md:justify-between">
 
-                        <div className="instituteType my-3 md:w-[50%] md:px-5">
-                            <div className="flex justify-between">
-                                <span>Institute Type</span>
-                            </div>
-                            <div className="mt-4">
-                                <Select
-                                    onChange={(e) => {
-                                        setInstitutes(e);
-                                    }}
-                                    closeMenuOnSelect={false}
-                                    components={animatedComponents}
-                                    isMulti
-                                    options={instTypes}
-                                />
-                            </div>
 
-                        </div>
                         <div className="homeStates my-3 md:w-[50%] md:px-5">
                             <div className="flex justify-between">
                                 <span>Home State</span>
+                                <span className="text-[10px] pt-1.5">
+                                    To show home state quota ranks
+                                </span>
 
                             </div>
+                            
                             <div className="mt-4">
                                 <Select
                                     onChange={(e) => {
                                         setSelectedStates(e);
-
+                                        
                                     }}
                                     closeMenuOnSelect={false}
                                     components={animatedComponents}
@@ -101,16 +99,42 @@ function trendsHome() {
 
                         </div>
 
+
+
+
+
                     </div>
-                </div>
+                    <div className="flex flex-col md:flex-row md:justify-between">
+                        <div className="instTypes my-3 md:w-[50%] md:px-5">
+                            <div className="flex justify-between">
+                                <span>Institutes</span>
 
-                <div className="body mt-3 flex justify-center flex-col items-center md:mx-6 lg:mx-8">
-                    <div className="grid grid-cols-1 gap-4  xs:grid-cols-2  sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5">
-                        {colleges?.map((college) => {
+                            </div>
+                            <div className="mt-4">
+                                <Select
 
-                            return <InstCard instName={college} state={"Assam"} />;
-                        })}
+                                    closeMenuOnSelect={false}
+                                    components={animatedComponents}
+                                    isMulti
+                                    options={colleges}
+                                />
+                            </div>
 
+                        </div>
+                        {selectedCollege ? (
+                            <div className="program my-3 md:px-10 md:w-[50%]">
+                                <div className="flex justify-between">
+                                    <span>Program</span>
+                                </div>
+                                <Select
+
+                                    closeMenuOnSelect={false}
+                                    components={animatedComponents}
+                                    isMulti
+                                    options={colleges}
+                                /> 
+                            </div>
+                        ) : null}
                     </div>
                 </div>
             </div>
@@ -118,4 +142,4 @@ function trendsHome() {
     )
 }
 
-export default trendsHome;
+export default InstCutOff
