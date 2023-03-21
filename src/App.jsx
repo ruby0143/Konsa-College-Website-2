@@ -22,6 +22,9 @@ import TrendsHome from "./pages/trendsHome";
 import TrendsBranches from "./pages/trendsBranches";
 import Tools from "./pages/tool";
 import InstCutOff from "./pages/InstCutOff";
+import AuthModal from "./components/UI Components/Modal/authModal";
+import RegisterUser from "./components/AuthComponents/register/RegisterUser";
+import LoginUser from "./components/AuthComponents/logIn/LoginUser";
 
 function App() {
   const { skeleton, loader } = useStateContext()
@@ -52,6 +55,8 @@ function App() {
             <Route path="/examRecommender" element={<ExamRecommender />} exact />
             <Route path="/college/:particularcollege/cutoff" element={<CutoffPage />} exact />
             <Route path="/tools" element={<Tools/>} exact/>
+            <Route path="/register" element={<AuthModal><RegisterUser/></AuthModal>}/>
+            <Route path="/login" element={<AuthModal><LoginUser/></AuthModal>}/>
           </Routes>
           <CollegeFooter />
         </ScrollToTop>
