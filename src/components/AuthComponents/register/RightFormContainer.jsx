@@ -1,7 +1,28 @@
 import React from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 
+import { useFormik } from 'formik'
+import { signUpSchema } from '../../../schemas/authValidationSchema'
+
 const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
+
+  const initialValues = {
+    fullName : "",
+    email : "",
+    phoneNumber : "",
+    password : "",
+    confirmPassword : "",
+  }
+
+  const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
+    initialValues : initialValues,
+    validationSchema : signUpSchema,
+    onSubmit : (values,action) => {
+      console.log("values: ",values);
+      action.resetForm();
+    },
+  })
+
   return (
     <div className='w-[70%] h-full lg:rounded-l-3xl bg-white p-10 flex justify-center items-center'>
       <div className='w-full h-full flex flex-col items-center justify-between'>
@@ -14,47 +35,85 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
         <div className='text-3xl text-center font-semibold'>
           Create Account
         </div>
-        <form className="w-[32rem] flex flex-col items-center gap-14">
-          <div className='w-full flex flex-col item-center gap-6'>
+        <form 
+          className="w-[32rem] flex flex-col items-center gap-14"
+          onSubmit={handleSubmit}
+        >
+          <div className='w-full flex flex-col item-center gap-4'>
             <div  
-              className="relative flex mt-[8px] justify-betweeb h-[40px] items-center w-full" 
-              >
+              className="relative flex flex-col h-[40px] w-full" 
+            >
                 <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide focus:outline-none focus:border-[#ee7c00] focus:text-[#EE7C00] border-b border-gray-300 w-full h-full py-4 px-2`}
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide focus:outline-none focus:border-gray-600 focus:text-black border-b border-gray-300 w-full h-full py-4 px-2`}
                   type="text"
+                  name='fullName'
                   placeholder="Enter Full Name"
+                  value={values.fullName}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
+                {(errors.fullName && touched.fullName) ? <div className='px-2 text-sm text-red-500'>{errors.fullName}</div> : null}
             </div>
             <div  
-              className="relative flex mt-[8px] justify-betweeb h-[40px] items-center w-full" 
+              className="relative flex flex-col h-[40px] w-full" 
             >
                 <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide focus:outline-none focus:border-[#ee7c00] focus:text-[#EE7C00] border-b border-gray-300 w-full h-full py-4 px-2`}
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide focus:outline-none focus:border-gray-600 focus:text-black border-b border-gray-300 w-full h-full py-4 px-2`}
                   type="email"
+                  name='email'
                   placeholder="Enter Email"
-                  />
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {(errors.email && touched.email) ? <div className='px-2 text-sm text-red-500'>{errors.email}</div> : null}
             </div>
             <div  
-              className="relative flex mt-[8px] justify-betweeb h-[40px] items-center w-full" 
+              className="relative flex flex-col h-[40px] w-full" 
             >
                 <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide focus:outline-none focus:border-[#ee7c00] focus:text-[#EE7C00] border-b border-gray-300 w-full h-full py-4 px-2`}
-                  type="tel"
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide focus:outline-none focus:border-gray-600 focus:text-black border-b border-gray-300 w-full h-full py-4 px-2`}
+                  type="number"
+                  name='phoneNumber'
                   placeholder="+91  Phone Number"
-                  />
+                  value={values.phoneNumber}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {(errors.phoneNumber && touched.phoneNumber) ? <div className='px-2 text-sm text-red-500'>{errors.phoneNumber}</div> : null}
             </div>
             <div  
-              className="relative flex mt-[8px] justify-betweeb h-[40px] items-center w-full" 
+              className="relative flex flex-col h-[40px] w-full" 
               >
                 <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide focus:outline-none focus:border-[#ee7c00] focus:text-[#EE7C00] border-b border-gray-300 w-full h-full py-4 px-2`}
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide focus:outline-none focus:border-gray-600 focus:text-black border-b border-gray-300 w-full h-full py-4 px-2`}
                   type="password"
+                  name='password'
                   placeholder="Enter Password"
-                  />
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {(errors.password && touched.password) ? <div className='px-2 text-sm text-red-500'>{errors.password}</div> : null}
+            </div>
+            <div  
+              className="relative flex mt-[8px] flex-col h-[40px] w-full" 
+              >
+                <input
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide focus:outline-none focus:border-gray-600 focus:text-black border-b border-gray-300 w-full h-full py-4 px-2`}
+                  type="password"
+                  name='confirmPassword'
+                  placeholder="Confirm Entered Password"
+                  value={values.confirmPassword}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {(errors.confirmPassword && touched.confirmPassword) ? <div className='px-2 text-sm text-red-500'>{errors.confirmPassword}</div> : null}
             </div>
           </div>
           <button 
-            className='bg-[#EE7C00] py-1 px-28 rounded-md text-lg text-white font-medium'
+            type='submit'
+            className='bg-[#EE7C00] py-1 shadow-md px-28 rounded-md text-lg text-white font-medium'
           >
               Create Account
           </button>

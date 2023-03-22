@@ -36,7 +36,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
             </div>
           </div>
           <button 
-            className='bg-[#EE7C00] py-1 px-28 rounded-md text-lg text-white font-medium'
+            className='bg-[#EE7C00] py-1 shadow-md px-28 rounded-md text-lg text-white font-medium'
           >
               Login
           </button>
