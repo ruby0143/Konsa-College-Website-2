@@ -1,6 +1,5 @@
 import React from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
-
 import { useFormik } from 'formik'
 import { signUpSchema } from '../../../schemas/authValidationSchema'
 
@@ -13,12 +12,11 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
     password : "",
     confirmPassword : "",
   }
-
+  
   const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
     initialValues : initialValues,
     validationSchema : signUpSchema,
     onSubmit : (values,action) => {
-      console.log("values: ",values);
       action.resetForm();
     },
   })
@@ -39,12 +37,12 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
           className="w-[32rem] flex flex-col items-center gap-14"
           onSubmit={handleSubmit}
         >
-          <div className='w-full flex flex-col item-center gap-4'>
+          <div className='w-full flex flex-col item-center gap-3'>
             <div  
-              className="relative flex flex-col h-[40px] w-full" 
+              className="relative flex flex-col w-full" 
             >
                 <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide focus:outline-none focus:border-gray-600 focus:text-black border-b border-gray-300 w-full h-full py-4 px-2`}
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2`}
                   type="text"
                   name='fullName'
                   placeholder="Enter Full Name"
@@ -55,10 +53,10 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
                 {(errors.fullName && touched.fullName) ? <div className='px-2 text-sm text-red-500'>{errors.fullName}</div> : null}
             </div>
             <div  
-              className="relative flex flex-col h-[40px] w-full" 
+              className="relative flex flex-col w-full" 
             >
                 <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide focus:outline-none focus:border-gray-600 focus:text-black border-b border-gray-300 w-full h-full py-4 px-2`}
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2`}
                   type="email"
                   name='email'
                   placeholder="Enter Email"
@@ -69,10 +67,10 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
                 {(errors.email && touched.email) ? <div className='px-2 text-sm text-red-500'>{errors.email}</div> : null}
             </div>
             <div  
-              className="relative flex flex-col h-[40px] w-full" 
+              className="relative flex flex-col w-full" 
             >
                 <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide focus:outline-none focus:border-gray-600 focus:text-black border-b border-gray-300 w-full h-full py-4 px-2`}
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2`}
                   type="number"
                   name='phoneNumber'
                   placeholder="+91  Phone Number"
@@ -83,10 +81,10 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
                 {(errors.phoneNumber && touched.phoneNumber) ? <div className='px-2 text-sm text-red-500'>{errors.phoneNumber}</div> : null}
             </div>
             <div  
-              className="relative flex flex-col h-[40px] w-full" 
+              className="relative flex flex-col w-full" 
               >
                 <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide focus:outline-none focus:border-gray-600 focus:text-black border-b border-gray-300 w-full h-full py-4 px-2`}
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2`}
                   type="password"
                   name='password'
                   placeholder="Enter Password"
@@ -97,10 +95,10 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
                 {(errors.password && touched.password) ? <div className='px-2 text-sm text-red-500'>{errors.password}</div> : null}
             </div>
             <div  
-              className="relative flex mt-[8px] flex-col h-[40px] w-full" 
+              className="relative flex mt-[8px] flex-col w-full" 
               >
                 <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide focus:outline-none focus:border-gray-600 focus:text-black border-b border-gray-300 w-full h-full py-4 px-2`}
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black border-gray-300 w-[full] h-[40px] py-4 px-2`}
                   type="password"
                   name='confirmPassword'
                   placeholder="Confirm Entered Password"
@@ -111,7 +109,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
                 {(errors.confirmPassword && touched.confirmPassword) ? <div className='px-2 text-sm text-red-500'>{errors.confirmPassword}</div> : null}
             </div>
           </div>
-          <button 
+          <button   
             type='submit'
             className='bg-[#EE7C00] py-1 shadow-md px-28 rounded-md text-lg text-white font-medium'
           >

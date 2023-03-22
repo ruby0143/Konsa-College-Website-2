@@ -1,7 +1,23 @@
 import React from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
+import { useFormik } from 'formik'
+import { logInSchema } from '../../../schemas/authValidationSchema'
 
 const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
+
+  const initialValues = {
+    email : "",
+    password : ""
+  }
+
+  const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
+    initialValues : initialValues,
+    validationSchema : logInSchema,
+    onSubmit : (values, action) => {
+      action.resetForm();
+    },
+  })
+
   return (
     <div className='w-[70%] h-full lg:rounded-l-3xl bg-white p-10 flex justify-center items-center'>
       <div className='w-full h-full flex flex-col items-center justify-between'>
@@ -14,28 +30,42 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
         <div className='text-3xl text-center font-semibold'>
           Login to Your Account
         </div>
-        <form className="w-[32rem] flex flex-col items-center gap-16">
+        <form 
+          className="w-[32rem] flex flex-col items-center gap-16"
+          onSubmit={handleSubmit}
+        >
           <div className='w-full flex flex-col item-center gap-6'>
             <div  
-              className="relative flex mt-[8px] justify-betweeb h-[40px] items-center w-full" 
+              className="relative flex flex-col w-full" 
             >
                 <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide focus:outline-none focus:border-[#ee7c00] focus:text-[#EE7C00] border-b border-gray-300 w-full h-full py-4 px-2`}
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2`}
                   type="email"
+                  name="email"
                   placeholder="Enter Email"
-                  />
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {(errors.email && touched.email) ? <div className='px-2 text-sm text-red-500'>{errors.email}</div> : null}
             </div>
             <div  
-              className="relative flex mt-[8px] justify-betweeb h-[40px] items-center w-full" 
+              className="relative flex flex-col w-full" 
               >
                 <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide focus:outline-none focus:border-[#ee7c00] focus:text-[#EE7C00] border-b border-gray-300 w-full h-full py-4 px-2`}
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2`}
                   type="password"
                   placeholder="Enter Password"
-                  />
+                  name="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {(errors.password && touched.password) ? <div className='px-2 text-sm text-red-500'>{errors.password}</div> : null}
             </div>
           </div>
           <button 
+            type='submit'
             className='bg-[#EE7C00] py-1 shadow-md px-28 rounded-md text-lg text-white font-medium'
           >
               Login
