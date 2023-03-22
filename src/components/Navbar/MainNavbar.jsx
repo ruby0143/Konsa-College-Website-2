@@ -9,7 +9,6 @@ import newsRouteIcon from '../../assets/icons/route-icons/News.svg'
 import collegeRouteIcon from '../../assets/icons/route-icons/College.svg'
 import examsRouteIcon from '../../assets/icons/route-icons/Exams.svg'
 import toolsRouteIcon from '../../assets/icons/route-icons/Tools.svg'
-import comparatorRouteIcon from '../../assets/icons/route-icons/Comparator.svg'
 
 // Konsa college logo import
 import KonsaCollegeLogo from "../../assets/KonsaCollege_Logo/KonsaCollege_mobileLogo.svg"
@@ -78,8 +77,6 @@ const MainNavbar = () => {
     { icon : ytIcon },
     { icon : instaIcon },
   ]
-
-  
 
   return (
     <div>

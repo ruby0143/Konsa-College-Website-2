@@ -1,13 +1,20 @@
 import React from 'react'
+import { AiOutlineClose } from 'react-icons/ai'
 
-const RightFormContainer = () => {
+const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
   return (
-    <div className='w-[70%] h-full lg:rounded-l-3xl bg-white p-14 flex justify-center items-center'>
+    <div className='w-[70%] h-full lg:rounded-l-3xl bg-white p-10 flex justify-center items-center'>
       <div className='w-full h-full flex flex-col items-center justify-between'>
+        <div className='w-full flex justify-end' onClick={()=>setIsModalOpen(false)}>
+          <AiOutlineClose
+            className='cursor-pointer'
+            onClick={()=>setIsModalOpen(false)}
+          />
+        </div>
         <div className='text-3xl text-center font-semibold'>
           Create Account
         </div>
-        <form className="w-[32rem] flex flex-col items-center gap-16">
+        <form className="w-[32rem] flex flex-col items-center gap-14">
           <div className='w-full flex flex-col item-center gap-6'>
             <div  
               className="relative flex mt-[8px] justify-betweeb h-[40px] items-center w-full" 
@@ -16,7 +23,7 @@ const RightFormContainer = () => {
                   className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide focus:outline-none focus:border-[#ee7c00] focus:text-[#EE7C00] border-b border-gray-300 w-full h-full py-4 px-2`}
                   type="text"
                   placeholder="Enter Full Name"
-                  />
+                />
             </div>
             <div  
               className="relative flex mt-[8px] justify-betweeb h-[40px] items-center w-full" 
@@ -80,7 +87,10 @@ const RightFormContainer = () => {
           <span>
             Already have an Account? 
           </span>
-          <button className='text-[#EE7C00] ml-2 cursor-pointer'>
+          <button 
+            onClick={()=>setIsLoginState(true)}
+            className='text-[#EE7C00] ml-2 cursor-pointer hover:underline'
+          >
             Login
           </button>
         </div>

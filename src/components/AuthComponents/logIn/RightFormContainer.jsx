@@ -1,9 +1,16 @@
 import React from 'react'
+import { AiOutlineClose } from 'react-icons/ai'
 
-const RightFormContainer = () => {
+const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
   return (
-    <div className='w-[70%] h-full lg:rounded-l-3xl bg-white p-14 flex justify-center items-center'>
+    <div className='w-[70%] h-full lg:rounded-l-3xl bg-white p-10 flex justify-center items-center'>
       <div className='w-full h-full flex flex-col items-center justify-between'>
+      <div className='w-full flex justify-end' onClick={()=>setIsModalOpen(false)}>
+          <AiOutlineClose
+            className='cursor-pointer'
+            onClick={()=>setIsModalOpen(false)}
+          />
+        </div>
         <div className='text-3xl text-center font-semibold'>
           Login to Your Account
         </div>
@@ -62,7 +69,10 @@ const RightFormContainer = () => {
           <span>
             Don't have an Account? 
           </span>
-          <button className='text-[#EE7C00] ml-2 cursor-pointer'>
+          <button 
+            onClick={()=>setIsLoginState(false)}
+            className='text-[#EE7C00] ml-2 cursor-pointer hover:underline'
+          >
             Sign Up
           </button>
         </div>
