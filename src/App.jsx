@@ -25,6 +25,7 @@ import InstCutOff from "./pages/InstCutOff";
 
 function App() {
   const { skeleton, loader } = useStateContext()
+
   return (
     <>
       <Router>

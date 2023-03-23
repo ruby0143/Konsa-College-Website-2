@@ -6,11 +6,8 @@ import { signUpSchema } from '../../../schemas/authValidationSchema'
 // auth config
 import { auth, provider } from '../../../config/auth/firebaseauth'
 import { signInWithPopup } from 'firebase/auth'
-import { AuthCheck } from '../../../Context/authContext'
 
 const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
-
-  const {setAuthValues} = useContext(AuthCheck)
 
   const initialValues = {
     fullName : "",
@@ -32,17 +29,10 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
   const handleGoogleSignIn = async () => {
     // google auth popup
     await signInWithPopup(auth, provider).then(data => {
-      // console.log("google auth data: ", data.user.accessToken);
-      setAuthValues(data.user.accessToken)
-      localStorage.setItem("isLoggedIn",data.user.accessToken)
+      console.log("User LoggedIn");
     })
-
     setIsModalOpen(false)
   }
-
-  useEffect(() => {
-    setAuthValues(localStorage.getItem("isLoggedIn"))
-  })
   
 
   return (

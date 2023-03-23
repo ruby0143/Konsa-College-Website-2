@@ -4,7 +4,7 @@ export const AuthCheck = createContext();
 
 const AuthContext = ({children}) =>{
 
-    const [authValues, setAuthValues] = useState("");
+    const [authValues, setAuthValues] = useState(null);
 
     return (
         <AuthCheck.Provider value={{authValues, setAuthValues}}>

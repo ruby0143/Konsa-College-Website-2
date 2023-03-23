@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
 import { NavLink } from 'react-router-dom'
 import konsaCollegeLogo from '../../assets/KonsaCollege_Logo/KonsaCollege_desktopLogo.svg' 
@@ -8,17 +8,38 @@ import RegisterUser from '../AuthComponents/register/RegisterUser'
 import AuthModal from '../UI Components/Modal/authModal'
 import './headerstyle.css'
 
+// auth config
+import { auth } from '../../config/auth/firebaseauth'
+import { signOut } from 'firebase/auth'
+
+
 const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
   
-  const {authValues,setAuthValues} = useContext(AuthCheck)
+
+  const {authValues, setAuthValues} = useContext(AuthCheck)
 
   const [isLoginState, setIsLoginState] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);  
 
+  // auth checks - is logged in or not
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((userAuth) =>{
+      if(userAuth){
+        console.log("userAuth: ",userAuth);
+        setAuthValues({
+         uid: userAuth.uid,
+         email: userAuth.email
+        })
+      } else {
+        setAuthValues(null)
+      }
+    })
+
+    return unsubscribe
+  },[])
+
   const handleLogout = () =>{
-      localStorage.clear();
-      setAuthValues("");
-      window.location.reload();
+      signOut(auth).then(() => console.log("user SignedOut"))
   }
 
   return (
@@ -55,7 +76,7 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
                     })
                 }
                 </ul>
-                {authValues === "" ? <div className='flex gap-2 py-[6px] px-[22px] text-white text-sm font-medium rounded-full bg-[#EE7C00]' >
+                {authValues === null ? <div className='flex gap-2 py-[6px] px-[22px] text-white text-sm font-medium rounded-full bg-[#EE7C00]' >
                     <div  
                         className='cursor-pointer'
                         onClick={()=>{
