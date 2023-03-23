@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
 import { NavLink } from 'react-router-dom'
 import konsaCollegeLogo from '../../assets/KonsaCollege_Logo/KonsaCollege_desktopLogo.svg' 
+import { AuthCheck } from '../../Context/authContext'
 import LoginUser from '../AuthComponents/logIn/LoginUser'
 import RegisterUser from '../AuthComponents/register/RegisterUser'
 import AuthModal from '../UI Components/Modal/authModal'
@@ -9,8 +10,16 @@ import './headerstyle.css'
 
 const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
   
+  const {authValues,setAuthValues} = useContext(AuthCheck)
+
   const [isLoginState, setIsLoginState] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);  
+
+  const handleLogout = () =>{
+      localStorage.clear();
+      setAuthValues("");
+      window.location.reload();
+  }
 
   return (
     <>
@@ -21,7 +30,7 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
                      <LoginUser 
                         setIsModalOpen={setIsModalOpen} 
                         setIsLoginState={setIsLoginState}
-                    />
+                     />
                     ) : (
                      <RegisterUser 
                         setIsModalOpen={setIsModalOpen} 
@@ -46,7 +55,7 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
                     })
                 }
                 </ul>
-                <div className='flex gap-2 py-[6px] px-[22px] text-white text-sm font-medium rounded-full bg-[#EE7C00]' >
+                {authValues === "" ? <div className='flex gap-2 py-[6px] px-[22px] text-white text-sm font-medium rounded-full bg-[#EE7C00]' >
                     <div  
                         className='cursor-pointer'
                         onClick={()=>{
@@ -66,7 +75,7 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
                     >
                         Sign Up
                     </div>
-                </div>
+                </div> : <div className='text-[#EE7C00] cursor-pointer' onClick={handleLogout}>Logout</div>}
             </div>
             <div className='md:hidden flex items-center gap-4' >
                 <div onClick={()=>setMobileSidebar(true)} >

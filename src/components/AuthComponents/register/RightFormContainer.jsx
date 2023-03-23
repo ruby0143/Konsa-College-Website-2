@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useFormik } from 'formik'
 import { signUpSchema } from '../../../schemas/authValidationSchema'
 
+// auth config
+import { auth, provider } from '../../../config/auth/firebaseauth'
+import { signInWithPopup } from 'firebase/auth'
+import { AuthCheck } from '../../../Context/authContext'
+
 const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
+
+  const {setAuthValues} = useContext(AuthCheck)
 
   const initialValues = {
     fullName : "",
@@ -20,6 +27,23 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
       action.resetForm();
     },
   })
+
+  // google auth 
+  const handleGoogleSignIn = async () => {
+    // google auth popup
+    await signInWithPopup(auth, provider).then(data => {
+      // console.log("google auth data: ", data.user.accessToken);
+      setAuthValues(data.user.accessToken)
+      localStorage.setItem("isLoggedIn",data.user.accessToken)
+    })
+
+    setIsModalOpen(false)
+  }
+
+  useEffect(() => {
+    setAuthValues(localStorage.getItem("isLoggedIn"))
+  })
+  
 
   return (
     <div className='w-[70%] h-full lg:rounded-l-3xl bg-white p-10 flex justify-center items-center'>
@@ -131,7 +155,10 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
               Sign In With Facebook
             </div>
           </button>
-          <button className='shadow-md rounded-md py-2 px-10 flex gap-4 justify-center items-center font-medium active:shadow-none border border-slate-100'>
+          <button 
+            onClick={handleGoogleSignIn}
+            className='shadow-md rounded-md py-2 px-10 flex gap-4 justify-center items-center font-medium active:shadow-none border border-slate-100'
+          >
             <div>
               <img src="/Google Logo.svg" className='w-[1.2rem]' alt=""/>  
             </div>
@@ -140,7 +167,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
             </div>
           </button>
         </div>
-        <div className='text-lg font-medium'>
+        <div>
           <span>
             Already have an Account? 
           </span>

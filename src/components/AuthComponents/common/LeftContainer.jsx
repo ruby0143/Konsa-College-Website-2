@@ -6,7 +6,7 @@ const LeftContainer = () => {
     <div 
         className='w-[30%] h-full bg-[#EE7C00] px-8 py-14 flex flex-col items-center justify-between'
     >
-      <div className='w-full text-white text-3xl text-center'>
+      <div className='w-full text-white text-2xl text-center'>
         Lorem ipsum dolor sit amet constur. Faucibu nunc eu faucibus tinc iaculis.  
       </div>
       <div>
@@ -17,7 +17,7 @@ const LeftContainer = () => {
                 className='w-[20rem]'
             />
         </NavLink>
-        <div className='text-white text-lg mt-[3rem] text-center'>
+        <div className='text-white text-lg mt-[2rem] text-center'>
             <Link to='/'>
                 KonsaCollege.com
             </Link>
