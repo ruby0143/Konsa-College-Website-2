@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { AiOutlineDown, AiOutlineUp, AiOutlineClose } from "react-icons/ai";
 import axios from "axios";
 import state from "../components/toolsPage/states";
-import { CSVDownload } from "react-csv";
+import { CSVDownload, CSVLink } from "react-csv";
 import { Helmet } from "react-helmet";
 
 const CollegePredictor = () => {
@@ -26,12 +26,12 @@ const CollegePredictor = () => {
   const [dreamBtn, setDreamBtn] = useState(true);
   const [sureBtn, setSureBtn] = useState(false);
   const [safeBtn, setSafeBtn] = useState(false);
+  const [homeBtn, setHomeBtn] = useState(false);
   const [oneThird, setOneThird] = useState();
   const [doBlur, setDoBlur] = useState(false);
   const [homeCollege, setHomeCollege] = useState();
-  const [homeMapCollege, setHomeMapCollege] = useState();
-  const [oneThirdHome, setOneThirdHome] = useState();
-  const [allFilterCollege, setAllFilterCollege] = useState();
+  const [allFilterCollege, setAllFilterCollege] = useState([]);
+  const [fileName, setFileName] = useState("Dream");
 
   // const url = "http://localhost:5000";
   const url = "https://konsa-college-backend.vercel.app";
@@ -112,9 +112,7 @@ const CollegePredictor = () => {
             return clg;
           }
         });
-        console.log("home", home);
         setHomeCollege(home);
-        setHomeMapCollege(home);
       })
       .catch((err) => {
         console.log(err);
@@ -128,33 +126,49 @@ const CollegePredictor = () => {
 
   const handleDream = () => {
     console.log("Dream", predictedColleges);
+    setFileName("Dream");
     setDreamBtn(true);
     setSureBtn(false);
     setSafeBtn(false);
+    setHomeBtn(false);
     setMapColleges(predictedColleges);
-    setHomeMapCollege(homeCollege);
     setOneThird(0);
-    setOneThirdHome(0);
+  };
+
+  const handleHome = () => {
+    console.log("Home", homeCollege);
+    setFileName("Home");
+
+    setHomeBtn(true);
+    setDreamBtn(false);
+    setSureBtn(false);
+    setSafeBtn(false);
+    setMapColleges(homeCollege);
+    setOneThird(0);
   };
 
   const handleSafe = () => {
+    setFileName("Safe");
+
     setSafeBtn(true);
+    setHomeBtn(false);
+    setMapColleges(predictedColleges);
     setDreamBtn(false);
     setSureBtn(false);
     setOneThird(Math.floor(predictedColleges.length / 3));
-    setOneThirdHome(Math.floor(homeCollege.length / 3));
   };
 
   const handleSure = () => {
+    setFileName("Sure");
+
     setSureBtn(true);
+    setHomeBtn(false);
+    setMapColleges(predictedColleges);
     setDreamBtn(false);
     setSafeBtn(false);
     setOneThird(
       Math.floor(predictedColleges.length / 3) +
         Math.floor(predictedColleges.length / 3)
-    );
-    setOneThird(
-      Math.floor(homeCollege.length / 3) + Math.floor(homeCollege.length / 3)
     );
   };
   const CategoryList = ["EWS", "OBC-NCL", "OPEN", "SC", "ST"];
@@ -165,7 +179,7 @@ const CollegePredictor = () => {
     "SC (PwD)",
     "ST (PwD)",
   ];
-  const skeleton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const skeleton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   return (
     <div
@@ -279,6 +293,18 @@ const CollegePredictor = () => {
               >
                 Safe
               </div>
+              <div
+                className={
+                  homeBtn
+                    ? "text-[#505050] font-semibold hover:text-[#505050]"
+                    : "text-[#818181] font-semibold hover:text-[#505050]"
+                }
+                onClick={() => {
+                  handleHome();
+                }}
+              >
+                Home
+              </div>
             </div>
             <div
               className={
@@ -287,7 +313,7 @@ const CollegePredictor = () => {
                   : "w-3/12 flex flex-row justify-end gap-x-2"
               }
             >
-              <button
+              {/* <button
                 onClick={() => {
                   setDownload(true);
                 }}
@@ -298,11 +324,26 @@ const CollegePredictor = () => {
                 }
               >
                 {download && (
-                  <CSVDownload data={allFilterCollege}   filename={"my-file.csv"}
-                  target="_blank" />
+                  <CSVLink
+                    data={mapColleges}
+                    filename={"my-file.csv"}
+                    // target="_blank"
+                  />
                 )}
                 Download
-              </button>
+              </button> */}
+              <CSVLink
+                data={mapColleges}
+                target="_blank"
+                filename={fileName + ".csv"}
+                className={
+                  doBlur
+                    ? "bg-[#EE7C00] rounded-[2px] text-white p-[5px] px-4 blur-sm"
+                    : "bg-[#EE7C00] rounded-[2px] text-white p-[5px] px-4"
+                }
+              >
+                Download
+              </CSVLink>
               <button
                 onClick={() => {
                   if (res) {
@@ -357,41 +398,6 @@ const CollegePredictor = () => {
                     </div>
                   );
                 })}
-                {homeCollege.length > 0 && (
-                  <div
-                    className={
-                      doBlur
-                        ? "mt-2 p-4 rounded-[3px] flex items-center font-semibold blur-sm"
-                        : "mt-2 p-4 rounded-[3px] flex items-center font-semibold"
-                    }
-                    style={{ backgroundColor: "rgba(238, 124, 0, 0.05)" }}
-                  >
-                    Home College
-                  </div>
-                )}
-
-                {homeMapCollege
-                  ?.slice(oneThirdHome, oneThirdHome + 2)
-                  .map((clg, id) => {
-                    return (
-                      <div key={id}>
-                        <div className="w-full flex flex-row  items-center p-1">
-                          <div className="w-[5%]">
-                            <img
-                              src={id % 2 === 0 ? "./cp1.svg" : "./redlogo.svg"}
-                            ></img>
-                          </div>
-                          <div className="w-[75%] p-2 first-letter:flex flex-col">
-                            <div className="text-sm">{clg.Institute}</div>
-                            <div className="text-xs">
-                              {clg.Academic_Program_Name}
-                            </div>
-                          </div>
-                        </div>
-                        <hr></hr>
-                      </div>
-                    );
-                  })}
               </>
             ) : (
               <>

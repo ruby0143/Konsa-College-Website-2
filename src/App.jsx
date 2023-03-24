@@ -21,7 +21,8 @@ import ExamRecommender from "./pages/examRecommender";
 import TrendsHome from "./pages/trendsHome";
 import TrendsBranches from "./pages/trendsBranches";
 import Tools from "./pages/tool";
-import Branches from "./pages/branches";
+import InstCutOff from "./pages/InstCutOff";
+import Branches from "./pages/branches"
 
 function App() {
   const { skeleton, loader } = useStateContext();
@@ -56,27 +57,12 @@ function App() {
 
             <Route path="*" element={<Err_404 />} exact />
             <Route path="/soon" element={<Comming_Soon />} exact />
-            <Route
-              path="/collegePredictor"
-              element={<CollegePredictor />}
-              exact
-            />
-            <Route
-              path="/percentilePredictor"
-              element={<PercentilePredictor />}
-              exact
-            />
-            <Route
-              path="/examRecommender"
-              element={<ExamRecommender />}
-              exact
-            />
-            <Route
-              path="/college/:particularcollege/cutoff"
-              element={<CutoffPage />}
-              exact
-            />
-            <Route path="/tools" element={<Tools />} exact />
+            <Route path="/collegePredictor" element={<CollegePredictor />} exact />
+            <Route path="/percentilePredictor" element={<PercentilePredictor />} exact />
+            <Route path="/InstCutoff" element={<InstCutOff />} exact />
+            <Route path="/examRecommender" element={<ExamRecommender />} exact />
+            <Route path="/college/:particularcollege/cutoff" element={<CutoffPage />} exact />
+            <Route path="/tools" element={<Tools/>} exact/>
           </Routes>
           <CollegeFooter />
         </ScrollToTop>
