@@ -12,12 +12,9 @@ import './headerstyle.css'
 import { auth } from '../../config/auth/firebaseauth'
 import { signOut } from 'firebase/auth'
 
-
 const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
   
-
-  const {authValues, setAuthValues} = useContext(AuthCheck)
-
+  const {authValues, setAuthValues} = useContext(AuthCheck);
   const [isLoginState, setIsLoginState] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);  
 
@@ -25,7 +22,6 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) =>{
       if(userAuth){
-        console.log("userAuth: ",userAuth);
         setAuthValues({
          uid: userAuth.uid,
          email: userAuth.email
@@ -38,8 +34,8 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
     return unsubscribe
   },[])
 
-  const handleLogout = () =>{
-      signOut(auth).then(() => console.log("user SignedOut"))
+  const handleLogout = async () =>{
+      await signOut(auth).then(() => console.log("user SignedOut"))
   }
 
   return (

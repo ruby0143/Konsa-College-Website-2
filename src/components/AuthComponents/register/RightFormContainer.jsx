@@ -5,7 +5,7 @@ import { signUpSchema } from '../../../schemas/authValidationSchema'
 
 // auth config
 import { auth, provider } from '../../../config/auth/firebaseauth'
-import { signInWithPopup } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 
 const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
 
@@ -20,20 +20,29 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
   const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
     initialValues : initialValues,
     validationSchema : signUpSchema,
-    onSubmit : (values,action) => {
+    onSubmit : async (values,action) => {
+
+      // firebase auth func for creating user
+      await createUserWithEmailAndPassword(auth, values.email, values.password).then((data) => console.log("signUp data: ", data.user)
+      ).catch(err => console.log("signUp error: ", err))
+
+
       action.resetForm();
+      setIsModalOpen(false)
     },
   })
 
   // google auth 
   const handleGoogleSignIn = async () => {
     // google auth popup
-    await signInWithPopup(auth, provider).then(data => {
-      console.log("User LoggedIn");
-    })
+    await signInWithPopup(auth, provider).
+    then(data => {
+        console.log("User LoggedIn");
+      }
+    ).catch(err => console.log("signIn with google auth err: ",err)) 
+    
     setIsModalOpen(false)
   }
-  
 
   return (
     <div className='w-[70%] h-full lg:rounded-l-3xl bg-white p-10 flex justify-center items-center'>

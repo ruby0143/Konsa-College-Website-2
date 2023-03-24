@@ -5,12 +5,9 @@ import { logInSchema } from '../../../schemas/authValidationSchema'
 
 // auth config
 import { auth, provider } from '../../../config/auth/firebaseauth'
-import { signInWithPopup } from 'firebase/auth'
-import { AuthCheck } from '../../../Context/authContext'
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 
 const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
-
-  const {setAuthValues} = useContext(AuthCheck)
 
   const initialValues = {
     email : "",
@@ -20,26 +17,28 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
   const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
     initialValues : initialValues,
     validationSchema : logInSchema,
-    onSubmit : (values, action) => {
+    onSubmit : async (values, action) => {
+
+      // firebase auth func for signIn user
+      await signInWithEmailAndPassword(auth, values.email, values.password).then((data) => console.log("signUp data: ", data.user)
+      ).catch(err => console.log("signIn error: ", err))
+
       action.resetForm();
+      setIsModalOpen(false)
     },
   })
 
   // google auth 
   const handleGoogleSignIn = async () => {
     // google auth popup
-    await signInWithPopup(auth, provider).then(data => {
-      // console.log("google auth data: ", data.user.accessToken);
-      setAuthValues(data.user.accessToken)
-      localStorage.setItem("isLoggedIn",data.user.accessToken)
-    })
-
+    await signInWithPopup(auth, provider).
+    then(data => {
+        console.log("User LoggedIn");
+      }
+    ).catch(err => console.log("signIn with google auth err: ",err)) 
+    
     setIsModalOpen(false)
   }
-
-  useEffect(() => {
-    setAuthValues(localStorage.getItem("isLoggedIn"))
-  })
 
   return (
     <div className='w-[70%] h-full lg:rounded-l-3xl bg-white p-10 flex justify-center items-center'>
