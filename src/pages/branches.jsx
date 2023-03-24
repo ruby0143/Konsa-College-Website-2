@@ -9,13 +9,12 @@ const branches = () => {
   const [AllColleges, setAllColleges] = useState([]);
   const [institute, setInstitutes] = useState([]);
   const [selectedStates, setSelectedStates] = useState([]);
-  const [mapCollege,setMapCollege]=useState([])
-  const [showFilter,setShowFilter]=useState(false)
+  const [mapCollege, setMapCollege] = useState([]);
+  const [showFilter, setShowFilter] = useState(false);
 
   let filterClg = [];
-  let array=[]
-  let array1=[]
-
+  let array = [];
+  let array1 = [];
 
   const animatedComponents = makeAnimated();
   let states = [
@@ -46,43 +45,41 @@ const branches = () => {
       }
     }
   };
-  
+
   if (AllColleges.length > 0 && selectedBranch.length > 0) {
     filterData();
   }
 
-
-  
   useEffect(() => {
     getData();
 
-    if(institute.length>0 || selectedStates.length>0){
-      setShowFilter(true)
+    if (institute.length > 0 || selectedStates.length > 0) {
+      setShowFilter(true);
     }
 
-    if(institute.length>0){
-      for(let i =0;i<institute.length;i++){
-        for(let x=0;x<filterClg.length;x++){
-          if(filterClg[x].Institute.includes(institute[i].value)){
-            array.push(filterClg[x])
+    if (institute.length > 0) {
+      for (let i = 0; i < institute.length; i++) {
+        for (let x = 0; x < filterClg.length; x++) {
+          if (filterClg[x].Institute.includes(institute[i].value)) {
+            array.push(filterClg[x]);
           }
         }
       }
-      setMapCollege(array)
-      console.log("data",array)
+      setMapCollege(array);
+      console.log("data", array);
     }
-    if(selectedStates.length>0){
-      for(let i =0;i<selectedStates.length;i++){
-        for(let x=0;x<array.length;x++){
-          if(array[x].Array.includes(selectedStates[i].value)){
-            array1.push(array[x])
+    if (selectedStates.length > 0) {
+      for (let i = 0; i < selectedStates.length; i++) {
+        for (let x = 0; x < array.length; x++) {
+          if (array[x].Array.includes(selectedStates[i].value)) {
+            array1.push(array[x]);
           }
         }
       }
-      setMapCollege(array1)
-      console.log("data",array1)
+      setMapCollege(array1);
+      console.log("data", array1);
     }
-  }, [institute,selectedStates]);
+  }, [institute, selectedStates]);
 
   const Branches = [
     "Electrical",
@@ -108,7 +105,6 @@ const branches = () => {
     "Data Science",
     "Bio Medical",
     "Ceramic",
-    "Food Process",
     "Biomedical",
     "Agricultural",
     "Mechatronics",
@@ -127,11 +123,10 @@ const branches = () => {
     "Biotechnology",
     "Computational",
     "Computer",
-    "Chemical and Biochemical",
     "Electronics System",
     "Biochemical",
     "Pharmaceutical",
-    "Industrial and Systems",
+    "Systems",
     "Manufacturing Science",
     "Mining Safety",
     "Ocean",
@@ -220,31 +215,35 @@ const branches = () => {
             </div>
           </div>
           <div className=" flex flex-row flex-wrap gap-5 mb-20">
-
-
-              {showFilter ? (<>
+            {showFilter ? (
+              <>
                 {mapCollege.length > 0 &&
-              mapCollege.map((clg, i) => {
-                return (
-                  <div className="rounded-md shadow-md w-[380px] p-3 ml-7 min-h-[100px]">
-                    <div className="text-[17px] font-semibold text-blue-500">
-                      {clg.Institute}
-                    </div>
-                    <div className="text-[12px]">{clg.Array}</div>
-                  </div>
-                );
-              })}</>):(<>
+                  mapCollege.map((clg, i) => {
+                    return (
+                      <div className="rounded-md shadow-md w-[380px] p-3 ml-7 min-h-[100px]">
+                        <div className="text-[17px] font-semibold text-blue-500">
+                          {clg.Institute}
+                        </div>
+                        <div className="text-[12px]">{clg.Array}</div>
+                      </div>
+                    );
+                  })}
+              </>
+            ) : (
+              <>
                 {filterClg.length > 0 &&
-              filterClg.map((clg, i) => {
-                return (
-                  <div className="rounded-md shadow-md w-[380px] p-3 ml-7 min-h-[100px]">
-                    <div className="text-[17px] font-semibold text-blue-500">
-                      {clg.Institute}
-                    </div>
-                    <div className="text-[12px]">{clg.Array}</div>
-                  </div>
-                );
-              })}</>)}
+                  filterClg.map((clg, i) => {
+                    return (
+                      <div className="rounded-md shadow-md w-[380px] p-3 ml-7 min-h-[100px]">
+                        <div className="text-[17px] font-semibold text-blue-500">
+                          {clg.Institute}
+                        </div>
+                        <div className="text-[12px]">{clg.Array}</div>
+                      </div>
+                    );
+                  })}
+              </>
+            )}
           </div>
         </div>
       )}

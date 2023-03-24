@@ -464,83 +464,11 @@ const CollegePredictor = () => {
             className="desk:w-[53%] flex-col font-roboto p-[40px] bg-[url('/Stroke.svg')] bg-contain bg-no-repeat"
             style={{ backgroundColor: res ? "rgba(0,0,0,0.5)" : null }}
           >
-            <h4 className="mt-[18px] mob:mt-[11px] text-center font-bold text-sm mob:font-medium">
+              <h4 className="mt-[18px] mob:mt-[11px] text-center font-bold text-sm mob:font-medium">
               Enter your JEE Mains 2023 Details
             </h4>
-            <h6 className="mt-[25px] mob:mt-[20px] mob:text-[13px]">
-              Your Rank
-            </h6>
-            <input
-              onChange={(e) => setRank(e.target.value)}
-              className="rounded-[2px] bg-[#FFFFFF] mt-[2px] text-[#ACACAC] text-sm mob:text-xs tracking-wide focus:outline-none border-none w-full p-[6px]"
-              style={{
-                boxShadow:
-                  "0px 1.52083px 1.52083px 1.52083px rgba(204, 204, 204, 0.1)",
-                border: "0.760417px solid #CCCCCC",
-              }}
-              type="number"
-              required
-              value={rank}
-              placeholder="Enter Your Rank"
-            ></input>
-            {RankError !== "" && rank === "" && (
-              <div className="text-red-500 text-[14px]">{RankError}</div>
-            )}
-
-            <h6 className="mt-[20px] mob:mt-[15px] mob:text-[13px]">
-              State Your Eligibility
-            </h6>
-
-            <div
-              className="relative flex flex-row mt-[2px] justify-start items-center w-full p-[6px] rounded-[2px] border-none focus:outline-none bg-[#ffffff]"
-              style={{ border: "1px solid #D3D3D3" }}
-            >
-              <button
-                className="text-[#ACACAC] text-sm tracking-wide w-[90%] flex justify-start focus:outline-none border-none"
-                onClick={() => {
-                  setIsOpen((prevState) => !prevState);
-                }}
-              >
-                {Eligibility !== "" ? (
-                  <p className="text-[#ACACAC] text-sm mob:text-xs tracking-wide ">
-                    {Eligibility}
-                  </p>
-                ) : (
-                  <p className="text-[#ACACAC] text-sm mob:text-xs tracking-wide">
-                    Enter Your State
-                  </p>
-                )}
-              </button>
-              {!isOpen ? (
-                <AiOutlineDown className="text-[#ACACAC] w-[10%]" />
-              ) : (
-                <AiOutlineUp className="text-[#ACACAC] w-[10%]" />
-              )}
-
-              {isOpen && (
-                <div className="absolute top-[35px] left-0 right-[1px] w-full h-[280px] z-[100] text-[#9ca3b7] border-[#dcdcdc] bg-[#F5F5F5]  overflow-x-hidden overflow-y-auto">
-                  {state.map((state) => {
-                    return (
-                      <div
-                        key={state.key}
-                        className="w-full px-3 hover:bg-[#ffffff] shadow-sm cursor-pointer rounded-sm leading-10"
-                        onClick={() => {
-                          setEligibility(state.name);
-                          setIsOpen(false);
-                        }}
-                      >
-                        {state.name}
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-            {EligibilityError !== "" && Eligibility === "" && (
-              <div className="text-red-500 text-[14px]">{EligibilityError}</div>
-            )}
-
-            <h6 className="mt-[20px] mob:mt-[15px] mob:text-[13px]">
+          
+          <h6 className="mt-[20px] mob:mt-[15px] mob:text-[13px]">
               Your Category
             </h6>
 
@@ -613,6 +541,83 @@ const CollegePredictor = () => {
             {CategoryError !== "" && Category === "" && (
               <div className="text-red-500 text-[14px]">{CategoryError}</div>
             )}
+
+
+          
+            <h6 className="mt-[25px] mob:mt-[20px] mob:text-[13px]">
+              Your {Category} Rank
+            </h6>
+            <input
+              onChange={(e) => setRank(e.target.value)}
+              className="rounded-[2px] bg-[#FFFFFF] mt-[2px] text-[#ACACAC] text-sm mob:text-xs tracking-wide focus:outline-none border-none w-full p-[6px]"
+              style={{
+                boxShadow:
+                  "0px 1.52083px 1.52083px 1.52083px rgba(204, 204, 204, 0.1)",
+                border: "0.760417px solid #CCCCCC",
+              }}
+              type="number"
+              required
+              value={rank}
+              placeholder="Enter Your Rank"
+            ></input>
+            {RankError !== "" && rank === "" && (
+              <div className="text-red-500 text-[14px]">{RankError}</div>
+            )}
+
+            <h6 className="mt-[20px] mob:mt-[15px] mob:text-[13px]">
+              State Your Eligibility
+            </h6>
+
+            <div
+              className="relative flex flex-row mt-[2px] justify-start items-center w-full p-[6px] rounded-[2px] border-none focus:outline-none bg-[#ffffff]"
+              style={{ border: "1px solid #D3D3D3" }}
+            >
+              <button
+                className="text-[#ACACAC] text-sm tracking-wide w-[90%] flex justify-start focus:outline-none border-none"
+                onClick={() => {
+                  setIsOpen((prevState) => !prevState);
+                }}
+              >
+                {Eligibility !== "" ? (
+                  <p className="text-[#ACACAC] text-sm mob:text-xs tracking-wide ">
+                    {Eligibility}
+                  </p>
+                ) : (
+                  <p className="text-[#ACACAC] text-sm mob:text-xs tracking-wide">
+                    Enter Your State
+                  </p>
+                )}
+              </button>
+              {!isOpen ? (
+                <AiOutlineDown className="text-[#ACACAC] w-[10%]" />
+              ) : (
+                <AiOutlineUp className="text-[#ACACAC] w-[10%]" />
+              )}
+
+              {isOpen && (
+                <div className="absolute top-[35px] left-0 right-[1px] w-full h-[280px] z-[100] text-[#9ca3b7] border-[#dcdcdc] bg-[#F5F5F5]  overflow-x-hidden overflow-y-auto">
+                  {state.map((state) => {
+                    return (
+                      <div
+                        key={state.key}
+                        className="w-full px-3 hover:bg-[#ffffff] shadow-sm cursor-pointer rounded-sm leading-10"
+                        onClick={() => {
+                          setEligibility(state.name);
+                          setIsOpen(false);
+                        }}
+                      >
+                        {state.name}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+            {EligibilityError !== "" && Eligibility === "" && (
+              <div className="text-red-500 text-[14px]">{EligibilityError}</div>
+            )}
+
+
 
             <div className="flex flex-col mt-[20px] mob:mt-[5px] justify-start">
               <div className="w-full">
