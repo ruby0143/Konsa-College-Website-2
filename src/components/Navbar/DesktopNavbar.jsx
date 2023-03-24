@@ -1,13 +1,63 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
 import { NavLink } from 'react-router-dom'
 import konsaCollegeLogo from '../../assets/KonsaCollege_Logo/KonsaCollege_desktopLogo.svg' 
+import { AuthCheck } from '../../Context/authContext'
+import LoginUser from '../AuthComponents/logIn/LoginUser'
+import RegisterUser from '../AuthComponents/register/RegisterUser'
+import AuthModal from '../UI Components/Modal/authModal'
 import './headerstyle.css'
 
+// auth config
+import { auth } from '../../config/auth/firebaseauth'
+import { signOut } from 'firebase/auth'
+
 const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
+  
+  const {authValues, setAuthValues} = useContext(AuthCheck);
+  const [isLoginState, setIsLoginState] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);  
+
+  // auth checks - is logged in or not
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((userAuth) =>{
+      if(userAuth){
+        setAuthValues({
+         uid: userAuth.uid,
+         email: userAuth.email
+        })
+      } else {
+        setAuthValues(null)
+      }
+    })
+
+    return unsubscribe
+  },[])
+
+  const handleLogout = async () =>{
+      await signOut(auth).then(() => console.log("user SignedOut"))
+  }
 
   return (
     <>
+        {
+            isModalOpen ? (
+                <AuthModal>
+                    {isLoginState ? (
+                     <LoginUser 
+                        setIsModalOpen={setIsModalOpen} 
+                        setIsLoginState={setIsLoginState}
+                     />
+                    ) : (
+                     <RegisterUser 
+                        setIsModalOpen={setIsModalOpen} 
+                        setIsLoginState={setIsLoginState}
+                     />
+                    )}
+                </AuthModal>
+            ) : null
+        }
+
         <nav className='bg-black md:bg-white flex px-3 md:px-12 items-center justify-between shadow-lg '>
             <div className='h-[54px] -ml-1' >
                 <a href="/"><img className='h-full -ml-[.3rem]' src={konsaCollegeLogo} alt="konsa-college-logo"/></a>
@@ -22,11 +72,27 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
                     })
                 }
                 </ul>
-                <div className='flex gap-2 py-[6px] px-[22px] text-white text-sm font-medium rounded-full bg-[#EE7C00]' >
-                    <div className='cursor-pointer'>Login</div>
+                {authValues === null ? <div className='flex gap-2 py-[6px] px-[22px] text-white text-sm font-medium rounded-full bg-[#EE7C00]' >
+                    <div  
+                        className='cursor-pointer'
+                        onClick={()=>{
+                            setIsModalOpen(prevState => !prevState)
+                            setIsLoginState(true)
+                        }}
+                    >
+                        Login
+                    </div>
                     <div>|</div>
-                    <div className='cursor-pointer'>Sign In</div>
-                </div>
+                    <div 
+                        className='cursor-pointer'
+                        onClick={()=>{
+                            setIsModalOpen(prevState => !prevState)
+                            setIsLoginState(false)
+                        }}
+                    >
+                        Sign Up
+                    </div>
+                </div> : <div className='text-[#EE7C00] cursor-pointer' onClick={handleLogout}>Logout</div>}
             </div>
             <div className='md:hidden flex items-center gap-4' >
                 <div onClick={()=>setMobileSidebar(true)} >

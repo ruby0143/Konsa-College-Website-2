@@ -25,7 +25,8 @@ import InstCutOff from "./pages/InstCutOff";
 import Branches from "./pages/branches"
 
 function App() {
-  const { skeleton, loader } = useStateContext();
+  const { skeleton, loader } = useStateContext()
+
   return (
     <>
       <Router>
@@ -63,6 +64,8 @@ function App() {
             <Route path="/examRecommender" element={<ExamRecommender />} exact />
             <Route path="/college/:particularcollege/cutoff" element={<CutoffPage />} exact />
             <Route path="/tools" element={<Tools/>} exact/>
+            {/* <Route path="/register" element={<AuthModal><RegisterUser/></AuthModal>}/>
+            <Route path="/login" element={<AuthModal><LoginUser/></AuthModal>}/> */}
           </Routes>
           <CollegeFooter />
         </ScrollToTop>

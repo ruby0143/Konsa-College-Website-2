@@ -12,6 +12,8 @@
     "@mui/material": "^5.11.13",
     "axios": "^1.2.2",
     "file-saver": "^2.0.5",
+    "firebase": "^9.18.0",
+    "formik": "^2.2.9",
     "lightweight-charts": "^4.0.0",
     "react": "^18.2.0",
     "react-csv": "^2.2.2",
@@ -30,6 +32,8 @@
     "sweetalert2": "^11.7.1",
     "tailwind-scrollbar-hide": "^1.1.7",
     "victory": "^36.6.8",
+    "yup": "^1.0.2",
+    "yup-phone-lite": "^2.0.1",
     "zustand": "^4.3.2"
   },
   "devDependencies": {
