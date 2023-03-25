@@ -67,7 +67,12 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
                 {
                     routes.map(route => {
                         return <li key={route.route}>
-                            <NavLink className='text-gray-900 hover:text-black text-sm transition-all duration-500' to={route.path}>{route.route}</NavLink>
+                            <NavLink 
+                                className='text-gray-900 hover:text-black text-sm transition-all duration-500' to={route.path}
+                                
+                            >
+                                {route.route}
+                            </NavLink>
                         </li>
                     })
                 }
