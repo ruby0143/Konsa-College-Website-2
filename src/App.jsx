@@ -23,6 +23,8 @@ import TrendsBranches from "./pages/trendsBranches";
 import Tools from "./pages/tool";
 import InstCutOff from "./pages/InstCutOff";
 import Branches from "./pages/branches"
+import CollegeComparator from "./pages/collegeComparator";
+import PreferenceListGenerator from "./pages/prefernnceListGenerator";
 
 function App() {
   const { skeleton, loader } = useStateContext()
@@ -62,10 +64,10 @@ function App() {
             <Route path="/percentilePredictor" element={<PercentilePredictor />} exact />
             <Route path="/InstCutoff" element={<InstCutOff />} exact />
             <Route path="/examRecommender" element={<ExamRecommender />} exact />
+            <Route path="/preferenceListGenerator" element={<PreferenceListGenerator />} exact />
+            <Route path="/collegeComparator" element={<CollegeComparator />} exact />
             <Route path="/college/:particularcollege/cutoff" element={<CutoffPage />} exact />
             <Route path="/tools" element={<Tools/>} exact/>
-            {/* <Route path="/register" element={<AuthModal><RegisterUser/></AuthModal>}/>
-            <Route path="/login" element={<AuthModal><LoginUser/></AuthModal>}/> */}
           </Routes>
           <CollegeFooter />
         </ScrollToTop>

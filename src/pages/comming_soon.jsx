@@ -50,6 +50,8 @@ const Comming_Soon = () => {
           <meta name="audience" content="all" />
           <meta name="distribution" content="global"/>
         </Helmet>
+
+
     <div className='flex justify-center items-center h-[100vh]'>
         <div className='flex flex-col items-center max-w-[70%]'>
             <div className='text-4xl font-bold mb-4'>Comming Soon...</div>

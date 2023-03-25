@@ -1,13 +1,16 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useCallback, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useFormik } from 'formik'
 import { signUpSchema } from '../../../schemas/authValidationSchema'
+// import debounce from "lodash.debounce";
 
 // auth config
 import { auth, provider } from '../../../config/auth/firebaseauth'
-import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
+import { createUserWithEmailAndPassword, fetchSignInMethodsForEmail, signInWithPopup } from 'firebase/auth'
 
 const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
+
+  // const [isVerifiedEmail, setIsVerifiedEmail] = useState(false);
 
   const initialValues = {
     fullName : "",
@@ -17,27 +20,36 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
     confirmPassword : "",
   }
   
+  /*--- important ---*/
+  // const handleEmailVerification = useCallback((email) => {
+  //   fetchSignInMethodsForEmail(auth,email)
+  //       .then((providers)=>{
+  //         console.log("providers: ",providers);
+  //       })
+  //       .catch(err => console.log("email verification error: ", err))
+  // },[])
+      
   const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
     initialValues : initialValues,
     validationSchema : signUpSchema,
+    
     onSubmit : async (values,action) => {
-
       // firebase auth func for creating user
-      await createUserWithEmailAndPassword(auth, values.email, values.password).then((data) => console.log("signUp data: ", data.user)
-      ).catch(err => console.log("signUp error: ", err))
-
-
-      action.resetForm();
-      setIsModalOpen(false)
-    },
-  })
+      await createUserWithEmailAndPassword(auth, values.email, values.password).then(
+        (data) => console.log("User Signed In using email/password")
+        ).catch(err => console.log("signUp error : ", err))
+        
+        action.resetForm();
+        setIsModalOpen(false)
+      },
+  }) 
 
   // google auth 
   const handleGoogleSignIn = async () => {
     // google auth popup
     await signInWithPopup(auth, provider).
     then(data => {
-        console.log("User LoggedIn");
+        console.log("User LoggedIn using google");
       }
     ).catch(err => console.log("signIn with google auth err: ",err)) 
     
@@ -84,7 +96,10 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
                   name='email'
                   placeholder="Enter Email"
                   value={values.email}
-                  onChange={handleChange}
+                  onChange={(e)=>{
+                    handleChange(e);
+                    // handleEmailVerification(e.target.value)
+                  }}
                   onBlur={handleBlur}
                 />
                 {(errors.email && touched.email) ? <div className='px-2 text-sm text-red-500'>{errors.email}</div> : null}
