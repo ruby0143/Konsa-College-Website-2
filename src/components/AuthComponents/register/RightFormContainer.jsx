@@ -150,7 +150,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
             type='submit'
             className='bg-[#EE7C00] py-1 shadow-md px-28 rounded-md text-lg text-white font-medium'
           >
-              {loading ? "Loading..." : "Create Account"}
+              Create Account
           </button>
         </form>
 
