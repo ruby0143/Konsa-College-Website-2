@@ -1,17 +1,16 @@
-import React, { useCallback, useState } from 'react'
+import React from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useFormik } from 'formik'
 import { signUpSchema } from '../../../schemas/authValidationSchema'
-// import debounce from "lodash.debounce";
+
 
 // auth config
-import { auth, provider } from '../../../config/auth/firebaseauth'
-import { createUserWithEmailAndPassword, fetchSignInMethodsForEmail, signInWithPopup } from 'firebase/auth'
+import { auth, googleProvider } from '../../../config/auth/firebaseauth'
+import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 
 const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
 
   // const [isVerifiedEmail, setIsVerifiedEmail] = useState(false);
-
   const initialValues = {
     fullName : "",
     email : "",
@@ -19,15 +18,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
     password : "",
     confirmPassword : "",
   }
-  
-  /*--- important ---*/
-  // const handleEmailVerification = useCallback((email) => {
-  //   fetchSignInMethodsForEmail(auth,email)
-  //       .then((providers)=>{
-  //         console.log("providers: ",providers);
-  //       })
-  //       .catch(err => console.log("email verification error: ", err))
-  // },[])
+
       
   const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
     initialValues : initialValues,
@@ -40,6 +31,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
         ).catch(err => console.log("signUp error : ", err))
         
         action.resetForm();
+        // setIsLoginState(true)
         setIsModalOpen(false)
       },
   }) 
@@ -47,7 +39,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
   // google auth 
   const handleGoogleSignIn = async () => {
     // google auth popup
-    await signInWithPopup(auth, provider).
+    await signInWithPopup(auth, googleProvider).
     then(data => {
         console.log("User LoggedIn using google");
       }
@@ -77,7 +69,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
               className="relative flex flex-col w-full" 
             >
                 <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2`}
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2 transition-all duration-500`}
                   type="text"
                   name='fullName'
                   placeholder="Enter Full Name"
@@ -90,25 +82,32 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
             <div  
               className="relative flex flex-col w-full" 
             >
-                <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2`}
-                  type="email"
-                  name='email'
-                  placeholder="Enter Email"
-                  value={values.email}
-                  onChange={(e)=>{
-                    handleChange(e);
-                    // handleEmailVerification(e.target.value)
-                  }}
-                  onBlur={handleBlur}
-                />
+              <div className='flex w-full items-end justify-between' >
+                  <input
+                    className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black ${!errors.email && touched.email ? "w-[80%]" : "w-full"} h-[40px] py-4 px-2 transition-all duration-500`}
+                    type="email"
+                    name='email'
+                    placeholder="Enter Email"
+                    value={values.email}
+                    onChange={(e)=>{
+                      handleChange(e);
+                      // handleEmailVerification(e.target.value)
+                    }}
+                    onBlur={handleBlur}
+                  />
+                  <button
+                    className={`bg-[#EE7C00] text-sm text-white ml-1 h-[35px] ${!errors.email && touched.email ? "w-[18%]" : "w-0"} rounded-sm transition-all duration-500`}
+                  >
+                    {!errors.email && touched.email && "Verify Email"}
+                  </button>
+                </div>
                 {(errors.email && touched.email) ? <div className='px-2 text-sm text-red-500'>{errors.email}</div> : null}
             </div>
-            <div  
+            <div    
               className="relative flex flex-col w-full" 
             >
                 <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2`}
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2 transition-all duration-500`}
                   type="number"
                   name='phoneNumber'
                   placeholder="+91  Phone Number"
@@ -120,9 +119,9 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
             </div>
             <div  
               className="relative flex flex-col w-full" 
-              >
+            >
                 <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2`}
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2 transition-all duration-500`}
                   type="password"
                   name='password'
                   placeholder="Enter Password"
@@ -136,7 +135,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
               className="relative flex mt-[8px] flex-col w-full" 
               >
                 <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black border-gray-300 w-[full] h-[40px] py-4 px-2`}
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black border-gray-300 w-[full] h-[40px] py-4 px-2 transition-all duration-500`}
                   type="password"
                   name='confirmPassword'
                   placeholder="Confirm Entered Password"
@@ -151,7 +150,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
             type='submit'
             className='bg-[#EE7C00] py-1 shadow-md px-28 rounded-md text-lg text-white font-medium'
           >
-              Create Account
+              {loading ? "Loading..." : "Create Account"}
           </button>
         </form>
 

@@ -22,6 +22,7 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) =>{
       if(userAuth){
+        console.log("user auth data: ",userAuth);
         setAuthValues({
          uid: userAuth.uid,
          email: userAuth.email

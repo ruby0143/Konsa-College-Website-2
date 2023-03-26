@@ -4,7 +4,7 @@ import { useFormik } from 'formik'
 import { logInSchema } from '../../../schemas/authValidationSchema'
 
 // auth config
-import { auth, provider } from '../../../config/auth/firebaseauth'
+import { auth, googleProvider } from '../../../config/auth/firebaseauth'
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 
 const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
@@ -20,7 +20,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
     onSubmit : async (values, action) => {
 
       // firebase auth func for signIn user
-      await signInWithEmailAndPassword(auth, values.email, values.password).then((data) => console.log("signUp data: ", data.user)
+      await signInWithEmailAndPassword(auth, values.email, values.password).then((data) => console.log("signIn data: ", data.user)
       ).catch(err => console.log("signIn error: ", err))
 
       action.resetForm();
@@ -31,7 +31,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
   // google auth 
   const handleGoogleSignIn = async () => {
     // google auth popup
-    await signInWithPopup(auth, provider).
+    await signInWithPopup(auth, googleProvider).
     then(data => {
         console.log("User LoggedIn");
       }
@@ -90,7 +90,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
             type='submit'
             className='bg-[#EE7C00] py-1 shadow-md px-28 rounded-md text-lg text-white font-medium'
           >
-              Login
+              {loading ? "loading..." : "Login"}
           </button>
         </form>
 
