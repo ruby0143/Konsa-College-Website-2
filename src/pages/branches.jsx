@@ -55,6 +55,8 @@ const branches = () => {
 
     if (institute.length > 0 || selectedStates.length > 0) {
       setShowFilter(true);
+    }else{
+      setShowFilter(false)
     }
 
     if (institute.length > 0) {

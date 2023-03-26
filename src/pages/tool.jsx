@@ -42,10 +42,28 @@ const tool = () => {
       route: "/scheduler"
     },
     {
-      img: "./tool1.svg",
+      img: "./tool2.svg",
       heading: "Percentile Predictor",
       desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
       route: "/percentilePredictor"
+    },
+    {
+      img: "./tool1.svg",
+      heading: "View All Branches",
+      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      route: "/branches"
+    },
+    {
+      img: "./tool2.svg",
+      heading: "Branch Wise Cut-Off",
+      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      route: "/branch-wise-cut-off"
+    },
+    {
+      img: "./tool1.svg",
+      heading: "Analyze Branch Wise Cut-Off Trends",
+      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      route: "/analyze-branch-wise-cut-off"
     },
   ];
   const BlackContainer = [
@@ -144,7 +162,7 @@ const tool = () => {
             return (
               <Link to={card.route} key={id} className="w-[350px] flex justify-center items-center flex-col p-5 rounded-md shadow-lg md:cursor-pointer">
                 <img src={card.img}></img>
-                <h3 className="text-xl font-semibold mt-3 text-[#3C3B3B] ">
+                <h3 className="text-xl font-semibold mt-3 text-[#3C3B3B] text-center">
                   {card.heading}
                 </h3>
                 <p className="text-center text-xs tracking-wide mt-3 text-[#3C3B3B] mb-3 ">
