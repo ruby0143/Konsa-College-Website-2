@@ -21,19 +21,31 @@ const tool = () => {
       img: "./tool1.svg",
       heading: "Preference List Generator",
       desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
-      route: "/soon"
+      route: "/preferenceListGenerator"
     },
     {
       img: "./tool1.svg",
-      heading: "Trend Analysis Tool",
+      heading: "View All Institutes",
       desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
-      route: "/trendsAnalysis"
+      route: "/trends"
+    },  
+    {
+      img: "./tool1.svg",
+      heading: "View All Branches",
+      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      route: "/branches"
+    },
+    {
+      img: "./tool1.svg",
+      heading: "View Institute wise Cutoffs",
+      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      route: "/InstCutoff"
     },
     {
       img: "./tool2.svg",
       heading: "College Comparator",
       desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
-      route: "/soon"
+      route: "/collegeComparator"
     },
     {
       img: "./tool1.svg",

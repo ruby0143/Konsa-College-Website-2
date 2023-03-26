@@ -14,7 +14,6 @@ const HomePage = () => {
   const setCollegeDataList = useCollegeDataStore((state) => state.setCollegeDataList)
   const url = "https://konsa-college-backend.vercel.app";
 
-
   useEffect(() => {
     axios.get(url + "/allcolleges")
       .then((res) => {
@@ -55,7 +54,7 @@ const HomePage = () => {
 
       </Helmet>
       <HomeHeader />
-      <div className='max-w-[1300px] m-auto md:mx-2 '>
+      <div className='max-w-[1300px] mx-auto mob:mx-2 '>
         <FeaturesOffered />
         <CollegesPredictor />
         <Newsletters />

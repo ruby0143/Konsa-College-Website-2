@@ -2,19 +2,19 @@ import React, { useContext, useEffect, useState } from 'react'
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
 import { NavLink } from 'react-router-dom'
 import konsaCollegeLogo from '../../assets/KonsaCollege_Logo/KonsaCollege_desktopLogo.svg' 
-import { AuthCheck } from '../../Context/authContext'
 import LoginUser from '../AuthComponents/logIn/LoginUser'
 import RegisterUser from '../AuthComponents/register/RegisterUser'
 import AuthModal from '../UI Components/Modal/authModal'
 import './headerstyle.css'
 
 // auth config
+import { AuthCheck } from '../../Context/authContext'
 import { auth } from '../../config/auth/firebaseauth'
 import { signOut } from 'firebase/auth'
 
 const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
   
-  const {authValues, setAuthValues} = useContext(AuthCheck);
+  const {authValues, setAuthValues} = useContext(AuthCheck);    
   const [isLoginState, setIsLoginState] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);  
 
@@ -22,6 +22,7 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) =>{
       if(userAuth){
+        console.log("user auth data: ",userAuth);
         setAuthValues({
          uid: userAuth.uid,
          email: userAuth.email
@@ -67,7 +68,12 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
                 {
                     routes.map(route => {
                         return <li key={route.route}>
-                            <NavLink className='text-gray-900 hover:text-black text-sm transition-all duration-500' to={route.path}>{route.route}</NavLink>
+                            <NavLink 
+                                className='text-gray-900 hover:text-black text-sm transition-all duration-500' to={route.path}
+                                
+                            >
+                                {route.route}
+                            </NavLink>
                         </li>
                     })
                 }

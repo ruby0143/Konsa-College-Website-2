@@ -22,10 +22,11 @@ import TrendsHome from "./pages/trendsHome";
 import TrendsBranches from "./pages/trendsBranches";
 import Tools from "./pages/tool";
 import InstCutOff from "./pages/InstCutOff";
-import Branches from "./pages/branches";
-import BranchCutOff from "./pages/viewBranchWise";
-import AnalyzeBranch from "./pages/AnalyzeBranch";
-
+import Branches from "./pages/branches"
+import CollegeComparator from "./pages/collegeComparator";
+import PreferenceListGenerator from "./pages/prefernnceListGenerator";
+import ViewBranchWise from "./pages/viewBranchWise";
+import AnalyzeViewBranchWise from "./pages/AnalyzeBranch"
 
 function App() {
   const { skeleton, loader } = useStateContext();
@@ -72,30 +73,14 @@ function App() {
               exact
             />
             <Route path="/InstCutoff" element={<InstCutOff />} exact />
-            <Route
-              path="/examRecommender"
-              element={<ExamRecommender />}
-              exact
-            />
-            <Route
-              path="/college/:particularcollege/cutoff"
-              element={<CutoffPage />}
-              exact
-            />
-            <Route path="/tools" element={<Tools />} exact />
-            <Route
-              path="/branch-wise-cut-off"
-              element={<BranchCutOff />}
-              exact
-            />
-            <Route
-              path="/analyze-branch-wise-cut-off-trends"
-              element={<AnalyzeBranch />}
-              exact
-            />
+            <Route path="/examRecommender" element={<ExamRecommender />} exact />
+            <Route path="/preferenceListGenerator" element={<PreferenceListGenerator />} exact />
+            <Route path="/collegeComparator" element={<CollegeComparator />} exact />
+            <Route path="/college/:particularcollege/cutoff" element={<CutoffPage />} exact />
+            <Route path="/tools" element={<Tools/>} exact/>
+            <Route path="/branch-wise-cut-off" element={<ViewBranchWise/>} exact/>
+            <Route path="/analyze-branch-wise-cut-off" element={<AnalyzeViewBranchWise/>} exact/>
 
-            {/* <Route path="/register" element={<AuthModal><RegisterUser/></AuthModal>}/>
-            <Route path="/login" element={<AuthModal><LoginUser/></AuthModal>}/> */}
           </Routes>
           <CollegeFooter />
         </ScrollToTop>

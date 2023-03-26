@@ -49,12 +49,12 @@ const SchedulerLeftContainer = ({examData, councellingData}) => {
             <RoundLoader/>
           </div>
         )}
-        <div className='mb-6 flex justify-center items-center'>
+        {<div className='mb-6 flex justify-center items-center'>
           <button onClick={()=>setCouncellingDataLimit(prev => prev + 3)} className='flex items-center py-2 px-6 md:px-8 rounded-full text-sm md:text-base md:font-medium text-[#5a5a5a] md:hover:text-[#fcfcfc] bg-[#f4f4f4] md:hover:bg-[#EE7C00] shadow-md transition-all duration-300'>
             <span className='mr-2'>Show more</span>
             <AiOutlineArrowDown/>
           </button>
-        </div>
+        </div>}
       </div>  
       
       <div className='mb-4'>

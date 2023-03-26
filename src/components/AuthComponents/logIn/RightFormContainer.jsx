@@ -4,11 +4,13 @@ import { useFormik } from 'formik'
 import { logInSchema } from '../../../schemas/authValidationSchema'
 
 // auth config
-import { auth, provider } from '../../../config/auth/firebaseauth'
+import { auth, googleProvider } from '../../../config/auth/firebaseauth'
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
+import { AuthCheck } from '../../../Context/authContext'
 
 const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
 
+  const {setIsLoggedIn} = useContext(AuthCheck)
   const initialValues = {
     email : "",
     password : ""
@@ -20,10 +22,11 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
     onSubmit : async (values, action) => {
 
       // firebase auth func for signIn user
-      await signInWithEmailAndPassword(auth, values.email, values.password).then((data) => console.log("signUp data: ", data.user)
+      await signInWithEmailAndPassword(auth, values.email, values.password).then((data) => console.log("signIn data: ", data.user)
       ).catch(err => console.log("signIn error: ", err))
 
       action.resetForm();
+      setIsLoggedIn(true)
       setIsModalOpen(false)
     },
   })
@@ -31,7 +34,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
   // google auth 
   const handleGoogleSignIn = async () => {
     // google auth popup
-    await signInWithPopup(auth, provider).
+    await signInWithPopup(auth, googleProvider).
     then(data => {
         console.log("User LoggedIn");
       }
@@ -49,17 +52,18 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
             onClick={()=>setIsModalOpen(false)}
           />
         </div>
-        <div className='text-3xl text-center font-semibold'>
+        <div className='text-3xl text-center font-semibold mb-10'>
           Login to Your Account
         </div>
         <form 
           className="w-[32rem] flex flex-col items-center gap-16"
           onSubmit={handleSubmit}
         >
-          <div className='w-full flex flex-col item-center gap-6'>
+          <div className='w-full flex flex-col item-center gap-4'>
             <div  
               className="relative flex flex-col w-full" 
             >
+              <div className='w-full'>
                 <input
                   className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2`}
                   type="email"
@@ -70,10 +74,15 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
                   onBlur={handleBlur}
                 />
                 {(errors.email && touched.email) ? <div className='px-2 text-sm text-red-500'>{errors.email}</div> : null}
+              </div>
+              <div className='text-[#838383] cursor-pointer mt-2 self-end hover:underline'>
+                Forgot Email?
+              </div>
             </div>
             <div  
               className="relative flex flex-col w-full" 
-              >
+            >
+              <div className='w-full'>
                 <input
                   className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2`}
                   type="password"
@@ -84,14 +93,26 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
                   onBlur={handleBlur}
                 />
                 {(errors.password && touched.password) ? <div className='px-2 text-sm text-red-500'>{errors.password}</div> : null}
+              </div>
+              <div className='text-[#838383] cursor-pointer mt-2 self-end hover:underline'>
+                Forget Password?
+              </div>
             </div>
           </div>
-          <button 
-            type='submit'
-            className='bg-[#EE7C00] py-1 shadow-md px-28 rounded-md text-lg text-white font-medium'
-          >
-              Login
-          </button>
+          <div className='w-full'>
+            <button 
+              type='submit'
+              className='bg-[#EE7C00] py-2 w-full shadow-md rounded-md text-lg text-white font-medium'
+            >
+                Login
+            </button>
+            <button 
+              type='button'
+              className='bg-white py-2 w-full shadow-md rounded-md text-lg text-[#EE7C00] font-medium mt-4 border border-[#EE7C00]'
+            >
+                Login With Mobile No.
+            </button>
+          </div>
         </form>
 
         <div className='flex justify-center items-center gap-3'>
