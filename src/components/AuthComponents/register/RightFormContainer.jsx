@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useFormik } from 'formik'
 import { signUpSchema } from '../../../schemas/authValidationSchema'
@@ -148,7 +148,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
           </div>
           <button   
             type='submit'
-            className='bg-[#EE7C00] py-1 shadow-md px-28 rounded-md text-lg text-white font-medium'
+            className='bg-[#EE7C00] py-2 w-full shadow-md rounded-md text-lg text-white font-medium'
           >
               Create Account
           </button>

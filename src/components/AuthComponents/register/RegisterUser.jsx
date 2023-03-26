@@ -4,7 +4,7 @@ import RightFormContainer from './RightFormContainer'
 
 const RegisterUser = ({setIsModalOpen,setIsLoginState}) => {
   return (
-    <div className='w-full h-full flex'>
+    <div className='w-full h-full flex shadow-2xl'>
       <LeftContainer/>
       <RightFormContainer setIsModalOpen={setIsModalOpen} setIsLoginState={setIsLoginState}/>
     </div>

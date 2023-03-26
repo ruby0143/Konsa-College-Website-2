@@ -6,10 +6,10 @@ const AuthContext = ({children}) =>{
 
     const [authValues, setAuthValues] = useState(null);
     const [isSignedUp, setIsSignedUp] = useState(false);
-    const [isLogined, setIsLogined] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     return (
-        <AuthCheck.Provider value={{authValues, setAuthValues}}>
+        <AuthCheck.Provider value={{authValues, setAuthValues, isSignedUp, setIsSignedUp, isLoggedIn, setIsLoggedIn}}>
             {children}
         </AuthCheck.Provider>
     )

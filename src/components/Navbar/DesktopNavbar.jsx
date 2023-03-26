@@ -2,19 +2,19 @@ import React, { useContext, useEffect, useState } from 'react'
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
 import { NavLink } from 'react-router-dom'
 import konsaCollegeLogo from '../../assets/KonsaCollege_Logo/KonsaCollege_desktopLogo.svg' 
-import { AuthCheck } from '../../Context/authContext'
 import LoginUser from '../AuthComponents/logIn/LoginUser'
 import RegisterUser from '../AuthComponents/register/RegisterUser'
 import AuthModal from '../UI Components/Modal/authModal'
 import './headerstyle.css'
 
 // auth config
+import { AuthCheck } from '../../Context/authContext'
 import { auth } from '../../config/auth/firebaseauth'
 import { signOut } from 'firebase/auth'
 
 const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
   
-  const {authValues, setAuthValues} = useContext(AuthCheck);
+  const {authValues, setAuthValues} = useContext(AuthCheck);    
   const [isLoginState, setIsLoginState] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);  
 
