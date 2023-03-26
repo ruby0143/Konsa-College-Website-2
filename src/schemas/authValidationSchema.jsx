@@ -14,3 +14,7 @@ export const logInSchema = Yup.object({
     email : Yup.string().email().matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Please enter valid email, must include @ and dot(.)").required("Please enter your Email"),
     password : Yup.string().min(8).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,"Must contain at least one uppercase letter, one lowercase letter, one digit, and one special character @ $ ! % * ? &").required("Please enter your Password"),
 })
+
+export const phnoLoginSchema = Yup.object({
+    phoneNumber: Yup.string().phone("IN","Invalid Phone Number").required("Please enter your Phone Number"),
+})
