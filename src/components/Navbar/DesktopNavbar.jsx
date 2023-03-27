@@ -20,6 +20,7 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
 
   // auth checks - is logged in or not
   useEffect(() => {
+    
     const unsubscribe = auth.onAuthStateChanged((userAuth) =>{
       if(userAuth){
         console.log("user auth data: ",userAuth);
@@ -31,6 +32,19 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
         setAuthValues(null)
       }
     })
+
+    // on escape key press - changing modal state
+    const handleEscapeKey = (event) => {
+      if (event.key === 'Escape') {
+        setIsModalOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscapeKey);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
 
     return unsubscribe
   },[])
