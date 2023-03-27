@@ -96,23 +96,23 @@ const tool = () => {
     },
   ];
   return (
-    <div className="flex flex-col  w-100">
-      <div className="bg-orange-50 relative w-100 flex justify-center pl-2">
-        <div className="flex w-[90%] md:flex-row mob:flex-col-reverse mob:justify-center mt-20 mb-40">
-          <div className="w-1/2 flex justify-start flex-col mob:justify-center items-start py-20">
-            <div>
-              <div className="md:text-5xl mob:text-4xl font-[1000] tracking-wider md:leading-7 font-roboto mob:text-center">
+    <div className="flex flex-col w-100">
+      <div className="bg-orange-50 relative w-100 flex justify-center">
+        <div className="flex w-[90%] flex-row mobs:flex-col-reverse mt-20 mb-40">
+          <div className="md:w-1/2 mobs:w-full flex justify-start flex-col items-start py-20">
+            <div className="w-full">
+              <div className="md:text-5xl mobs:text-4xl font-[1000] tracking-wider md:leading-7 font-roboto mobs:text-center">
                 The <span className="text-[#EE7C00]">Smart</span>
               </div>
-              <div className="md:text-5xl mob:text-4xl font-[1000] tracking-wider md:leading-7 font-roboto md:mt-5 mob:mt-2 mob:text-center">
+              <div className="md:text-5xl mobs:text-4xl font-[1000] tracking-wider md:leading-7 font-roboto md:mt-5 mobs:text-center">
                 Choice For <span className="text-[#EE7C00]">Future</span>
               </div>
-              <div className="text-[#8A8A8A] text-sm mt-5 md:w-[455px] mob:w-[95%] mob:text-center">
+              <div className="text-[#8A8A8A] text-sm mt-5 md:w-[455px] mobs:w-full p-2 text-center">
                 Lorem ipsum dolor sit amet consectetur. Enim venenatis posuere
                 dictumst convallis enim est id sem congue. Nunc ullamcorper
                 arcu.
               </div>
-              <div className="bg-white rounded-3xl md:w-[400px] mob:w-[90%] flex justify-between items-center mt-5">
+              <div className="bg-white mobs:w-full rounded-3xl w-[400px] flex justify-between items-center mt-5">
                 <div className="flex justify-center items-center p-1 gap-2 gap-x-3 ml-2">
                   <div className="w-[20px]">
                     <img src="./search.svg"></img>
@@ -131,23 +131,21 @@ const tool = () => {
             </div>
           </div>
           <div className="md:w-1/2">
-            <div>
-              <img className="" src="./bg.svg"></img>
-            </div>
+            <img src="./bg.svg"></img>
           </div>
         </div>
       </div>
 
-      <div className="w-full  flex justify-center absolute top-[550px] mob:top-[720px]">
-        <div className="w-[90%] bg-[#0E0E0E] rounded-lg text-white flex mob:flex-col flex-row justify-center items-center flex-wrap p-5 ">
+      <div className="w-full  flex justify-center absolute top-[550px] mobs:top-[700px]">
+        <div className="w-[90%] bg-[#0E0E0E] rounded-lg text-white flex flex-row mobs:flex-col justify-center items-center flex-wrap p-5 mobs:p-2">
           {BlackContainer.map((card, id) => {
             return (
               <div
                 key={id}
-                className="flex flex-row  w-1/3 justify-center items-center p-10  gap-5"
+                className="flex flex-row w-1/3 justify-center items-center p-10 gap-5"
               >
-                <div className="bg-[#FFFFFF33] md:w-[60px] rounded-lg md:p-3 mob:p-5 mob:w-[70px]">
-                  <img className="md:w-[40px] p-1 w-[40px]" src={card.img}></img>
+                <div className="bg-[#FFFFFF33] rounded-lg p-3 mobs:p-6">
+                  <img className="w-[40px]" src={card.img}></img>
                 </div>
                 <div>
                   <div className="text-[17px] font-bold">{card.heading}</div>
@@ -161,19 +159,19 @@ const tool = () => {
         </div>
       </div>
 
-      <div className="flex flex-col justify-center align-center  mt-[200px] mb-[100px]  mob:mb-[30px] mob:mt-[370px]">
+      <div className="flex flex-col justify-center align-center mt-[200px] mobs:mt-[330px] mb-[50px] mobs:mb-[25px]">
         <div>
-          <h2 className="text-center font-roboto font-semibold text-3xl tracking-wider leading-7">
+          <h2 className="text-center font-roboto font-semibold text-3xl mobs:text-2xl tracking-wider md:leading-7">
             Our Tools
           </h2>
         </div>
         <div>
-          <p className="text-center font-poppins text-[#8A8A8A] tracking-wide leading-7 mt-4">
+          <p className="text-center font-poppins text-[#8A8A8A] mobs:text-[14px] px-3 tracking-wide md:leading-7 mt-4 mobs:mt-2">
             Lorem Ipsum is simply dummy text of the printing.
           </p>
         </div>
 
-        <div className="flex flex-row flex-wrap justify-center items-center gap-20 mob:gap-10 p-5 mt-10 mb-10 mob:mt-5 mob:mb-5">
+        <div className="flex flex-row flex-wrap justify-center items-center gap-20 mobs:gap-10 p-5 mt-10 mb-10 mobs:mt-5 mobs:mb-5">
           {tools.map((card, id) => {
             return (
               <Link

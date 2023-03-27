@@ -18,6 +18,8 @@ module.exports = {
       'xxs': '400px',
       'xs' : '500px',
       'mob': {'max': '1023px'},
+      'mobs': {'max': '420px'},
+
       'desk': {'min': '1024px'},
       ...defaultTheme.screens,
     },
