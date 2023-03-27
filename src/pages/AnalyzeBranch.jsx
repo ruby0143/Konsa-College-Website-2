@@ -14,7 +14,7 @@ const viewBranchWise = () => {
 
   return (
     <>
-      <div className="p-3 ">
+      <div className="p-3">
         <div className="head md:p-5">
           <h2 className="text-2xl font-bold p-2">
             Analyse Branch-wise Cut-off Trends
@@ -105,7 +105,7 @@ const viewBranchWise = () => {
             })}
           </select>
         </div>
-        <div className="homeStates my-1 md:w-1/3 md:px-10">
+        <div className="homeStates my-1 md:w-1/3 md:px-10 mb-12">
           <div className="flex justify-between font-medium">
             <span>Gender</span>
           </div>
