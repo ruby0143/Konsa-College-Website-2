@@ -20,6 +20,7 @@ function CutoffPage() {
   const collegeName = data.name;
   const filterCollegeWithComma = collegeName.replace(/,/g, "");
   const filteredCollege = collegeName.replace(/[.,]/g, "");
+  console.log(filteredCollege)
   const year = data.year;
 
   useEffect(() => {
@@ -36,54 +37,84 @@ function CutoffPage() {
 
   const [colleges, setColleges] = useState([])
   const [filteredProg, setFilteredProg] = useState([])
-  const [cutoffData, setCutoffData] = useState()
+  const [cutoffData, setCutoffData] = useState([])
+  console.log(cutoffData)
   const [program, setProgram] = useState([])
   const [opening, setOpening] = useState([])
   const [closing, setClosing] = useState([])
 
+  const [dataAvailable, setDataAvailable] = useState(true);
+  console.log(dataAvailable)
   const [skel, setSkel] = useState(true)
 
   const url = "https://konsa-college-backend.vercel.app";
 
   useEffect(() => {
     axios
-      .get(
-        url + "/branches"
-      )
+      .get(url + "/branches")
       .then((res) => {
         const arr = res.data;
-        arr.forEach((ele) => {
+        arr.map((ele) => {
           const col = ele.Institute;
           const filteredCol = col.replace(/[.,]/g, "")
           if (filteredCol === filteredCollege) {
             const colProg = ele.Array;
-            const arrPgs = colProg.split("'");
-            const filtered = arrPgs.filter((arr) => {
-              if (!arr.includes("[") && !arr.includes("]")) {
-                return arr
-              }
-            })
-            const filteredArr = filtered.filter((arr) => {
-              if (arr !== ", ") {
-                return arr
-              }
-            })
-            setFilteredProg(filteredArr)
+            setFilteredProg(colProg)
           }
           setColleges(function (prevState) {
             return [...prevState, col];
           });
-        });
+        })
+        return axios.post(url + "/cutoff", {
+          Institute: filterCollegeWithComma,
+          Gender: selectedGender,
+          Caste: selectedCategory,
+        })
+      })
+      .then((resp) => {
+        const keys = Object.keys(resp.data)
+        console.log(resp.data)
+        if (year === "2022" && keys.find(year => year === "y22")) {
+          setCutoffData(resp.data.y22);
+        }
+        if (year === "2021" && keys.find(year => year === "y21")) {
+          setCutoffData(resp.data.y21);
+        }
+        if (year === "2020" && keys.find(year => year === "y20")) {
+          setCutoffData(resp.data.y20);
+        }
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+    // axios
+    //   .get(
+    //     url + "/branches"
+    //   )
+    //   .then((res) => {
+    //     const arr = res.data;
+    //     arr.map((ele) => {
+    //       const col = ele.Institute;
+    //       console.log(col)
+    //       const filteredCol = col.replace(/[.,]/g, "")
+    //       if (filteredCol === filteredCollege) {
+    //         const colProg = ele.Array;
+    //         setFilteredProg(colProg)
+    //       }
+    //       setColleges(function (prevState) {
+    //         return [...prevState, col];
+    //       });
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }, []);
 
   const handleCutoff = () => {
     if (selectedCategory === null || selectedGender === null) {
-      setError("Please select an Option")
-      return
+      setError("Please select an Option");
+      return;
     }
     axios
       .post(url + "/cutoff", {
@@ -92,23 +123,51 @@ function CutoffPage() {
         Caste: selectedCategory,
       })
       .then((resp) => {
-        const keys = Object.keys(resp.data)
-        if (year === "2022" && keys[0]) {
-          setCutoffData(resp.data.y22);
+        console.log(resp);
+        const keys = Object.keys(resp.data);
+        let cutoffDataToUse = null;
+
+        if (year === "2022" && keys.find(year => year === "y22")) {
+          cutoffDataToUse = resp.data.y22;
         }
-        if (year === "2021" && keys[1]) {
-          setCutoffData(resp.data.y21);
+        if (year === "2021" && keys.find(year => year === "y21")) {
+          cutoffDataToUse = resp.data.y21;
         }
-        if (year === "2020" && keys[2]) {
-          setCutoffData(resp.data.y20);
+        if (year === "2020" && keys.find(year => year === "y20")) {
+          cutoffDataToUse = resp.data.y20;
         }
+        if(resp.data.y20.length < 1 && resp.data.y21 < 1 && resp.data.y22 < 1){
+          setDataAvailable(false)
+        }
+        if (cutoffDataToUse) {
+          const textContent = "Round1";
+          const value = textContent.replace("Round", "");
+          const programs = [];
+          const opening = [];
+          const closing = [];
+
+          cutoffDataToUse.forEach((round) => {
+            if (value === round.Round && (round.Quota === "OS" || round.Quota === "AI")) {
+              programs.push(round.Academic_Program_Name);
+              opening.push(round.Opening_Rank);
+              closing.push(round.Closing_Rank);
+            }
+          });
+
+          setProgram(programs);
+          setOpening(opening);
+          setClosing(closing);
+          setCutoffData(cutoffDataToUse);
+        }
+        
       })
       .catch((err) => {
+        console.log(err);
       });
   }
 
   useEffect(() => {
-    setCutoffData()
+    setCutoffData([])
     setProgram([])
     setOpening([])
     setClosing([])
@@ -121,7 +180,7 @@ function CutoffPage() {
     const opening = [];
     const closing = [];
     cutoffData.map((round) => {
-      if (value === round.Round && round.Quota === "OS") {
+      if (value === round.Round && (round.Quota === "OS" || round.Quota === "AI")) {
         programs.push(round.Academic_Program_Name)
         opening.push(round.Opening_Rank)
         closing.push(round.Closing_Rank)
@@ -164,23 +223,23 @@ function CutoffPage() {
         <meta name="description" content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today." />
         <meta name="Abstract" content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today." />
         <meta property="og:title" content="Konsacollege - Find the Best Colleges in India" />
-          <meta property="og:description" content="Looking for the best engineering college in India? Look no further than Konsacollege. Our comprehensive directory and user-friendly tools make it easy to find the right college hassle-free. Plus, our expert counselors are here to guide you every step of the way. Start your college search with Konsacollege today." />
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://www.konsacollege.com" />
-          <meta property="og:site_name"
-            content="Konsacollege - Cutoff"/>
-          <meta property="og:image"
-            content="https://konsa-college-website.vercel.app/assets/KonsaCollege_desktopLogo-d9a0ad42.svg" />
-          <meta property="og:determiner" content="..." />
-          <meta name="twitter:card" content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today." />
-          <meta name="twitter:title" content="Konsacollege - Find the Best Colleges in India" />
-          <meta name="twitter:description" content="Finding the right college can be overwhelming, but Konsacollege makes it easy. With a vast directory of top engineering colleges in India and personalized counseling, we help students make informed decisions about their education. Start your search today and discover your dream college with Konsacollege." />
-          <meta name="twitter:image"
-            content="https://konsa-college-website.vercel.app/assets/KonsaCollege_desktopLogo-d9a0ad42.svg" />
-          <meta name="twitter:image:alt"
-            content="Konsa College Logo" />
-          <meta property="twitter:url" content="https://www.konsacollege.com" />
-          <meta property="twitter:site" content="@konsacollege" />
+        <meta property="og:description" content="Looking for the best engineering college in India? Look no further than Konsacollege. Our comprehensive directory and user-friendly tools make it easy to find the right college hassle-free. Plus, our expert counselors are here to guide you every step of the way. Start your college search with Konsacollege today." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.konsacollege.com" />
+        <meta property="og:site_name"
+          content="Konsacollege - Cutoff" />
+        <meta property="og:image"
+          content="https://konsa-college-website.vercel.app/assets/KonsaCollege_desktopLogo-d9a0ad42.svg" />
+        <meta property="og:determiner" content="..." />
+        <meta name="twitter:card" content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today." />
+        <meta name="twitter:title" content="Konsacollege - Find the Best Colleges in India" />
+        <meta name="twitter:description" content="Finding the right college can be overwhelming, but Konsacollege makes it easy. With a vast directory of top engineering colleges in India and personalized counseling, we help students make informed decisions about their education. Start your search today and discover your dream college with Konsacollege." />
+        <meta name="twitter:image"
+          content="https://konsa-college-website.vercel.app/assets/KonsaCollege_desktopLogo-d9a0ad42.svg" />
+        <meta name="twitter:image:alt"
+          content="Konsa College Logo" />
+        <meta property="twitter:url" content="https://www.konsacollege.com" />
+        <meta property="twitter:site" content="@konsacollege" />
         <meta name="robots" content="index, follow" />
         <meta name="keywords" content="keyword1, keyword2, keyword3, keyword4" />
         <meta name="audience" content="all" />
@@ -336,18 +395,49 @@ function CutoffPage() {
             <button className='text-[#EE7C00] border rounded-[34px] lg:rounded-[10px] border-[#EE7C00] text-sm lg:text-lg font-semibold px-7 lg:px-14 py-2 mx-auto' style={{ display: "grid" }} onClick={handleCutoff}>
               Get Cutoff
             </button>
-            {cutoffData && (
+            {(dataAvailable && cutoffData?.length !== 0) ? (
               <>
                 <hr className='mt-[2rem] lg:mt-[3rem]' />
                 <div className='flex justify-between items-center overflow-x-scroll h-[3.5rem] mt-[1.5rem] w-full'>
                   {totalRounds.map((round) => {
-                    return <button className='text-[15px] px-[1.5rem] py-[5px] text-[#505050] font-semibold rounded-[5px] hover:bg-[#ee7c00] hover:text-[#fff] text-center border-[.5px] border-[#d6d6d6] mr-[1rem] w-[10rem] active:bg-[#ee7c00] active:text-[#fff] focus:bg-[#ee7c00] focus:text-[#fff]'
-                      onClick={handleRound}>Round{round.Round}</button>
+                    return (
+                      <button className='text-[15px] px-[1.5rem] py-[5px] text-[#505050] font-semibold rounded-[5px] hover:bg-[#ee7c00] hover:text-[#fff] text-center border-[.5px] border-[#d6d6d6] mr-[1rem] w-[10rem] active:bg-[#ee7c00] active:text-[#fff] focus:bg-[#ee7c00] focus:text-[#fff]'
+                        onClick={handleRound}>Round{round.Round}</button>
+                    )
                   })}
                 </div>
+                <div>
+                  {program.length !== 0 ? (
+                    <div className='mt-[2.5rem] rounded-[4px] shadow-[1px_2px_4px_rgba(0,0,0,0.12)] pt-[1rem]'>
+                      <div className='flex'>
+                        <div className='text-[#303030] font-semibold w-[60%] text-[13px] lg:text-[16px] lg:font-bold h-[2rem] lg:pl-[20px] px-[.5rem] mb-3'>Branch</div>
+                        <div className='text-[#303030] font-semibold w-[20%] text-[13px] lg:text-[16px] lg:font-bold  text-center h-[2rem] mb-3'>Opening</div>
+                        <div className='text-[#303030] font-semibold w-[20%] text-[13px] lg:text-[16px] lg:font-bold text-center h-[2rem] mb-3'>Closing</div>
+                      </div>
+                      <div className='flex'>
+                        <div className='text-[#303030] w-[60%] text-[13px]'>
+                          {program.map((prog, index) => {
+                            return <div style={{ backgroundColor: index % 2 === 0 ? "rgba(238, 124, 0, 0.1)" : "#fff" }} className="h-[3.5rem] leading-[.9rem] p-[.5rem] lg:pl-[20px] lg:text-[16px] flex items-center" data-tooltip-id="my-tooltip" data-tooltip-content={prog} >{prog.split("(").shift()}</div>
+                          })}
+                          <Tooltip id="my-tooltip" style={{width: "auto"}}/>
+                        </div>
+                        <div className='text-[#303030] w-[20%] text-[13px] text-center'>
+                          {opening.map((op, index) => {
+                            return <div style={{ backgroundColor: index % 2 === 0 ? "rgba(238, 124, 0, 0.1)" : "#fff" }} className="h-[3.5rem] lg:text-[16px] flex justify-center items-center">{op}</div>
+                          })}
+                        </div>
+                        <div className='text-[#303030] w-[20%] text-[13px] text-center'>
+                          {closing.map((cl, index) => {
+                            return <div style={{ backgroundColor: index % 2 === 0 ? "rgba(238, 124, 0, 0.1)" : "#fff" }} className="h-[3.5rem] lg:text-[16px] flex justify-center items-center">{cl}</div>
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
               </>
-            )}
-            {program.length !== 0 ? (
+            ) : (!dataAvailable) && <p className='mt-6 text-center'>no data available</p>}
+            {/* {program.length !== 0 ? (
               <>
                 <div className='mt-[2.5rem] rounded-[4px] shadow-[1px_2px_4px_rgba(0,0,0,0.12)] pt-[1rem]'>
                   <div className='flex'>
@@ -375,7 +465,7 @@ function CutoffPage() {
                   </div>
                 </div>
               </>
-            ) : null}
+            ) : null} */}
           </div>
           <div className='lg:hidden'>
             <h3 className='mt-2 text-[20px] font-semibold mb-3'>Similar Colleges</h3>

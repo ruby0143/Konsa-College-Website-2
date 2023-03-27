@@ -25,6 +25,8 @@ import InstCutOff from "./pages/InstCutOff";
 import Branches from "./pages/branches"
 import CollegeComparator from "./pages/collegeComparator";
 import PreferenceListGenerator from "./pages/prefernnceListGenerator";
+import TandC from "./pages/TandC";
+import Privacy from "./pages/privacy";
 
 function App() {
   const { skeleton, loader } = useStateContext()
@@ -68,6 +70,9 @@ function App() {
             <Route path="/collegeComparator" element={<CollegeComparator />} exact />
             <Route path="/college/:particularcollege/cutoff" element={<CutoffPage />} exact />
             <Route path="/tools" element={<Tools/>} exact/>
+            <Route path="/TermsAndConditions" element={<TandC/>} exact/>
+            <Route path="/privacy-policy" element={<Privacy/>} exact/>
+
           </Routes>
           <CollegeFooter />
         </ScrollToTop>

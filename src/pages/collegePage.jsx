@@ -21,7 +21,7 @@ import { Helmet } from "react-helmet";
 const CollegePage = () => {
   const { setAcPage } = useStateContext()
   const [result, setResult] = useState([]);
-  console.log(result)
+  // console.log(result)
   const [news, setNews] = useState([]);
   const [exams, setExams] = useState([]);
   const [counselling, setCounselling] = useState([]);
