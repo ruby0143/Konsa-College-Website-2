@@ -25,11 +25,12 @@ import InstCutOff from "./pages/InstCutOff";
 import Branches from "./pages/branches"
 import CollegeComparator from "./pages/collegeComparator";
 import PreferenceListGenerator from "./pages/prefernnceListGenerator";
+import ViewBranchWise from "./pages/viewBranchWise";
+import AnalyzeViewBranchWise from "./pages/AnalyzeBranch"
 import TandC from "./pages/TandC";
 import Privacy from "./pages/privacy";
-
 function App() {
-  const { skeleton, loader } = useStateContext()
+  const { skeleton, loader } = useStateContext();
 
   return (
     <>
@@ -62,14 +63,24 @@ function App() {
 
             <Route path="*" element={<Err_404 />} exact />
             <Route path="/soon" element={<Comming_Soon />} exact />
-            <Route path="/collegePredictor" element={<CollegePredictor />} exact />
-            <Route path="/percentilePredictor" element={<PercentilePredictor />} exact />
+            <Route
+              path="/collegePredictor"
+              element={<CollegePredictor />}
+              exact
+            />
+            <Route
+              path="/percentilePredictor"
+              element={<PercentilePredictor />}
+              exact
+            />
             <Route path="/InstCutoff" element={<InstCutOff />} exact />
             <Route path="/examRecommender" element={<ExamRecommender />} exact />
             <Route path="/preferenceListGenerator" element={<PreferenceListGenerator />} exact />
             <Route path="/collegeComparator" element={<CollegeComparator />} exact />
             <Route path="/college/:particularcollege/cutoff" element={<CutoffPage />} exact />
             <Route path="/tools" element={<Tools/>} exact/>
+            <Route path="/branch-wise-cut-off" element={<ViewBranchWise/>} exact/>
+            <Route path="/analyze-branch-wise-cut-off" element={<AnalyzeViewBranchWise/>} exact/>
             <Route path="/TermsAndConditions" element={<TandC/>} exact/>
             <Route path="/privacy-policy" element={<Privacy/>} exact/>
 

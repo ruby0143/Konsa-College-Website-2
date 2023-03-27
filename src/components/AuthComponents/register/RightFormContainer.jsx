@@ -160,7 +160,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
           <div className='w-4 h-[3px] bg-[#838383] rounded-sm'></div>
         </div>
         <div className='flex justify-evenly w-full'>
-          <button className='bg-[#1877F2] text-white shadow-md rounded-md py-2 px-10 flex gap-4 justify-center items-center font-medium active:shadow-none border border-slate-100'>
+          <button className='bg-[#1877F2] text-white shadow-md rounded-md py-2 px-10 flex gap-4 justify-center items-center font-medium border border-slate-100'>
             <div>
               <img src="/Facebook Logo.svg" className='w-[1.2rem]' alt=""/>  
             </div>
@@ -170,7 +170,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
           </button>
           <button 
             onClick={handleGoogleSignIn}
-            className='shadow-md rounded-md py-2 px-10 flex gap-4 justify-center items-center font-medium active:shadow-none border border-slate-100'
+            className='shadow-md rounded-md py-2 px-10 flex gap-4 justify-center items-center font-medium border border-slate-100'
           >
             <div>
               <img src="/Google Logo.svg" className='w-[1.2rem]' alt=""/>  

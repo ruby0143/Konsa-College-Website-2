@@ -18,11 +18,13 @@ const CollegeContainer = ({
               alt="College Banner"
               className="absolute brightness-50 w-full h-full rounded-t-md object-cover"
             />
-            <img 
-              src={collegeLogo} 
-              alt="College Logo" 
-              className="w-[50px] h-[50px] z-20 mb-2 rounded-full"
-            />
+            <div className="w-[50px] h-[50px] flex justify-center items-center z-20 mb-2 bg-white rounded-full">              
+              <img 
+                src={collegeLogo} 
+                alt="College Logo" 
+                className="w-[80%] h-[80%] object-cover rounded-full"
+              />
+            </div>
         </div>
         <div className="h-[52px] md:h-[60px] flex items-center justify-center">
           <div className="text-sm md:text-base text-center w-[90%] custom-truncate">

@@ -179,7 +179,7 @@ const CollegePredictor = () => {
     "SC (PwD)",
     "ST (PwD)",
   ];
-  const skeleton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const skeleton = [0, 1, 2, 3, 4];
 
   return (
     <div
@@ -464,11 +464,11 @@ const CollegePredictor = () => {
             className="desk:w-[53%] flex-col font-roboto p-[40px] bg-[url('/Stroke.svg')] bg-contain bg-no-repeat"
             style={{ backgroundColor: res ? "rgba(0,0,0,0.5)" : null }}
           >
-              <h4 className="mt-[18px] mob:mt-[11px] text-center font-bold text-sm mob:font-medium">
+            <h4 className="mt-[18px] mob:mt-[11px] text-center font-bold text-sm mob:font-medium">
               Enter your JEE Mains 2023 Details
             </h4>
-          
-          <h6 className="mt-[20px] mob:mt-[15px] mob:text-[13px]">
+
+            <h6 className="mt-[20px] mob:mt-[15px] mob:text-[13px]">
               Your Category
             </h6>
 
@@ -541,9 +541,6 @@ const CollegePredictor = () => {
             {CategoryError !== "" && Category === "" && (
               <div className="text-red-500 text-[14px]">{CategoryError}</div>
             )}
-
-
-          
             <h6 className="mt-[25px] mob:mt-[20px] mob:text-[13px]">
               Your {Category} Rank
             </h6>
@@ -616,8 +613,6 @@ const CollegePredictor = () => {
             {EligibilityError !== "" && Eligibility === "" && (
               <div className="text-red-500 text-[14px]">{EligibilityError}</div>
             )}
-
-
 
             <div className="flex flex-col mt-[20px] mob:mt-[5px] justify-start">
               <div className="w-full">
