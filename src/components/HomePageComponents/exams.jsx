@@ -30,7 +30,7 @@ const url = "https://konsa-college-backend.vercel.app";
     <div className="text-center text-xl md:text-2xl mb-1 md:mb-2 font-semibold text-[#303030]">
       Exams
     </div>
-    <div className="no-scrollbar flex md:max-w-[1150px] md:m-auto items-center overflow-x-auto gap-3 py-2">
+    <div className="no-scrollbar flex md:max-w-[1150px] md:m-auto items-center overflow-x-auto gap-0 py-2">
       {skeleton ? (
         <>
           <CollegeSkeleton />
@@ -41,11 +41,11 @@ const url = "https://konsa-college-backend.vercel.app";
       ) : (
         <>
           {Exams.map((exam, idx) => {
-            if (idx < 5) {
+            if (idx < 4) {
               return (
                 <a href={exam.apply_link} key={idx}>
                   <div
-                    className="h-[56px] md:h-[158px] mx-1.5 min-w-[158px] flex md:flex-col items-center justify-evenly shadow-md rounded-md border border-gray-100 bg-white"
+                    className="h-[56px] w-[220px] mob:w-[160px] md:h-[158px] mx-1.5 flex md:flex-col items-center justify-evenly shadow-md rounded-md border border-gray-100 bg-white"
                   >
                     <div>
                       <img
@@ -55,7 +55,7 @@ const url = "https://konsa-college-backend.vercel.app";
                           event.target.src = JEE_Main_logo;
                           event.onerror = null;
                         }}
-                        className="w-[30px] md:w-[100px] md:h-[80px]"
+                        className="w-[30px] object-cover md:w-[100px] md:h-[80px]"
                       />
                     </div>
                     <div className="font-semibold md:font-bold">
@@ -68,7 +68,7 @@ const url = "https://konsa-college-backend.vercel.app";
           })}
         </>
       )}
-          <Link to="/scheduler" className="min-w-[158px] h-[56px] md:h-[158px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-white hover:bg-gradient-to-r from-white to-[#fff6ec] transition-all duration-500 font-medium cursor-pointer">
+          <Link to="/scheduler" className="h-[56px] w-[220px] mob:w-[160px] md:h-[158px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-white hover:bg-gradient-to-r from-white to-[#fff6ec] transition-all duration-500 font-medium cursor-pointer">
             <div className="text-sm text-[#EE7C00]">Show More &#10140;</div>
           </Link>
     </div>
