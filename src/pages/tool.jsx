@@ -98,8 +98,8 @@ const tool = () => {
   return (
     <div className="flex flex-col w-100">
       <div className="bg-orange-50 relative w-100 flex justify-center">
-        <div className="flex w-[90%] flex-row mobs:flex-col-reverse mt-20 mb-40">
-          <div className="md:w-1/2 mobs:w-full flex justify-start flex-col items-start py-20">
+        <div className="flex px-2 flex-row mobs:flex-col-reverse mt-20 mb-40">
+          <div className="md:w-1/2 mobs:w-full flex justify-start flex-col items-start md:py-20 mobs:py-10">
             <div className="w-full">
               <div className="md:text-5xl mobs:text-4xl font-[1000] tracking-wider md:leading-7 font-roboto mobs:text-center">
                 The <span className="text-[#EE7C00]">Smart</span>
@@ -137,15 +137,15 @@ const tool = () => {
       </div>
 
       <div className="w-full  flex justify-center absolute top-[550px] mobs:top-[700px]">
-        <div className="w-[90%] bg-[#0E0E0E] rounded-lg text-white flex flex-row mobs:flex-col justify-center items-center flex-wrap p-5 mobs:p-2">
+        <div className="w-[90%]  bg-[#0E0E0E] rounded-lg text-white flex flex-row mobs:flex-col justify-center items-center flex-wrap p-5 mobs:p-2">
           {BlackContainer.map((card, id) => {
             return (
               <div
                 key={id}
-                className="flex flex-row w-1/3 justify-center items-center p-10 gap-5"
+                className="flex flex-row md:w-1/3 justify-center items-center p-3 gap-3"
               >
-                <div className="bg-[#FFFFFF33] rounded-lg p-3 mobs:p-6">
-                  <img className="w-[40px]" src={card.img}></img>
+                <div className="bg-[#FFFFFF33] rounded-lg p-1">
+                  <img className="w-[40px] h-[40px]" src={card.img}></img>
                 </div>
                 <div>
                   <div className="text-[17px] font-bold">{card.heading}</div>
@@ -159,7 +159,7 @@ const tool = () => {
         </div>
       </div>
 
-      <div className="flex flex-col justify-center align-center mt-[200px] mobs:mt-[330px] mb-[50px] mobs:mb-[25px]">
+      <div className="flex flex-col justify-center align-center mt-[200px] mobs:mt-[280px] mb-[50px] mobs:mb-[25px]">
         <div>
           <h2 className="text-center font-roboto font-semibold text-3xl mobs:text-2xl tracking-wider md:leading-7">
             Our Tools
@@ -179,7 +179,7 @@ const tool = () => {
                 key={id}
                 className="w-[350px] flex justify-center items-center flex-col p-5 rounded-md shadow-lg md:cursor-pointer"
               >
-                <img src={card.img}></img>
+                <img className="" src={card.img}></img>
                 <h3 className="text-xl font-semibold mt-3 text-[#3C3B3B] text-center">
                   {card.heading}
                 </h3>
