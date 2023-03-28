@@ -21,7 +21,7 @@ import { Helmet } from "react-helmet";
 const CollegePage = () => {
   const { setAcPage } = useStateContext()
   const [result, setResult] = useState([]);
-  console.log(result)
+  // console.log(result)
   const [news, setNews] = useState([]);
   const [exams, setExams] = useState([]);
   const [counselling, setCounselling] = useState([]);
@@ -34,7 +34,7 @@ const CollegePage = () => {
 
 
   const Items = ["Overview", "Connectivity", "Fee Structure", "Scholarship", "About College", "Placement Stats", "College Review Video"];
-  const url = "https://konsa-college-backend.vercel.app/";
+  const url = "https://konsa-college-backend.vercel.app";
 
 
 

@@ -1,0 +1,56 @@
+{
+    "_id": {
+        "$oid": "6416c6d4c68f38b7451e56f1"
+    },
+    "college_name": "test",
+    "college_uuid": "test",
+    "college_location": "test",
+    "college_campus_area": "123",
+    "header_photo_link": "",
+    "college_logo_link": "",
+    "overview": "",
+    "nirf": "",
+    "mode_of_admission": null,
+    "exams": null,
+    "connectivity": [],
+    "fees": [
+        {
+            "Caution Money (One Time, Refundable)": 7574
+        },
+        {
+            "One Time Fees": 4095
+        },
+        {
+            "Tuition Fee (per Semester)": 63794
+        },
+        {
+            "Other fees (per Semester)": 4400
+        },
+        {
+            "Annual Fees": 513
+        },
+        {
+            "Total": 140450
+        }
+    ],
+    "scholarships": null,
+    "positives": [
+        ""
+    ],
+    "negatives": [
+        ""
+    ],
+    "highest_package": "",
+    "average_package": "",
+    "median_package": "",
+    "top_recruiters": [
+        ""
+    ],
+    "review_video": "",
+    "sno": {
+        "$numberInt": "203"
+    },
+    "approvedStatus": {
+        "$numberInt": "0"
+    }
+}

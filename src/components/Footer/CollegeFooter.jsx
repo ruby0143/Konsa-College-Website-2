@@ -44,8 +44,8 @@ const url = "https://konsa-college-backend.vercel.app";
   };
   const Link = [
     { link: "ABOUT", route: "/soon" },
-    { link: "PRIVACY POLICY", route: "/soon" },
-    { link: "TERM OF USE", route: "/soon" },
+    { link: "PRIVACY POLICY", route: "/privacy-policy" },
+    { link: "TERM OF USE", route: "/TermsAndConditions" },
     { link: "CONTACT US", route: "/soon" },
     { link: "SUPPORT US", route: "/soon" },
   ];
