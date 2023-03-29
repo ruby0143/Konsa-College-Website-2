@@ -42,7 +42,7 @@ const MainNavbar = () => {
     return () => {
       document.addEventListener("mousedown",mouseClickHandler)
     }
-  },[])
+  })
 
   const routes = [
     {
