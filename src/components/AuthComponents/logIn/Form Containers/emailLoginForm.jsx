@@ -37,7 +37,7 @@ const EmailLoginForm = ({setIsPhnoLogin, setIsModalOpen}) => {
         className={`w-[32rem] mob:w-full h-[330px] flex flex-col items-center mob:gap-4 justify-evenly mob:justify-center`}
         onSubmit={handleSubmit}
     >
-     <div className='w-full flex flex-col item-center gap-2 mob:gap-1'>
+     <div className='w-full flex flex-col item-center gap-2 mob:gap-2'>
             <div  
               className="relative flex flex-col w-full" 
             >

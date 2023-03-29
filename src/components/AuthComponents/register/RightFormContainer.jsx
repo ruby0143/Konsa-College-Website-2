@@ -51,20 +51,22 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
   return (
     <div className='w-[70%] mob:w-full h-full lg:rounded-l-3xl bg-white p-10 mob:p-4 flex justify-center items-center'>
       <div className='w-full h-full flex flex-col items-center justify-between'>
-        <div className='w-full flex justify-end' onClick={()=>setIsModalOpen(false)}>
-          <AiOutlineClose
-            className='cursor-pointer'
-            onClick={()=>setIsModalOpen(false)}
-          />
-        </div>
-        <div className='text-3xl mob:text-2xl text-center font-semibold'>
-          Create Account
+        <div className='w-full flex flex-col'>
+          <div className='w-full flex justify-end' onClick={()=>setIsModalOpen(false)}>
+            <AiOutlineClose
+              className='cursor-pointer'
+              onClick={()=>setIsModalOpen(false)}
+            />
+          </div>          
+          <div className='text-3xl mob:text-2xl text-center font-semibold'>
+            Create Account
+          </div>
         </div>
         <form 
           className="w-[32rem] mob:w-full flex flex-col items-center gap-14 mob:gap-8"
           onSubmit={handleSubmit}
         >
-          <div className='w-full flex flex-col item-center gap-3 mob:gap-1'>
+          <div className='w-full flex flex-col item-center gap-3 mob:gap-2'>
             <div  
               className="relative flex flex-col w-full" 
             >
@@ -132,7 +134,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
                 {(errors.password && touched.password) ? <div className='px-2 text-sm mob:text-xs text-red-500'>{errors.password}</div> : null}
             </div>
             <div  
-              className="relative flex mt-[8px] flex-col w-full" 
+              className="relative flex flex-col w-full" 
               >
                 <input
                   className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black border-gray-300 w-[full] h-[40px] py-4 px-2 transition-all duration-500`}
@@ -161,7 +163,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
         </div>
         <div className='flex mob:flex-col justify-evenly mob:gap-2 w-full mob:w-[70%]'>
           <button 
-            className='bg-[#1877F2] text-white mob:text-xs shadow-md rounded-md py-2 px-10 flex md:justify-center gap-4 items-center font-medium border border-slate-100'
+            className='bg-[#1877F2] text-white mob:text-xs shadow-md rounded-md py-2 px-10 flex justify-center gap-4 items-center font-medium border border-slate-100'
           >
             <div>
               <img src="/Facebook Logo.svg" className='w-[1.2rem]' alt=""/>  
@@ -172,7 +174,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
           </button>
           <button 
             onClick={handleGoogleSignIn}
-            className='shadow-md rounded-md py-2 px-10 flex md:justify-center gap-4 items-center mob:text-xs font-medium border border-slate-100'
+            className='shadow-md rounded-md py-2 px-10 flex justify-center gap-4 items-center mob:text-xs font-medium border border-slate-100'
           >
             <div>
               <img src="/Google Logo.svg" className='w-[1.2rem]' alt=""/>  
