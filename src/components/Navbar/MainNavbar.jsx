@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import DesktopNavbar from './DesktopNavbar';
 import './headerstyle.css'
@@ -25,6 +25,8 @@ import useCollegeDataStore from '../../utils/AllCollegeData-Store';
 
 const MainNavbar = () => {
 
+  const location  = useLocation();
+
   // zustand config
   const collegeDataList = useCollegeDataStore((state) => state.collegeDataList)
   const [searchTerm, setSearchTerm] = useState("")
@@ -37,10 +39,10 @@ const MainNavbar = () => {
         setMobileSidebar(false)
       }
     }
-    return() => {
+    return () => {
       document.addEventListener("mousedown",mouseClickHandler)
     }
-  })
+  },[])
 
   const routes = [
     {
@@ -114,7 +116,10 @@ const MainNavbar = () => {
             { 
                 routes.map(route => {
                     return <div key={route.route} className="w-full rounded-md mb-1">
-                              <NavLink to={route.path} onClick={()=>setMobileSidebar(false)} className="pl-4 py-2 w-full rounded-md hover:bg-[#EE7C00] visited::bg-[#EE7C00] text-[#7A7A7A] focus:text-white hover:text-white focus:shadow-md cursor-pointer flex justify-start items-center transition-all duration-100">
+                              <NavLink 
+                                to={route.path} 
+                                onClick={()=>setMobileSidebar(false)} 
+                                className={`pl-4 py-2 w-full rounded-md hover:bg-[#EE7C00] hover:text-white hover:shadow-sm ${route.path === location.pathname ? "bg-[#EE7C00] text-white shadow-sm" : "bg-[#F5F5F5] text-[#7A7A7A] shadow-none"} cursor-pointer flex justify-start items-center transition-all duration-100`}>
                                 <img 
                                   src={route.icon} 
                                   alt={route.route}
@@ -127,20 +132,47 @@ const MainNavbar = () => {
             }
           </div>
 
-          <div className='flex-1 flex flex-col justify-end items-center gap-8' >
-            <div>
-            <a href="/"><img 
+          <div className='flex-1 flex flex-col justify-end items-center' >
+            <div className='flex justify-evenly py-[8px] px-[22px] text-white text-sm font-medium rounded-full bg-[#EE7C00] w-[200px]' >
+                <div  
+                    className='cursor-pointer'
+                    onClick={()=>{
+                        setIsModalOpen(prevState => !prevState)
+                        setIsLoginState(true)
+                    }}
+                >
+                    Log In
+                </div>
+                <div>|</div>
+                <div 
+                    className='cursor-pointer'
+                    onClick={()=>{
+                        setIsModalOpen(prevState => !prevState)
+                        setIsLoginState(false)
+                    }}
+                >
+                    Sign Up
+                </div>
+              </div>
+            <div className='mb-12'>
+              <Link href="/">
+                <img 
                 src={KonsaCollegeLogo} 
                 alt="Konsa College Logo"
                 className='m-auto'
-              /></a>
+              />
+              </Link>
             </div>
             <div className='flex w-full justify-evenly items-center' >
               {
                 socialMediaIcons.map((icon,id) => {
                   return ( 
                     <NavLink to="#" key={id}>
-                        <img src={icon.icon} key={id} alt="social media icon" />
+                        <img 
+                          src={icon.icon} 
+                          key={id} 
+                          alt="social media icon" 
+                        />
                     </NavLink> )
                 })
               }

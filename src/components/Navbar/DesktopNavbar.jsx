@@ -44,9 +44,9 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
 
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
+      unsubscribe;
     };
 
-    return unsubscribe
   },[])
 
   const handleLogout = async () =>{
