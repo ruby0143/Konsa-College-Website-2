@@ -8,7 +8,7 @@ import { auth } from '../../../../config/auth/firebaseauth';
 
 const PhnoLoginForm = ({setIsPhnoLogin, setIsModalOpen}) => {
     
-    const [otpComponent, setOtpComponent] = useState(true)
+    const [otpComponent, setOtpComponent] = useState(false)
     const [inputOtp, setInputOtp] = useState("")
     const initialValues = {
         phoneNumber: "+91",
