@@ -115,7 +115,7 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
                 </div> : <div className='text-[#EE7C00] cursor-pointer' onClick={handleLogout}>Logout</div>}
             </div>
             <div className='md:hidden flex items-center gap-4' >
-                <div onClick={()=>setMobileSidebar(true)} >
+                <div onClick={()=>setMobileSidebar(prevState => !prevState)} >
                     {mobileSidebar?<AiOutlineClose className='text-white cursor-pointer text-lg' />:<AiOutlineMenu className='text-white cursor-pointer text-lg'/>}
                 </div>
             </div>
