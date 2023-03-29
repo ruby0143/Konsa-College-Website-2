@@ -60,7 +60,7 @@ function App() {
             <Route path="/soon" element={<Comming_Soon />} exact />
             <Route path="/collegePredictor" element={<CollegePredictor />} exact />
             <Route path="/percentilePredictor" element={<PercentilePredictor />} exact />
-            <Route path="/InstCutoff" element={<InstCutOff />} exact />
+            <Route path="/view-institute-cutoffs" element={<InstCutOff />} exact />
             <Route path="/examRecommender" element={<ExamRecommender />} exact />
             <Route path="/college/:particularcollege/cutoff" element={<CutoffPage />} exact />
             <Route path="/tools" element={<Tools/>} exact/>
