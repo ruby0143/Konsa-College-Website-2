@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import DesktopNavbar from './DesktopNavbar';
@@ -23,9 +23,18 @@ import { useEffect } from 'react';
 import { useRef } from 'react';
 import useCollegeDataStore from '../../utils/AllCollegeData-Store';
 
+// auth imports
+import { auth } from '../../config/auth/firebaseauth';
+import { AuthCheck } from '../../Context/authContext';
+
 const MainNavbar = () => {
 
   const location  = useLocation();
+
+  // auth states
+  const {authValues, setAuthValues} = useContext(AuthCheck);
+  const [isLoginState, setIsLoginState] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   // zustand config
   const collegeDataList = useCollegeDataStore((state) => state.collegeDataList)
@@ -43,6 +52,23 @@ const MainNavbar = () => {
       document.addEventListener("mousedown",mouseClickHandler)
     }
   })
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((userAuth) =>{
+      if(userAuth){
+        console.log("user auth data: ",userAuth);
+        setAuthValues({
+         uid: userAuth.uid,
+         email: userAuth.email
+        })
+      } else {
+        setAuthValues(null)
+      }
+    })
+
+    return () => unsubscribe;
+  }, [])
+  
 
   const routes = [
     {
@@ -83,7 +109,7 @@ const MainNavbar = () => {
   return (
     <div>
       {/* Mobile Slide Side bar */}
-      <div className={` md:hidden ${mobileSidebar ? "translate-x-0" : "translate-x-[-100%]"} flex flex-col shadow-lg w-[80%] bg-[#f5f5f5] z-50 transition-all duration-500 fixed top-0 left-0 h-[100vh] py-[40px] px-[16px]`} ref={menuRef} >
+      <div className={` md:hidden ${mobileSidebar ? "translate-x-0" : "translate-x-[-100%]"} flex flex-col shadow-lg w-[80%] bg-[#f5f5f5] z-[1001] transition-all duration-500 fixed top-0 left-0 h-[100vh] py-[40px] px-[16px]`} ref={menuRef} >
           
           <div className='flex items-center shadow-md py-[8px] px-[12px] rounded-md bg-white w-full' >
               <FaSearch className='text-[#B5BDC9] ml-2 font-thin cursor-pointer text-lg'/>
@@ -139,6 +165,7 @@ const MainNavbar = () => {
                     onClick={()=>{
                         setIsModalOpen(prevState => !prevState)
                         setIsLoginState(true)
+                        setMobileSidebar(false)
                     }}
                 >
                     Log In
@@ -149,6 +176,7 @@ const MainNavbar = () => {
                     onClick={()=>{
                         setIsModalOpen(prevState => !prevState)
                         setIsLoginState(false)
+                        setMobileSidebar(false)
                     }}
                 >
                     Sign Up
@@ -182,7 +210,15 @@ const MainNavbar = () => {
       
       <div>
           {/* Desktop Top Navbar */}
-          <DesktopNavbar setMobileSidebar={setMobileSidebar} mobileSidebar={mobileSidebar} routes={routes}/>
+          <DesktopNavbar 
+            setMobileSidebar={setMobileSidebar} 
+            mobileSidebar={mobileSidebar} 
+            routes={routes}
+            isLoginState={isLoginState}  
+            setIsLoginState={setIsLoginState}
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+          />
       </div>
 
     </div>
