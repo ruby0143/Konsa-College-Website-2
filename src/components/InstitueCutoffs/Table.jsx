@@ -1,29 +1,43 @@
 import React, { useState } from 'react';
 import Box from "@mui/material/Box"
 import { DataGrid } from '@mui/x-data-grid';
+import { Table } from 'antd';
 
 
 const columns = [
-  { field: 'Institute', headerName: 'Institute', width: 320 },
-  { field: 'Academic_Program_Name', headerName: 'Program', width: 380 },
-  { field: 'Year', headerName: 'Year', width: 120 },
   {
-    field: 'Round',
-    headerName: 'Round',
-    width: 120,
+    dataIndex: 'Institute', title: 'Institute', width: 320, sorter: (a, b) => {
+      let s1 = a.Institute, s2 = b.Institute;
+      return s1.localeCompare(b);
+    }
   },
   {
-    field: 'Opening_Rank',
-    headerName: 'Opening Rank',
+    dataIndex: 'Academic_Program_Name', title: 'Program', width: 380
+  },
+  { dataIndex: 'Year', title: 'Year', width: 120, sorter: (a, b) => a.Year - b.Year },
+  {
+    dataIndex: 'Round',
+    title: 'Round',
     width: 120,
+    sorter: (a, b) => a.Round - b.Round,
   },
   {
-    field: 'Closing_Rank',
-    headerName: 'Closing Rank',
+    dataIndex: 'Opening_Rank',
+    title: 'Opening Rank',
     width: 120,
+    sorter: (a, b) => a.Opening_Rank - b.Opening_Rank,
+  },
+  {
+    dataIndex: 'Closing_Rank',
+    title: 'Closing Rank',
+    width: 120,
+    sorter: (a, b) => a.Closing_Rank - b.Closing_Rank,
   }
 ];
 
+const onChange = (pagination, filters, sorter, extra) => {
+  console.log('params', pagination, filters, sorter, extra);
+};
 
 
 export default function BasicEditingGrid(props) {
@@ -32,18 +46,12 @@ export default function BasicEditingGrid(props) {
     element.id = idx;
     rows.push(element);
   });
+
   return (
-
-
-    <Box sx={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rowHeight={55}
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-      />
-    </Box>
-
+    <Table columns={columns} dataSource={rows} onChange={onChange} pagination={{
+      pageSize: 5
+    }} scroll={{
+     
+    }} />
   );
 }

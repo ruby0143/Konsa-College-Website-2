@@ -499,7 +499,7 @@ function InstCutOff() {
 
                     </div>
                 </div>
-                <div className='table p-2 mt-2 m-auto overflow-x-scroll'>
+                <div className='table p-2 mt-2 m-auto '>
                     <BasicEditingGrid data={filteredData} />
                 </div>
             </div>

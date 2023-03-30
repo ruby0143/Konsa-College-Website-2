@@ -14,7 +14,7 @@ const ExamDataContainer = ({exam}) => {
       <div className='h-[50%] p-3 md:p-4 xl:p-5 flex flex-col justify-between'>
         <div>
             <div className='font-light text-sm md:text-base xl:text-xl'>
-                {exam.exam_name}
+                {exam.exam_name.length > 15 ? exam.exam_name.slice(0,15)+" ...." : exam.exam_name}
             </div>
             <div className='text-[9px] md:text-[11px] lg:text-[13px] xl:text-base font-medium justify-self-end'>
                 Last date to apply: {new Date(exam.date).toLocaleDateString()}
