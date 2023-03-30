@@ -26,6 +26,7 @@ import useCollegeDataStore from '../../utils/AllCollegeData-Store';
 // auth imports
 import { auth } from '../../config/auth/firebaseauth';
 import { AuthCheck } from '../../Context/authContext';
+import { signOut } from 'firebase/auth';
 
 const MainNavbar = () => {
 
@@ -56,7 +57,6 @@ const MainNavbar = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) =>{
       if(userAuth){
-        console.log("user auth data: ",userAuth);
         setAuthValues({
          uid: userAuth.uid,
          email: userAuth.email
@@ -67,7 +67,11 @@ const MainNavbar = () => {
     })
 
     return () => unsubscribe;
-  }, [])
+  },[])
+
+  const handleLogout = async () =>{
+    await signOut(auth).then(() => console.log("user SignedOut"))
+  }
   
 
   const routes = [
@@ -159,29 +163,39 @@ const MainNavbar = () => {
           </div>
 
           <div className='flex-1 flex flex-col justify-end items-center' >
-            <div className='flex justify-evenly py-[8px] px-[22px] text-white text-sm font-medium rounded-full bg-[#EE7C00] w-[200px]' >
-                <div  
-                    className='cursor-pointer'
-                    onClick={()=>{
-                        setIsModalOpen(prevState => !prevState)
-                        setIsLoginState(true)
-                        setMobileSidebar(false)
-                    }}
-                >
-                    Log In
-                </div>
-                <div>|</div>
-                <div 
-                    className='cursor-pointer'
-                    onClick={()=>{
-                        setIsModalOpen(prevState => !prevState)
-                        setIsLoginState(false)
-                        setMobileSidebar(false)
-                    }}
-                >
-                    Sign Up
-                </div>
+            {authValues === null ? (
+              <div className='flex justify-evenly py-[8px] px-[22px] text-white text-sm font-medium rounded-full bg-[#EE7C00] w-[180px]' >
+                  <div  
+                      className='cursor-pointer'
+                      onClick={()=>{
+                          setIsModalOpen(prevState => !prevState)
+                          setIsLoginState(true)
+                          setMobileSidebar(false)
+                      }}
+                  >
+                      Log In
+                  </div>
+                  <div>|</div>
+                  <div 
+                      className='cursor-pointer'
+                      onClick={()=>{
+                          setIsModalOpen(prevState => !prevState)
+                          setIsLoginState(false)
+                          setMobileSidebar(false)
+                      }}
+                  >
+                      Sign Up
+                  </div>
               </div>
+            ) : (
+              <div 
+                className='text-[#EE7C00] font-medium cursor-pointer bg-white border-2 border-[#EE7C00] w-[180px] py-[8px] px-[22px] rounded-full shadow-md text-center' 
+                onClick={handleLogout}
+              >
+                Logout
+              </div>
+            )}
+
             <div className='mb-12'>
               <Link href="/">
                 <img 
