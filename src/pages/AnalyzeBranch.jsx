@@ -4,20 +4,95 @@ import Rounds from "../components/toolsPage/rounds";
 import Seat from "../components/toolsPage/seat";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import axios from "axios";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  Label,
+} from "recharts";
 
 const viewBranchWise = () => {
   const animatedComponents = makeAnimated();
   const [selectedSeat, setSeat] = useState("OPEN");
   const [selectedGender, setGender] = useState("Gender-Neutral");
-  const [selectedRound, setRound] = useState("6");
+  // const [selectedRound, setRound] = useState("6");
   const [examTypes, setExamTypes] = useState("JEE");
   const [defaultData, setDefault] = useState([]);
   const [selected, setBranches] = useState([]);
-  const [selectedCourse,setCourse]=useState([]);
-  const [selectedInstitute,setInsitute]=useState([])
-  const course = [{value:"B.Tech.",label:"B.Tech. and M.Tech. (Dual Degree)"}]
+  const [selectedInstitute, setSelectedInstitute] = useState([]);
+  const [institutes, setInstitutes] = useState([]);
+  const [chartData, setChartData] = useState([]);
+  const [filterData, setFilterData] = useState([]);
+  const [noData, setBool] = useState(false);
+  let Institute = [];
+
+  const chartData1 = [
+    { name: "Round 1", cr: 1200 },
+    { name: "Round 2", cr: 1500 },
+    { name: "Round 3", cr: 500 },
+    { name: "Round 4", cr: 900 },
+    { name: "Round 5", cr: 1600 },
+    { name: "Round 6", cr: "200" },
+  ];
+
   const Gender = ["Gender-Neutral", "Female-only (including supernumerary)"];
-  const Institute=[]
+  const url = "https://konsa-college-backend.vercel.app";
+
+  useEffect(() => {
+    axios.get(url + "/y22?page=1&limit=2000").then((res) => {
+      if (examTypes === "JEE") {
+        setDefault(res.data.results);
+      } else {
+        const filter = res.data.results.filter((clg) =>
+          clg.Institute.includes("Indian Institute of Technology")
+        );
+        setDefault(filter);
+      }
+    });
+  }, [examTypes]);
+
+  useEffect(() => {
+    if (selected.length > 0 && defaultData.length > 0) {
+      console.log("inside", selected);
+      const filter = defaultData?.filter((clg) =>
+        clg.Academic_Program_Name.includes(selected)
+      );
+      console.log("colleges", filter);
+      setFilterData(filter);
+      if (filter.length > 0) {
+        for (let i = 0; i < filter.length; i++) {
+          const college = filter[i].Institute;
+          if (Institute.includes(college)) {
+          } else {
+            Institute.push(college);
+          }
+        }
+        setInstitutes(Institute);
+      }
+    }
+  }, [selected, defaultData]);
+  console.log("selected Institute", selectedInstitute);
+
+  useEffect(() => {
+    if (selectedInstitute.length > 0 && selectedGender && selectedSeat) {
+      const filter = [];
+      for (let i = 1; i < 6; i++) {
+        filter[i - 1] = filterData.filter(
+          (clg) =>
+            clg.Institute.includes(selectedInstitute) &&
+            clg.Round.includes(i) &&
+            clg.Gender === selectedGender &&
+            clg.Seat_Type === selectedSeat
+        );
+      }
+      console.log(filter);
+    }
+  }, [selectedInstitute]);
 
   return (
     <>
@@ -48,7 +123,7 @@ const viewBranchWise = () => {
                 value="Mains"
                 name="rank"
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                onChange={(e) => setRank(e.target.value)}
+                onChange={(e) => setExamTypes(e.target.value)}
               />
               <label
                 for="default-radio-1"
@@ -66,7 +141,7 @@ const viewBranchWise = () => {
                 value="Advance"
                 name="rank"
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cancel"
-                onChange={(e) => setRank(e.target.value)}
+                onChange={(e) => setExamTypes(e.target.value)}
               />
               <label
                 for="default-radio-2"
@@ -79,51 +154,40 @@ const viewBranchWise = () => {
         </div>
       </div>
       <div className="instituteType flex flex-row my-1 ml-5 md:w-full md:px-5 justify-start gap-10">
-        <div className="flex flex-col justify-between w-1/3 text-sm font-medium">
-          <div>Branch</div>
-        <div className="mt-1 text-sm">
-          <Select
+        <div className="homeStates my-1 md:w-1/3 ">
+          <div className="flex justify-between font-medium">
+            <span>Branches</span>
+          </div>
+          <select
+            name="states"
+            className="p-2 w-full border-solid border-[#D1D5DB] border rounded-md"
             onChange={(e) => {
-              setBranches(e);
+              setBranches(e.target.value);
             }}
-            closeMenuOnSelect={false}
-            components={animatedComponents}
-            isMulti
-            options={Branches}
-          />
+          >
+            {Branches?.map((state) => {
+              return <option value={state}>{state}</option>;
+            })}
+          </select>
         </div>
-        </div>
-
-        <div className="flex flex-col justify-between text-sm w-1/3 font-medium">
-          <div>Course</div>
-        <div className="mt-1 text-sm">
-          <Select
-            onChange={(e) => {
-              setCourse(e);
-            }}
-            closeMenuOnSelect={false}
-            components={animatedComponents}
-            isMulti
-            options={course}
-          />
-        </div>
-        </div>
-
-        <div className="flex flex-col justify-between w-1/3 text-sm font-medium">
-          <div>Institute</div>
-        <div className="mt-1 text-sm">
-          <Select
-            onChange={(e) => {
-              setInsitute(e);
-            }}
-            closeMenuOnSelect={false}
-            components={animatedComponents}
-            isMulti
-            options={Institute}
-          />
-        </div>
-        </div>
-
+        {institutes.length > 0 && (
+          <div className="homeStates my-1 md:w-1/3 ">
+            <div className="flex justify-between font-medium">
+              <span>College</span>
+            </div>
+            <select
+              name="states"
+              className="p-2 w-full border-solid border-[#D1D5DB] border rounded-md"
+              onChange={(e) => {
+                setSelectedInstitute(e.target.value);
+              }}
+            >
+              {institutes?.map((state) => {
+                return <option value={state}>{state}</option>;
+              })}
+            </select>
+          </div>
+        )}
       </div>
       <div className="w-full flex flex-row justify-start text-sm">
         <div className="homeStates my-1 md:w-1/3 md:px-10">
@@ -160,7 +224,7 @@ const viewBranchWise = () => {
             })}
           </select>
         </div>
-        <div className="homeStates my-1 md:w-1/3 md:px-10">
+        {/* <div className="homeStates my-1 md:w-1/3 md:px-10">
           <div className="flex justify-between font-medium">
             <span>Display rounds</span>
           </div>
@@ -176,7 +240,46 @@ const viewBranchWise = () => {
               return <option value={state}>{state}</option>;
             })}
           </select>
-        </div>
+        </div> */}
+      </div>
+      <div className="chart mt-7">
+        <ResponsiveContainer width="90%" height={400}>
+          <LineChart
+            id="chart"
+            data={chartData1}
+            margin={{
+              top: 0,
+              right: 30,
+              left: -10,
+              bottom: 5,
+            }}
+          >
+            <XAxis dataKey={"name"} height={80}>
+              {/* <Label value="Rounds" position="insideBottom" /> */}
+            </XAxis>
+            <YAxis />
+            <Tooltip />
+            {!noData ? (
+              <>
+                <Line
+                  type="monotone"
+                  dataKey="cr"
+                  stroke="#8884d8"
+                  activeDot={{ r: 5 }}
+                />
+              </>
+            ) : null}
+
+            <Legend verticalAlign="top" height={80} />
+          </LineChart>
+        </ResponsiveContainer>
+        {noData ? (
+          <div className="absolute">
+            <div>
+              <h1 className="mt-20 text-xl">No Data Available</h1>
+            </div>
+          </div>
+        ) : null}
       </div>
     </>
   );

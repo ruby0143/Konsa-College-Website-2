@@ -60,29 +60,15 @@ const CollegePredictor = () => {
 
   const handleSubmit = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-
-    // document.getElementsByClassName("rb").checked = false;
-
     console.log(Category, rank, Eligibility, selectedGender);
-    let temp1;
-    let temp2;
     axios
       .post(url + "/collegePredictor", {
         Gender: selectedGender,
         Caste: Category,
       })
       .then((resp) => {
-        let clg = resp?.data?.filter((clg) => {
-          if (clg?.Opening_Rank.length > 0) {
-            temp1 = clg.Opening_Rank;
-            temp2 = clg.Closing_Rank;
-            clg.Opening_Rank = Number.parseInt(temp1);
-            clg.Closing_Rank = Number.parseInt(temp2);
-            if (clg.Opening_Rank < rank && rank < clg.Closing_Rank) {
-              return clg;
-            }
-          }
-        });
+        console.log(resp)
+        let clg = resp?.data?.filter((clg) => clg.Opening_Rank < rank && rank < clg.Closing_Rank);
         const sort = clg.sort((a, b) => {
           return a.Closing_Rank - b.Closing_Rank;
         });

@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { MdArrowRightAlt } from "react-icons/md";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import Branches from "../components/toolsPage/branches"
 
 const branches = () => {
   const [selectedBranch, setSelectedBranch] = useState("");
@@ -83,57 +84,6 @@ const branches = () => {
     }
   }, [institute, selectedStates]);
 
-  const Branches = [
-    "Electrical",
-    "Mechanical",
-    "Aerospace",
-    "Civil",
-    "Electronics",
-    "Metallurgy",
-    "Mining",
-    "Communication",
-    "Food",
-    "Instrumentation",
-    "Computer Science",
-    "Chemical",
-    "Industrial",
-    "Production",
-    "Control",
-    "Materials",
-    "Electrical",
-    "Energy",
-    "Metallurgical",
-    "Materials",
-    "Data Science",
-    "Bio Medical",
-    "Ceramic",
-    "Biomedical",
-    "Agricultural",
-    "Mechatronics",
-    "Environmental",
-    "Mineral",
-    "Machinery",
-    "Petroleum",
-    "Biological",
-    "Naval Architecture",
-    "Bio",
-    "Materials Science",
-    "Production",
-    "Infrastructure",
-    "Computer Science",
-    "Material Science",
-    "Biotechnology",
-    "Computational",
-    "Computer",
-    "Electronics System",
-    "Biochemical",
-    "Pharmaceutical",
-    "Systems",
-    "Manufacturing Science",
-    "Mining Safety",
-    "Ocean",
-    "Environmental Science",
-  ];
   console.log("Institute", institute, selectedStates);
   return (
     <>
@@ -199,7 +149,7 @@ const branches = () => {
               </div>
               <div className="homeStates my-3 md:w-[50%] md:px-5">
                 <div className="flex justify-between">
-                  <span>Home State</span>
+                  <span>Duration</span>
                 </div>
                 <div className="mt-4">
                   <Select
