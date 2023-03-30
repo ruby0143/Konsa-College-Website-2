@@ -42,8 +42,6 @@ export default function BasicEditingGrid(props) {
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
-        checkboxSelection
-        disableRowSelectionOnClick
       />
     </Box>
 
