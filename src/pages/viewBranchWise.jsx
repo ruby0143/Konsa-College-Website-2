@@ -370,9 +370,9 @@ const viewBranchWise = () => {
           ></input>
         </div>
       </div>
-      <div className="ml-10 mb-7 text-sm border rounded-lg mr-10 text-gray-500">
+      <div className="w-full mobs:w-[320px] ml-10 mb-7 text-sm border rounded-lg mr-10 text-gray-500 overflow-x-auto">
         {loader ? (
-<div className="w-100 flex justify-center my-5">
+<div className="w-full flex flex-wrap justify-center md:my-5 ">
 <ClipLoader
             // color={color}
             // loading={loading}
@@ -386,6 +386,7 @@ const viewBranchWise = () => {
           <Table
           columns={columns}
           dataSource={filterData.length > 0 ? filterData : defaultData}
+          responsive
         ></Table>
         )}
 

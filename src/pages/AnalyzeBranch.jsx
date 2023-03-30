@@ -9,8 +9,15 @@ const viewBranchWise = () => {
   const animatedComponents = makeAnimated();
   const [selectedSeat, setSeat] = useState("OPEN");
   const [selectedGender, setGender] = useState("Gender-Neutral");
-  const [selectedRound, setRound] = useState("Last Round Only");
+  const [selectedRound, setRound] = useState("6");
+  const [examTypes, setExamTypes] = useState("JEE");
+  const [defaultData, setDefault] = useState([]);
+  const [selected, setBranches] = useState([]);
+  const [selectedCourse,setCourse]=useState([]);
+  const [selectedInstitute,setInsitute]=useState([])
+  const course = [{value:"B.Tech.",label:"B.Tech. and M.Tech. (Dual Degree)"}]
   const Gender = ["Gender-Neutral", "Female-only (including supernumerary)"];
+  const Institute=[]
 
   return (
     <>
@@ -71,14 +78,13 @@ const viewBranchWise = () => {
           </div>
         </div>
       </div>
-      <div className="instituteType my-1 ml-5 md:w-[50%] md:px-5">
-        <div className="flex justify-between text-sm font-medium">
-          <span>Branches</span>
-        </div>
+      <div className="instituteType flex flex-row my-1 ml-5 md:w-full md:px-5 justify-start gap-10">
+        <div className="flex flex-col justify-between w-1/3 text-sm font-medium">
+          <div>Branch</div>
         <div className="mt-1 text-sm">
           <Select
             onChange={(e) => {
-              setInstitutes(e);
+              setBranches(e);
             }}
             closeMenuOnSelect={false}
             components={animatedComponents}
@@ -86,6 +92,38 @@ const viewBranchWise = () => {
             options={Branches}
           />
         </div>
+        </div>
+
+        <div className="flex flex-col justify-between text-sm w-1/3 font-medium">
+          <div>Course</div>
+        <div className="mt-1 text-sm">
+          <Select
+            onChange={(e) => {
+              setCourse(e);
+            }}
+            closeMenuOnSelect={false}
+            components={animatedComponents}
+            isMulti
+            options={course}
+          />
+        </div>
+        </div>
+
+        <div className="flex flex-col justify-between w-1/3 text-sm font-medium">
+          <div>Institute</div>
+        <div className="mt-1 text-sm">
+          <Select
+            onChange={(e) => {
+              setInsitute(e);
+            }}
+            closeMenuOnSelect={false}
+            components={animatedComponents}
+            isMulti
+            options={Institute}
+          />
+        </div>
+        </div>
+
       </div>
       <div className="w-full flex flex-row justify-start text-sm">
         <div className="homeStates my-1 md:w-1/3 md:px-10">
