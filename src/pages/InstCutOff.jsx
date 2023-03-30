@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-import EnhancedTable from '../components/InstitueCutoffs/Table';
+import DataTable from '../components/InstitueCutoffs/Table';
+import BasicEditingGrid from '../components/InstitueCutoffs/Table';
 
 function InstCutOff() {
 
@@ -12,16 +13,16 @@ function InstCutOff() {
     const [colleges, setColleges] = useState([]);
     const [branches, setBranches] = useState(new Map());
     const [selectedCollege, setSelectedCollege] = useState();
-    const [selectedRank, setRank] = useState("Mains");
+    const [selectedRank, setRank] = useState("");
     const [selectedBranch, setBranch] = useState();
     const [selectedCaste, setCaste] = useState("OPEN");
     const [selectedGender, setGender] = useState("Gender-Neutral");
     const [selectedRound, setRound] = useState("7");
-    const [minRank, setMinRank] = useState(NaN);
-    const [maxRank, setMaxRank] = useState(NaN);
+    const [minRank, setMinRank] = useState("");
+    const [maxRank, setMaxRank] = useState("");
     const [tableData, setTable] = useState([]);
     const [filteredData, setFilter] = useState([]);
-
+    const [filteredColleges, setFcolleges] = useState([]);
     const castes = [
         "EWS",
         "EWS (PwD)",
@@ -54,6 +55,39 @@ function InstCutOff() {
     }
 
     const url = "https://konsa-college-backend.vercel.app";
+    const page = 1;
+    const limit = 2000;
+
+    const getData = async () => {
+        await axios
+          .get(url + `/y22?page=${page}&limit=${limit}`)
+          // .get(url + `/y22`)
+          .then((response) => {
+            if (response.status === 500) {
+              console.log("No Response");
+            } else {
+              console.log(response?.data.results);
+              response?.data.results.forEach((ele,idx)=>{
+               ele.Year = 2022;
+                setTable(function(prev){
+                    return [...prev,ele];
+                })
+                setFilter(function(prev){
+                    return [...prev,ele];
+                })
+
+              })
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+          setLoader(false)
+      };
+
+    useEffect(()=>{
+        getData();
+    },[]);
 
     useEffect(() => {
 
@@ -67,6 +101,9 @@ function InstCutOff() {
 
                     const col = ele.Institute;
                     setColleges(function (prevState) {
+                        return [...prevState, { value: col, label: col }];
+                    });
+                    setFcolleges(function (prevState) {
                         return [...prevState, { value: col, label: col }];
                     });
 
@@ -177,6 +214,33 @@ function InstCutOff() {
         selectedGender,
     ]);
 
+    useEffect(() => {
+
+        let mn, mx;
+        if (minRank === "") {
+            mn = 0;
+        }
+        else {
+            mn = parseInt(minRank);
+        }
+        if (maxRank === "") {
+            mx = 99999;
+        }
+        else {
+            mx = parseInt(maxRank);
+        }
+
+
+        const temp = tableData.filter(ele => {
+
+            const openRank = parseInt(ele.Opening_Rank);
+            const closeRank = parseInt(ele.Closing_Rank);
+            console.log(mn, mx, openRank);
+            return closeRank >= mn && closeRank <= mx;
+        })
+        setFilter(temp);
+
+    }, [minRank, maxRank])
 
 
     console.log(filteredData, "bruh");
@@ -202,14 +266,34 @@ function InstCutOff() {
 
 
                                     <div class="flex items-center my-3">
-                                        <input id="default-radio-1" type="radio" value="Mains" name="rank" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={(e) => setRank(e.target.value)} />
+                                        <input id="default-radio-1" type="radio" value="Mains" name="rank" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={(e) => {
+                                            setRank(e.target.value)
+                                            setFcolleges(colleges.filter(ele => {
+                                                const bool = ele.value.includes("Indian Institute of Technology");
+                                                console.log(ele.value,bool);
+                                                return !bool;
+                                            }))
+
+                                        }
+                                        } />
                                         <label htmlFor="default-radio-1" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300" >JEE (Main)</label>
                                     </div>
 
                                 </div>
                                 <div>
                                     <div class="flex items-center my-3">
-                                        <input id="default-radio-2" type="radio" value="Advance" name="rank" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cancel" onChange={(e) => setRank(e.target.value)} />
+                                        <input id="default-radio-2" type="radio" value="Advance" name="rank" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cancel" onChange={(e) => {
+                                            setRank(e.target.value)
+                                            setFcolleges(colleges.filter(ele => {
+                                                
+                                                return ele.value.includes("Indian Institute of Technology");
+
+                                            }))
+
+
+                                        }
+                                        } />
+
                                         <label for="default-radio-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">JEE (Advance)</label>
                                     </div>
                                 </div>
@@ -278,7 +362,7 @@ function InstCutOff() {
                                     closeMenuOnSelect={false}
                                     components={animatedComponents}
                                     isMulti
-                                    options={colleges}
+                                    options={filteredColleges}
                                 />
                             </div>
 
@@ -394,23 +478,6 @@ function InstCutOff() {
                                 <input type="number" className="my-3 p-2 w-full border-solid border-[#D1D5DB] border rounded-md"
                                     onChange={(e) => {
                                         setMinRank(e.target.value);
-                                        const mn = parseInt(e.target.value);
-                                        console.log(typeof mn,mn,'bruh');
-                                        if (mn !== NaN) {
-                                            setFilter(tableData.filter(ele => {
-
-                                                return ele.Opening_Rank >= mn;
-                                            }))
-                                        }
-                                        else if (maxRank !== NaN) {
-                                            setFilter(tableData.filter(ele => {
-
-                                                return ele.Opening_Rank <= maxRank;
-                                            }))
-                                        }
-
-
-
                                     }} />
                             </div>
 
@@ -425,23 +492,6 @@ function InstCutOff() {
                                 <input type="number" className="my-3 p-2 w-full border-solid border-[#D1D5DB] border rounded-md" onChange={(e) => {
 
                                     setMaxRank(e.target.value);
-                                    const mx = parseInt(e.target.value);
-
-                                    if (mx !== NaN) {
-                                        setFilter(tableData.filter(ele => {
-
-                                            return ele.Opening_Rank <= mx;
-                                        }))
-                                    }
-                                    else if (minRank !== NaN) {
-                                        setFilter(tableData.filter(ele => {
-
-                                            return ele.Opening_Rank >= minRank;
-                                        }))
-                                    }
-
-
-
                                 }} />
                             </div>
 
@@ -449,8 +499,8 @@ function InstCutOff() {
 
                     </div>
                 </div>
-                <div className='table p-2 mt-2 m-auto'>
-                    <EnhancedTable data={filteredData} />
+                <div className='table p-2 mt-2 m-auto overflow-x-scroll'>
+                    <BasicEditingGrid data={filteredData} />
                 </div>
             </div>
         </>
