@@ -20,14 +20,15 @@ function trendsHome() {
     ]
     const [state, setState] = useState(null);
     const [colleges, setColleges] = useState([]);
-    const [institutes, setInstitutes] = useState([]);
-    const [selectedStates, setSelectedStates] = useState([]);
 
+    const [selectedStates, setSelectedStates] = useState([]);
+    const [filteredColleges,setFilter] = useState([]);
+    const [fStates,setFstates] = useState([]);
 
     const url = "https://konsa-college-backend.vercel.app";
     const animatedComponents = makeAnimated();
 
-    const instTypes = [{ value: 'IITs', label: 'IITs' }, { value: 'NITs', label: 'NITs' }, { value: 'IIITs', label: 'IIITs' }];
+    const instTypes = [{ value: 'Indian Institute of Technology', label: 'IITs' }, { value: 'National Institute of Technology', label: 'NITs' }, { value: 'Indian Institute of Informatio Technology', label: 'IIITs' }];
 
     useEffect(() => {
         axios
@@ -37,8 +38,11 @@ function trendsHome() {
             .then((res) => {
                 const arr = res.data;
                 arr.forEach((ele) => {
-                    const col = ele.Institute;
+                    const col = {college_name : ele.Institute, college_state : ele.college_state}
                     setColleges(function (prevState) {
+                        return [...prevState, col];
+                    });
+                    setFilter(function (prevState) {
                         return [...prevState, col];
                     });
                 });
@@ -49,7 +53,22 @@ function trendsHome() {
             });
     }, []);
 
-    console.log(institutes,selectedStates, "working");
+    useEffect(()=>{
+        var result = selectedStates.map(a => a.value);
+        if(result.length === 0){
+            setFilter(colleges);
+
+        }
+        else{
+            console.log(result,"1");
+            setFilter(colleges.filter(ele=>{
+                return result.includes(ele.college_state);
+            }))
+        }
+    },[selectedStates]);
+
+   
+    console.log(selectedStates, "working");
     return (
         <>
             <div className="p-3 ">
@@ -64,24 +83,8 @@ function trendsHome() {
                 <div className="options p-2 mt-2">
                     <div className="flex flex-col md:flex-row md:justify-between">
 
-                        <div className="instituteType my-3 md:w-[50%] md:px-5">
-                            <div className="flex justify-between">
-                                <span>Institute Type</span>
-                            </div>
-                            <div className="mt-4">
-                                <Select
-                                    onChange={(e) => {
-                                        setInstitutes(e);
-                                    }}
-                                    closeMenuOnSelect={false}
-                                    components={animatedComponents}
-                                    isMulti
-                                    options={instTypes}
-                                />
-                            </div>
-
-                        </div>
-                        <div className="homeStates my-3 md:w-[50%] md:px-5">
+                        
+                        <div className="homeStates my-3 md:w-[100%] md:px-5">
                             <div className="flex justify-between">
                                 <span>Home State</span>
 
@@ -106,9 +109,9 @@ function trendsHome() {
 
                 <div className="body mt-3 flex justify-center flex-col items-center md:mx-6 lg:mx-8">
                     <div className="grid grid-cols-1 gap-4  xs:grid-cols-2  sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5">
-                        {colleges?.map((college) => {
+                        {filteredColleges?.map((college) => {
 
-                            return <InstCard instName={college} state={"Assam"} />;
+                            return <InstCard instName={college.college_name} state={college.college_state} />;
                         })}
 
                     </div>
