@@ -68,7 +68,7 @@ const url = "https://konsa-college-backend.vercel.app";
           })}
         </>
       )}
-          <Link to="/scheduler" className="h-[56px] w-[220px] mob:w-[160px] md:h-[158px] flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-white hover:bg-gradient-to-r from-white to-[#fff6ec] transition-all duration-500 font-medium cursor-pointer">
+          <Link to="/scheduler" className="h-[56px] w-[220px] mob:min-w-[160px] md:h-[158px] mx-1.5 flex justify-center items-center shadow-md rounded-md border border-gray-200 bg-white hover:bg-gradient-to-r from-white to-[#fff6ec] transition-all duration-500 font-medium cursor-pointer">
             <div className="text-sm text-[#EE7C00]">Show More &#10140;</div>
           </Link>
     </div>

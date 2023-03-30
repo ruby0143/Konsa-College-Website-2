@@ -12,27 +12,12 @@ import { AuthCheck } from '../../Context/authContext'
 import { auth } from '../../config/auth/firebaseauth'
 import { signOut } from 'firebase/auth'
 
-const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
+const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes, isLoginState, setIsLoginState, isModalOpen, setIsModalOpen}) => {
   
-  const {authValues, setAuthValues} = useContext(AuthCheck);    
-  const [isLoginState, setIsLoginState] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);  
+  const {authValues} = useContext(AuthCheck);    
 
   // auth checks - is logged in or not
   useEffect(() => {
-    
-    const unsubscribe = auth.onAuthStateChanged((userAuth) =>{
-      if(userAuth){
-        console.log("user auth data: ",userAuth);
-        setAuthValues({
-         uid: userAuth.uid,
-         email: userAuth.email
-        })
-      } else {
-        setAuthValues(null)
-      }
-    })
-
     // on escape key press - changing modal state
     const handleEscapeKey = (event) => {
       if (event.key === 'Escape') {
@@ -46,7 +31,6 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
       document.removeEventListener('keydown', handleEscapeKey);
     };
 
-    return unsubscribe
   },[])
 
   const handleLogout = async () =>{
@@ -73,7 +57,7 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
             ) : null
         }
 
-        <nav className='bg-black md:bg-white flex px-3 md:px-12 items-center justify-between shadow-lg '>
+        <nav className='bg-black md:bg-white flex px-3 md:px-12 items-center justify-between shadow-lg'>
             <div className='h-[54px] -ml-1' >
                 <a href="/"><img className='h-full -ml-[.3rem]' src={konsaCollegeLogo} alt="konsa-college-logo"/></a>
             </div>
@@ -115,7 +99,7 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes}) => {
                 </div> : <div className='text-[#EE7C00] cursor-pointer' onClick={handleLogout}>Logout</div>}
             </div>
             <div className='md:hidden flex items-center gap-4' >
-                <div onClick={()=>setMobileSidebar(true)} >
+                <div onClick={()=>setMobileSidebar(prevState => !prevState)} >
                     {mobileSidebar?<AiOutlineClose className='text-white cursor-pointer text-lg' />:<AiOutlineMenu className='text-white cursor-pointer text-lg'/>}
                 </div>
             </div>

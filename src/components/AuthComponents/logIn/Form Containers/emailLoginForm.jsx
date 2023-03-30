@@ -34,10 +34,10 @@ const EmailLoginForm = ({setIsPhnoLogin, setIsModalOpen}) => {
 
   return (
     <form 
-        className={`w-[32rem] h-[330px] flex flex-col items-center justify-evenly`}
+        className={`w-[32rem] mob:w-full h-[330px] flex flex-col items-center mob:gap-4 justify-evenly mob:justify-center`}
         onSubmit={handleSubmit}
     >
-     <div className='w-full flex flex-col item-center gap-2'>
+     <div className='w-full flex flex-col item-center gap-2 mob:gap-2'>
             <div  
               className="relative flex flex-col w-full" 
             >
@@ -51,9 +51,9 @@ const EmailLoginForm = ({setIsPhnoLogin, setIsModalOpen}) => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                {(errors.email && touched.email) ? <div className='px-2 text-sm text-red-500'>{errors.email}</div> : null}
+                {(errors.email && touched.email) ? <div className='px-2 text-sm mob:text-xs text-red-500'>{errors.email}</div> : null}
               </div>
-              <div className='text-[#838383] cursor-pointer mt-1 self-end hover:underline text-sm'>
+              <div className='text-[#838383] cursor-pointer mt-1 self-end hover:underline text-sm mob:text-xs'>
                 Forgot Email?
               </div>
             </div>
@@ -70,24 +70,24 @@ const EmailLoginForm = ({setIsPhnoLogin, setIsModalOpen}) => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                {(errors.password && touched.password) ? <div className='px-2 text-sm text-red-500'>{errors.password}</div> : null}
+                {(errors.password && touched.password) ? <div className='px-2 text-sm mob:text-xs text-red-500'>{errors.password}</div> : null}
               </div>
-              <div className='text-[#838383] cursor-pointer mt-1 self-end hover:underline text-sm'>
+              <div className='text-[#838383] cursor-pointer mt-1 self-end hover:underline text-sm mob:text-xs'>
                 Forget Password?
               </div>
             </div>
           </div>
-          <div className='w-full mt-4   '>
+          <div className='w-full mt-4 '>
             <button 
               type='submit'
-              className='bg-[#EE7C00] py-2 w-full shadow-md rounded-md text-lg text-white font-medium'
+              className='bg-[#EE7C00] py-2 w-full shadow-md rounded-md text-lg mob:text-base text-white font-medium'
             >
                 Login
             </button>
             <button 
               type='button'
               onClick={()=>setIsPhnoLogin(true)}
-              className='bg-white py-2 w-full shadow-md rounded-md text-lg text-[#EE7C00] font-medium mt-3 border border-[#EE7C00]'
+              className='bg-white py-2 w-full shadow-md rounded-md text-lg mob:text-base text-[#EE7C00] font-medium mt-3 border border-[#EE7C00]'
             >
                 Login With Mobile No.
             </button>

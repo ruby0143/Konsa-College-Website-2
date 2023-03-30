@@ -24,16 +24,18 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
   }
 
   return (
-    <div className='w-[70%] h-full lg:rounded-l-3xl bg-white p-10 flex justify-center items-center'>
+    <div className='md:w-[70%] mob:w-full h-full lg:rounded-l-3xl bg-white md:p-10 mob:p-4 flex justify-center items-center'>
       <div className='w-full h-full flex flex-col items-center justify-between'>
-      <div className='w-full flex justify-end' onClick={()=>setIsModalOpen(false)}>
-          <AiOutlineClose
-            className='cursor-pointer'
-            onClick={()=>setIsModalOpen(false)}
-          />
-        </div>
-        <div className='text-3xl text-center font-semibold'>
-          Login to Your Account
+      <div className='w-full flex flex-col'>
+          <div className='w-full flex justify-end' onClick={()=>setIsModalOpen(false)}>
+            <AiOutlineClose
+              className='cursor-pointer'
+              onClick={()=>setIsModalOpen(false)}
+            />
+          </div>          
+          <div className='text-3xl mob:text-2xl text-center font-semibold'>
+            Login to your account
+          </div>
         </div>
           {isPhnoLogin ? (
               <PhnoLoginForm setIsPhnoLogin={setIsPhnoLogin} setIsModalOpen={setIsModalOpen}/>
@@ -41,12 +43,14 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
               <EmailLoginForm setIsPhnoLogin={setIsPhnoLogin} setIsModalOpen={setIsModalOpen}/>
           )}
         <div className='flex justify-center items-center gap-3'>
-          <div className='w-4 h-[3px] bg-[#838383] rounded-sm'></div>
-          <div className='text-[#838383] font-medium text-xl'>OR</div>
-          <div className='w-4 h-[3px] bg-[#838383] rounded-sm'></div>
+          <div className='w-4 h-[3px] mob:h-[1px] bg-[#838383] rounded-sm'></div>
+          <div className='text-[#838383] font-medium text-xl mob:text-base'>OR</div>
+          <div className='w-4 h-[3px] mob:h-[1px] bg-[#838383] rounded-sm'></div>
         </div>
-        <div className='flex justify-evenly w-full'>
-          <button className='bg-[#1877F2] text-white shadow-md rounded-md py-2 px-10 flex gap-4 justify-center items-center font-medium border border-slate-100'>
+        <div className='flex mob:flex-col justify-evenly mob:gap-2 w-full mob:w-[70%]'>
+          <button 
+            className='bg-[#1877F2] text-white mob:text-xs shadow-md rounded-md py-2 px-10 flex justify-center gap-4 items-center font-medium border border-slate-100'
+          >
             <div>
               <img src="/Facebook Logo.svg" className='w-[1.2rem]' alt=""/>  
             </div>
@@ -56,7 +60,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
           </button>
           <button 
             onClick={handleGoogleSignIn}
-            className='shadow-md rounded-md py-2 px-10 flex gap-4 justify-center items-center font-medium border border-slate-100'
+            className='shadow-md rounded-md py-2 px-10 flex justify-center gap-4 items-center mob:text-xs font-medium border border-slate-100'
           >
             <div>
               <img src="/Google Logo.svg" className='w-[1.2rem]' alt=""/>  
@@ -66,8 +70,8 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
             </div>
           </button>
         </div>
-        <div>
-          <span>
+        <div className='mob:text-sm'>
+          <span className='mob:text-sm'>
             Don't have an Account? 
           </span>
           <button 
