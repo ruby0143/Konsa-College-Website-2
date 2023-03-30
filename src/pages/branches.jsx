@@ -55,6 +55,8 @@ const branches = () => {
 
     if (institute.length > 0 || selectedStates.length > 0) {
       setShowFilter(true);
+    } else {
+      setShowFilter(false);
     }
 
     if (institute.length > 0) {
@@ -153,12 +155,11 @@ const branches = () => {
         >
           {Branches.map((branch, i) => {
             return (
-              <div className="w-[255px] shadow-md rounded-md p-4 flex flex-row gap-3 justify-between items-center cursor-pointer">
-                <div
-                  key={i}
-                  className="text-center text-[16px] font-semibold"
-                  onClick={() => setSelectedBranch(branch)}
-                >
+              <div
+                onClick={() => setSelectedBranch(branch)}
+                className="w-[255px] shadow-md rounded-md p-4 flex flex-row gap-3 justify-between items-center cursor-pointer"
+              >
+                <div key={i} className="text-center text-[16px] font-semibold">
                   {branch}
                 </div>
                 <div className="text-blue-500">

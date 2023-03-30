@@ -90,3 +90,13 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.ant-table td {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .ant-table-thead th {
+    font-size: 14px;
+    padding: 10px;
+  }
+

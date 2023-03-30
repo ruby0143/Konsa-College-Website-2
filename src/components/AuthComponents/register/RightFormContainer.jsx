@@ -1,14 +1,16 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useFormik } from 'formik'
 import { signUpSchema } from '../../../schemas/authValidationSchema'
 
+
 // auth config
-import { auth, provider } from '../../../config/auth/firebaseauth'
+import { auth, googleProvider } from '../../../config/auth/firebaseauth'
 import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 
 const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
 
+  // const [isVerifiedEmail, setIsVerifiedEmail] = useState(false);
   const initialValues = {
     fullName : "",
     email : "",
@@ -16,28 +18,30 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
     password : "",
     confirmPassword : "",
   }
-  
+
+      
   const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
     initialValues : initialValues,
     validationSchema : signUpSchema,
+    
     onSubmit : async (values,action) => {
-
       // firebase auth func for creating user
-      await createUserWithEmailAndPassword(auth, values.email, values.password).then((data) => console.log("signUp data: ", data.user)
-      ).catch(err => console.log("signUp error: ", err))
-
-
-      action.resetForm();
-      setIsModalOpen(false)
-    },
-  })
+      await createUserWithEmailAndPassword(auth, values.email, values.password).then(
+        (data) => console.log("User Signed In using email/password")
+        ).catch(err => console.log("signUp error : ", err))
+        
+        action.resetForm();
+        // setIsLoginState(true)
+        setIsModalOpen(false)
+      },
+  }) 
 
   // google auth 
   const handleGoogleSignIn = async () => {
     // google auth popup
-    await signInWithPopup(auth, provider).
+    await signInWithPopup(auth, googleProvider).
     then(data => {
-        console.log("User LoggedIn");
+        console.log("User LoggedIn using google");
       }
     ).catch(err => console.log("signIn with google auth err: ",err)) 
     
@@ -65,7 +69,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
               className="relative flex flex-col w-full" 
             >
                 <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2`}
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2 transition-all duration-500`}
                   type="text"
                   name='fullName'
                   placeholder="Enter Full Name"
@@ -78,22 +82,32 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
             <div  
               className="relative flex flex-col w-full" 
             >
-                <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2`}
-                  type="email"
-                  name='email'
-                  placeholder="Enter Email"
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
+              <div className='flex w-full items-end justify-between' >
+                  <input
+                    className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black ${!errors.email && touched.email ? "w-[80%]" : "w-full"} h-[40px] py-4 px-2 transition-all duration-500`}
+                    type="email"
+                    name='email'
+                    placeholder="Enter Email"
+                    value={values.email}
+                    onChange={(e)=>{
+                      handleChange(e);
+                      // handleEmailVerification(e.target.value)
+                    }}
+                    onBlur={handleBlur}
+                  />
+                  <button
+                    className={`bg-[#EE7C00] text-sm text-white ml-1 h-[35px] ${!errors.email && touched.email ? "w-[18%]" : "w-0"} rounded-sm transition-all duration-500`}
+                  >
+                    {!errors.email && touched.email && "Verify Email"}
+                  </button>
+                </div>
                 {(errors.email && touched.email) ? <div className='px-2 text-sm text-red-500'>{errors.email}</div> : null}
             </div>
-            <div  
+            <div    
               className="relative flex flex-col w-full" 
             >
                 <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2`}
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2 transition-all duration-500`}
                   type="number"
                   name='phoneNumber'
                   placeholder="+91  Phone Number"
@@ -105,9 +119,9 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
             </div>
             <div  
               className="relative flex flex-col w-full" 
-              >
+            >
                 <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2`}
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black w-full h-[40px] py-4 px-2 transition-all duration-500`}
                   type="password"
                   name='password'
                   placeholder="Enter Password"
@@ -121,7 +135,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
               className="relative flex mt-[8px] flex-col w-full" 
               >
                 <input
-                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black border-gray-300 w-[full] h-[40px] py-4 px-2`}
+                  className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black border-gray-300 w-[full] h-[40px] py-4 px-2 transition-all duration-500`}
                   type="password"
                   name='confirmPassword'
                   placeholder="Confirm Entered Password"
@@ -134,7 +148,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
           </div>
           <button   
             type='submit'
-            className='bg-[#EE7C00] py-1 shadow-md px-28 rounded-md text-lg text-white font-medium'
+            className='bg-[#EE7C00] py-2 w-full shadow-md rounded-md text-lg text-white font-medium'
           >
               Create Account
           </button>
@@ -146,7 +160,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
           <div className='w-4 h-[3px] bg-[#838383] rounded-sm'></div>
         </div>
         <div className='flex justify-evenly w-full'>
-          <button className='bg-[#1877F2] text-white shadow-md rounded-md py-2 px-10 flex gap-4 justify-center items-center font-medium active:shadow-none border border-slate-100'>
+          <button className='bg-[#1877F2] text-white shadow-md rounded-md py-2 px-10 flex gap-4 justify-center items-center font-medium border border-slate-100'>
             <div>
               <img src="/Facebook Logo.svg" className='w-[1.2rem]' alt=""/>  
             </div>
@@ -156,7 +170,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
           </button>
           <button 
             onClick={handleGoogleSignIn}
-            className='shadow-md rounded-md py-2 px-10 flex gap-4 justify-center items-center font-medium active:shadow-none border border-slate-100'
+            className='shadow-md rounded-md py-2 px-10 flex gap-4 justify-center items-center font-medium border border-slate-100'
           >
             <div>
               <img src="/Google Logo.svg" className='w-[1.2rem]' alt=""/>  
