@@ -71,6 +71,7 @@ const MainNavbar = () => {
 
   const handleLogout = async () =>{
     await signOut(auth).then(() => console.log("user SignedOut"))
+    window.location.reload();
   }
   
 

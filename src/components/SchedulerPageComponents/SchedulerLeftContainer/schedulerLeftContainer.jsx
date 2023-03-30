@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AiOutlineArrowDown } from 'react-icons/ai'
+import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai'
 import RoundLoader from '../../UI Components/loaders/RoundLoader'
 import CouncellingDataContainer from './councellingDataContainer'
 import ExamDataContainer from './examDataContainer'
@@ -49,12 +49,21 @@ const SchedulerLeftContainer = ({examData, councellingData}) => {
             <RoundLoader/>
           </div>
         )}
-        {<div className='mb-6 flex justify-center items-center'>
-          <button onClick={()=>setCouncellingDataLimit(prev => prev + 3)} className='flex items-center py-2 px-6 md:px-8 rounded-full text-sm md:text-base md:font-medium text-[#5a5a5a] md:hover:text-[#fcfcfc] bg-[#f4f4f4] md:hover:bg-[#EE7C00] shadow-md transition-all duration-300'>
-            <span className='mr-2'>Show more</span>
-            <AiOutlineArrowDown/>
-          </button>
-        </div>}
+        {councellingData.length === councellingDataLimit ? (
+          <div className='mb-6 flex justify-center items-center'>
+            <button onClick={()=>setCouncellingDataLimit(3)} className='flex items-center py-2 px-6 md:px-8 rounded-full text-sm md:text-base md:font-medium text-[#5a5a5a] md:hover:text-[#fcfcfc] bg-[#f4f4f4] md:hover:bg-[#EE7C00] shadow-md transition-all duration-300'>
+              <span className='mr-2'>Show Less</span>
+              <AiOutlineArrowUp/>
+            </button>
+          </div>  
+        ) : (
+          <div className='mb-6 flex justify-center items-center'>
+            <button onClick={()=>setCouncellingDataLimit(prev => prev + 3)} className='flex items-center py-2 px-6 md:px-8 rounded-full text-sm md:text-base md:font-medium text-[#5a5a5a] md:hover:text-[#fcfcfc] bg-[#f4f4f4] md:hover:bg-[#EE7C00] shadow-md transition-all duration-300'>
+              <span className='mr-2'>Show more</span>
+              <AiOutlineArrowDown/>
+            </button>
+          </div>
+      )}
       </div>  
       
       <div className='mb-4'>
@@ -75,12 +84,21 @@ const SchedulerLeftContainer = ({examData, councellingData}) => {
               <RoundLoader/>
             </div>
           )}
-        <div className='mb-6 flex justify-center items-center'>
-          <button onClick={()=>setExamDataLimit(prev => prev + 3)} className='flex items-center py-2 px-6 md:px-8 rounded-full text-sm md:text-base md:font-medium text-[#5a5a5a] md:hover:text-[#fcfcfc] bg-[#f4f4f4] md:hover:bg-[#EE7C00] shadow-md transition-all duration-300'>
-            <span className='mr-2'>Show more</span>
-            <AiOutlineArrowDown/>
-          </button>
-        </div>
+        {examData.length === examDataLimit ? (
+          <div className='mb-6 flex justify-center items-center'>
+            <button onClick={()=>setExamDataLimit(3)} className='flex items-center py-2 px-6 md:px-8 rounded-full text-sm md:text-base md:font-medium text-[#5a5a5a] md:hover:text-[#fcfcfc] bg-[#f4f4f4] md:hover:bg-[#EE7C00] shadow-md transition-all duration-300'>
+              <span className='mr-2'>Show Less</span>
+              <AiOutlineArrowUp/>
+            </button>
+          </div>
+        ) : (
+          <div className='mb-6 flex justify-center items-center'>
+            <button onClick={()=>setExamDataLimit(prev => prev + 3)} className='flex items-center py-2 px-6 md:px-8 rounded-full text-sm md:text-base md:font-medium text-[#5a5a5a] md:hover:text-[#fcfcfc] bg-[#f4f4f4] md:hover:bg-[#EE7C00] shadow-md transition-all duration-300'>
+              <span className='mr-2'>Show more</span>
+              <AiOutlineArrowDown/>
+            </button>
+          </div>
+        )}
       </div>  
     </div>
   )

@@ -35,6 +35,7 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes, isLoginState, s
 
   const handleLogout = async () =>{
       await signOut(auth).then(() => console.log("user SignedOut"))
+      window.location.reload();
   }
 
   return (
