@@ -7,7 +7,7 @@ body{
     background-color: #fcfcfc;
 }
 
-/* ::-webkit-scrollbar{
+::-webkit-scrollbar{
     width: 8px;
     height: 10px;
 }
@@ -61,9 +61,9 @@ body{
     display: inline-block;
     visibility: visible;
     border: 2px solid white;
-} */
+}
 
-/* input[type='radio']:checked:after {
+input[type='radio']:checked:after {
     width: 15px;
     height: 15px;
     border-radius: 15px;
@@ -75,7 +75,7 @@ body{
     display: inline-block;
     visibility: visible;
     border: 1px solid #ffa500;
-} */
+}
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
