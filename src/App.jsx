@@ -73,7 +73,7 @@ function App() {
               element={<PercentilePredictor />}
               exact
             />
-            <Route path="/InstCutoff" element={<InstCutOff />} exact />
+            <Route path="/view-institute-cutoffs" element={<InstCutOff />} exact />
             <Route path="/examRecommender" element={<ExamRecommender />} exact />
             <Route path="/preferenceListGenerator" element={<PreferenceListGenerator />} exact />
             <Route path="/collegeComparator" element={<CollegeComparator />} exact />

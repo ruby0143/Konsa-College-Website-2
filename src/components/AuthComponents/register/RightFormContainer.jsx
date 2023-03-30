@@ -49,22 +49,24 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
   }
 
   return (
-    <div className='w-[70%] h-full lg:rounded-l-3xl bg-white p-10 flex justify-center items-center'>
+    <div className='w-[70%] mob:w-full h-full lg:rounded-l-3xl bg-white p-10 mob:p-4 flex justify-center items-center'>
       <div className='w-full h-full flex flex-col items-center justify-between'>
-        <div className='w-full flex justify-end' onClick={()=>setIsModalOpen(false)}>
-          <AiOutlineClose
-            className='cursor-pointer'
-            onClick={()=>setIsModalOpen(false)}
-          />
-        </div>
-        <div className='text-3xl text-center font-semibold'>
-          Create Account
+        <div className='w-full flex flex-col'>
+          <div className='w-full flex justify-end' onClick={()=>setIsModalOpen(false)}>
+            <AiOutlineClose
+              className='cursor-pointer'
+              onClick={()=>setIsModalOpen(false)}
+            />
+          </div>          
+          <div className='text-3xl mob:text-2xl text-center font-semibold'>
+            Create Account
+          </div>
         </div>
         <form 
-          className="w-[32rem] flex flex-col items-center gap-14"
+          className="w-[32rem] mob:w-full flex flex-col items-center gap-14 mob:gap-8"
           onSubmit={handleSubmit}
         >
-          <div className='w-full flex flex-col item-center gap-3'>
+          <div className='w-full flex flex-col item-center gap-3 mob:gap-2'>
             <div  
               className="relative flex flex-col w-full" 
             >
@@ -77,7 +79,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                {(errors.fullName && touched.fullName) ? <div className='px-2 text-sm text-red-500'>{errors.fullName}</div> : null}
+                {(errors.fullName && touched.fullName) ? <div className='px-2 text-sm mob:text-xs text-red-500'>{errors.fullName}</div> : null}
             </div>
             <div  
               className="relative flex flex-col w-full" 
@@ -96,12 +98,12 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
                     onBlur={handleBlur}
                   />
                   <button
-                    className={`bg-[#EE7C00] text-sm text-white ml-1 h-[35px] ${!errors.email && touched.email ? "w-[18%]" : "w-0"} rounded-sm transition-all duration-500`}
+                    className={`bg-[#EE7C00] text-sm mob:text-[9px] text-white ml-1 h-[35px] ${!errors.email && touched.email ? "w-[18%]" : "w-0"} rounded-sm transition-all duration-500`}
                   >
                     {!errors.email && touched.email && "Verify Email"}
                   </button>
                 </div>
-                {(errors.email && touched.email) ? <div className='px-2 text-sm text-red-500'>{errors.email}</div> : null}
+                {(errors.email && touched.email) ? <div className='px-2 text-sm mob:text-xs text-red-500'>{errors.email}</div> : null}
             </div>
             <div    
               className="relative flex flex-col w-full" 
@@ -115,7 +117,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                {(errors.phoneNumber && touched.phoneNumber) ? <div className='px-2 text-sm text-red-500'>{errors.phoneNumber}</div> : null}
+                {(errors.phoneNumber && touched.phoneNumber) ? <div className='px-2 text-sm mob:text-xs text-red-500'>{errors.phoneNumber}</div> : null}
             </div>
             <div  
               className="relative flex flex-col w-full" 
@@ -129,10 +131,10 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                {(errors.password && touched.password) ? <div className='px-2 text-sm text-red-500'>{errors.password}</div> : null}
+                {(errors.password && touched.password) ? <div className='px-2 text-sm mob:text-xs text-red-500'>{errors.password}</div> : null}
             </div>
             <div  
-              className="relative flex mt-[8px] flex-col w-full" 
+              className="relative flex flex-col w-full" 
               >
                 <input
                   className={`bg-[#FFFFFF] text-[#ACACAC] mob:text-xs tracking-wide border-b focus:outline-none focus:border-gray-900 focus:text-black border-gray-300 w-[full] h-[40px] py-4 px-2 transition-all duration-500`}
@@ -143,24 +145,26 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                {(errors.confirmPassword && touched.confirmPassword) ? <div className='px-2 text-sm text-red-500'>{errors.confirmPassword}</div> : null}
+                {(errors.confirmPassword && touched.confirmPassword) ? <div className='px-2 text-sm mob:text-xs text-red-500'>{errors.confirmPassword}</div> : null}
             </div>
           </div>
           <button   
             type='submit'
-            className='bg-[#EE7C00] py-2 w-full shadow-md rounded-md text-lg text-white font-medium'
+            className='bg-[#EE7C00] py-2 w-full shadow-md rounded-md text-lg mob:text-base text-white font-medium'
           >
               Create Account
           </button>
         </form>
 
         <div className='flex justify-center items-center gap-3'>
-          <div className='w-4 h-[3px] bg-[#838383] rounded-sm'></div>
-          <div className='text-[#838383] font-medium text-xl'>OR</div>
-          <div className='w-4 h-[3px] bg-[#838383] rounded-sm'></div>
+          <div className='w-4 h-[3px] mob:h-[1px] bg-[#838383] rounded-sm'></div>
+          <div className='text-[#838383] font-medium text-xl mob:text-base'>OR</div>
+          <div className='w-4 h-[3px] mob:h-[1px] bg-[#838383] rounded-sm'></div>
         </div>
-        <div className='flex justify-evenly w-full'>
-          <button className='bg-[#1877F2] text-white shadow-md rounded-md py-2 px-10 flex gap-4 justify-center items-center font-medium border border-slate-100'>
+        <div className='flex mob:flex-col justify-evenly mob:gap-2 w-full mob:w-[70%]'>
+          <button 
+            className='bg-[#1877F2] text-white mob:text-xs shadow-md rounded-md py-2 px-10 flex justify-center gap-4 items-center font-medium border border-slate-100'
+          >
             <div>
               <img src="/Facebook Logo.svg" className='w-[1.2rem]' alt=""/>  
             </div>
@@ -170,7 +174,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
           </button>
           <button 
             onClick={handleGoogleSignIn}
-            className='shadow-md rounded-md py-2 px-10 flex gap-4 justify-center items-center font-medium border border-slate-100'
+            className='shadow-md rounded-md py-2 px-10 flex justify-center gap-4 items-center mob:text-xs font-medium border border-slate-100'
           >
             <div>
               <img src="/Google Logo.svg" className='w-[1.2rem]' alt=""/>  
@@ -180,7 +184,7 @@ const RightFormContainer = ({setIsModalOpen,setIsLoginState}) => {
             </div>
           </button>
         </div>
-        <div>
+        <div className='mob:text-sm' >
           <span>
             Already have an Account? 
           </span>

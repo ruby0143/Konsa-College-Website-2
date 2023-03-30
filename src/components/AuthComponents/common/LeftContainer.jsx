@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom'
 const LeftContainer = () => {
   return (
     <div 
-        className='w-[30%] h-full bg-[#EE7C00] px-8 py-14 flex flex-col items-center justify-between'
+        className='mob:hidden w-[30%] h-full bg-[#EE7C00] px-8 py-14 flex flex-col items-center justify-between'
     >
       <div className='w-full text-white text-2xl text-center'>
         Lorem ipsum dolor sit amet constur. Faucibu nunc eu faucibus tinc iaculis.  

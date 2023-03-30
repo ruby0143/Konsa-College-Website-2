@@ -57,7 +57,7 @@ const PhnoLoginForm = ({setIsPhnoLogin, setIsModalOpen}) => {
     <>
     {!otpComponent ? (
       <form 
-        className={`w-[32rem] h-[330px] flex flex-col items-center justify-evenly`}
+        className={`w-[32rem] mob:w-full h-[330px] flex flex-col items-center justify-evenly`}
         onSubmit={handleSubmit}
         >
           <div className='w-full flex flex-col item-center'>
@@ -96,7 +96,7 @@ const PhnoLoginForm = ({setIsPhnoLogin, setIsModalOpen}) => {
      </form>
     ) : (
       <form 
-        className={`w-[32rem] h-[330px] flex flex-col items-center justify-evenly`}
+        className={`w-[32rem] mob:w-full h-[330px] flex flex-col items-center justify-evenly`}
         onSubmit={handleVerifyOTP}
       >
         <div className='w-full flex flex-col item-center'>
