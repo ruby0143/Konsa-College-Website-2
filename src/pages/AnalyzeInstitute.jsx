@@ -366,7 +366,7 @@ function InstCutOff() {
                     </div>
 
                     <div className="chart mt-7 overflow-scroll" >
-                        <ResponsiveContainer width="90%" height={400} >
+                        <ResponsiveContainer width="100%" height={400} >
 
                             <LineChart
                                 id="chart"
@@ -374,7 +374,7 @@ function InstCutOff() {
                                 margin={{
                                     top: 0,
                                     right: 30,
-                                    left: -10,
+                                    left: 0,
                                     bottom: 5,
                                 }}
                             >

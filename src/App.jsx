@@ -82,7 +82,7 @@ function App() {
             <Route path="/tools" element={<Tools/>} exact/>
             <Route path="/branch-wise-cut-off" element={<ViewBranchWise/>} exact/>
             <Route path="/analyze-branch-wise-cut-off" element={<AnalyzeViewBranchWise/>} exact/>
-            <Route path="/analyze-institute-wise-cut-off" element={<AnalyzeInstitute />} exact/>
+            <Route path="/analyze-institute-wise-cutoff" element={<AnalyzeInstitute />} exact/>
             <Route path="/TermsAndConditions" element={<TandC/>} exact/>
             <Route path="/privacy-policy" element={<Privacy/>} exact/>
 
