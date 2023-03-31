@@ -61,7 +61,7 @@ function InstCutOff() {
 
     const url = "https://konsa-college-backend.vercel.app";
 
-   
+
 
     useEffect(() => {
 
@@ -104,10 +104,10 @@ function InstCutOff() {
         if (submit) {
             setTable([]);
             selectedCollege.forEach((college, idx) => {
-                branches.get(college.value).forEach((br)=>{
-                    selectedBranch.push(college.value+" ,"+br);
+                branches.get(college.value).forEach((br) => {
+                    selectedBranch.push(college.value + " ," + br);
                 })
-                
+
                 axios
                     .post(url + "/analyze", {
                         Institute: college.value,
@@ -128,8 +128,8 @@ function InstCutOff() {
                         }
                         else {
 
-                            
-                        
+
+
                             let year2020 = {}, year2021 = {}, year2022 = {};
                             year2020["year"] = "2020";
                             year2021["year"] = "2021";
@@ -180,18 +180,19 @@ function InstCutOff() {
 
 
     console.log(selectedBranch, "bruh");
-    console.log(tableData,"bruh");
+    console.log(tableData, "bruh");
 
     return (
         <>
             <div className="p-3 ">
                 <div className="head md:p-6">
                     <h2 className="text-2xl font-bold p-2">
-                        View Institute-wise Cut-offs
+                        Analyze Institute-wise Cut-offs
                     </h2>
                     <hr />
                     <h3 className="p-2 mt-4 font-semibold">
-                        Filter by institute allows you to filter the cut-off data with the selected institutes and further narrow down with your choice of programs.
+                        Compare the cut-offs of various courses offered by an institute over 10 years in the JoSAA seat allocation process.
+                        This helps understand the popularity and perception of programs offered by the institute, and thus helps understand the demand for a particular program in the institute during the counselling process.
                     </h3>
                 </div>
                 <div className="options p-2 mt-2">
@@ -408,7 +409,7 @@ function InstCutOff() {
                                         {selectedBranch[10] ? (<Line type="monotone" dataKey={selectedBranch[10]} stroke={colorArray[10]} activeDot={{ r: 5 }} />) : null}
 
                                         {selectedBranch[11] ? (<Line type="monotone" dataKey={selectedBranch[11]} stroke={colorArray[11]} activeDot={{ r: 5 }} />) : null}
-                                        
+
                                         {selectedBranch[12] ? (<Line type="monotone" dataKey={selectedBranch[12]} stroke={colorArray[12]} activeDot={{ r: 5 }} />) : null}
 
                                         {selectedBranch[13] ? (<Line type="monotone" dataKey={selectedBranch[13]} stroke={colorArray[13]} activeDot={{ r: 5 }} />) : null}
