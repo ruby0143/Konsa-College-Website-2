@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import Box from "@mui/material/Box"
-import { DataGrid } from '@mui/x-data-grid';
 import { Table } from 'antd';
+
 
 
 const columns = [
@@ -48,10 +47,13 @@ export default function BasicEditingGrid(props) {
   });
 
   return (
-    <Table columns={columns} dataSource={rows} onChange={onChange} pagination={{
-      pageSize: 5
-    }} scroll={{
-     
-    }} />
+    <div className="w-full mobs:w-[320px]  mb-7 text-sm border rounded-lg  text-gray-500 overflow-x-scroll">
+
+      <Table columns={columns} dataSource={rows} onChange={onChange} pagination={{
+        pageSize: 5
+      }} responsive />
+
+    </div>
+
   );
 }
