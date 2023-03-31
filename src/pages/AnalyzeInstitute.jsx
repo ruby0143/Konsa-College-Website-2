@@ -59,9 +59,9 @@ function InstCutOff() {
         '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3',
         '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
 
-    // const url = "https://konsa-college-backend.vercel.app";
+    const url = "https://konsa-college-backend.vercel.app";
 
-    const url = "http://localhost:5000";
+   
 
     useEffect(() => {
 
