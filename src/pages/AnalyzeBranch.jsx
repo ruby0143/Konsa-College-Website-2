@@ -27,24 +27,19 @@ const viewBranchWise = () => {
   const [selectedInstitute, setSelectedInstitute] = useState([]);
   const [institutes, setInstitutes] = useState([]);
   const [chartData, setChartData] = useState([]);
+  const [Duration,setSelectedDuration]=useState("4 Years")
   const [filterData, setFilterData] = useState([]);
   const [noData, setBool] = useState(false);
   let Institute = [];
 
-  const chartData1 = [
-    { name: "Round 1", cr: 1200 },
-    { name: "Round 2", cr: 1500 },
-    { name: "Round 3", cr: 500 },
-    { name: "Round 4", cr: 900 },
-    { name: "Round 5", cr: 1600 },
-    { name: "Round 6", cr: "200" },
-  ];
-
   const Gender = ["Gender-Neutral", "Female-only (including supernumerary)"];
+  const duration = ["4 Years","5 Years"]
   const url = "https://konsa-college-backend.vercel.app";
+  // const url = "http://localhost:5000";
+  let array = [];
 
   useEffect(() => {
-    axios.get(url + "/y22?page=1&limit=2000").then((res) => {
+    axios.get(url + "/y22?page=1&limit=5000").then((res) => {
       if (examTypes === "JEE") {
         setDefault(res.data.results);
       } else {
@@ -79,20 +74,50 @@ const viewBranchWise = () => {
   console.log("selected Institute", selectedInstitute);
 
   useEffect(() => {
-    if (selectedInstitute.length > 0 && selectedGender && selectedSeat) {
-      const filter = [];
-      for (let i = 1; i < 6; i++) {
-        filter[i - 1] = filterData.filter(
-          (clg) =>
-            clg.Institute.includes(selectedInstitute) &&
-            clg.Round.includes(i) &&
-            clg.Gender === selectedGender &&
-            clg.Seat_Type === selectedSeat
-        );
-      }
-      console.log(filter);
+    if (selectedInstitute) {
+      axios
+        .post(url + "/analyze-branch-wise", {
+          Seat: selectedSeat,
+          Gender: selectedGender,
+          Branch: selected,
+          Institute: selectedInstitute,
+          Duration: Duration,
+        })
+        .then((response) => {
+          console.log(response.data);
+          for (let i = 0; i < response.data.y20.length; i++) {
+            console.log("in loop y20");
+
+            array.push({
+              name: "2020 Round " + response.data.y20[i].Round,
+              Opening_Rank: response.data.y20[i].Opening_Rank,
+            });
+          }
+          for (let i = 0; i < response.data.y21.length; i++) {
+            console.log("in loop y20");
+
+            array.push({
+              name: "2021 Round " + response.data.y21[i].Round,
+              Opening_Rank: response.data.y21[i].Opening_Rank,
+            });
+          }
+          for (let i = 0; i < response.data.y22.length; i++) {
+            console.log("in loop y20");
+
+            array.push({
+              name: "2022 Round " + response.data.y22[i].Round,
+              Opening_Rank: response.data.y22[i].Opening_Rank,
+            });
+          }
+
+          console.log("chart", array);
+          setChartData(array);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  }, [selectedInstitute]);
+  }, [selectedInstitute,selectedSeat,selected,selectedGender,Duration]);
 
   return (
     <>
@@ -188,7 +213,24 @@ const viewBranchWise = () => {
             </select>
           </div>
         )}
+        <div className="homeStates my-1 md:w-1/3 ">
+            <div className="flex justify-between font-medium">
+              <span>Duration</span>
+            </div>
+            <select
+              name="states"
+              className="p-2 w-full border-solid border-[#D1D5DB] border rounded-md"
+              onChange={(e) => {
+                setSelectedDuration(e.target.value);
+              }}
+            >
+              {duration?.map((state) => {
+                return <option value={state}>{state}</option>;
+              })}
+            </select>
+          </div>
       </div>
+      
       <div className="w-full flex flex-row justify-start text-sm">
         <div className="homeStates my-1 md:w-1/3 md:px-10">
           <div className="flex justify-between font-medium">
@@ -243,36 +285,37 @@ const viewBranchWise = () => {
         </div> */}
       </div>
       <div className="chart mt-7">
-        <ResponsiveContainer width="90%" height={400}>
-          <LineChart
-            id="chart"
-            data={chartData1}
-            margin={{
-              top: 0,
-              right: 30,
-              left: -10,
-              bottom: 5,
-            }}
-          >
-            <XAxis dataKey={"name"} height={80}>
-              {/* <Label value="Rounds" position="insideBottom" /> */}
-            </XAxis>
-            <YAxis />
-            <Tooltip />
-            {!noData ? (
-              <>
-                <Line
-                  type="monotone"
-                  dataKey="cr"
-                  stroke="#8884d8"
-                  activeDot={{ r: 5 }}
-                />
-              </>
-            ) : null}
+          <ResponsiveContainer width="90%" height={400}>
+            <LineChart
+              id="chart"
+              data={chartData}
+              margin={{
+                top: 0,
+                right: 30,
+                left: -10,
+                bottom: 5,
+              }}
+            >
+              <XAxis dataKey={"name"} height={80}>
+                <Label value="Rounds" position="insideBottom" />
+              </XAxis>
+              <YAxis />
+              <Tooltip />
+              {!noData ? (
+                <>
+                  <Line
+                    type="monotone"
+                    dataKey="Opening_Rank"
+                    stroke="#8884d8"
+                    activeDot={{ r: 5 }}
+                  />
+                </>
+              ) : null}
 
-            <Legend verticalAlign="top" height={80} />
-          </LineChart>
-        </ResponsiveContainer>
+              <Legend verticalAlign="top" height={80} />
+            </LineChart>
+          </ResponsiveContainer>
+        
         {noData ? (
           <div className="absolute">
             <div>

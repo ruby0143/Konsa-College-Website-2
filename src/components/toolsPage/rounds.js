@@ -1,5 +1,4 @@
 const Rounds = [
-    "Last Round Only",
     "All Rounds",
     "Round 1",
     "Round 2",

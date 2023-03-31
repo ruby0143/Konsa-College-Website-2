@@ -65,15 +65,16 @@ const CollegePredictor = () => {
       .post(url + "/collegePredictor", {
         Gender: selectedGender,
         Caste: Category,
+        Rank:rank,
       })
       .then((resp) => {
         console.log(resp)
-        let clg = resp?.data?.filter((clg) => clg.Opening_Rank < rank && rank < clg.Closing_Rank);
-        const sort = clg.sort((a, b) => {
-          return a.Closing_Rank - b.Closing_Rank;
-        });
-        setAllFilterCollege(sort);
-        let othclg = sort?.filter((clg) => {
+        // let clg = resp?.data?.filter((clg) => clg.Opening_Rank < rank && rank < clg.Closing_Rank);
+        // const sort = clg.sort((a, b) => {
+        //   return a.Closing_Rank - b.Closing_Rank;
+        // });
+        setAllFilterCollege(resp.data);
+        let othclg = resp?.data.filter((clg) => {
           if (
             clg.Institute.split(" ")[clg.Institute.split(" ").length - 1] !==
             Eligibility
@@ -82,7 +83,7 @@ const CollegePredictor = () => {
           }
         });
         setOneThird(0);
-        if (sort.length < 8) {
+        if (resp.data.length < 8) {
           setDoBlur(true);
           setDownload(false);
         }
@@ -90,7 +91,7 @@ const CollegePredictor = () => {
         setPredictedColleges(othclg);
         setMapColleges(othclg);
 
-        let home = sort?.filter((clg) => {
+        let home = resp?.data.filter((clg) => {
           if (
             clg.Institute.split(" ")[clg.Institute.split(" ").length - 1] ===
             Eligibility

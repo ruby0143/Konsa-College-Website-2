@@ -14,9 +14,9 @@ const viewBranchWise = () => {
   const [examTypes, setExamTypes] = useState("JEE");
   const [selectedSeat, setSeat] = useState("OPEN");
   const [selectedGender, setGender] = useState("Gender-Neutral");
-  const [selectedRound, setRound] = useState("Last Round Only");
-  const [minimum, setMinimum] = useState();
-  const [maximum, setMaximum] = useState();
+  const [selectedRound, setRound] = useState("All Rounds");
+  const [minimum, setMinimum] = useState(0);
+  const [maximum, setMaximum] = useState(100000);
   const [defaultData, setDefault] = useState([]);
   const [selected, setBranches] = useState([]);
   const [filterData, setFilter] = useState([]);
@@ -34,7 +34,7 @@ const viewBranchWise = () => {
     { title: "Seat", dataIndex: "Seat_Type" },
   ];
   const page = 1;
-  const limit = 2000;
+  const limit = 5000;
   let array = [];
   // const url = "http://localhost:5000";
   const url = "https://konsa-college-backend.vercel.app";
@@ -42,68 +42,7 @@ const viewBranchWise = () => {
     await axios
       .get(url + `/y22?page=${page}&limit=${limit}`)
       .then((response) => {
-        if (response.status === 500) {
-          console.log("No Response");
-        } else {
-          console.log(response?.data.results);
-          if (examTypes) {
-            if (examTypes === "ADVANCE") {
-              if (maximum && minimum) {
-                for (let x = 0; x < response?.data.results.length; x++) {
-                  if (
-                    minimum < response?.data.results[x].Opening_Rank &&
-                    maximum > response?.data.results[x].Closing_Rank &&
-                    response?.data.result[x].includes(
-                      "Indian Institute of Technology"
-                    )
-                  ) {
-                    array.push(response?.data.results[x]);
-                  }
-                }
-                setDefault(array);
-              } else {
-                console.log(examTypes);
-                const filter = response?.data.results.filter((clg) => {
-                  if (
-                    minimum < response?.data.results[x].Opening_Rank &&
-                    maximum > response?.data.results[x].Closing_Rank
-                  ) {
-                    return clg;
-                  }
-                });
-                setDefault(filter);
-              }
-            } else {
-              if (maximum && minimum) {
-                for (let x = 0; x < response?.data.results.length; x++) {
-                  if (
-                    minimum < response?.data.results[x].Opening_Rank &&
-                    maximum > response?.data.results[x].Closing_Rank
-                  ) {
-                    array.push(response?.data.results[x]);
-                  }
-                }
-                setDefault(array);
-              } else {
-                setDefault(response?.data.results);
-              }
-            }
-          } else {
-            if (maximum && minimum) {
-              for (let x = 0; x < response?.data.results.length; x++) {
-                if (
-                  minimum < response?.data.results[x].Opening_Rank &&
-                  maximum > response?.data.results[x].Closing_Rank
-                ) {
-                  array.push(response?.data.results[x]);
-                }
-              }
-              setDefault(array);
-            } else {
-              setDefault(response?.data.results);
-            }
-          }
-        }
+        setDefault(response.data.results);
       })
       .catch((err) => {
         console.log(err);
@@ -112,74 +51,30 @@ const viewBranchWise = () => {
 
   useEffect(() => {
     getData();
-  }, [minimum, maximum, examTypes]);
+  }, []);
 
   useEffect(() => {
-    if (callFunction) {
+    if (selected) {
       axios
         .post(url + "/branch-wise", {
           Caste: selectedSeat,
           Round: selectedRound,
           Gender: selectedGender,
+          Min: minimum,
+          Max: maximum,
+          Type:examTypes,
+          Branch: selected,
         })
         .then((response) => {
-          if (response.status === 500) {
-            console.log("No Response");
-          } else {
-            console.log(">>>>", response);
-            array = [];
-            if (selected.length > 0) {
-              for (let x = 0; x < response.data.length; x++) {
-                if (response.data[x].Academic_Program_Name.includes(selected)) {
-                  if (maximum && minimum) {
-                    if (
-                      minimum < response.data[x].Opening_Rank &&
-                      maximum > response.data[x].Closing_Rank
-                    ) {
-                      array.push(response.data[x]);
-                    }
-                  } else {
-                    array.push(response.data[x]);
-                  }
-                  // array.push(response.data[x]);
-                }
-              }
-
-              console.log("array", array);
-              setFilter(array);
-            } else {
-              setFilter(response.data);
-            }
-          }
+          console.log(response);
+          setDefault(response.data)
         })
         .catch((err) => {
           console.log(err);
         });
-    } else {
-      if (selected.length > 0) {
-          for (let x = 0; x < defaultData.length; x++) {
-            if (
-              defaultData[x].Academic_Program_Name.includes(selected)
-            ) {
-              if (maximum && minimum) {
-                if (
-                  minimum < defaultData[x].Opening_Rank &&
-                  maximum > defaultData[x].Closing_Rank
-                ) {
-                  array.push(defaultData[x]);
-                }
-              } else {
-                array.push(defaultData[x]);
-              }
-            }
-          }
-        
-        setFilter(array);
-        console.log("data", array);
-      }
     }
   }, [
-    setFilter,
+    setDefault,
     selectedGender,
     selectedRound,
     selectedSeat,
@@ -187,6 +82,7 @@ const viewBranchWise = () => {
     selected,
     minimum,
     maximum,
+    examTypes,
   ]);
 
   return (
@@ -358,7 +254,7 @@ const viewBranchWise = () => {
         ) : (
           <Table
             columns={columns}
-            dataSource={filterData.length > 0 ? filterData : defaultData}
+            dataSource={defaultData}
             responsive
           ></Table>
         )}

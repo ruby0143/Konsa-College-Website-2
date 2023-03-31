@@ -60,7 +60,7 @@ const AllColleges = () => {
         if (response.status === 500) {
           console.log("College Not Found!");
         } else {
-          // console.log(response?.data.total)
+          console.log(response?.data)
           setPaginatedData([...response.data.results]);
           setTotal(response?.data?.total);
           setSkeleton(false);
