@@ -9,74 +9,80 @@ const tool = () => {
       img: "./tool1.svg",
       heading: "College Predictor",
       link: "/collegePredictor",
-      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      desc: "Discover your ideal engineering college effortlessly based on your rank, thanks to our College Predictor Tool. Let the magic unfold as you find your perfect match!",
       route: "/collegePredictor",
     },
     {
       img: "./tool2.svg",
       heading: "Exam Recommendation",
       link: "/examRecommender",
-      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      desc: "There are more than 100 engineering exams in India! Use our innovative tool to discover the best exams to target!",
       route: "/examRecommender",
     },
     {
       img: "./tool1.svg",
       heading: "Preference List Generator",
-      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      desc: "Solving JEE Advance questions is still easier than making the best preference list, but not anymore with this tool!",
       route: "/preferenceListGenerator",
     },
     {
       img: "./tool1.svg",
       heading: "View All Institutes",
-      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      desc: "View a list of all institutes in JOSSA counseling",
       route: "/trends",
     },
     {
       img: "./tool1.svg",
       heading: "View All Branches",
-      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      desc: "View a list of all branches in JOSSA counseling",
       route: "/branches",
     },
     {
       img: "./tool1.svg",
       heading: "View Institute wise Cutoffs",
-      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      desc: "Filter the cutoff data with selected Institutes",
       route: "/InstCutoff",
     },
     {
       img: "./tool2.svg",
       heading: "College Comparator",
-      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      desc: "Stuck between two colleges? Use this tool to compare colleges and make informed decisions for your future.",
       route: "/collegeComparator",
     },
     {
       img: "./tool1.svg",
       heading: "Scheduler",
-      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      desc: "Your go-to tool to help you stay updated on all exam and counseling dates! Never miss any deadlines again!",
       route: "/scheduler",
     },
     {
       img: "./tool2.svg",
       heading: "Percentile Predictor",
-      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      desc: "A comprehensive tool to help you take an approximate guess at your percentile based on your marks!",
       route: "/percentilePredictor",
     },
     {
       img: "./tool1.svg",
-      heading: "View All Branches",
-      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
-      route: "/branches",
+      heading: "View Branch wise Cutoffs",
+      desc: "Filter the cutoff data with selected Branches",
+      route: "/branch-wise-cut-off",
     },
     {
       img: "./tool2.svg",
-      heading: "Branch Wise Cut-Off",
-      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
-      route: "/branch-wise-cut-off",
+      heading: "Trend Analysis Tool",
+      desc: "Numbers can be confusing, but with this innovative tool, you can easily understand past cutoff trends with graphs!",
+      route: "/trendsAnalysis",
     },
     {
       img: "./tool1.svg",
       heading: "Analyze Branch Wise Cut-Off Trends",
-      desc: "Lorem ipsum dolor sit amet consectetur. Laoreet non feugiat at viverra sagittis praesent rutrum habitasse. Congue turpis ipsum mattis eu posuere.",
+      desc: "Compare the cutoff trends of a course in a engineering branch",
+      route: "/analyze-branch-wise-cut-off",
+    },
+    {
+      img: "./tool2.svg",
+      heading: "Analyze Institute Wise Cut-Off Trends",
+      desc: "Compare the cutoff trends of a courses offered by an institute",
       route: "/analyze-branch-wise-cut-off",
     },
   ];
@@ -84,17 +90,17 @@ const tool = () => {
     {
       img: "./tool3.svg",
       heading: "Search Your College",
-      desc: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a BC.",
+      desc: "We have more than 300 colleges listed on our website. What's stopping you from exploring more? Discover your dream college NOW!",
     },
     {
       img: "./tool4.svg",
       heading: "Get Your College List",
-      desc: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a BC.",
+      desc: "Crafting a preference list has never been easier! Say goodbye to the struggle with this tool!",
     },
     {
       img: "./tool5.svg",
       heading: "Certified Colleges",
-      desc: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a BC.",
+      desc: "All the data on our platform is curated and authentic.",
     },
   ];
   return (
@@ -110,9 +116,10 @@ const tool = () => {
                 Choice For <span className="text-[#EE7C00]">Future</span>
               </div>
               <div className="text-[#8A8A8A] text-sm mt-5 md:w-[455px] mobs:w-full p-2 text-center">
-                Lorem ipsum dolor sit amet consectetur. Enim venenatis posuere
-                dictumst convallis enim est id sem congue. Nunc ullamcorper
-                arcu.
+              Introducing KC innovative tools, designed to assist you at every 
+              stage of your counseling journey. Discover the perfect tool for your
+               needs and take control of your future. Try them NOW!
+                arcu. Explore our smart tools!
               </div>
               <div className="bg-white mobs:w-full rounded-3xl w-[400px] flex justify-between items-center mt-5">
                 <div className="flex justify-center items-center p-1 gap-2 gap-x-3 ml-2">
@@ -122,7 +129,7 @@ const tool = () => {
                   <div>
                     <input
                       className="placeholder-[#0F335E] font-semibold outline-none"
-                      placeholder="Search for a Tools..."
+                      placeholder="Search for a Tool..."
                     />
                   </div>
                 </div>
@@ -169,7 +176,7 @@ const tool = () => {
         </div>
         <div>
           <p className="text-center font-poppins text-[#8A8A8A] mobs:text-[14px] px-3 tracking-wide md:leading-7 mt-4 mobs:mt-2">
-            Lorem Ipsum is simply dummy text of the printing.
+            Have a look at our freshly brewed counseling tools!
           </p>
         </div>
 

@@ -188,9 +188,9 @@ const ExamRecommender = () => {
       
           <div className=" flex justify-center mb-[60px] mob:mb-[40px]">
             <p className="text-center w-[80%]  mt-[20px] mob:mt-[8px] text-xl mob:text-base mob:font-light text-[#3C3B3B] desk:leading-6 mob:leading-5 desk:tracking-wider">
-              Lorem ipsum dolor sit amet consectetur. Lobortis porta volutpat tellus
-              pellentesque sodales eget quam enim. Risus et diam quis risus nunc ut
-              porttitor tellus imperdiet. Id nunc turpis donec aliquam .
+              An innovative tool to help you choose the right exams 
+              to apply for and get into the best college based on your 
+              potential!
             </p>
           </div>
           <div className="flex justify-center bg-[url('/cpbg.svg')] desk:bg-cover  mob:bg-cover mob:bg-no-repeat mob:bg-bottom">
@@ -285,8 +285,8 @@ const ExamRecommender = () => {
                 }}
                 >
               <p className="text-[#F3F3F3] mob:hidden  text-center  leading-9 tracking-wide text-[28px] font-bold">
-                Lorem ipsum dolor sit amet consectetur. Lobortis porta volutpat
-                tellus pellentes
+                Did you know that taking the right exams can 
+                increase your college selection by 60%?
               </p>
               </div>
             </div>
