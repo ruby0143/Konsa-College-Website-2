@@ -8,9 +8,9 @@ const CollegePageHeader = (props) => {
   const [skel,setSkel]=useState(true)
 
   useEffect(() => {
-    setTimeout(() => {
-      setSkel(false);
-    }, 2000)
+    if(props.result.header_photo_link){
+      setSkel(false)
+    }
   }, [])
   
 

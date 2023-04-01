@@ -6,7 +6,7 @@ const CollegeReview = (props) => {
   return (
     <>
       <div className='flex flex-col'>
-        <div className='w-full mb-3'>
+        {props.result.top_recruiters && <div className='w-full mb-3'>
           <h3 className='text-xl my-3 font-bold text-[#303030]'>Companies Visited</h3>
           <hr className='w-full text-gray-500' />
           <ul className="">
@@ -23,7 +23,7 @@ const CollegeReview = (props) => {
             })}
           </ul>
 
-        </div>
+        </div>}
 
         {props.result.review_video ? <div className='py-4 mb-[2rem]'>
           <h3 className='text-xl my-3 font-bold text-[#303030]'>College Review Video</h3>
@@ -33,15 +33,15 @@ const CollegeReview = (props) => {
               className="py-5 px-6 w-full h-[14rem] sm:h-[32rem]"
             >
               <div className='flex justify-center w-full h-full'>
-              <iframe src={props.result.review_video} style={{ boxShadow: "1px 2px 18px 2px rgba(0, 0, 0, 0.25)" }} className="rounded-xl w-full h-full" frameborder='0'
-                allow='autoplay; encrypted-media'
-                allowfullscreen
-                title='video'></iframe>
+                <iframe src={props.result.review_video} style={{ boxShadow: "1px 2px 18px 2px rgba(0, 0, 0, 0.25)" }} className="rounded-xl w-full h-full" frameborder='0'
+                  allow='autoplay; encrypted-media'
+                  allowfullscreen
+                  title='video'></iframe>
               </div>
             </section>
           </div>
-        </div>:<div></div>}
-        
+        </div> : <div></div>}
+
       </div>
     </>
   )
