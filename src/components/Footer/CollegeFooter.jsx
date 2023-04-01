@@ -15,12 +15,13 @@ const CollegeFooter = () => {
       name: "",
       phone: phone,
     };
-const url = "https://konsa-college-backend.vercel.app";
+    const url = "https://konsa-college-backend.vercel.app";
+
 
 
     axios
       .post(
-        url+"/phone",
+        url + "/phone",
         doc
       )
       .then((res) => {
@@ -43,12 +44,20 @@ const url = "https://konsa-college-backend.vercel.app";
       });
   };
   const Link = [
-    { link: "ABOUT", route: "/soon" },
+    { link: "ABOUT", route: "https://linktr.ee/konsacollege" },
     { link: "PRIVACY POLICY", route: "/privacy-policy" },
     { link: "TERM OF USE", route: "/TermsAndConditions" },
-    { link: "CONTACT US", route: "/soon" },
-    { link: "SUPPORT US", route: "/soon" },
+    { link: "CONTACT US", route: "mailto:konsacollegeyt@gmail.com" },
   ];
+
+  const handleContactClick = (e) => {
+    e.preventDefault()
+    const email = 'konsacollegeyt@gmail.com';
+    const subject = 'Contact Form Submission';
+    const body = 'Hi there,\n\nI wanted to reach out about...';
+  
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
   return (
     <>
       <div className="w-full h-[8px] bg-[#EE7C00]"></div>
@@ -74,16 +83,31 @@ const url = "https://konsa-college-backend.vercel.app";
             </div>
           </div>
 
-          <div className="mob:w-full desk:w-1/3 desk:p-3 ">
-            <div className=" mob:pt-5 desk:flex desk:flex-row desk:p-10 desk:flex-wrap desk:justify-start h-full  ">
+          <div className="mob:w-full desk:w-1/3 desk:p-3">
+            <div className="mob:pt-5 desk:flex desk:flex-row desk:p-10 desk:flex-wrap desk:justify-start h-full">
               {Link.map((item, id) => {
                 return (
                   <React.Fragment key={id}>
-                    <NavLink key={id} to={item.route} target="_blank" rel="noopener noreferrer">
-                      <div className="mob:text-center desk:w-[150px] font-roboto  text-[14px]">
-                        {item.link}
-                      </div>
-                    </NavLink>
+                    {item.route.startsWith("http") ? (
+                      <a href={item.route} target="_blank" rel="noopener">
+                        <div className="mob:text-center desk:w-[150px] font-roboto text-[14px]">
+                          {item.link}
+                        </div>
+                      </a>
+                    ) : (
+                      <NavLink
+                        to={item.route}
+                        onClick={
+                          item.route.startsWith("mailto:")
+                            ? handleContactClick
+                            : null
+                        }
+                      >
+                        <div className="mob:text-center desk:w-[150px] font-roboto text-[14px]">
+                          {item.link}
+                        </div>
+                      </NavLink>
+                    )}
                     <br />
                   </React.Fragment>
                 );

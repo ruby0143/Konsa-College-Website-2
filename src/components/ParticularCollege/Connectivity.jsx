@@ -12,7 +12,7 @@ function Connectivty(props) {
             <div className="cnt-body">
               <div className="my-[2rem] relative">
                 <div className="dotted"></div>
-                <div className="flex mb-[2rem]">
+                <div className="flex mb-[2rem] items-center">
                   <div className="p-[.6rem] h-11 min-w-[2.8rem] rounded-full my-[0.5rem] mx-[0.7rem]" style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
                     <img className="h-full w-full" src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/icons/castle.png" />
                   </div>

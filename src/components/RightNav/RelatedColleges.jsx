@@ -20,9 +20,9 @@ function RelatedColleges() {
           <img
             src="https://th.bing.com/th/id/R.ceca379fca1497cbfa932a5b0ca6df14?rik=WKOse3rAlhPgGQ&riu=http%3a%2f%2fwww.sit.iitd.ac.in%2fsite-assets%2fimages%2fiitd_logo.png&ehk=KPeib6S57WAjOE%2fltX5SgTpJZ3I2SjKMisRHxIr9lyo%3d&risl=&pid=ImgRaw&r=0"
             alt=""
-            className="w-[3rem] h-[3rem] lg:w-[20%] lg:h-[3.7rem] "
+            className="lg:w-[21%] lg:h-[3.8rem] "
           />
-          <a className="font-semibold ml-[3rem] pl-2 lg:ml-[1rem] cursor-pointer lg:w-[75%]" href="https://konsa-college-website.vercel.app/college/iitd">
+          <a className="font-semibold ml-[3rem] pl-2 lg:ml-[.8rem] cursor-pointer lg:w-[75%]" href="https://konsa-college-website.vercel.app/college/iitd">
             Indian Institute of Technology Delhi
           </a>
         </div>
@@ -30,9 +30,9 @@ function RelatedColleges() {
           <img
             src="https://i.pinimg.com/originals/f7/b7/86/f7b786921ab3444631dba2ac1edb56f9.png"
             alt=""
-            className="w-[3rem] h-[3rem] lg:w-[20%] lg:h-[3.7rem]"
+            className="lg:w-[21%] lg:h-[3.8rem]"
           />
-          <a className="font-semibold ml-[3rem] pl-2 lg:ml-[1rem] cursor-pointer lg:w-[75%]" href="https://konsa-college-website.vercel.app/college/iitb">
+          <a className="font-semibold ml-[3rem] pl-2 lg:ml-[.8rem] cursor-pointer lg:w-[75%]" href="https://konsa-college-website.vercel.app/college/iitb">
             Indian Institute of Technology Bombay
           </a>
         </div>
@@ -40,9 +40,9 @@ function RelatedColleges() {
           <img
             src="https://elibraryiitbhu.remotexs.in/sites/default/files/logo_img.png"
             alt=""
-            className="w-[3rem] h-[3rem] lg:w-[20%] lg:h-[3.7rem]"
+            className="lg:w-[21%] lg:h-[3.8rem]"
           />
-          <a className="font-semibold ml-[3rem] pl-2 lg:ml-[1rem] cursor-pointer lg:w-[75%]" href="https://konsa-college-website.vercel.app/college/iitbhu">
+          <a className="font-semibold ml-[3rem] pl-2 lg:ml-[.8rem] cursor-pointer lg:w-[75%]" href="https://konsa-college-website.vercel.app/college/iitbhu">
             Indian Institute of Technology BHU
           </a>
         </div>
