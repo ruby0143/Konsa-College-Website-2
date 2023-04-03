@@ -151,7 +151,7 @@ const tool = () => {
             return (
               <div
                 key={id}
-                className="flex flex-row md:w-1/3 justify-center items-center py-2  gap-3"
+                className="flex flex-row md:w-1/3 justify-center items-center py-4  gap-3"
               >
                 <div className="bg-[#FFFFFF33] rounded-lg p-1">
                   <img className="w-[40px] h-[40px]" src={card.img}></img>
