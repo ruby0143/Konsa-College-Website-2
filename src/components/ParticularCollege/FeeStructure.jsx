@@ -7,12 +7,13 @@ function FeeStructure(props) {
   const [skel, setSkel] = useState(false)
   useEffect(() => {
     setTimeout(() => {
-      if (!props.result.Fee) {
+      if (props.result.fees > 0) {
         setSkel(true);
       }
     }, 5000);
 
   }, []);
+  console.log(props)
   const [fee, setFee] = useState([])
   const [totalValue, setTotalValue] = useState([])
 
@@ -72,8 +73,8 @@ function FeeStructure(props) {
 
   return (
     <>
-      {props.result.fees ?
-        <div className="flex">
+      {/* {props.result.fees ?
+        <div className="flex"> */}
           {/* <div className="container">
             <div className="text-xl my-3 font-bold text-[#303030]">Fee Structure</div>
             <hr />
@@ -137,7 +138,7 @@ function FeeStructure(props) {
               </div>
             </div>
           </div> */}
-        </div> : !skel && (
+        {/* </div> : !skel && (
           <div
             role="status"
             className="w-full h-[300px] border border-gray-200 rounded shadow animate-pulse  dark:border-gray-700"
@@ -155,7 +156,7 @@ function FeeStructure(props) {
             </div>
             <span className="sr-only">Loading...</span>
           </div>
-        )}
+        )} */}
     </>
   );
 }
