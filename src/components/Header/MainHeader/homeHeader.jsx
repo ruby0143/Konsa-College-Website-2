@@ -3,12 +3,10 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import useCollegeDataStore from '../../../utils/AllCollegeData-Store'
 import style from './home.module.css'
 
 const HomeHeader = () => {
   
-  const collegeDataList = useCollegeDataStore((state) => state.collegeDataList)
   const [searchTerm, setSearchTerm] = useState("")
   const [searchResults, setSearchResults] = useState([])
 
@@ -18,7 +16,7 @@ const HomeHeader = () => {
         return 
     }
 
-    ( async () => {
+    (async () => {
         const url = 'https://konsa-college-backend.vercel.app/search'
         const {data} = await axios.get(url,{
             params : {

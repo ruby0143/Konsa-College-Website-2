@@ -76,7 +76,7 @@ function App() {
             <Route path="/view-institute-cutoffs" element={<InstCutOff />} exact />
             <Route path="/examRecommender" element={<ExamRecommender />} exact />
             <Route path="/preferenceListGenerator" element={<PreferenceListGenerator />} exact />
-            <Route path="/collegeComparator" element={<CollegeComparator />} exact />
+            <Route path="/collegeComparator" element={<CollegeComparator/>} exact />
             <Route path="/college/:particularcollege/cutoff" element={<CutoffPage />} exact />
             <Route path="/tools" element={<Tools/>} exact/>
             <Route path="/branch-wise-cut-off" element={<ViewBranchWise/>} exact/>

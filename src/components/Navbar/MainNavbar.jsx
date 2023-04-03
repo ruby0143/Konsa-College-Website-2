@@ -14,14 +14,14 @@ import toolsRouteIcon from '../../assets/icons/route-icons/Tools.svg'
 import KonsaCollegeLogo from "../../assets/KonsaCollege_Logo/KonsaCollege_mobileLogo.svg"
 
 // social icons import
+import { useEffect, useRef } from 'react';
 import instaIcon from '../../assets/icons/insta.png';
 import linkedinIcon from '../../assets/icons/linkedin.png'
 import ytIcon from "../../assets/icons/yt.png"
 import playstoreIcon from '../../assets/icons/playstore.png'
 import emailIcon from '../../assets/icons/email.png'
-import { useEffect } from 'react';
-import { useRef } from 'react';
 import useCollegeDataStore from '../../utils/AllCollegeData-Store';
+import { MdOutlineLogout } from "react-icons/md";
 
 // auth imports
 import { auth } from '../../config/auth/firebaseauth';
@@ -146,7 +146,7 @@ const MainNavbar = () => {
           <div className={`md:hidden flex flex-col mt-8 `}>
             { 
                 routes.map(route => {
-                    return <div key={route.route} className="w-full rounded-md mb-1">
+                    return <div key={route.route} className="w-full rounded-md mb-3">
                               <NavLink 
                                 to={route.path} 
                                 onClick={()=>setMobileSidebar(false)} 
@@ -161,6 +161,18 @@ const MainNavbar = () => {
                            </div>
                 })
             }
+            {authValues !== null ? <div className='w-full mb-2'>
+              <button 
+                type="button"
+                className='cursor-pointer pl-4 flex items-center'
+                onClick={handleLogout}
+              >
+                <MdOutlineLogout 
+                  className='text-[#EE7C00] text-xl mr-3'
+                />
+                <span className='text-[#EE7C00] font-medium'>Logout</span>
+              </button>
+            </div> : null}
           </div>
 
           <div className='flex-1 flex flex-col justify-end items-center' >
@@ -188,14 +200,7 @@ const MainNavbar = () => {
                       Sign Up
                   </div>
               </div>
-            ) : (
-              <div 
-                className='text-[#EE7C00] font-medium cursor-pointer bg-white border-2 border-[#EE7C00] w-[180px] py-[8px] px-[22px] rounded-full shadow-md text-center' 
-                onClick={handleLogout}
-              >
-                Logout
-              </div>
-            )}
+            ) : null}
 
             <div className='mb-12'>
               <Link href="/">

@@ -36,8 +36,6 @@ const CollegePage = () => {
   const Items = ["Overview", "Connectivity", "Fee Structure", "Scholarship", "About College", "Placement Stats", "College Review Video"];
   const url = "https://konsa-college-backend.vercel.app";
 
-
-
   useEffect(() => {
     const pass = searchParams.get("password");
     if (pass === "FamLearn123") {
