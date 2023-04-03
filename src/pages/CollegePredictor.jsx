@@ -663,8 +663,7 @@ const CollegePredictor = () => {
             }}
           >
             <p className="text-[#F3F3F3]  text-center  leading-9 tracking-wide text-[28px] font-bold">
-              Lorem ipsum dolor sit amet consectetur. Lobortis porta volutpat
-              tellus pellentes
+            Explore the college that best fits your rank, and don't forget to send us ladoos!
             </p>
           </div>
         </div>
