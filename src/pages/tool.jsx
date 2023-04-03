@@ -12,13 +12,7 @@ const tool = () => {
       desc: "Discover your ideal engineering college effortlessly based on your rank, thanks to our College Predictor Tool. Let the magic unfold as you find your perfect match!",
       route: "/collegePredictor",
     },
-    {
-      img: "./tool2.svg",
-      heading: "Exam Recommendation",
-      link: "/examRecommender",
-      desc: "There are more than 100 engineering exams in India! Use our innovative tool to discover the best exams to target!",
-      route: "/examRecommender",
-    },
+
     {
       img: "./tool1.svg",
       heading: "Preference List Generator",
@@ -41,7 +35,7 @@ const tool = () => {
       img: "./tool1.svg",
       heading: "View Institute wise Cutoffs",
       desc: "Filter the cutoff data with selected Institutes",
-      route: "/InstCutoff",
+      route: "/view-institute-cutoffs",
     },
     {
       img: "./tool2.svg",
@@ -49,12 +43,8 @@ const tool = () => {
       desc: "Stuck between two colleges? Use this tool to compare colleges and make informed decisions for your future.",
       route: "/collegeComparator",
     },
-    {
-      img: "./tool1.svg",
-      heading: "Scheduler",
-      desc: "Your go-to tool to help you stay updated on all exam and counseling dates! Never miss any deadlines again!",
-      route: "/scheduler",
-    },
+
+
     {
       img: "./tool2.svg",
       heading: "Rank Predictor",
@@ -77,7 +67,7 @@ const tool = () => {
       img: "./tool1.svg",
       heading: "Analyze Branch Wise Cut-Off Trends",
       desc: "Compare the cutoff trends of a course in a engineering branch",
-      route: "/analyze-branch-wise-cut-off",
+      route: "/analyze-institute-wise-cutoff",
     },
     {
       img: "./tool2.svg",
@@ -121,7 +111,7 @@ const tool = () => {
                needs and take control of your future. Try them NOW!
                 arcu. Explore our smart tools!
               </div>
-              <div className="bg-white mobs:w-full rounded-3xl w-[400px] flex justify-between items-center mt-5">
+              <div className="bg-white flex mt-5 mx-3 rounded-3xl w-[350px]bg-white justify-between items-center">
                 <div className="flex justify-center items-center p-1 gap-2 gap-x-3 ml-2">
                   <div className="w-[20px]">
                     <img src="./search.svg"></img>
