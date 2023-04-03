@@ -57,8 +57,8 @@ const tool = () => {
     },
     {
       img: "./tool2.svg",
-      heading: "Percentile Predictor",
-      desc: "A comprehensive tool to help you take an approximate guess at your percentile based on your marks!",
+      heading: "Rank Predictor",
+      desc: "A comprehensive tool to help you take an approximate guess at your Rank based on your marks!",
       route: "/percentilePredictor",
     },
     {
