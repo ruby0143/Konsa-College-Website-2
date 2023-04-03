@@ -32,7 +32,7 @@ const viewBranchWise = () => {
   const [Duration, setSelectedDuration] = useState("4 Years");
   const [filterData, setFilterData] = useState([]);
   const [noData, setBool] = useState(false);
-  const [round,setRounds]=useState("All Rounds")
+  const [round, setRounds] = useState("All Rounds");
   let Institute = [];
 
   const Gender = ["Gender-Neutral", "Female-only (including supernumerary)"];
@@ -92,7 +92,7 @@ const viewBranchWise = () => {
           Branch: BranchData?.Branch || selected,
           Institute: BranchData?.data.Institute || selectedInstitute,
           Duration: Duration,
-          Round : round,
+          Round: round,
         })
         .then((response) => {
           console.log(response.data);
@@ -122,7 +122,14 @@ const viewBranchWise = () => {
           console.log(err);
         });
     }
-  }, [selectedInstitute, selectedSeat, selected, selectedGender, Duration,round]);
+  }, [
+    selectedInstitute,
+    selectedSeat,
+    selected,
+    selectedGender,
+    Duration,
+    round,
+  ]);
 
   return (
     <>
@@ -306,13 +313,28 @@ const viewBranchWise = () => {
           </select>
         </div> */}
       </div>
-      {selectedInstitute && chartData && (
+      {/* {selectedInstitute && chartData && (
         <div className="text-[#8884d8] text-center">{selectedInstitute}</div>
-      )}
-      {BranchData?.data.Institute && chartData && (
-        <div className="text-[#8884d8] text-center">
-          {BranchData?.data.Institute}
-        </div>
+      )} */}
+      {BranchData?.data.Institute && chartData ? (
+        <>
+          {" "}
+          <div className="text-[#8884d8] text-center">
+            {BranchData?.data.Institute}
+          </div>
+          <div className="text-[#8884d8] text-center text-xs">
+            {BranchData?.data.Array}
+          </div>
+        </>
+      ) : (
+        <>
+          {" "}
+          {selectedInstitute && chartData && (
+            <div className="text-[#8884d8] text-center">
+              {selectedInstitute}
+            </div>
+          )}
+        </>
       )}
 
       <div className="chart mt-5">
