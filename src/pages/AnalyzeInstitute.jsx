@@ -120,15 +120,16 @@ function InstCutOff() {
 
                         const years = resp.data;
                         console.log(">>", years);
-
+                        const chartEle = document.querySelector("#chart");
 
                         if (years.y20.length === 0 && years.y21.length === 0 && years.y22.length === 0) {
                             console.log("No data found");
                             setBool(true);
+                            chartEle.classList.add("blur-[2px]");
                         }
                         else {
 
-
+                            setBool(false)
 
                             let year2020 = {}, year2021 = {}, year2022 = {};
                             year2020["year"] = "2020";
@@ -159,6 +160,7 @@ function InstCutOff() {
                                 return [...prev, year2022];
                             })
 
+                            chartEle.classList.remove("blur-[2px]");
                         }
 
                     })
