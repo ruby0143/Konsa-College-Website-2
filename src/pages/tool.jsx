@@ -145,7 +145,7 @@ const tool = () => {
         </div>
       </div>
 
-      <div className="w-full  flex justify-center absolute top-[550px] mobs:top-[700px]">
+      <div className="w-full  flex justify-center absolute top-[640px] mobs:top-[700px]">
         <div className="w-[90%]  bg-[#0E0E0E] rounded-lg text-white flex flex-row mobs:flex-col justify-center items-center flex-wrap p-5 mobs:p-2">
           {BlackContainer.map((card, id) => {
             return (
