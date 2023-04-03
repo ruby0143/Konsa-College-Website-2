@@ -94,10 +94,10 @@ const branches = () => {
     <>
       <div className="p-3 mobs:p-1 flex flex-col">
         <div className="head">
-          <h2 className="text-2xl font-bold p-2 mobs:ml-4 ml-2">
+          <h2 className="text-2xl font-bold p-2 mobs:ml-2 ml-2">
             {selectedBranch ? `${selectedBranch}` : "View All Branches"}
           </h2>
-          <p className={selectedBranch ? "hidden" : "p-2 my-4"}>
+          <p className={selectedBranch ? "hidden" : "p-2 md:px-4 my-4"}>
             List of branches available in JoSAA counselling.
           </p>
         </div>
@@ -208,7 +208,7 @@ const branches = () => {
                           onClick={() => {
                             setBranchData({
                               Branch: selectedBranch,
-                              Duration:selectedStates,
+                              Duration: selectedStates,
                               data: clg,
                             });
                             // history.push('/analyze-branch-wise-cut-off')
