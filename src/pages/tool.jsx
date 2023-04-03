@@ -145,13 +145,13 @@ const tool = () => {
         </div>
       </div>
 
-      <div className="w-full  flex justify-center absolute top-[640px] mobs:top-[700px]">
+      <div className="w-full  flex justify-center absolute top-[640px] mobs:top-[750px]">
         <div className="w-[90%]  bg-[#0E0E0E] rounded-lg text-white flex flex-row mobs:flex-col justify-center items-center flex-wrap p-5 mobs:p-2">
           {BlackContainer.map((card, id) => {
             return (
               <div
                 key={id}
-                className="flex flex-row md:w-1/3 justify-center items-center p-3 gap-3"
+                className="flex flex-row md:w-1/3 justify-center items-center py-2  gap-3"
               >
                 <div className="bg-[#FFFFFF33] rounded-lg p-1">
                   <img className="w-[40px] h-[40px]" src={card.img}></img>
@@ -168,7 +168,7 @@ const tool = () => {
         </div>
       </div>
 
-      <div className="flex flex-col justify-center align-center mt-[200px] mobs:mt-[280px] mb-[50px] mobs:mb-[25px]">
+      <div className="flex flex-col justify-center align-center mt-[180px] mobs:mt-[250px] mb-[50px] mobs:mb-[25px]">
         <div>
           <h2 className="text-center font-roboto font-semibold text-3xl mobs:text-2xl tracking-wider md:leading-7">
             Our Tools
