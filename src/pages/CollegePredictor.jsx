@@ -33,8 +33,8 @@ const CollegePredictor = () => {
   const [allFilterCollege, setAllFilterCollege] = useState([]);
   const [fileName, setFileName] = useState("Dream");
 
-  const url = "http://localhost:5000";
-  // const url = "https://konsa-college-backend.vercel.app";
+  // const url = "http://localhost:5000";
+  const url = "https://konsa-college-backend.vercel.app";
 
   const handleValidationError = () => {
     if (

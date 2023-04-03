@@ -31,8 +31,8 @@ const branches = () => {
     { value: "Indian Institute of Information Technology", label: "IIITs" },
   ];
   const getData = async () => {
-    // const url = "https://konsa-college-backend.vercel.app";
-    const url = "http://localhost:5000";
+    const url = "https://konsa-college-backend.vercel.app";
+    // const url = "http://localhost:5000";
     const data = await fetch(url + "/branches");
     const res = await data.json();
     setAllColleges(res);

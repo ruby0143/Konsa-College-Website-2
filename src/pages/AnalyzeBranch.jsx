@@ -37,8 +37,8 @@ const viewBranchWise = () => {
 
   const Gender = ["Gender-Neutral", "Female-only (including supernumerary)"];
   const duration = ["4 Years", "5 Years"];
-  // const url = "https://konsa-college-backend.vercel.app";
-  const url = "http://localhost:5000";
+  const url = "https://konsa-college-backend.vercel.app";
+  // const url = "http://localhost:5000";
   let array = [];
   console.log(BranchData);
 
