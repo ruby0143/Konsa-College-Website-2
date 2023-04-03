@@ -3,8 +3,12 @@ import { useLocation } from "react-router-dom";
 import { MdArrowRightAlt } from "react-icons/md";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import Branches from "../components/toolsPage/branches";
+import { useStateContext } from "../Context/useStateContext";
+import { Link } from "react-router-dom";
 
 const branches = () => {
+  const { setBranchData } = useStateContext();
   const [selectedBranch, setSelectedBranch] = useState("");
   const [AllColleges, setAllColleges] = useState([]);
   const [institute, setInstitutes] = useState([]);
@@ -28,9 +32,11 @@ const branches = () => {
   ];
   const getData = async () => {
     const url = "https://konsa-college-backend.vercel.app";
+    // const url = "http://localhost:5000";
     const data = await fetch(url + "/branches");
     const res = await data.json();
     setAllColleges(res);
+    // console.log(res)
   };
 
   const filterData = () => {
@@ -83,66 +89,15 @@ const branches = () => {
     }
   }, [institute, selectedStates]);
 
-  const Branches = [
-    "Electrical",
-    "Mechanical",
-    "Aerospace",
-    "Civil",
-    "Electronics",
-    "Metallurgy",
-    "Mining",
-    "Communication",
-    "Food",
-    "Instrumentation",
-    "Computer Science",
-    "Chemical",
-    "Industrial",
-    "Production",
-    "Control",
-    "Materials",
-    "Electrical",
-    "Energy",
-    "Metallurgical",
-    "Materials",
-    "Data Science",
-    "Bio Medical",
-    "Ceramic",
-    "Biomedical",
-    "Agricultural",
-    "Mechatronics",
-    "Environmental",
-    "Mineral",
-    "Machinery",
-    "Petroleum",
-    "Biological",
-    "Naval Architecture",
-    "Bio",
-    "Materials Science",
-    "Production",
-    "Infrastructure",
-    "Computer Science",
-    "Material Science",
-    "Biotechnology",
-    "Computational",
-    "Computer",
-    "Electronics System",
-    "Biochemical",
-    "Pharmaceutical",
-    "Systems",
-    "Manufacturing Science",
-    "Mining Safety",
-    "Ocean",
-    "Environmental Science",
-  ];
   console.log("Institute", institute, selectedStates);
   return (
     <>
-      <div className="p-3 flex flex-col">
-        <div className="head md:p-5">
-          <h2 className="text-2xl font-bold p-2">
+      <div className="p-3 mobs:p-1 flex flex-col">
+        <div className="head">
+          <h2 className="text-2xl font-bold p-2 mobs:ml-2 ml-2">
             {selectedBranch ? `${selectedBranch}` : "View All Branches"}
           </h2>
-          <p className={selectedBranch ? "hidden" : "p-2"}>
+          <p className={selectedBranch ? "hidden" : "p-2 md:px-4 my-4"}>
             List of branches available in JoSAA counselling.
           </p>
         </div>
@@ -150,14 +105,15 @@ const branches = () => {
           className={
             selectedBranch
               ? "hidden"
-              : "flex flex-row flex-wrap justify-start items-start gap-5 m-7 mb-10"
+              : "flex flex-row flex-wrap justify-start items-start gap-5 m-7 mobs:mx-2 mb-10"
           }
         >
           {Branches.map((branch, i) => {
             return (
               <div
+                style={{ display: i === 0 ? "none" : "" }}
                 onClick={() => setSelectedBranch(branch)}
-                className="w-[255px] shadow-md rounded-md p-4 flex flex-row gap-3 justify-between items-center cursor-pointer"
+                className="w-[255px] mobs:w-full shadow-md rounded-md p-4 flex flex-row gap-3 justify-between items-center cursor-pointer"
               >
                 <div key={i} className="text-center text-[16px] font-semibold">
                   {branch}
@@ -174,18 +130,18 @@ const branches = () => {
       {selectedBranch.length > 0 && (
         <div>
           <hr className="text-gray-500"></hr>
-          <p className="text-xl font-bold m-7">
+          <p className="text-xl font-bold mx-7 mobs:text-base mobs:my-2">
             Compare cut-offs of institutes offering programs in {selectedBranch}{" "}
             branch
           </p>
 
-          <div className="options p-2 mt-2">
+          <div className="options md:p-2 mobs:px-2 md:mt-2">
             <div className="flex flex-col md:flex-row md:justify-between">
-              <div className="instituteType my-3 md:w-[50%] md:px-5">
+              <div className="instituteType md:my-3 mobs:my-1 md:w-[50%] px-5">
                 <div className="flex justify-between">
                   <span>Institute Type</span>
                 </div>
-                <div className="mt-4">
+                <div className="md:mt-4">
                   <Select
                     onChange={(e) => {
                       setInstitutes(e);
@@ -197,11 +153,11 @@ const branches = () => {
                   />
                 </div>
               </div>
-              <div className="homeStates my-3 md:w-[50%] md:px-5">
+              <div className="homeStates md:my-3 mobs:mb-3 md:w-[50%] px-5">
                 <div className="flex justify-between">
-                  <span>Home State</span>
+                  <span>Duration</span>
                 </div>
-                <div className="mt-4">
+                <div className="md:mt-4">
                   <Select
                     onChange={(e) => {
                       setSelectedStates(e);
@@ -215,18 +171,29 @@ const branches = () => {
               </div>
             </div>
           </div>
-          <div className=" flex flex-row flex-wrap gap-5 mb-20">
+          <hr></hr>
+          <div className=" flex flex-row flex-wrap gap-5 mx-7 mb-20 mt-3">
             {showFilter ? (
               <>
                 {mapCollege.length > 0 &&
                   mapCollege.map((clg, i) => {
                     return (
-                      <div className="rounded-md shadow-md w-[380px] p-3 ml-7 min-h-[100px]">
-                        <div className="text-[17px] font-semibold text-blue-500">
-                          {clg.Institute}
+                      <Link to={"/analyze-branch-wise-cut-off"}>
+                        <div
+                          className="rounded-md shadow-md w-[380px] mobs:w-full p-3  min-h-[100px]"
+                          onClick={() => {
+                            setBranchData({
+                              data: clg,
+                            });
+                            // history.push('/analyze-branch-wise-cut-off')
+                          }}
+                        >
+                          <div className="text-[17px] font-semibold text-blue-500">
+                            {clg.Institute}
+                          </div>
+                          <div className="text-[12px]">{clg.Array}</div>
                         </div>
-                        <div className="text-[12px]">{clg.Array}</div>
-                      </div>
+                      </Link>
                     );
                   })}
               </>
@@ -235,12 +202,24 @@ const branches = () => {
                 {filterClg.length > 0 &&
                   filterClg.map((clg, i) => {
                     return (
-                      <div className="rounded-md shadow-md w-[380px] p-3 ml-7 min-h-[100px]">
-                        <div className="text-[17px] font-semibold text-blue-500">
-                          {clg.Institute}
+                      <Link to={"/analyze-branch-wise-cut-off"}>
+                        <div
+                          className="rounded-md shadow-md w-[380px] mobs:w-full  p-3  min-h-[100px]"
+                          onClick={() => {
+                            setBranchData({
+                              Branch: selectedBranch,
+                              Duration: selectedStates,
+                              data: clg,
+                            });
+                            // history.push('/analyze-branch-wise-cut-off')
+                          }}
+                        >
+                          <div className="text-[17px] font-semibold text-blue-500">
+                            {clg.Institute}
+                          </div>
+                          <div className="text-[12px]">{clg.Array}</div>
                         </div>
-                        <div className="text-[12px]">{clg.Array}</div>
-                      </div>
+                      </Link>
                     );
                   })}
               </>

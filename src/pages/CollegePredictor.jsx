@@ -60,34 +60,21 @@ const CollegePredictor = () => {
 
   const handleSubmit = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-
-    // document.getElementsByClassName("rb").checked = false;
-
     console.log(Category, rank, Eligibility, selectedGender);
-    let temp1;
-    let temp2;
     axios
       .post(url + "/collegePredictor", {
         Gender: selectedGender,
         Caste: Category,
+        Rank: rank,
       })
       .then((resp) => {
-        let clg = resp?.data?.filter((clg) => {
-          if (clg?.Opening_Rank.length > 0) {
-            temp1 = clg.Opening_Rank;
-            temp2 = clg.Closing_Rank;
-            clg.Opening_Rank = Number.parseInt(temp1);
-            clg.Closing_Rank = Number.parseInt(temp2);
-            if (clg.Opening_Rank < rank && rank < clg.Closing_Rank) {
-              return clg;
-            }
-          }
-        });
-        const sort = clg.sort((a, b) => {
-          return a.Closing_Rank - b.Closing_Rank;
-        });
-        setAllFilterCollege(sort);
-        let othclg = sort?.filter((clg) => {
+        console.log(resp);
+        // let clg = resp?.data?.filter((clg) => clg.Opening_Rank < rank && rank < clg.Closing_Rank);
+        // const sort = clg.sort((a, b) => {
+        //   return a.Closing_Rank - b.Closing_Rank;
+        // });
+        setAllFilterCollege(resp.data);
+        let othclg = resp?.data.filter((clg) => {
           if (
             clg.Institute.split(" ")[clg.Institute.split(" ").length - 1] !==
             Eligibility
@@ -96,7 +83,7 @@ const CollegePredictor = () => {
           }
         });
         setOneThird(0);
-        if (sort.length < 8) {
+        if (resp.data.length < 8) {
           setDoBlur(true);
           setDownload(false);
         }
@@ -104,7 +91,7 @@ const CollegePredictor = () => {
         setPredictedColleges(othclg);
         setMapColleges(othclg);
 
-        let home = sort?.filter((clg) => {
+        let home = resp?.data.filter((clg) => {
           if (
             clg.Institute.split(" ")[clg.Institute.split(" ").length - 1] ===
             Eligibility
@@ -136,6 +123,9 @@ const CollegePredictor = () => {
   };
 
   const handleHome = () => {
+    if (homeCollege.length === 0) {
+      setDoBlur(true);
+    }
     console.log("Home", homeCollege);
     setFileName("Home");
 
@@ -242,19 +232,11 @@ const CollegePredictor = () => {
         <meta name="distribution" content="global" />
       </Helmet>
       {res && (
-        <div className="absolute z-50 w-[70%] top-[50px] left-[230px] mob:w-[90%] bg-[#FCFCFC] h-[66%] flex flex-col p-5">
-          <div
-            className={
-              doBlur
-                ? "w-full flex flex-row justify-between"
-                : "w-full flex flex-row justify-between"
-            }
-          >
+        <div className="absolute z-50 w-[70%] mobs:w-[100%] top-[50px] md:left-[230px] bg-[#FCFCFC] h-[66%] mobs:h-[90%] flex flex-col p-5">
+          <div className={"w-full flex flex-row mobs:flex-col-reverse justify-between"}>
             <div
               className={
-                doBlur
-                  ? "w-9/12 flex flex-row items-center justify-start gap-x-10 cursor-pointer blur-sm"
-                  : "w-9/12 flex flex-row items-center justify-start gap-x-10 cursor-pointer"
+                "w-9/12 flex flex-row items-center justify-start gap-x-10 cursor-pointer"
               }
             >
               <div
@@ -306,41 +288,12 @@ const CollegePredictor = () => {
                 Home
               </div>
             </div>
-            <div
-              className={
-                doBlur
-                  ? "w-3/12 flex flex-row justify-end gap-x-2"
-                  : "w-3/12 flex flex-row justify-end gap-x-2"
-              }
-            >
-              {/* <button
-                onClick={() => {
-                  setDownload(true);
-                }}
-                className={
-                  doBlur
-                    ? "bg-[#EE7C00] rounded-[2px] text-white p-[5px] px-4 blur-sm"
-                    : "bg-[#EE7C00] rounded-[2px] text-white p-[5px] px-4"
-                }
-              >
-                {download && (
-                  <CSVLink
-                    data={mapColleges}
-                    filename={"my-file.csv"}
-                    // target="_blank"
-                  />
-                )}
-                Download
-              </button> */}
+            <div className={"md:w-3/12 flex flex-row justify-end gap-x-2 mobs:mb-2"}>
               <CSVLink
                 data={mapColleges}
                 target="_blank"
                 filename={fileName + ".csv"}
-                className={
-                  doBlur
-                    ? "bg-[#EE7C00] rounded-[2px] text-white p-[5px] px-4 blur-sm"
-                    : "bg-[#EE7C00] rounded-[2px] text-white p-[5px] px-4"
-                }
+                className={"bg-[#EE7C00] rounded-[2px] text-white p-[5px] px-4"}
               >
                 Download
               </CSVLink>
@@ -365,11 +318,7 @@ const CollegePredictor = () => {
           </div>
 
           <div
-            className={
-              doBlur
-                ? "mt-2 p-4 rounded-[3px] flex items-center font-semibold blur-sm"
-                : "mt-2 p-4 rounded-[3px] flex items-center font-semibold"
-            }
+            className={"mt-2 p-4 mobs:p-2 rounded-[3px] flex items-center font-semibold"}
             style={{ backgroundColor: "rgba(238, 124, 0, 0.05)" }}
           >
             College
@@ -382,12 +331,12 @@ const CollegePredictor = () => {
                   return (
                     <div key={id}>
                       <div className="w-full flex flex-row  items-center p-1">
-                        <div className="w-[5%]">
+                        <div className="w-[5%] mobs:w-[10%]">
                           <img
                             src={id % 2 === 0 ? "./cp1.svg" : "./redlogo.svg"}
                           ></img>
                         </div>
-                        <div className="w-[75%] p-2 first-letter:flex flex-col">
+                        <div className="w-[75%] mobs:w-[90%] p-2 flex flex-col">
                           <div className="text-sm">{clg.Institute}</div>
                           <div className="text-xs">
                             {clg.Academic_Program_Name}
@@ -446,9 +395,7 @@ const CollegePredictor = () => {
       </h2>
       <div className=" flex justify-center mb-[50px] mob:mb-[40px]">
         <p className="text-center w-[80%]  mt-[10px] mob:mt-[8px] text-xl mob:text-base font-normal mob:font-light text-[#3C3B3B] desk:leading-6 mob:leading-4 desk:tracking-wider">
-          Lorem ipsum dolor sit amet consectetur. Lobortis porta volutpat tellus
-          pellentesque sodales eget quam enim. Risus et diam quis risus nunc ut
-          porttitor tellus imperdiet. Id nunc turpis donec aliquam .
+        Look beyond IITs and explore hidden gems! Our magical tool simplifies finding exceptional colleges suited for you. Embark on a journey to discover your ideal academic haven.
         </p>
       </div>
       <div className="flex justify-center bg-[url('/cpbg.svg')] desk:bg-cover  mob:bg-cover mob:bg-no-repeat mob:bg-bottom">
@@ -581,7 +528,7 @@ const CollegePredictor = () => {
                   </p>
                 ) : (
                   <p className="text-[#ACACAC] text-sm mob:text-xs tracking-wide">
-                    Enter Your State
+                    Enter Your Eligibility State
                   </p>
                 )}
               </button>
@@ -716,8 +663,7 @@ const CollegePredictor = () => {
             }}
           >
             <p className="text-[#F3F3F3]  text-center  leading-9 tracking-wide text-[28px] font-bold">
-              Lorem ipsum dolor sit amet consectetur. Lobortis porta volutpat
-              tellus pellentes
+            Explore the college that best fits your rank, and don't forget to send us ladoos!
             </p>
           </div>
         </div>

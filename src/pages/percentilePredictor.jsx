@@ -14,6 +14,7 @@ const PercentilePredictor = () => {
   const [inputMarks, setInputMarks] = useState("");
   const [prediction, setPrediction] = useState({});
   const [showPercentile, setShowPercentile] = useState(false);
+  const totalPeople=800000
 
   const shiftList = [
     { type: "Easy" },
@@ -62,6 +63,7 @@ const PercentilePredictor = () => {
             .toString()
             .split(".")[1]
             .substring(1, 5);
+            var minRank=((100-minVal)*totalPeople)/100
 
         var maxVal =
           Math.max(...pMax)
@@ -72,8 +74,10 @@ const PercentilePredictor = () => {
             .toString()
             .split(".")[1]
             .substring(1, 5);
+         var maxRank=((100-maxVal)*totalPeople)/100
 
-        return { minVal: minVal, maxVal: maxVal };
+
+        return { minVal: minRank, maxVal: maxRank };
       }
       setShowPercentile(true);
       setPrediction(percentileRangeGen(arr, marks, shiftVal));
@@ -87,7 +91,7 @@ const PercentilePredictor = () => {
       <Helmet>
         <meta name="copyright" content="Konsa College" />
         <meta name="viewport" content="width=device-width, intial-scale=1.0" />
-        <title>Konsacollege - Percentile Predictor</title>
+        <title>Konsacollege - Rank Predictor</title>
         <meta name="description" content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today." />
         <meta name="Abstract" content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today." />
         <meta property="og:title" content="Konsacollege - Find the Best Colleges in India" />
@@ -95,7 +99,7 @@ const PercentilePredictor = () => {
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://www.konsacollege.com" />
           <meta property="og:site_name"
-            content="Konsacollege - Percentile Predictor"/>
+            content="Konsacollege - Rank Predictor"/>
           <meta property="og:image"
             content="https://konsa-college-website.vercel.app/assets/KonsaCollege_desktopLogo-d9a0ad42.svg" />
           <meta property="og:determiner" content="..." />
@@ -115,15 +119,14 @@ const PercentilePredictor = () => {
       </Helmet>
       <div className="bg-[#F5F5F5] ">
         <h2 className="pt-[80px] mob:pt-[18px] font-roboto font-bold mob:font-semibold text-[30px] mob:text-[18px] text-[#3C3B3B] text-center tracking-wider">
-          Percentile Predictor
+          Rank Predictor
         </h2>
         <h3 className="pt-[20px] mob:pt-[8px] font-roboto font-bold mob:font-semibold text-[22px] mob:text-[17px] text-[#3C3B3B] text-center tracking-wider">
           JEE Mains 2023
         </h3>
         <div className=" flex justify-center mb-[60px] mob:mb-[40px]">
           <p className="text-center w-[80%]  mt-[20px] mob:mt-[8px] text-xl mob:text-base font-normal mob:font-light text-[#3C3B3B] desk:leading-6 mob:leading-4 desk:tracking-wider">
-            Lorem ipsum dolor sit amet consectetur. Lobortis porta volutpat
-            tellus pellentesque sodales eget quam enim.
+          Don't rely on guesswork to determine your percentile – use our innovative tool to get a precise understanding of your performance compared to your peers!
           </p>
         </div>
         <div className=" flex justify-center bg-[url('/cpbg.svg')] desk:bg-cover  mob:bg-cover mob:bg-no-repeat mob:bg-bottom">
@@ -224,17 +227,16 @@ const PercentilePredictor = () => {
                 JSON.stringify(prediction) !== "{}" && (
                   <div>
                     <p className="text-[#F3F3F3]  text-center  desk:leading-9 desk:tracking-wide text-[28px] mob:text-[17px] font-bold mob:font-normal">
-                      Your Expected Percentile is
+                      Your Expected Rank is
                     </p>
                     <p className="text-[#F3F3F3]  text-center  desk:leading-9 desk:tracking-wide text-[28px] mob:text-[17px] font-bold mob:font-normal">
-                      {`${prediction.minVal} - ${prediction.maxVal}`}
+                      {`${parseFloat(prediction.maxVal).toFixed(0)} - ${parseFloat(prediction.minVal).toFixed(0)}`}
                     </p>
                   </div>
                 )
               ) : (
                 <p className="text-[#F3F3F3] mob:hidden  text-center  leading-9 tracking-wide text-[28px] font-bold">
-                  Lorem ipsum dolor sit amet consectetur. Lobortis porta
-                  volutpat tellus pellentes
+                 Clicking on  <span className="bg-[#EE7C00] p-1 rounded-sm px-2">Predict Now</span>  is easier than checking your actual result! All the best anyways!
                 </p>
               )}
             </div>

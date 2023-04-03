@@ -11,12 +11,12 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 const viewBranchWise = () => {
   const animatedComponents = makeAnimated();
-  const [examTypes, setExamTypes] = useState("");
+  const [examTypes, setExamTypes] = useState("JEE");
   const [selectedSeat, setSeat] = useState("OPEN");
   const [selectedGender, setGender] = useState("Gender-Neutral");
-  const [selectedRound, setRound] = useState("Last Round Only");
-  const [minimum, setMinimum] = useState();
-  const [maximum, setMaximum] = useState();
+  const [selectedRound, setRound] = useState("All Rounds");
+  const [minimum, setMinimum] = useState(0);
+  const [maximum, setMaximum] = useState(100000);
   const [defaultData, setDefault] = useState([]);
   const [selected, setBranches] = useState([]);
   const [filterData, setFilter] = useState([]);
@@ -25,191 +25,56 @@ const viewBranchWise = () => {
 
   const Gender = ["Gender-Neutral", "Female-only (including supernumerary)"];
   const columns = [
-    { title: "Institute", dataIndex: "Institute" },
-    { title: "Program", dataIndex: "Academic_Program_Name" },
-    { title: "Round", dataIndex: "Round" },
-    { title: "Opening Rank", dataIndex: "Opening_Rank" },
-    { title: "Closing Rank", dataIndex: "Closing_Rank" },
-    { title: "Gender", dataIndex: "Gender" },
-    { title: "Seat", dataIndex: "Seat_Type" },
+    { title: "Institute", dataIndex: "Institute",width:200},
+    { title: "Program", dataIndex: "Academic_Program_Name",width:200},
+    { title: "Round", dataIndex: "Round",width:25},
+    { title: "Opening Rank", dataIndex: "Opening_Rank",width:30},
+    { title: "Closing Rank", dataIndex: "Closing_Rank",width:30},
+    { title: "Gender", dataIndex: "Gender",width:100},
+    { title: "Seat", dataIndex: "Seat_Type",width:100},
   ];
   const page = 1;
-  const limit = 2000;
+  const limit = 5000;
   let array = [];
   // const url = "http://localhost:5000";
   const url = "https://konsa-college-backend.vercel.app";
   const getData = async () => {
     await axios
       .get(url + `/y22?page=${page}&limit=${limit}`)
-      // .get(url + `/y22`)
       .then((response) => {
-        if (response.status === 500) {
-          console.log("No Response");
-        } else {
-          console.log(response?.data.results);
-          if (examTypes) {
-            if (examTypes === "ADVANCE") {
-                if(maximum && minimum){
-
-                  setLoader(true)
-                  for (let x = 0; x < response?.data.results.length; x++) {
-                    // console.log("in min max....");
-                    let temp1 = parseInt(response?.data.results[x].Opening_Rank);
-                    let temp2 = parseInt(response?.data.results[x].Closing_Rank);
-                    if ((minimum < temp1 && maximum > temp2)&& response?.data.result[x].includes("Indian Institute of Technology")) {
-                      array.push(response?.data.results[x]);
-                    }
-                  }
-                  setDefault(array);
-                  setLoader(false)
-                
-
-                }else{
-                  setLoader(true)
-                  console.log(examTypes);
-                  const filter = response?.data.results.filter((clg) => {
-                    if ((minimum < temp1 && maximum > temp2)&& !response?.data.result[x].includes("Indian Institute of Technology")) {
-                      return clg;
-                    }
-                  });
-                  setDefault(filter);
-                  setLoader(false)
-                }
-            } else {
-              if(maximum && minimum){
-
-                setLoader(true)
-                for (let x = 0; x < response?.data.results.length; x++) {
-                  // console.log("in min max....");
-                  let temp1 = parseInt(response?.data.results[x].Opening_Rank);
-                  let temp2 = parseInt(response?.data.results[x].Closing_Rank);
-                  if (minimum < temp1 && maximum > temp2) {
-                    array.push(response?.data.results[x]);
-                  }
-                }
-                setDefault(array);
-                setLoader(false)
-                 
-
-              }else{
-                setLoader(true)
-                const filter = response?.data.results.filter((clg) => {
-                  if (!clg.Institute.includes("Indian Institute of Technology")) {
-                    return clg;
-                  }
-                });
-                setDefault(filter);
-                setLoader(false)
-              }
-            }
-          } else {
-            if (maximum && minimum) {
-              setLoader(true)
-              for (let x = 0; x < response?.data.results.length; x++) {
-                // console.log("in min max....");
-                let temp1 = parseInt(response?.data.results[x].Opening_Rank);
-                let temp2 = parseInt(response?.data.results[x].Closing_Rank);
-                if (minimum < temp1 && maximum > temp2) {
-                  array.push(response?.data.results[x]);
-                }
-              }
-              setDefault(array);
-              setLoader(false)
-            } else {
-              // array.push(response?.data.results[x]);
-              setDefault(response?.data.results);
-            }
-          }
-        }
+        setDefault(response.data.results);
       })
       .catch((err) => {
         console.log(err);
       });
-      setLoader(false)
   };
 
   useEffect(() => {
     getData();
-  }, [minimum, maximum, examTypes]);
+  }, []);
 
   useEffect(() => {
-    setLoader(true)
-    if (callFunction) {
-      setLoader(true)
+    if (selected) {
       axios
         .post(url + "/branch-wise", {
           Caste: selectedSeat,
           Round: selectedRound,
           Gender: selectedGender,
+          Min: minimum,
+          Max: maximum,
+          Type:examTypes,
+          Branch: selected,
         })
         .then((response) => {
-          if (response.status === 500) {
-            console.log("No Response");
-          } else {
-            console.log(">>>>", response);
-            array = [];
-            if (selected.length > 0) {
-              for (let i = 0; i < selected.length; i++) {
-                for (let x = 0; x < response.data.length; x++) {
-                  if (
-                    response.data[x].Academic_Program_Name.includes(
-                      selected[i].value
-                    )
-                  ) {
-                    if (maximum && minimum) {
-                      console.log("in min max");
-                      let temp1 = parseInt(response.data[x].Opening_Rank);
-                      let temp2 = parseInt(response.data[x].Closing_Rank);
-                      if (minimum < temp1 && maximum > temp2) {
-                        array.push(response.data[x]);
-                      }
-                    } else {
-                      array.push(response.data[x]);
-                    }
-                    // array.push(response.data[x]);
-                  }
-                }
-              }
-              console.log("array", array);
-              setFilter(array);
-              setLoader(false)
-            } else {
-              setFilter(response.data);
-              setLoader(false)
-            }
-          }
+          console.log(response);
+          setDefault(response.data)
         })
         .catch((err) => {
           console.log(err);
         });
-    } else {
-      setLoader(true)
-      if (selected.length > 0) {
-        for (let i = 0; i < selected.length; i++) {
-          for (let x = 0; x < defaultData.length; x++) {
-            if (
-              defaultData[x].Academic_Program_Name.includes(selected[i].value)
-            ) {
-              if (maximum && minimum) {
-                console.log("in min max");
-                let temp1 = parseInt(defaultData[x].Opening_Rank);
-                let temp2 = parseInt(defaultData[x].Closing_Rank);
-                if (minimum < temp1 && maximum > temp2) {
-                  array.push(defaultData[x]);
-                }
-              } else {
-                array.push(defaultData[x]);
-              }
-            }
-          }
-        }
-        setFilter(array);
-        setLoader(false)
-        console.log("data", array);
-      }
-    } setLoader(false)
+    }
   }, [
-    setFilter,
+    setDefault,
     selectedGender,
     selectedRound,
     selectedSeat,
@@ -217,22 +82,23 @@ const viewBranchWise = () => {
     selected,
     minimum,
     maximum,
+    examTypes,
   ]);
 
   return (
     <>
       <div className="p-3 ">
         <div className="head md:p-5">
-          <h2 className="text-2xl font-bold p-2">View Branch-wise Cut-offs</h2>
-          <p className="p-2">
+          <h2 className="text-2xl font-bold p-2 mobs:text-lg">View Branch-wise Cut-offs</h2>
+          <p className="md:p-2 mobs:px-2 mobs:text-sm">
             Filter by branch allows you to filter the cut-off data with the
             selected branch and further narrow down with your choice of
             institutes.
           </p>
         </div>
       </div>
-      <div className="rankTpye md:px-10 md:w-[50%]">
-        <div className="text-sm font-medium">Rank Type</div>
+      <div className="rankTpye md:px-10 md:w-[50%] mobs:w-w-full mobs:px-5">
+        <div className="text-sm  font-medium">Rank Type</div>
         <div className="py-1 flex justify-between items-center">
           <div className="flex justify-center items-center">
             <div className="flex items-center text-sm">
@@ -246,7 +112,7 @@ const viewBranchWise = () => {
               />
               <label
                 for="default-radio-1"
-                className="ml-2 text-sm  text-gray-700 "
+                className="ml-2 text-sm mobs:text-xs text-gray-700 "
               >
                 JEE (Main)
               </label>
@@ -264,7 +130,7 @@ const viewBranchWise = () => {
               />
               <label
                 for="default-radio-2"
-                className="ml-2 text-sm  text-gray-700 "
+                className="ml-2 text-sm mobs:text-xs  text-gray-700 "
               >
                 JEE (Advance)
               </label>
@@ -272,24 +138,27 @@ const viewBranchWise = () => {
           </div>
         </div>
       </div>
-      <div className="instituteType my-1 ml-5 md:w-[50%] md:px-5">
-        <div className="flex justify-between text-sm font-medium">
-          <span>Branches</span>
+      <div className="homeStates my-1 md:w-[44%] md:mx-10 md:mr-[10px] mobs:mx-5">
+        <div className="flex justify-between font-medium mobs:text-sm">
+          <span className="text-sm">Branches</span>
         </div>
-        <div className="mt-1 text-sm">
-          <Select
-            onChange={(e) => {
-              setBranches(e);
-            }}
-            closeMenuOnSelect={false}
-            components={animatedComponents}
-            isMulti
-            options={Branches}
-          />
-        </div>
+        <select
+          name="states"
+          className="p-2 w-full border-solid border-[#D1D5DB] border rounded-md"
+          onChange={(e) => {
+            setBranches(e.target.value);
+          }}
+        >
+          {Branches?.map((state) => {
+            return <option value={state}>{state}</option>;
+          })}
+        </select>
       </div>
-      <div className={!callFunction?"w-full flex flex-row justify-start text-sm text-gray-400":"w-full flex flex-row justify-start text-sm"}>
-        <div className="homeStates my-1 md:w-1/3 md:px-10">
+      <div
+        className={ "w-full flex md:flex-row mobs:flex-col justify-start text-sm mobs:mx-5"
+        }
+      >
+        <div className="homeStates my-1 md:w-1/3 md:px-10 mobs:mr-10">
           <div className="flex justify-between font-medium">
             <span>Seat type</span>
           </div>
@@ -306,7 +175,7 @@ const viewBranchWise = () => {
             })}
           </select>
         </div>
-        <div className="homeStates my-1 md:w-1/3 md:px-10">
+        <div className="homeStates my-1 md:w-1/3 md:px-10 mobs:mr-10">
           <div className="flex justify-between font-medium">
             <span>Gender</span>
           </div>
@@ -323,7 +192,7 @@ const viewBranchWise = () => {
             })}
           </select>
         </div>
-        <div className="homeStates my-1 md:w-1/3 md:px-10">
+        <div className="homeStates my-1 md:w-1/3 md:px-10 mobs:mr-10">
           <div className="flex justify-between font-medium">
             <span>Display rounds</span>
           </div>
@@ -342,8 +211,8 @@ const viewBranchWise = () => {
         </div>
       </div>
 
-      <div className="w-full flex flex-row justify-start mb-5 text-sm">
-        <div className="homeStates my-1 md:w-1/2 md:px-10">
+      <div className="w-full flex flex-row mobs:flex-col justify-start mb-5 text-sm">
+        <div className="homeStates my-1 md:w-1/2 md:px-10 mobs:mx-5">
           <div className="flex justify-between font-medium">
             <span>Minimum Rank</span>
           </div>
@@ -356,7 +225,7 @@ const viewBranchWise = () => {
             }}
           ></input>
         </div>
-        <div className="homeStates my-1 md:w-1/2 md:px-10">
+        <div className="homeStates my-1 md:w-1/2 md:px-10 mobs:mx-5">
           <div className="flex justify-between font-medium">
             <span>Maximum Rank</span>
           </div>
@@ -370,26 +239,22 @@ const viewBranchWise = () => {
           ></input>
         </div>
       </div>
-      <div className="w-full mobs:w-[320px] ml-10 mb-7 text-sm border rounded-lg mr-10 text-gray-500 overflow-x-auto">
+      <div className="w-full mobs:w-[90%] md:ml-10 mobs:mx-5 mb-7 text-sm border rounded-lg md:mr-10  text-gray-500 overflow-x-auto">
         {loader ? (
-<div className="w-full flex flex-wrap justify-center md:my-5 ">
-<ClipLoader
-            // color={color}
-            // loading={loading}
-            // cssOverride={override}
-            size={50}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
-</div>
-        ):(
+          <div className="w-full flex flex-wrap justify-center md:my-5 ">
+            <ClipLoader
+              size={50}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </div>
+        ) : (
           <Table
-          columns={columns}
-          dataSource={filterData.length > 0 ? filterData : defaultData}
-          responsive
-        ></Table>
+            columns={columns}
+            dataSource={defaultData}
+            responsive
+          ></Table>
         )}
-
       </div>
     </>
   );

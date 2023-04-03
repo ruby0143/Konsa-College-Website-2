@@ -27,8 +27,11 @@ import CollegeComparator from "./pages/collegeComparator";
 import PreferenceListGenerator from "./pages/prefernnceListGenerator";
 import ViewBranchWise from "./pages/viewBranchWise";
 import AnalyzeViewBranchWise from "./pages/AnalyzeBranch"
+import AnalyzeInstitute from "./pages/AnalyzeInstitute";
 import TandC from "./pages/TandC";
 import Privacy from "./pages/privacy";
+import Share from "./pages/Share";
+
 function App() {
   const { skeleton, loader } = useStateContext();
 
@@ -81,8 +84,10 @@ function App() {
             <Route path="/tools" element={<Tools/>} exact/>
             <Route path="/branch-wise-cut-off" element={<ViewBranchWise/>} exact/>
             <Route path="/analyze-branch-wise-cut-off" element={<AnalyzeViewBranchWise/>} exact/>
+            <Route path="/analyze-institute-wise-cutoff" element={<AnalyzeInstitute />} exact/>
             <Route path="/TermsAndConditions" element={<TandC/>} exact/>
             <Route path="/privacy-policy" element={<Privacy/>} exact/>
+            <Route path="/share" element={<Share/>} exact/>
 
           </Routes>
           <CollegeFooter />

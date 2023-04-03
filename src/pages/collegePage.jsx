@@ -120,7 +120,7 @@ const CollegePage = () => {
           {/* left  */}
           <CollegePageHeader result={result} />
           <div className="md:flex justify-between md:px-12">
-            <div className="md:max-w-[65%] px-4 md:px-0">
+            <div className="md:max-w-[65%] px-4 md:px-0 w-full">
               <div className='mt-[3rem] flex sm:hidden' style={{ overflowX: "auto" }}>
                 {<>{section?.map((item, id) => {
                   return (
