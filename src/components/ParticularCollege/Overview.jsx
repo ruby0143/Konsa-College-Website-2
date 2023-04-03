@@ -1,12 +1,13 @@
 import React from 'react'
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip } from 'react-tooltip'
 
 function Overview(props) {
 
   return (
     <>
-      {/* before Overview  */}
       <div className="flex-row">
-        <div className="overview mt-[3rem]">
+        {props.result.overview && <div className="overview mt-[3rem]">
           <h2 className="text-[#303030] text-xl my-3 font-bold">Overview</h2>
           <hr />
           <div className="mt-[1.4rem]">
@@ -32,7 +33,7 @@ function Overview(props) {
                   </div>
                 </div>
                 {/* campus area  */}
-                <div className="area flex bg-[#FCFCFC] rounded-[3.85464px] p-2 items-center justify-evenly min-w-[150px] shadow-[1px_1px_6px_rgba(0,0,0,0.07)] hover:shadow-[3px_3px_5px_0px_rgba(0,0,0,0.07)]">
+                <div className="area flex bg-[#FCFCFC] rounded-[3.85464px] p-2 items-center justify-evenly min-w-[150px] shadow-[1px_1px_6px_rgba(0,0,0,0.07)] hover:shadow-[3px_3px_5px_0px_rgba(0,0,0,0.07)]" data-tooltip-id="my-tooltip" data-tooltip-content="Acres">
                   <img
                     src="https://konsa-college-website-icons.s3.ap-northeast-1.amazonaws.com/assets/features/Area.png"
                     alt="Area logo"
@@ -49,63 +50,70 @@ function Overview(props) {
                     </p>
                   </div>
                 </div>
+                <Tooltip id="my-tooltip" style={{ width: "auto" }} />
               </div>
             </div>
           </div>
-        </div>
+
+        </div>}
+
         {/* Qualifying exams  */}
-        <div className="my-[2rem]">
-          <h2 className="text-[#303030] text-[15px] font-semibold mb-[1.2rem]">
-            Qualifying Exams
-          </h2>
-          <div
-            className="flex whitespace-nowrap"
-            style={{
-              overflowX: "auto",
-            }}
-          >
-            {props.result.exams?.map((exam, index) => {
-              return (
-                <div
-                  id={index}
-                  className="rounded-md mr-4 border-[1px] border-[rgba(233,233,233,1)] px-4 py-[.2rem] text-center text-[#2E2E2E] text-[14px]"
-                  style={{
-                    background:
-                      "linear-gradient(99.71deg, #F8F8F8 -20.28%, rgba(240, 240, 240, 0) 131.37%)",
-                    filter: "drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.08))",
-                    borderRadius: "5px",
-                  }}
-                >
-                  {exam}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        {/* mode of admission  */}
-        <div className="mt-[2rem]">
-          <h2 className="text-[#303030] text-[15px] font-semibold mb-[1.2rem]">
-            Mode Of Admission
-          </h2>
-          <div className="flex whitespace-nowrap" style={{ overflowX: "auto" }}>
-            {props.result.mode_of_admission?.map((exam, index) => {
-              return (
-                <div
-                  id={index}
-                  className="rounded-md mr-4 border-[1px] border-[rgba(233,233,233,1)] px-4 py-[.2rem] text-center text-[#2E2E2E] text-[14px]"
-                  style={{
-                    background:
-                      "linear-gradient(99.71deg, #F8F8F8 -20.28%, rgba(240, 240, 240, 0) 131.37%)",
-                    filter: "drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.08))",
-                    borderRadius: "5px",
-                  }}
-                >
-                  {exam}
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        {(props.result.exams || props.result.mode_of_admission) && (
+          <>
+            <div className="my-[2rem]">
+              <h2 className="text-[#303030] text-[15px] font-semibold mb-[1.2rem]">
+                Qualifying Exams
+              </h2>
+              <div
+                className="flex whitespace-nowrap"
+                style={{
+                  overflowX: "auto",
+                }}
+              >
+                {props.result.exams?.map((exam, index) => {
+                  return (
+                    <div
+                      id={index}
+                      className="rounded-md mr-4 border-[1px] border-[rgba(233,233,233,1)] px-4 py-[.2rem] text-center text-[#2E2E2E] text-[14px]"
+                      style={{
+                        background:
+                          "linear-gradient(99.71deg, #F8F8F8 -20.28%, rgba(240, 240, 240, 0) 131.37%)",
+                        filter: "drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.08))",
+                        borderRadius: "5px",
+                      }}
+                    >
+                      {exam}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            {/* mode of admission  */}
+            <div className="mt-[2rem]">
+              <h2 className="text-[#303030] text-[15px] font-semibold mb-[1.2rem]">
+                Mode Of Admission
+              </h2>
+              <div className="flex whitespace-nowrap" style={{ overflowX: "auto" }}>
+                {props.result.mode_of_admission?.map((exam, index) => {
+                  return (
+                    <div
+                      id={index}
+                      className="rounded-md mr-4 border-[1px] border-[rgba(233,233,233,1)] px-4 py-[.2rem] text-center text-[#2E2E2E] text-[14px]"
+                      style={{
+                        background:
+                          "linear-gradient(99.71deg, #F8F8F8 -20.28%, rgba(240, 240, 240, 0) 131.37%)",
+                        filter: "drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.08))",
+                        borderRadius: "5px",
+                      }}
+                    >
+                      {exam}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </>
   );
