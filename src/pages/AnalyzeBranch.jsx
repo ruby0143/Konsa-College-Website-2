@@ -15,8 +15,10 @@ import {
   ResponsiveContainer,
   Label,
 } from "recharts";
+import { useStateContext } from "../Context/useStateContext";
 
 const viewBranchWise = () => {
+  const { BranchData } = useStateContext();
   const animatedComponents = makeAnimated();
   const [selectedSeat, setSeat] = useState("OPEN");
   const [selectedGender, setGender] = useState("Gender-Neutral");
@@ -27,16 +29,18 @@ const viewBranchWise = () => {
   const [selectedInstitute, setSelectedInstitute] = useState([]);
   const [institutes, setInstitutes] = useState([]);
   const [chartData, setChartData] = useState([]);
-  const [Duration,setSelectedDuration]=useState("4 Years")
+  const [Duration, setSelectedDuration] = useState("4 Years");
   const [filterData, setFilterData] = useState([]);
   const [noData, setBool] = useState(false);
+  const [round,setRounds]=useState("All Rounds")
   let Institute = [];
 
   const Gender = ["Gender-Neutral", "Female-only (including supernumerary)"];
-  const duration = ["4 Years","5 Years"]
-  const url = "https://konsa-college-backend.vercel.app";
-  // const url = "http://localhost:5000";
+  const duration = ["4 Years", "5 Years"];
+  // const url = "https://konsa-college-backend.vercel.app";
+  const url = "http://localhost:5000";
   let array = [];
+  console.log(BranchData);
 
   useEffect(() => {
     axios.get(url + "/y22?page=1&limit=5000").then((res) => {
@@ -74,36 +78,37 @@ const viewBranchWise = () => {
   console.log("selected Institute", selectedInstitute);
 
   useEffect(() => {
+    if (BranchData?.data.Array.includes("4 Years")) {
+      setSelectedDuration("4 Years");
+    } else if (BranchData?.data.Array.includes("5 Years")) {
+      setSelectedDuration("5 Years");
+    }
+
     if (selectedInstitute) {
       axios
         .post(url + "/analyze-branch-wise", {
           Seat: selectedSeat,
           Gender: selectedGender,
-          Branch: selected,
-          Institute: selectedInstitute,
+          Branch: BranchData?.Branch || selected,
+          Institute: BranchData?.data.Institute || selectedInstitute,
           Duration: Duration,
+          Round : round,
         })
         .then((response) => {
           console.log(response.data);
           for (let i = 0; i < response.data.y20.length; i++) {
-            console.log("in loop y20");
-
             array.push({
               name: "2020 Round " + response.data.y20[i].Round,
               Opening_Rank: response.data.y20[i].Opening_Rank,
             });
           }
           for (let i = 0; i < response.data.y21.length; i++) {
-            console.log("in loop y20");
-
             array.push({
               name: "2021 Round " + response.data.y21[i].Round,
               Opening_Rank: response.data.y21[i].Opening_Rank,
             });
           }
           for (let i = 0; i < response.data.y22.length; i++) {
-            console.log("in loop y20");
-
             array.push({
               name: "2022 Round " + response.data.y22[i].Round,
               Opening_Rank: response.data.y22[i].Opening_Rank,
@@ -117,27 +122,27 @@ const viewBranchWise = () => {
           console.log(err);
         });
     }
-  }, [selectedInstitute,selectedSeat,selected,selectedGender,Duration]);
+  }, [selectedInstitute, selectedSeat, selected, selectedGender, Duration,round]);
 
   return (
     <>
       <div className="p-3">
         <div className="head md:p-5">
-          <h2 className="text-2xl font-bold p-2">
+          <h2 className="text-2xl mobs:text-xl font-bold p-2">
             Analyse Branch-wise Cut-off Trends
           </h2>
-          <p className="mt-2 ml-2">
+          <p className="md:mt-2 ml-2 mobs:text-sm">
             Compare the cut-offs for courses in a particular branch of
             engineering over 10 years in the JoSAA seat allocation process.
           </p>
-          <p className="ml-2">
+          <p className="ml-2 mobs:text-sm">
             This helps understand the popularity and perception of a branch
             among engineering aspirants, and thus helps understand the demand
             for a particular branch during the counselling process.
           </p>
         </div>
       </div>
-      <div className="rankTpye md:px-10 md:w-[50%]">
+      <div className="md:px-10 md:w-[50%] mobs:w-[90%] mobs:mx-5">
         <div className="text-sm font-medium">Rank Type</div>
         <div className="py-1 flex justify-between items-center">
           <div className="flex justify-center items-center">
@@ -152,7 +157,7 @@ const viewBranchWise = () => {
               />
               <label
                 for="default-radio-1"
-                className="ml-2 text-sm  text-gray-700 "
+                className="ml-2 text-sm mobs:text-xs text-gray-700 "
               >
                 JEE (Main)
               </label>
@@ -170,7 +175,7 @@ const viewBranchWise = () => {
               />
               <label
                 for="default-radio-2"
-                className="ml-2 text-sm  text-gray-700 "
+                className="ml-2 text-sm mobs:text-xs  text-gray-700 "
               >
                 JEE (Advance)
               </label>
@@ -178,9 +183,9 @@ const viewBranchWise = () => {
           </div>
         </div>
       </div>
-      <div className="instituteType flex flex-row my-1 ml-5 md:w-full md:px-5 justify-start gap-10">
+      <div className="instituteType flex flex-row mobs:flex-col mobs:mx-5 my-1 ml-5 md:w-full md:px-5 justify-start md:gap-10">
         <div className="homeStates my-1 md:w-1/3 ">
-          <div className="flex justify-between font-medium">
+          <div className="flex justify-between font-medium mobs:text-sm">
             <span>Branches</span>
           </div>
           <select
@@ -214,24 +219,24 @@ const viewBranchWise = () => {
           </div>
         )}
         <div className="homeStates my-1 md:w-1/3 ">
-            <div className="flex justify-between font-medium">
-              <span>Duration</span>
-            </div>
-            <select
-              name="states"
-              className="p-2 w-full border-solid border-[#D1D5DB] border rounded-md"
-              onChange={(e) => {
-                setSelectedDuration(e.target.value);
-              }}
-            >
-              {duration?.map((state) => {
-                return <option value={state}>{state}</option>;
-              })}
-            </select>
+          <div className="flex justify-between font-medium mobs:text-sm">
+            <span>Duration</span>
           </div>
+          <select
+            name="states"
+            className="p-2 w-full border-solid border-[#D1D5DB] border rounded-md"
+            onChange={(e) => {
+              setSelectedDuration(e.target.value);
+            }}
+          >
+            {duration?.map((state) => {
+              return <option value={state}>{state}</option>;
+            })}
+          </select>
+        </div>
       </div>
-      
-      <div className="w-full flex flex-row justify-start text-sm">
+
+      <div className="w-full flex flex-row mobs:flex-col mobs:mx-5 mobs:w-[89%] justify-start text-sm">
         <div className="homeStates my-1 md:w-1/3 md:px-10">
           <div className="flex justify-between font-medium">
             <span>Seat type</span>
@@ -266,6 +271,23 @@ const viewBranchWise = () => {
             })}
           </select>
         </div>
+
+        <div className="homeStates my-1 md:w-1/3 md:px-10 mb-12">
+          <div className="flex justify-between font-medium">
+            <span>Round</span>
+          </div>
+          <select
+            name="states"
+            className="p-2 w-full border-solid border-[#D1D5DB] border rounded-md "
+            onChange={(e) => {
+              setRounds(e.target.value);
+            }}
+          >
+            {Rounds.map((state) => {
+              return <option value={state}>{state}</option>;
+            })}
+          </select>
+        </div>
         {/* <div className="homeStates my-1 md:w-1/3 md:px-10">
           <div className="flex justify-between font-medium">
             <span>Display rounds</span>
@@ -284,38 +306,47 @@ const viewBranchWise = () => {
           </select>
         </div> */}
       </div>
-      <div className="chart mt-7">
-          <ResponsiveContainer width="90%" height={400}>
-            <LineChart
-              id="chart"
-              data={chartData}
-              margin={{
-                top: 0,
-                right: 30,
-                left: -10,
-                bottom: 5,
-              }}
-            >
-              <XAxis dataKey={"name"} height={80}>
-                <Label value="Rounds" position="insideBottom" />
-              </XAxis>
-              <YAxis />
-              <Tooltip />
-              {!noData ? (
-                <>
-                  <Line
-                    type="monotone"
-                    dataKey="Opening_Rank"
-                    stroke="#8884d8"
-                    activeDot={{ r: 5 }}
-                  />
-                </>
-              ) : null}
+      {selectedInstitute && chartData && (
+        <div className="text-[#8884d8] text-center">{selectedInstitute}</div>
+      )}
+      {BranchData?.data.Institute && chartData && (
+        <div className="text-[#8884d8] text-center">
+          {BranchData?.data.Institute}
+        </div>
+      )}
 
-              <Legend verticalAlign="top" height={80} />
-            </LineChart>
-          </ResponsiveContainer>
-        
+      <div className="chart mt-5">
+        <ResponsiveContainer width="95%" height={350}>
+          <LineChart
+            id="chart"
+            data={chartData}
+            margin={{
+              top: 0,
+              right: 30,
+              left: -10,
+              bottom: 5,
+            }}
+          >
+            <XAxis dataKey={"name"} height={60}>
+              <Label value="Rounds" position="insideBottom" />
+            </XAxis>
+            <YAxis></YAxis> <Tooltip />
+            {chartData.length > 0 ? (
+              <>
+                <Line
+                  type="monotone"
+                  dataKey="Opening_Rank"
+                  stroke="#8884d8"
+                  activeDot={{ r: 5 }}
+                />
+              </>
+            ) : (
+              <div>NO DATA</div>
+            )}
+            {/* <Legend verticalAlign="top" height={80} /> */}
+          </LineChart>
+        </ResponsiveContainer>
+
         {noData ? (
           <div className="absolute">
             <div>

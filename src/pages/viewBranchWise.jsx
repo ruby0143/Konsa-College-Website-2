@@ -25,13 +25,13 @@ const viewBranchWise = () => {
 
   const Gender = ["Gender-Neutral", "Female-only (including supernumerary)"];
   const columns = [
-    { title: "Institute", dataIndex: "Institute" },
-    { title: "Program", dataIndex: "Academic_Program_Name" },
-    { title: "Round", dataIndex: "Round" },
-    { title: "Opening Rank", dataIndex: "Opening_Rank" },
-    { title: "Closing Rank", dataIndex: "Closing_Rank" },
-    { title: "Gender", dataIndex: "Gender" },
-    { title: "Seat", dataIndex: "Seat_Type" },
+    { title: "Institute", dataIndex: "Institute",width:200},
+    { title: "Program", dataIndex: "Academic_Program_Name",width:200},
+    { title: "Round", dataIndex: "Round",width:25},
+    { title: "Opening Rank", dataIndex: "Opening_Rank",width:30},
+    { title: "Closing Rank", dataIndex: "Closing_Rank",width:30},
+    { title: "Gender", dataIndex: "Gender",width:100},
+    { title: "Seat", dataIndex: "Seat_Type",width:100},
   ];
   const page = 1;
   const limit = 5000;
@@ -89,16 +89,16 @@ const viewBranchWise = () => {
     <>
       <div className="p-3 ">
         <div className="head md:p-5">
-          <h2 className="text-2xl font-bold p-2">View Branch-wise Cut-offs</h2>
-          <p className="p-2">
+          <h2 className="text-2xl font-bold p-2 mobs:text-lg">View Branch-wise Cut-offs</h2>
+          <p className="md:p-2 mobs:px-2 mobs:text-sm">
             Filter by branch allows you to filter the cut-off data with the
             selected branch and further narrow down with your choice of
             institutes.
           </p>
         </div>
       </div>
-      <div className="rankTpye md:px-10 md:w-[50%]">
-        <div className="text-sm font-medium">Rank Type</div>
+      <div className="rankTpye md:px-10 md:w-[50%] mobs:w-w-full mobs:px-5">
+        <div className="text-sm  font-medium">Rank Type</div>
         <div className="py-1 flex justify-between items-center">
           <div className="flex justify-center items-center">
             <div className="flex items-center text-sm">
@@ -112,7 +112,7 @@ const viewBranchWise = () => {
               />
               <label
                 for="default-radio-1"
-                className="ml-2 text-sm  text-gray-700 "
+                className="ml-2 text-sm mobs:text-xs text-gray-700 "
               >
                 JEE (Main)
               </label>
@@ -130,7 +130,7 @@ const viewBranchWise = () => {
               />
               <label
                 for="default-radio-2"
-                className="ml-2 text-sm  text-gray-700 "
+                className="ml-2 text-sm mobs:text-xs  text-gray-700 "
               >
                 JEE (Advance)
               </label>
@@ -138,9 +138,9 @@ const viewBranchWise = () => {
           </div>
         </div>
       </div>
-      <div className="homeStates my-1 md:w-[44%] mx-10 mr-[10px]">
-        <div className="flex justify-between font-medium">
-          <span>Branches</span>
+      <div className="homeStates my-1 md:w-[44%] md:mx-10 md:mr-[10px] mobs:mx-5">
+        <div className="flex justify-between font-medium mobs:text-sm">
+          <span className="text-sm">Branches</span>
         </div>
         <select
           name="states"
@@ -155,13 +155,10 @@ const viewBranchWise = () => {
         </select>
       </div>
       <div
-        className={
-          !callFunction
-            ? "w-full flex flex-row justify-start text-sm text-gray-400"
-            : "w-full flex flex-row justify-start text-sm"
+        className={ "w-full flex md:flex-row mobs:flex-col justify-start text-sm mobs:mx-5"
         }
       >
-        <div className="homeStates my-1 md:w-1/3 md:px-10">
+        <div className="homeStates my-1 md:w-1/3 md:px-10 mobs:mr-10">
           <div className="flex justify-between font-medium">
             <span>Seat type</span>
           </div>
@@ -178,7 +175,7 @@ const viewBranchWise = () => {
             })}
           </select>
         </div>
-        <div className="homeStates my-1 md:w-1/3 md:px-10">
+        <div className="homeStates my-1 md:w-1/3 md:px-10 mobs:mr-10">
           <div className="flex justify-between font-medium">
             <span>Gender</span>
           </div>
@@ -195,7 +192,7 @@ const viewBranchWise = () => {
             })}
           </select>
         </div>
-        <div className="homeStates my-1 md:w-1/3 md:px-10">
+        <div className="homeStates my-1 md:w-1/3 md:px-10 mobs:mr-10">
           <div className="flex justify-between font-medium">
             <span>Display rounds</span>
           </div>
@@ -214,8 +211,8 @@ const viewBranchWise = () => {
         </div>
       </div>
 
-      <div className="w-full flex flex-row justify-start mb-5 text-sm">
-        <div className="homeStates my-1 md:w-1/2 md:px-10">
+      <div className="w-full flex flex-row mobs:flex-col justify-start mb-5 text-sm">
+        <div className="homeStates my-1 md:w-1/2 md:px-10 mobs:mx-5">
           <div className="flex justify-between font-medium">
             <span>Minimum Rank</span>
           </div>
@@ -228,7 +225,7 @@ const viewBranchWise = () => {
             }}
           ></input>
         </div>
-        <div className="homeStates my-1 md:w-1/2 md:px-10">
+        <div className="homeStates my-1 md:w-1/2 md:px-10 mobs:mx-5">
           <div className="flex justify-between font-medium">
             <span>Maximum Rank</span>
           </div>
@@ -242,7 +239,7 @@ const viewBranchWise = () => {
           ></input>
         </div>
       </div>
-      <div className="w-full mobs:w-[320px] ml-10 mb-7 text-sm border rounded-lg mr-10 text-gray-500 overflow-x-auto">
+      <div className="w-full mobs:w-[90%] md:ml-10 mobs:mx-5 mb-7 text-sm border rounded-lg md:mr-10  text-gray-500 overflow-x-auto">
         {loader ? (
           <div className="w-full flex flex-wrap justify-center md:my-5 ">
             <ClipLoader
