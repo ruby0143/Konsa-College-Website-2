@@ -27,13 +27,13 @@ const viewBranchWise = () => {
   const [defaultData, setDefault] = useState([]);
   const [selected, setBranches] = useState([]);
   const [selectedInstitute, setSelectedInstitute] = useState([]);
-  const [institutes, setInstitutes] = useState([]);
+  const [institutes, setInstitutes] = useState(["Select Institute"]);
   const [chartData, setChartData] = useState([]);
   const [Duration, setSelectedDuration] = useState("4 Years");
   const [filterData, setFilterData] = useState([]);
   const [noData, setBool] = useState(false);
   const [round, setRounds] = useState("All Rounds");
-  let Institute = [];
+  let Institute = ["Choose Desired Institute"];
 
   const Gender = ["Gender-Neutral", "Female-only (including supernumerary)"];
   const duration = ["4 Years", "5 Years"];
@@ -207,7 +207,7 @@ const viewBranchWise = () => {
             })}
           </select>
         </div>
-        {institutes.length > 0 && (
+        {institutes && (
           <div className="homeStates my-1 md:w-1/3 ">
             <div className="flex justify-between font-medium">
               <span>College</span>
@@ -243,8 +243,8 @@ const viewBranchWise = () => {
         </div>
       </div>
 
-      <div className="w-full flex flex-row mobs:flex-col mobs:mx-5 mobs:w-[89%] justify-start text-sm">
-        <div className="homeStates my-1 md:w-1/3 md:px-10">
+      <div className="instituteType flex flex-row mobs:flex-col mobs:mx-5 my-1 ml-5 md:w-full md:px-5 justify-start md:gap-10">
+        <div className="homeStates my-1 md:w-1/3">
           <div className="flex justify-between font-medium">
             <span>Seat type</span>
           </div>
@@ -261,7 +261,7 @@ const viewBranchWise = () => {
             })}
           </select>
         </div>
-        <div className="homeStates my-1 md:w-1/3 md:px-10 mb-12">
+        <div className="homeStates my-1 md:w-1/3  mb-12">
           <div className="flex justify-between font-medium">
             <span>Gender</span>
           </div>
@@ -279,7 +279,7 @@ const viewBranchWise = () => {
           </select>
         </div>
 
-        <div className="homeStates my-1 md:w-1/3 md:px-10 mb-12">
+        <div className="homeStates my-1 md:w-1/3 mb-12">
           <div className="flex justify-between font-medium">
             <span>Round</span>
           </div>
@@ -329,10 +329,14 @@ const viewBranchWise = () => {
       ) : (
         <>
           {" "}
-          {selectedInstitute && chartData && (
+          {selectedInstitute.length>0 && chartData && (
+            <>
             <div className="text-[#8884d8] text-center">
               {selectedInstitute}
             </div>
+            <div className="text-[#8884d8] text-center">
+              {selected} Engineering
+            </div></>
           )}
         </>
       )}
