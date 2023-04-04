@@ -5,7 +5,7 @@ const HeroSection = () => {
   return (
     <div className='w-full bg-[#EE7C00] h-[450px]'>
       <div className='w-full h-[450px]'>
-        <div className='w-[90%] mx-auto flex items-center justify-between pt-16  transition-all duration-500'>
+        <div className='w-[90%] mx-auto flex items-center justify-between pt-8  transition-all duration-500'>
           <div className='w-[600px]'>
               <div className='text-4xl font-bold text-white mb-6'>
                 College Comparator Tool

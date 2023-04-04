@@ -10,7 +10,7 @@ const ComparatorMenu = () => {
         })}
       </div>
       <div className='bg-white px-[24px] py-[24px] w-full flex items-center justify-end'>
-        {<button className='py-1 text-white font-medium w-[380px] bg-[#EE7C00] rounded-sm cursor-pointer'>
+        {<button className='py-2 text-white font-medium w-[380px] bg-[#EE7C00] rounded-sm cursor-pointer'>
           Compare
         </button>}
       </div>
