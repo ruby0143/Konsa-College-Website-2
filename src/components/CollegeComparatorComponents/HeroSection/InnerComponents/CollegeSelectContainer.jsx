@@ -84,8 +84,10 @@ const CollegeSelectContainer = () => {
         }
         {
             selectedCollege === 0 ? (
-                <div>
-                    
+                <div className='h-[190px] flex flex-col justify-center items-center mb-4'>
+                    <span className='text-xl text-[#bbbbbb]'>
+                        No College data found
+                    </span>
                 </div>
             ) : null
         }
