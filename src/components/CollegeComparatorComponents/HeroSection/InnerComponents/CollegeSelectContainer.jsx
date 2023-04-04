@@ -40,7 +40,7 @@ const CollegeSelectContainer = () => {
     }
   
   return (
-    <div className='h-full relative flex-grow p-6 mob:p-2 border-b'>
+    <div className='h-full relative flex-grow p-6 mob:py-3 mob:px-2 border'>
         {
             selectedCollege !== null && selectedCollege !== 0 ? (
                 <div className='w-full flex flex-col items-center gap-2 mb-4 mob:mb-2 transition-all duration-500 h-[220px] mob:h-[160px]'>
@@ -85,7 +85,7 @@ const CollegeSelectContainer = () => {
         }
         {
             selectedCollege === 0 ? (
-                <div className='h-[220px] mob:h-[160px] flex flex-col justify-center items-center mb-4'>
+                <div className='h-[220px] mob:h-[160px] flex flex-col justify-center items-center mb-4 mob:mb-2'>
                     <span className='text-xl mob:text-base text-center text-[#bbbbbb]'>
                         No College data found
                     </span>

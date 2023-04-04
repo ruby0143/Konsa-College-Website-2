@@ -23,7 +23,7 @@ const ComparatorMenu = () => {
           return <CollegeSelectContainer key={idx}/>
         })}
       </div>
-      <div className='bg-white px-[24px] mob:px-[8px] py-[24px] mob:py-[8px] w-full flex items-center justify-end mob:justify-center'>
+      <div className='bg-white px-[24px] mob:px-[8px] py-[24px] mob:py-[12px] w-full flex items-center justify-end mob:justify-center'>
         {<button className='py-2 mob:py-1 w-[356px] mob:w-full text-white font-medium bg-[#EE7C00] rounded-sm cursor-pointer'>
           Compare
         </button>}

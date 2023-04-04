@@ -3,9 +3,9 @@ import ComparatorMenu from './InnerComponents/ComparatorMenu'
 
 const HeroSection = () => {
   return (
-    <div className='w-full bg-[#EE7C00] h-[450px]'>
+    <div className='w-full bg-[#EE7C00] h-[500px] mob:h-[450px]'>
       <div className='w-full h-full'>
-        <div className='w-[90%] mx-auto flex mob:flex-col-reverse items-center justify-between pt-8  transition-all duration-500'>
+        <div className='w-[90%] mx-auto flex mob:flex-col-reverse items-center justify-between pt-6  transition-all duration-500'>
           <div className='w-[600px] mob:w-[300px] mob:text-center'>
               <div className='text-4xl mob:text-2xl font-bold text-white mb-6 mob:mb-3'>
                 College Comparator Tool
