@@ -135,7 +135,7 @@ const PercentilePredictor = () => {
         </h3>
         <div className=" flex justify-center mb-[60px] mob:mb-[40px]">
           <p className="text-center w-[80%]  mt-[20px] mob:mt-[8px] text-xl mob:text-base font-normal mob:font-light text-[#3C3B3B] desk:leading-6 mob:leading-4 desk:tracking-wider">
-          Don't rely on guesswork to determine your percentile – use our innovative tool to get a precise understanding of your performance compared to your peers!
+          Don't rely on guesswork to determine your rank – use our innovative tool to get a precise understanding of your performance compared to your peers!
           </p>
         </div>
         <div className=" flex justify-center bg-[url('/cpbg.svg')] desk:bg-cover  mob:bg-cover mob:bg-no-repeat mob:bg-bottom">
