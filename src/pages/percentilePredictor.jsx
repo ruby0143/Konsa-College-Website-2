@@ -65,7 +65,7 @@ const PercentilePredictor = () => {
             p.push(arr[i]["Percentile"]);
           }
         }
-        var minVal =Math.min(...p)
+        var minVal = Math.min(...p)
 //             .toString()
 //             .split(".")[0] +
 //           "." +
@@ -83,8 +83,10 @@ const PercentilePredictor = () => {
 //             .toString()
 //             .split(".")[1]
 //             .substring(1, 5);
+        
          var maxRank=((100-maxVal)*totalPeople)/100
-
+           minRank = Math.max(minRank, 1)
+        maxRank = Math.max(minRank, 1)
 
         return { minVal: minRank, maxVal: maxRank };
       }
