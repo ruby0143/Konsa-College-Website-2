@@ -190,7 +190,7 @@ const PercentilePredictor = () => {
                 className="relative flex mt-[8px] justify-betweeb h-[34px] items-center w-full rounded-[2px]"
               >
                 <input
-                  {...register("score", { required: "name field is required" })}
+                  {...register("score", { required: "marks field is required" })}
                   className={`rounded-[2px] bg-[#FFFFFF] text-[#ACACAC] text-sm mob:text-xs tracking-wide focus:outline-none border ${errors.score ? "border-red-500" : "border-gray-300"} w-full h-full p-[6px]`}
                   type="number"
                   value={inputMarks}
