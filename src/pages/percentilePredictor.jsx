@@ -17,9 +17,8 @@ const PercentilePredictor = () => {
   const totalPeople=800000
 
   const shiftList = [
-    { type: "Easy" },
-    { type: "Moderate" },
-    { type: "Hard" },
+    { type: "6th Morning" },
+    { type: "6th Evening" },
   ];
 
   const handlePredictor = () => {
@@ -28,9 +27,21 @@ const PercentilePredictor = () => {
       let shiftType = shift;
       let shiftVal = 0;
 
-      if (shiftType === "Easy") shiftVal = 0.9;
-      else if (shiftType === "Moderate") shiftVal = 1;
-      else shiftVal = 1.1;
+//       if (shiftType === "Easy") shiftVal = 0.85;
+//       else if (shiftType === "Moderate") shiftVal = 0.9;
+//       else shiftVal = 0.99;
+//       let shiftVal;
+      switch(shift) {
+        case "6th Morning":
+          shiftVal = 0.85;
+          break;
+        case "6th Evening":
+          shiftVal = 0.9;
+          break;
+        default:
+          shiftVal = 1;
+          break;
+      }
 
       let marks = inputMarks;
 
