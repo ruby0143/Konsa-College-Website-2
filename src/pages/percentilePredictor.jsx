@@ -14,12 +14,11 @@ const PercentilePredictor = () => {
   const [inputMarks, setInputMarks] = useState("");
   const [prediction, setPrediction] = useState({});
   const [showPercentile, setShowPercentile] = useState(false);
-  const totalPeople=800000
+  const totalPeople=900000
 
   const shiftList = [
-    { type: "Easy" },
-    { type: "Moderate" },
-    { type: "Hard" },
+    { type: "6th Morning" },
+    { type: "6th Evening" },
   ];
 
   const handlePredictor = () => {
@@ -28,54 +27,66 @@ const PercentilePredictor = () => {
       let shiftType = shift;
       let shiftVal = 0;
 
-      if (shiftType === "Easy") shiftVal = 0.9;
-      else if (shiftType === "Moderate") shiftVal = 1;
-      else shiftVal = 1.1;
+//       if (shiftType === "Easy") shiftVal = 0.85;
+//       else if (shiftType === "Moderate") shiftVal = 0.9;
+//       else shiftVal = 0.99;
+//       let shiftVal;
+      switch(shift) {
+        case "6th Morning":
+          shiftVal = 0.95; // Assuming as easy
+          break;
+        case "6th Evening":
+          shiftVal = 1; // Assuming as hard
+          break;
+        default:
+          shiftVal = 1;
+          break;
+      }
 
       let marks = inputMarks;
 
       let arr = apiResponseData;
 
       function percentileRangeGen(arr, marks, shiftVal) {
-        let pMin = [];
-        let pMax = [];
+        let p = [];
         marks = marks * shiftVal;
 
         for (var i = 0; i < arr.length; i++) {
           let lowerBound = arr[i]["Marks Lower Bound"];
           let upperBound = arr[i]["Marks Upper Bound"];
           if (marks > lowerBound && marks < upperBound) {
-            let r1 =
-              Math.round(Math.random().toFixed(4) * 100000000) / 100000000;
-            let r2 =
-              Math.round(Math.random().toFixed(4) * 100000000) / 100000000;
+//             let r1 =
+//               Math.round(Math.random().toFixed(4) * 100000000) / 100000000;
+//             let r2 =
+//               Math.round(Math.random().toFixed(4) * 100000000) / 100000000;
 
-            pMin.push(arr[i]["Percentile"] + Math.min(r1, r2));
-            pMax.push(arr[i]["Percentile"] + Math.max(r1, r2));
+//             pMin.push(arr[i]["Percentile"] + Math.min(r1, r2));
+//             pMax.push(arr[i]["Percentile"] + Math.max(r1, r2));
+            p.push(arr[i]["Percentile"]);
           }
         }
-        var minVal =
-          Math.min(...pMin)
-            .toString()
-            .split(".")[0] +
-          "." +
-          Math.min(...pMin)
-            .toString()
-            .split(".")[1]
-            .substring(1, 5);
+        var minVal = Math.min(...p)
+//             .toString()
+//             .split(".")[0] +
+//           "." +
+//           Math.min(...pMin)
+//             .toString()
+//             .split(".")[1]
+//             .substring(1, 5);
             var minRank=((100-minVal)*totalPeople)/100
 
-        var maxVal =
-          Math.max(...pMax)
-            .toString()
-            .split(".")[0] +
-          "." +
-          Math.max(...pMax)
-            .toString()
-            .split(".")[1]
-            .substring(1, 5);
+        var maxVal = Math.max(...p)
+//             .toString()
+//             .split(".")[0] +
+//           "." +
+//           Math.max(...pMax)
+//             .toString()
+//             .split(".")[1]
+//             .substring(1, 5);
+        
          var maxRank=((100-maxVal)*totalPeople)/100
-
+           minRank = Math.max(minRank, 1)
+        maxRank = Math.max(maxRank, 1)
 
         return { minVal: minRank, maxVal: maxRank };
       }
@@ -126,7 +137,7 @@ const PercentilePredictor = () => {
         </h3>
         <div className=" flex justify-center mb-[60px] mob:mb-[40px]">
           <p className="text-center w-[80%]  mt-[20px] mob:mt-[8px] text-xl mob:text-base font-normal mob:font-light text-[#3C3B3B] desk:leading-6 mob:leading-4 desk:tracking-wider">
-          Don't rely on guesswork to determine your percentile – use our innovative tool to get a precise understanding of your performance compared to your peers!
+          Don't rely on guesswork to determine your rank – use our innovative tool to get a precise understanding of your performance compared to your peers!
           </p>
         </div>
         <div className=" flex justify-center bg-[url('/cpbg.svg')] desk:bg-cover  mob:bg-cover mob:bg-no-repeat mob:bg-bottom">
@@ -179,7 +190,7 @@ const PercentilePredictor = () => {
                 className="relative flex mt-[8px] justify-betweeb h-[34px] items-center w-full rounded-[2px]"
               >
                 <input
-                  {...register("score", { required: "name field is required" })}
+                  {...register("score", { required: "marks field is required" })}
                   className={`rounded-[2px] bg-[#FFFFFF] text-[#ACACAC] text-sm mob:text-xs tracking-wide focus:outline-none border ${errors.score ? "border-red-500" : "border-gray-300"} w-full h-full p-[6px]`}
                   type="number"
                   value={inputMarks}

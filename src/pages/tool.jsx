@@ -5,76 +5,73 @@ import { Link } from "react-router-dom";
 const tool = () => {
 
   const tools = [
-    {
-      img: "./tool1.svg",
-      heading: "College Predictor",
-      link: "/collegePredictor",
-      desc: "Discover your ideal engineering college effortlessly based on your rank, thanks to our College Predictor Tool. Let the magic unfold as you find your perfect match!",
-      route: "/collegePredictor",
-    },
-
-    {
-      img: "./tool1.svg",
-      heading: "Preference List Generator",
-      desc: "Solving JEE Advance questions is still easier than making the best preference list, but not anymore with this tool!",
-      route: "/preferenceListGenerator",
-    },
-    {
-      img: "./tool1.svg",
-      heading: "View All Institutes",
-      desc: "View a list of all institutes in JOSSA counseling",
-      route: "/trends",
-    },
-    {
-      img: "./tool1.svg",
-      heading: "View All Branches",
-      desc: "View a list of all branches in JOSSA counseling",
-      route: "/branches",
-    },
-    {
-      img: "./tool1.svg",
-      heading: "View Institute wise Cutoffs",
-      desc: "Filter the cutoff data with selected Institutes",
-      route: "/view-institute-cutoffs",
-    },
-    {
-      img: "./tool2.svg",
-      heading: "College Comparator",
-      desc: "Stuck between two colleges? Use this tool to compare colleges and make informed decisions for your future.",
-      route: "/collegeComparator",
-    },
-
-
+//     {
+//       img: "./tool1.svg",
+//       heading: "College Predictor",
+//       link: "/collegePredictor",
+//       desc: "Discover your ideal engineering college effortlessly based on your rank, thanks to our College Predictor Tool. Let the magic unfold as you find your perfect match!",
+//       route: "/collegePredictor",
+//     },
+//     {
+//       img: "./tool1.svg",
+//       heading: "Preference List Generator",
+//       desc: "Solving JEE Advance questions is still easier than making the best preference list, but not anymore with this tool!",
+//       route: "/preferenceListGenerator",
+//     },
+//     {
+//       img: "./tool1.svg",
+//       heading: "View All Institutes",
+//       desc: "View a list of all institutes in JOSSA counseling",
+//       route: "/trends",
+//     },
+//     {
+//       img: "./tool1.svg",
+//       heading: "View All Branches",
+//       desc: "View a list of all branches in JOSSA counseling",
+//       route: "/branches",
+//     },
+//     {
+//       img: "./tool1.svg",
+//       heading: "View Institute wise Cutoffs",
+//       desc: "Filter the cutoff data with selected Institutes",
+//       route: "/view-institute-cutoffs",
+//     },
+//     {
+//       img: "./tool2.svg",
+//       heading: "College Comparator",
+//       desc: "Stuck between two colleges? Use this tool to compare colleges and make informed decisions for your future.",
+//       route: "/collegeComparator",
+//     },
     {
       img: "./tool2.svg",
       heading: "Rank Predictor",
       desc: "A comprehensive tool to help you take an approximate guess at your Rank based on your marks!",
       route: "/percentilePredictor",
     },
-    {
-      img: "./tool1.svg",
-      heading: "View Branch wise Cutoffs",
-      desc: "Filter the cutoff data with selected Branches",
-      route: "/branch-wise-cut-off",
-    },
-    {
-      img: "./tool2.svg",
-      heading: "Trend Analysis Tool",
-      desc: "Numbers can be confusing, but with this innovative tool, you can easily understand past cutoff trends with graphs!",
-      route: "/trendsAnalysis",
-    },
-    {
-      img: "./tool1.svg",
-      heading: "Analyze Branch Wise Cut-Off Trends",
-      desc: "Compare the cutoff trends of a course in a engineering branch",
-      route: "/analyze-institute-wise-cutoff",
-    },
-    {
-      img: "./tool2.svg",
-      heading: "Analyze Institute Wise Cut-Off Trends",
-      desc: "Compare the cutoff trends of a courses offered by an institute",
-      route: "/analyze-branch-wise-cut-off",
-    },
+//     {
+//       img: "./tool1.svg",
+//       heading: "View Branch wise Cutoffs",
+//       desc: "Filter the cutoff data with selected Branches",
+//       route: "/branch-wise-cut-off",
+//     },
+//     {
+//       img: "./tool2.svg",
+//       heading: "Trend Analysis Tool",
+//       desc: "Numbers can be confusing, but with this innovative tool, you can easily understand past cutoff trends with graphs!",
+//       route: "/trendsAnalysis",
+//     },
+//     {
+//       img: "./tool1.svg",
+//       heading: "Analyze Branch Wise Cut-Off Trends",
+//       desc: "Compare the cutoff trends of a course in a engineering branch",
+//       route: "/analyze-branch-wise-cutoff",
+//     },
+//     {
+//       img: "./tool2.svg",
+//       heading: "Analyze Institute Wise Cut-Off Trends",
+//       desc: "Compare the cutoff trends of a courses offered by an institute",
+//       route: "/analyze-institute-wise-cutoff",
+//     },
   ];
   const BlackContainer = [
     {
@@ -109,7 +106,7 @@ const tool = () => {
               Introducing KC innovative tools, designed to assist you at every 
               stage of your counseling journey. Discover the perfect tool for your
                needs and take control of your future. Try them NOW!
-                arcu. Explore our smart tools!
+                Explore our smart tools!
               </div>
               <div className="bg-white flex mt-5 mx-3 rounded-3xl w-[350px]bg-white justify-between items-center">
                 <div className="flex justify-center items-center p-1 gap-2 gap-x-3 ml-2">
@@ -122,9 +119,6 @@ const tool = () => {
                       placeholder="Search for a Tool..."
                     />
                   </div>
-                </div>
-                <div className="bg-black text-white rounded-3xl px-5 py-3 text-[16px]">
-                  <button>Continue</button>
                 </div>
               </div>
             </div>
