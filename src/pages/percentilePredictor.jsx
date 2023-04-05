@@ -56,19 +56,18 @@ const PercentilePredictor = () => {
           let lowerBound = arr[i]["Marks Lower Bound"];
           let upperBound = arr[i]["Marks Upper Bound"];
           if (marks > lowerBound && marks < upperBound) {
-            let r1 =
-              Math.round(Math.random().toFixed(4) * 100000000) / 100000000;
-            let r2 =
-              Math.round(Math.random().toFixed(4) * 100000000) / 100000000;
+//             let r1 =
+//               Math.round(Math.random().toFixed(4) * 100000000) / 100000000;
+//             let r2 =
+//               Math.round(Math.random().toFixed(4) * 100000000) / 100000000;
 
 //             pMin.push(arr[i]["Percentile"] + Math.min(r1, r2));
 //             pMax.push(arr[i]["Percentile"] + Math.max(r1, r2));
-            pMin.push(arr[i]["Percentile"];
-            pMax.push(arr[i]["Percentile"];
+            pMin.push(arr[i]["Percentile"]);
+            pMax.push(arr[i]["Percentile"]);
           }
         }
-        var minVal =
-          Math.min(...pMin)
+        var minVal = pMin[0]
 //             .toString()
 //             .split(".")[0] +
 //           "." +
@@ -78,8 +77,7 @@ const PercentilePredictor = () => {
 //             .substring(1, 5);
             var minRank=((100-minVal)*totalPeople)/100
 
-        var maxVal =
-          Math.max(...pMax)
+        var maxVal = pMax[0]
 //             .toString()
 //             .split(".")[0] +
 //           "." +
