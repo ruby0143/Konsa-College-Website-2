@@ -14,7 +14,7 @@ const PercentilePredictor = () => {
   const [inputMarks, setInputMarks] = useState("");
   const [prediction, setPrediction] = useState({});
   const [showPercentile, setShowPercentile] = useState(false);
-  const totalPeople=800000
+  const totalPeople=900000
 
   const shiftList = [
     { type: "6th Morning" },
@@ -69,24 +69,24 @@ const PercentilePredictor = () => {
         }
         var minVal =
           Math.min(...pMin)
-            .toString()
-            .split(".")[0] +
-          "." +
-          Math.min(...pMin)
-            .toString()
-            .split(".")[1]
-            .substring(1, 5);
+//             .toString()
+//             .split(".")[0] +
+//           "." +
+//           Math.min(...pMin)
+//             .toString()
+//             .split(".")[1]
+//             .substring(1, 5);
             var minRank=((100-minVal)*totalPeople)/100
 
         var maxVal =
           Math.max(...pMax)
-            .toString()
-            .split(".")[0] +
-          "." +
-          Math.max(...pMax)
-            .toString()
-            .split(".")[1]
-            .substring(1, 5);
+//             .toString()
+//             .split(".")[0] +
+//           "." +
+//           Math.max(...pMax)
+//             .toString()
+//             .split(".")[1]
+//             .substring(1, 5);
          var maxRank=((100-maxVal)*totalPeople)/100
 
 
