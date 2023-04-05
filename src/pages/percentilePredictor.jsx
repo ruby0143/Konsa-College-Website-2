@@ -33,10 +33,10 @@ const PercentilePredictor = () => {
 //       let shiftVal;
       switch(shift) {
         case "6th Morning":
-          shiftVal = 0.85;
+          shiftVal = 0.95; // Assuming as easy
           break;
         case "6th Evening":
-          shiftVal = 0.9;
+          shiftVal = 1; // Assuming as hard
           break;
         default:
           shiftVal = 1;
@@ -61,8 +61,10 @@ const PercentilePredictor = () => {
             let r2 =
               Math.round(Math.random().toFixed(4) * 100000000) / 100000000;
 
-            pMin.push(arr[i]["Percentile"] + Math.min(r1, r2));
-            pMax.push(arr[i]["Percentile"] + Math.max(r1, r2));
+//             pMin.push(arr[i]["Percentile"] + Math.min(r1, r2));
+//             pMax.push(arr[i]["Percentile"] + Math.max(r1, r2));
+            pMin.push(arr[i]["Percentile"];
+            pMax.push(arr[i]["Percentile"];
           }
         }
         var minVal =
