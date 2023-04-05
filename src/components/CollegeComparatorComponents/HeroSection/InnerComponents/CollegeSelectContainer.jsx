@@ -2,7 +2,8 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { MdHighlightOff, MdLocationOn } from "react-icons/md";
 import { FaSchool } from "react-icons/fa";
-const CollegeSelectContainer = () => {
+
+const CollegeSelectContainer = ({index, collegeSelectorData, setCollegeSelectorData}) => {
 
     const [searchTerm, setSearchTerm] = useState("")  
     const [searchResults, setSearchResuts] = useState([])
@@ -20,8 +21,8 @@ const CollegeSelectContainer = () => {
             const url = 'https://konsa-college-backend.vercel.app/search'
             const {data} = await axios.get(url,{
                 params : {
-                term: searchTerm
-            },
+                    term: searchTerm
+                },
         })
         
         setSearchResuts(data)
@@ -35,10 +36,26 @@ const CollegeSelectContainer = () => {
         const collegeFetchUrl = "https://konsa-college-backend.vercel.app/college/";
         
         await axios.get(`${collegeFetchUrl}`+`${collegeUuid}`)
-            .then(res => {setSelectedCollege(res.data)})
+            .then(res => {
+                setSelectedCollege(res.data)
+                if(res.data !== 0 && res.data !== null){
+                    if(index === 0) setCollegeSelectorData({...collegeSelectorData, selectedCollege1: res.data}) 
+                    else if(index === 1) setCollegeSelectorData({...collegeSelectorData, selectedCollege2: res.data})
+                    else if(index === 2) setCollegeSelectorData({...collegeSelectorData, selectedCollege3: res.data})
+                    else setCollegeSelectorData({...collegeSelectorData, selectedCollege4: res.data})
+                }
+            })
             .catch(err => console.log("errr: ",err))
     }
-  
+    
+    const handleRemove = async (idx) => { 
+        setSearchTerm("");
+
+        // delete collegeSelectorData
+        delete collegeSelectorData[`selectedCollege${idx + 1}`]
+        console.log("college selector obj after deletion: ", collegeSelectorData);
+    }
+
   return (
     <div className='h-full relative flex-grow p-6 mob:py-3 mob:px-2 border'>
         {
@@ -47,18 +64,18 @@ const CollegeSelectContainer = () => {
                     <div className='w-full flex justify-end items-center'>
                         <MdHighlightOff 
                             className='text-[#EE7C00] cursor-pointer'
-                            onClick={()=>setSearchTerm("")}
+                            onClick={()=>handleRemove(index)}
                         />
                     </div>
-                    <div className='flex w-full flex-col gap-2 items-center justify-center'>
+                    <div className='flex flex-col gap-2 items-center justify-center'>
                         <img 
                             src={selectedCollege.college_logo_link} 
                             alt="college logo" 
                             className='w-[100px] mob:w-[50px] h-[100px] mob:h-[50px] object-cover'
                         />
-                        <div className='text-[#232323] text-center text-lg mob:text-xs font-medium w-[150px] md:w-[230px] lg:w-[300px]'>
+                        <span className='text-[#232323] text-center text-lg mob:text-xs font-medium w-[150px] md:w-[250px]'>
                             {selectedCollege.college_name}
-                        </div>
+                        </span>
                     </div>
                     <div className='w-full flex justify-center items-center gap-1'>
                         <MdLocationOn
