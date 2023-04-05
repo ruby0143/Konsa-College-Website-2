@@ -48,8 +48,7 @@ const PercentilePredictor = () => {
       let arr = apiResponseData;
 
       function percentileRangeGen(arr, marks, shiftVal) {
-        let pMin = [];
-        let pMax = [];
+        let p = [];
         marks = marks * shiftVal;
 
         for (var i = 0; i < arr.length; i++) {
@@ -63,11 +62,10 @@ const PercentilePredictor = () => {
 
 //             pMin.push(arr[i]["Percentile"] + Math.min(r1, r2));
 //             pMax.push(arr[i]["Percentile"] + Math.max(r1, r2));
-            pMin.push(arr[i]["Percentile"]);
-            pMax.push(arr[i]["Percentile"]);
+            p.push(arr[i]["Percentile"]);
           }
         }
-        var minVal = pMin[0]
+        var minVal =Math.min(..p)
 //             .toString()
 //             .split(".")[0] +
 //           "." +
@@ -77,7 +75,7 @@ const PercentilePredictor = () => {
 //             .substring(1, 5);
             var minRank=((100-minVal)*totalPeople)/100
 
-        var maxVal = pMax[0]
+        var maxVal = Math.max(..p)
 //             .toString()
 //             .split(".")[0] +
 //           "." +
