@@ -51,7 +51,7 @@ const CollegeSelectContainer = ({index, collegeSelectorData, setCollegeSelectorD
     const handleRemove = async (idx) => { 
         setSearchTerm("");
 
-        // delete collegeSelectorData
+        // delete collegeSelectorData*
         delete collegeSelectorData[`selectedCollege${idx + 1}`]
         console.log("college selector obj after deletion: ", collegeSelectorData);
     }
