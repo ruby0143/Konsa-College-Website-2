@@ -56,8 +56,8 @@ const CollegeSelectContainer = ({index, collegeSelectorData, setCollegeSelectorD
         setSearchTerm("");
 
         // delete collegeSelectorData*
-        delete collegeSelectorData[`selectedCollege${idx + 1}`]
-        console.log("college selector obj after deletion: ", collegeSelectorData);
+        delete collegeSelectorData[`selectedCollege${idx + 1}`];
+        setCollegeSelectorData({...collegeSelectorData});
     }
 
   return (

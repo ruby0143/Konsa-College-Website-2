@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const ComparatorSection = ({collegeSelectorData, showComparedData, setShowComparedData}) => {
 
-  console.log("length: ",Object.keys(collegeSelectorData).length);
+  Object.keys(collegeSelectorData).length < 2 ? setShowComparedData(false) : setShowComparedData(true)
 
   return (
     <div className='bg-white mx-auto max-w-[90%]'>
