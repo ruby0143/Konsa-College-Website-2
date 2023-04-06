@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { MdHighlightOff, MdLocationOn } from "react-icons/md";
 import { FaSchool } from "react-icons/fa";
 
-const CollegeSelectContainer = ({index, collegeSelectorData, setCollegeSelectorData}) => {
+const CollegeSelectContainer = ({index, collegeSelectorData, setCollegeSelectorData, setShowComparedData}) => {
 
     const [searchTerm, setSearchTerm] = useState("")  
 
@@ -42,6 +42,9 @@ const CollegeSelectContainer = ({index, collegeSelectorData, setCollegeSelectorD
         await axios.get(`${collegeFetchUrl}`+`${collegeUuid}`)
             .then(res => {
                 setSelectedCollege(res.data)
+                // setSearchTerm(res.data.college_name)
+                // setSearchResuts([])
+
                 if(res.data !== 0 && res.data !== null){
                     if(index === 0) setCollegeSelectorData({...collegeSelectorData, selectedCollege1: res.data}) 
                     else if(index === 1) setCollegeSelectorData({...collegeSelectorData, selectedCollege2: res.data})
@@ -58,6 +61,9 @@ const CollegeSelectContainer = ({index, collegeSelectorData, setCollegeSelectorD
         // delete collegeSelectorData*
         delete collegeSelectorData[`selectedCollege${idx + 1}`];
         setCollegeSelectorData({...collegeSelectorData});
+        if(Object.keys(collegeSelectorData).length < 2) {
+            setShowComparedData(false)
+        }       
     }
 
   return (

@@ -21,7 +21,14 @@ const ComparatorMenu = ({collegeSelectorData,setCollegeSelectorData, setShowComp
     <div className='z-10 bg-white rounded-sm shadow-md absolute w-[90%] mx-auto'>  
       <div className='flex w-full justify-between items-center'>
         {[...Array(windowWidth > 600 && windowWidth <= 1100 ? 3 : windowWidth < 600 ? 2 : 4 ).fill(null)].map((_,idx) => {
-          return <CollegeSelectContainer key={idx} index={idx} collegeSelectorData={collegeSelectorData} setCollegeSelectorData={setCollegeSelectorData} />
+          return (
+            <CollegeSelectContainer 
+              key={idx} 
+              index={idx} 
+              collegeSelectorData={collegeSelectorData} setCollegeSelectorData={setCollegeSelectorData} 
+              setShowComparedData={setShowComparedData}
+            />
+          )
         })}
       </div>
       <div className={`bg-white px-[20px] mob:px-[8px] py-[20px] mob:py-[12px] w-full flex items-center justify-end mob:justify-center transition-all duration-500 ${Object.keys(collegeSelectorData).length >= 2 && JSON.stringify(collegeSelectorData) !== "{}" ? "inline-flex" : "hidden"}`}>

@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 const ComparatorSection = ({collegeSelectorData, showComparedData, setShowComparedData}) => {
 
-  Object.keys(collegeSelectorData).length < 2 ? setShowComparedData(false) : setShowComparedData(true)
 
   return (
     <div className='bg-white mx-auto max-w-[90%]'>
@@ -11,9 +10,15 @@ const ComparatorSection = ({collegeSelectorData, showComparedData, setShowCompar
               data showing
           </div>
         ) : (
-           <div className='mt-[15rem] mb-[4rem] mob:mt-[10rem] mob:mb-[2rem] w-full h-[30vh] rounded-md shadow-md flex justify-center items-center text-3xl mob:text-lg font-bold text-[#EE7C00] p-8 text-center'>
-              Select atleast 2 colleges from College Selector Menu
-           </div>
+          Object.keys(collegeSelectorData).length >= 2 && JSON.stringify(collegeSelectorData) !== "{}" && !showComparedData ? (
+            <div className='mt-[15rem] mb-[4rem] mob:mt-[10rem] mob:mb-[2rem] w-full h-[30vh] rounded-md shadow-md flex justify-center items-center text-3xl mob:text-lg font-bold text-[#EE7C00] p-8 text-center'>
+                Click Compare!
+            </div>
+           ) : (
+            <div className='mt-[15rem] mb-[4rem] mob:mt-[10rem] mob:mb-[2rem] w-full h-[30vh] rounded-md shadow-md flex justify-center items-center text-3xl mob:text-lg font-bold text-[#EE7C00] p-8 text-center'>
+                Select atleast 2 colleges from College Selector Menu
+            </div>
+           )
         )}
     </div>
   )

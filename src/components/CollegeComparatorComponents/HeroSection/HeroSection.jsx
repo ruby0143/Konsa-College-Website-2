@@ -24,7 +24,10 @@ const HeroSection = ({collegeSelectorData,setCollegeSelectorData, setShowCompare
         </div>
       </div>
       <div className="relative flex justify-center items-center m-auto">
-        <ComparatorMenu collegeSelectorData={collegeSelectorData} setCollegeSelectorData={setCollegeSelectorData} setShowComparedData={setShowComparedData}/>
+        <ComparatorMenu 
+          collegeSelectorData={collegeSelectorData} 
+          setCollegeSelectorData={setCollegeSelectorData} 
+          setShowComparedData={setShowComparedData}/>
       </div>
     </div>
   )
