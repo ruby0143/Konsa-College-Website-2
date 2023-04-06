@@ -86,7 +86,7 @@ const PercentilePredictor = () => {
         
          var maxRank=((100-maxVal)*totalPeople)/100
            minRank = Math.max(minRank, 1)
-        maxRank = Math.max(maxRank, 1)
+        maxRank = Math.max(maxRank, 1) + (minRank * 0.1)
 
         return { minVal: minRank, maxVal: maxRank };
       }
