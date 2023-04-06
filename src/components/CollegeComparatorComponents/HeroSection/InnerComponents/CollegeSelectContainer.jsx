@@ -6,7 +6,11 @@ import { FaSchool } from "react-icons/fa";
 const CollegeSelectContainer = ({index, collegeSelectorData, setCollegeSelectorData}) => {
 
     const [searchTerm, setSearchTerm] = useState("")  
+
+    // college results that has to be fetched to show in dropdown
     const [searchResults, setSearchResuts] = useState([])
+
+    // on clicking dropdown result, data fetched for clicked college
     const [selectedCollege, setSelectedCollege] = useState(null)
 
 

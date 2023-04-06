@@ -1,7 +1,7 @@
 import React from 'react'
 import ComparatorMenu from './InnerComponents/ComparatorMenu'
 
-const HeroSection = ({collegeSelectorData,setCollegeSelectorData}) => {
+const HeroSection = ({collegeSelectorData,setCollegeSelectorData, setShowComparedData}) => {
   return (
     <div className='w-full bg-[#EE7C00] h-[500px] mob:h-[450px]'>
       <div className='w-full pt-14 mob:pt-8 h-full'>
@@ -24,7 +24,7 @@ const HeroSection = ({collegeSelectorData,setCollegeSelectorData}) => {
         </div>
       </div>
       <div className="relative flex justify-center items-center m-auto">
-        <ComparatorMenu collegeSelectorData={collegeSelectorData} setCollegeSelectorData={setCollegeSelectorData}/>
+        <ComparatorMenu collegeSelectorData={collegeSelectorData} setCollegeSelectorData={setCollegeSelectorData} setShowComparedData={setShowComparedData}/>
       </div>
     </div>
   )

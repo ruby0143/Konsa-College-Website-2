@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CollegeSelectContainer from './CollegeSelectContainer'
 
 
-const ComparatorMenu = ({collegeSelectorData,setCollegeSelectorData}) => {
+const ComparatorMenu = ({collegeSelectorData,setCollegeSelectorData, setShowComparedData}) => {
 
   
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
@@ -24,8 +24,11 @@ const ComparatorMenu = ({collegeSelectorData,setCollegeSelectorData}) => {
           return <CollegeSelectContainer key={idx} index={idx} collegeSelectorData={collegeSelectorData} setCollegeSelectorData={setCollegeSelectorData} />
         })}
       </div>
-      <div className={`bg-white px-[20px] mob:px-[8px] py-[20px] mob:py-[12px] w-full flex items-center justify-end mob:justify-center transition-all duration-500 ${collegeSelectorData !== null ? "inline-flex" : "hidden"}`}>
-        {<button className='py-2 mob:py-1 w-[356px] mob:w-full text-white font-medium bg-[#EE7C00] rounded-md cursor-pointer'>
+      <div className={`bg-white px-[20px] mob:px-[8px] py-[20px] mob:py-[12px] w-full flex items-center justify-end mob:justify-center transition-all duration-500 ${Object.keys(collegeSelectorData).length >= 2 && JSON.stringify(collegeSelectorData) !== "{}" ? "inline-flex" : "hidden"}`}>
+        {<button 
+          className='py-2 mob:py-1 w-[356px] mob:w-full text-white font-medium bg-[#EE7C00] rounded-md cursor-pointer'
+          onClick={()=>setShowComparedData(true)}
+         >
           Compare
         </button>}
       </div>

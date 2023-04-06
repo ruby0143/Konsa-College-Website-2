@@ -4,14 +4,13 @@ import ComparatorSection from '../components/CollegeComparatorComponents/Compara
 
 const CollegeComparator = () => {
 
-  const [collegeSelectorData, setCollegeSelectorData] = useState(null)
-
-  console.log("College Selector Data Array: ", collegeSelectorData);
+  const [collegeSelectorData, setCollegeSelectorData] = useState({})
+  const [showComparedData, setShowComparedData] = useState(false)
 
   return (
-    <div className='bg-white w-full h-[100vh]'>
-      <HeroSection collegeSelectorData={collegeSelectorData} setCollegeSelectorData={setCollegeSelectorData}/>
-      <ComparatorSection/>
+    <div className='bg-white w-full'>
+      <HeroSection collegeSelectorData={collegeSelectorData} setCollegeSelectorData={setCollegeSelectorData} setShowComparedData={setShowComparedData}/>
+      <ComparatorSection collegeSelectorData={collegeSelectorData} showComparedData={showComparedData} setShowComparedData={setShowComparedData}/>
     </div>
   )
 }
