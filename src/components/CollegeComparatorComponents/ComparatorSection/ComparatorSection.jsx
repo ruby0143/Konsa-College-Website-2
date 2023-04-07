@@ -11,18 +11,18 @@ const ComparatorSection = ({collegeSelectorData, showComparedData}) => {
                 {
                   Object.keys(collegeSelectorData).map((objectKey,idx) => {
                     return (
-                      <div key={idx}>
+                      <div key={idx} className='flex items-center'>
                         <span
-                          className='text-lg font-semibold mr-4'
+                          className='text-lg mob:text-xs font-semibold mr-4 text-center'
                         >
                           {collegeSelectorData[objectKey].college_name}
                         </span>
                         {idx !== Object.keys(collegeSelectorData).length -1 && (
-                          <span
-                            className='mr-4 font-medium'
-                          >
-                            Vs
-                          </span>
+                        <span
+                          className='mr-4 font-medium'
+                        >
+                          Vs
+                        </span>
                         )}
                       </div>
                     )
