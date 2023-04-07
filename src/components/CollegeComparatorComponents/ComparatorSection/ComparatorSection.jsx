@@ -30,7 +30,7 @@ const ComparatorSection = ({collegeSelectorData, showComparedData}) => {
                 }
               </div>
               <div className='w-full'>
-                <ComparatorTable/>
+                <ComparatorTable collegeSelectorData={collegeSelectorData}/>
               </div>
           </div>
         ) : (

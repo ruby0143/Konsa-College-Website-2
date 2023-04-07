@@ -51,8 +51,6 @@ const CollegeSelectContainer = ({index, collegeSelectorData, setCollegeSelectorD
                 }
             })
             .catch(err => console.log("errr: ",err))
-
-            console.log("college selector data: ", collegeSelectorData);
     }
     
     const handleRemove = async (idx) => { 

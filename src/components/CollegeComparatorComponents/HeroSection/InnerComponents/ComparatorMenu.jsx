@@ -26,6 +26,7 @@ const ComparatorMenu = ({collegeSelectorData,setCollegeSelectorData, setShowComp
               key={idx} 
               index={idx} 
               collegeSelectorData={collegeSelectorData} setCollegeSelectorData={setCollegeSelectorData} 
+              setShowComparedData={setShowComparedData}
             />
           )
         })}
