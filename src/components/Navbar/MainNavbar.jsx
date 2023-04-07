@@ -11,7 +11,8 @@ import examsRouteIcon from '../../assets/icons/route-icons/Exams.svg'
 import toolsRouteIcon from '../../assets/icons/route-icons/Tools.svg'
 
 // Konsa college logo import
-import KonsaCollegeLogo from "../../assets/KonsaCollege_Logo/KonsaCollege_mobileLogo.svg"
+// import KonsaCollegeLogo from "../../assets/KonsaCollege_Logo/KonsaCollege_mobileLogo.svg"
+import CollegeSetuLogo from "../../assets/collegesetu.png"
 
 // social icons import
 import { useEffect, useRef } from 'react';
@@ -205,8 +206,8 @@ const MainNavbar = () => {
             <div className='mb-12'>
               <Link href="/">
                 <img 
-                src={KonsaCollegeLogo} 
-                alt="Konsa College Logo"
+                src={CollegeSetuLogo} 
+                alt="College Setu Logo"
                 className='m-auto'
               />
               </Link>

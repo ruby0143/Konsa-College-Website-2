@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
 import { NavLink } from 'react-router-dom'
-import konsaCollegeLogo from '../../assets/KonsaCollege_Logo/KonsaCollege_desktopLogo.svg' 
+import CollegeSetuLogo from '../../assets/collegesetu.png'
 import LoginUser from '../AuthComponents/logIn/LoginUser'
 import RegisterUser from '../AuthComponents/register/RegisterUser'
 import AuthModal from '../UI Components/Modal/authModal'
@@ -60,7 +60,7 @@ const DesktopNavbar = ({setMobileSidebar, mobileSidebar ,routes, isLoginState, s
 
         <nav className='bg-black md:bg-white flex px-3 md:px-12 items-center justify-between shadow-lg'>
             <div className='h-[54px] -ml-1' >
-                <a href="/"><img className='h-full -ml-[.3rem]' src={konsaCollegeLogo} alt="konsa-college-logo"/></a>
+                <a href="/"><img className='h-full -ml-[.3rem]' src={CollegeSetuLogo} alt="college setu logo"/></a>
             </div>
             <div className='hidden md:flex items-center gap-10'>
                 <ul className='flex items-center cursor-pointer gap-10'>

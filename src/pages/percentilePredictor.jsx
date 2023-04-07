@@ -19,6 +19,8 @@ const PercentilePredictor = () => {
   const shiftList = [
     { type: "6th Morning" },
     { type: "6th Evening" },
+    { type: "7th Morning" },
+    { type: "7th Evening" },
   ];
 
   const handlePredictor = () => {
@@ -27,16 +29,18 @@ const PercentilePredictor = () => {
       let shiftType = shift;
       let shiftVal = 0;
 
-//       if (shiftType === "Easy") shiftVal = 0.85;
-//       else if (shiftType === "Moderate") shiftVal = 0.9;
-//       else shiftVal = 0.99;
-//       let shiftVal;
       switch(shift) {
         case "6th Morning":
-          shiftVal = 0.95; // Assuming as easy
+          shiftVal = 0.93;
           break;
         case "6th Evening":
-          shiftVal = 1; // Assuming as hard
+          shiftVal = 0.98;
+          break;
+        case "7th Morning":
+          shiftVal = 0.95;
+          break;
+        case "7th Evening":
+          shiftVal = 0.99;
           break;
         default:
           shiftVal = 1;
@@ -66,30 +70,17 @@ const PercentilePredictor = () => {
           }
         }
         var minVal = Math.min(...p)
-//             .toString()
-//             .split(".")[0] +
-//           "." +
-//           Math.min(...pMin)
-//             .toString()
-//             .split(".")[1]
-//             .substring(1, 5);
-            var minRank=((100-minVal)*totalPeople)/100
+        var minRank=((100-minVal)*totalPeople)/100
 
         var maxVal = Math.max(...p)
-//             .toString()
-//             .split(".")[0] +
-//           "." +
-//           Math.max(...pMax)
-//             .toString()
-//             .split(".")[1]
-//             .substring(1, 5);
-        
-         var maxRank=((100-maxVal)*totalPeople)/100
-           minRank = Math.max(minRank, 1)
+        var maxRank=((100-maxVal)*totalPeople)/100
+
+        minRank = Math.max(minRank, 1)
         maxRank = Math.max(maxRank, 1) + (minRank * 0.1)
 
         return { minVal: minRank, maxVal: maxRank };
       }
+
       setShowPercentile(true);
       setPrediction(percentileRangeGen(arr, marks, shiftVal));
       setShift("-- Enter Your Shift --");
@@ -112,13 +103,13 @@ const PercentilePredictor = () => {
           <meta property="og:site_name"
             content="Konsacollege - Rank Predictor"/>
           <meta property="og:image"
-            content="https://konsa-college-website.vercel.app/assets/KonsaCollege_desktopLogo-d9a0ad42.svg" />
+            content="../../assets/collegesetu.png" />
           <meta property="og:determiner" content="..." />
           <meta name="twitter:card" content="Konsacollege is a startup dedicated to helping high school students in India make informed decisions about their college education. With a vast directory of top engineering colleges and user-friendly tools, we make it easy to find the best college hassle-free. Our expert counselors are also available to provide personalized guidance throughout the admissions process. Discover your dream college with Konsacollege today." />
           <meta name="twitter:title" content="Konsacollege - Find the Best Colleges in India" />
           <meta name="twitter:description" content="Finding the right college can be overwhelming, but Konsacollege makes it easy. With a vast directory of top engineering colleges in India and personalized counseling, we help students make informed decisions about their education. Start your search today and discover your dream college with Konsacollege." />
           <meta name="twitter:image"
-            content="https://konsa-college-website.vercel.app/assets/KonsaCollege_desktopLogo-d9a0ad42.svg" />
+            content="../../assets/collegesetu.png" />
           <meta name="twitter:image:alt"
             content="Konsa College Logo" />
           <meta property="twitter:url" content="https://www.konsacollege.com" />

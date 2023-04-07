@@ -75,7 +75,7 @@ const CollegeFooter = () => {
 
               <div className="px-4 mt-[-20px]">
                 <p className="text-[13px] font-roboto text-[#FFFFFF] w-[300px] tracking-tight leading-4">
-                  KonsaCollege is the ultimate destination for engineering
+                  CollegeSetu is the ultimate destination for engineering
                   counseling and support, offering comprehensive guidance and
                   resources to help aspiring engineers achieve their goals.
                 </p>
@@ -187,7 +187,7 @@ const CollegeFooter = () => {
             </div>
 
             <h2 className="desk:hidden text-center py-5">
-              Konsa College @ Copyright 2022
+              College Setu @ Copyright 2023
             </h2>
           </div>
         </div>
@@ -195,7 +195,7 @@ const CollegeFooter = () => {
 
       <div className="mob:hidden desk:w-full desk:h-[40px] desk:flex desk:justify-center desk:items-center text-white bg-[#0e0e0e] md:bg-white md:text-gray-600">
         <h2 className="text-center font-poppins text-[#363636]">
-          Konsa College @ Copyright 2022
+          College Setu @ Copyright 2023
         </h2>
       </div>
     </>
