@@ -20,13 +20,12 @@ const ComparatorMenu = ({collegeSelectorData,setCollegeSelectorData, setShowComp
   return (
     <div className='z-10 bg-white rounded-sm shadow-md absolute w-[90%] mx-auto'>  
       <div className='flex w-full justify-between items-center'>
-        {[...Array(windowWidth > 600 && windowWidth <= 1100 ? 3 : windowWidth < 600 ? 2 : 4 ).fill(null)].map((_,idx) => {
+        {[...Array(windowWidth <= 600 ? 2 : windowWidth > 600 && windowWidth <= 1100 ? 3 : 4 ).fill(null)].map((_,idx) => {
           return (
             <CollegeSelectContainer 
               key={idx} 
               index={idx} 
               collegeSelectorData={collegeSelectorData} setCollegeSelectorData={setCollegeSelectorData} 
-              setShowComparedData={setShowComparedData}
             />
           )
         })}

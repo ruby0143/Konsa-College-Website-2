@@ -34,7 +34,7 @@ const CollegeSelectContainer = ({index, collegeSelectorData, setCollegeSelectorD
     
     },[searchTerm])
 
-    const fetchData = async (collegeUuid) => {
+    const fetchData = async (collegeUuid) => {  
         setSearchResuts([])
         
         const collegeFetchUrl = "https://konsa-college-backend.vercel.app/college/";
@@ -42,8 +42,6 @@ const CollegeSelectContainer = ({index, collegeSelectorData, setCollegeSelectorD
         await axios.get(`${collegeFetchUrl}`+`${collegeUuid}`)
             .then(res => {
                 setSelectedCollege(res.data)
-                // setSearchTerm(res.data.college_name)
-                // setSearchResuts([])
 
                 if(res.data !== 0 && res.data !== null){
                     if(index === 0) setCollegeSelectorData({...collegeSelectorData, selectedCollege1: res.data}) 
@@ -53,6 +51,8 @@ const CollegeSelectContainer = ({index, collegeSelectorData, setCollegeSelectorD
                 }
             })
             .catch(err => console.log("errr: ",err))
+
+            console.log("college selector data: ", collegeSelectorData);
     }
     
     const handleRemove = async (idx) => { 

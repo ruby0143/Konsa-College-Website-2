@@ -1,13 +1,37 @@
 import React from 'react'
+import ComparatorTable from './InnerComponents/ComparatorTable'
 
-const ComparatorSection = ({collegeSelectorData, showComparedData, setShowComparedData}) => {
-
+const ComparatorSection = ({collegeSelectorData, showComparedData}) => {
 
   return (
     <div className='bg-white mx-auto max-w-[90%]'>
         {Object.keys(collegeSelectorData).length >= 2 && JSON.stringify(collegeSelectorData) !== "{}" && showComparedData ? (
-          <div className='mt-[15rem] mb-[4rem] mob:mt-[10rem] mob:mb-[2rem] w-full h-[50vh] rounded-md shadow-md'>
-              data showing
+          <div className='mt-[14rem] mb-[4rem] mob:mt-[10rem] mob:mb-[2rem] w-full rounded-md '>
+              <div className='w-full flex justify-center items-center mb-8'>
+                {
+                  Object.keys(collegeSelectorData).map((objectKey,idx) => {
+                    return (
+                      <div key={idx}>
+                        <span
+                          className='text-lg font-semibold mr-4'
+                        >
+                          {collegeSelectorData[objectKey].college_name}
+                        </span>
+                        {idx !== Object.keys(collegeSelectorData).length -1 && (
+                          <span
+                            className='mr-4 font-medium'
+                          >
+                            Vs
+                          </span>
+                        )}
+                      </div>
+                    )
+                  })
+                }
+              </div>
+              <div className='w-full'>
+                <ComparatorTable/>
+              </div>
           </div>
         ) : (
           Object.keys(collegeSelectorData).length >= 2 && JSON.stringify(collegeSelectorData) !== "{}" && !showComparedData ? (
